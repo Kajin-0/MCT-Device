@@ -6,7 +6,7 @@ Build a source-traceable, end-to-end HgCdTe photodetector fabrication and charac
 
 Canonical first process: **RP-01**, Smith et al., *Semiconductor Science and Technology* 16, 455–462 (2001), DOI `10.1088/0268-1242/16/6/306`.
 
-There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository now contains the complete control architecture from substrate/material preparation through detector characterization, statistical release, failure analysis, requirements traceability, analytical/numerical requirements allocation and the first dedicated empirical-Jacobian qualification module.
+There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository now contains the control architecture from substrate/material preparation through detector characterization, statistical release, failure analysis, requirements traceability, analytical/numerical requirements allocation, empirical-Jacobian qualification and information-optimal DOE planning.
 
 ## Non-negotiable rules
 
@@ -26,14 +26,19 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository now contai
 14. Repository scientific specifications do not replace institution-specific Hg/Cd/Br2/HBr/H2/CH4/high-temperature/vacuum/cryogenic EH&S authorization.
 15. Every numerical sensitivity or allocated tolerance must state the protected output, input variable, operating point and evidence class. `PROXY-CONDITIONAL` relations may size experiments but cannot release production specifications.
 16. A tabulated equilibrium ratio such as `xS/xL` is not a local derivative `dxS/dxL`; directional secants from tie-line tables are not independent partial derivatives when other composition/temperature coordinates change simultaneously.
+17. A coded DOE result does not create a physical process tolerance. Physical perturbation magnitudes require independent-run variance, apparatus control and same-regime/morphology bounds.
+18. Repeated observations from one source genealogy are not independent process replicates. Source-use is sequential and must be analyzed at the correct hierarchical/repeated-measures level.
 
 ## Current checkpoint — READ THIS FIRST
 
 Latest recovery checkpoint:
 
-`research/2026-08-16_checkpoint_after_lpe_jacobian_round14.md`
+`research/2026-08-16_checkpoint_after_information_design_round15.md`
 
-Read the round-13 checkpoint immediately afterward for the general P20 sensitivity framework.
+Then read:
+
+- `research/2026-08-16_checkpoint_after_lpe_jacobian_round14.md`;
+- `research/2026-08-16_checkpoint_after_analytical_sensitivity_round13.md`.
 
 Current integration files:
 
@@ -48,11 +53,15 @@ Current integration files:
 - `procedures/P21_LPE_RESPONSE_SURFACE_JACOBIAN_QUALIFICATION.md`
 - `calculations/RP01_LPE_TO_SPECTRAL_JACOBIAN_FRAMEWORK.md`
 - `travelers/P21_LPE_JACOBIAN_QUALIFICATION_REGISTER.md`
+- `procedures/P22_INFORMATION_OPTIMAL_DOE_PLANNING.md`
+- `calculations/RP01_P21_CODED_DOE_INFORMATION_DESIGN.md`
+- `travelers/P22_DOE_INFORMATION_REGISTER.md`
 
 Latest source/gap addenda:
 
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND14.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND14.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND15.md`
 
 For older provenance also read round-9/8/7/6 source and gap addenda.
 
@@ -78,7 +87,8 @@ For older provenance also read round-9/8/7/6 source and gap addenda.
 - P18 failure-analysis diagnostic atlas + blank failure record
 - P19 requirements / physics / process traceability matrix
 - P20 analytical sensitivity / numerical requirements allocation + blank allocation register
-- **P21 LPE response-surface / empirical-Jacobian qualification + blank qualification register**.
+- P21 LPE response-surface / empirical-Jacobian qualification + blank qualification register
+- **P22 information-optimal DOE planning + blank information register**.
 
 ## Direct RP-01 anchors — do not drift
 
@@ -338,28 +348,125 @@ Choose the final LPE center inside a morphology/yield feasible region and prefer
 
 No balance, temperature, timing, melt-mass or source-use tolerance is released yet.
 
+## P22 — information-optimal P21 design
+
+P22 closes the coded experimental-design mathematics for the first empirical Jacobian.
+
+### Rank rule
+
+For a full local quadratic:
+
+- 3 factors require 10 coefficients;
+- `2^3 + centers` remains rank 8 and cannot identify separate quadratic terms;
+- 2 factors require 6 coefficients;
+- `2^2 + centers` remains rank 5.
+
+Center points do not de-alias individual quadratic terms.
+
+### Stage-1 candidates
+
+**17-run face-centered CCD + 3 centers**:
+
+- rank 10;
+- residual df 7;
+- `kappa(X^T X)≈19.70`;
+- internal `I_D≈0.41297`;
+- linear SE multiplier `0.3162 sigma`;
+- interaction `0.3536 sigma`;
+- quadratic `0.6109 sigma`.
+
+**15-run Box-Behnken + 3 centers**:
+
+- rank 10;
+- residual df 5;
+- `kappa≈17.97`;
+- `I_D≈0.36643`;
+- linear `0.3536 sigma`;
+- interaction `0.5000 sigma`;
+- quadratic `0.5204 sigma`.
+
+BBD internal D-information is about 88.7% of the FCCCD value under the same coded model basis, uses two fewer runs and avoids triple-extreme states.
+
+Use FCCCD when cube corners are physically feasible and derivative precision dominates. Use BBD when triple extremes threaten morphology/same-regime validity.
+
+### Stage-2 candidate
+
+11-run 2-factor face-centered CCD + 3 centers:
+
+- rank 6;
+- residual df 5;
+- `kappa≈9.50`;
+- internal `I_D≈0.42835`;
+- linear SE `0.4082 sigma`;
+- interaction `0.5000 sigma`;
+- quadratic `0.6283 sigma`.
+
+### Derivative resolution
+
+Define
+
+`eta=|partial y/partial u| Delta u / sigma_y`.
+
+One-block approximate alpha=.05 / 80%-power linear resolution:
+
+- Stage-1 FCCCD `eta_min≈1.034`;
+- Stage-1 BBD `≈1.242`;
+- Stage-2 FCCCD `≈1.435`.
+
+Thus physical perturbations must be large enough to generate resolvable response relative to independent-run sigma, while remaining inside the same physical regime.
+
+### Sequential next-run criterion
+
+For `M=X^T W X`, candidate row `x_c` and weight `w_c`:
+
+`q_c=w_c x_c^T M^-1 x_c`.
+
+Adding that run multiplies the information determinant by `1+q_c` under the assumed model. Use this only after filtering candidates through morphology, apparatus and genealogy constraints.
+
+### Stage-3 genealogy rule
+
+Source-use is sequential/repeated measures.
+
+Structural floor for quadratic depth/use support:
+
+- 3 depth levels;
+- at least 2 independent charges per depth;
+- at least 3 selected use states per charge;
+- at least 6 independent source genealogies / 18 selected growth states.
+
+This is a structural identifiability floor, not a power-based final sample size.
+
+Use mixed/repeated-measures analysis. Repeated growths from one charge are not independent replicates of the depth factor.
+
+Physical perturbation magnitudes remain OPEN.
+
 ## Current architecture
 
-The repository now has six integrated layers:
+The repository now has seven integrated layers:
 
 1. **P01–P16:** fabrication/material/device methods + end-to-end traveler;
 2. **P17:** statistical process release/capability/change control;
 3. **P18:** failure diagnosis/corrective action;
 4. **P19:** final-requirement-to-process traceability;
 5. **P20:** analytical/empirical sensitivity and numerical requirements allocation;
-6. **P21:** local response-surface/Jacobian identification for the first high-value P03/P06 block.
+6. **P21:** local response-surface/Jacobian identification for the first high-value P03/P06 block;
+7. **P22:** coded/Fisher-information experimental-design optimization for P21.
 
 Most numerical fabrication tolerances remain `LOCAL-SPEC-OPEN` because no repeated local LPE/device dataset exists yet.
 
 ## Next logical work
 
-Strongest next theoretical/analytical path:
+The P21 design is now analytically mature until Stage-0 apparatus/run-variance data or a concrete apparatus specification exist.
 
-1. build a coded/synthetic P21 Stage-1/2/3 DOE matrix;
-2. optimize identifiability and condition number under realistic factor coupling;
-3. derive derivative-detection power / required independent-run count as a function of P06 + run variance and expected effect size;
-4. use Fisher-information/D-optimal-style criteria to select the most informative growth sequence;
-5. keep absolute physical perturbation magnitudes `OPEN` until apparatus capability and same-growth-regime bounds are established;
-6. then proceed to the P04/P05/P13 anneal-trajectory sensitivity block.
+Strongest next purely analytical branch:
+
+1. build the **P04/P05/P13 anneal-trajectory sensitivity/state framework**;
+2. map
+   `{T_sample(t),T_reservoir(t),pHg(t),dwell,cooldown,initial material state}`
+   into
+   `{carrier sign,n_H/multicarrier,mu_H,tau_eff,optical-edge preservation}`;
+3. explicitly treat p/n conversion as a state/classification boundary rather than forcing one global linear Jacobian through it;
+4. derive local continuous sensitivities only within one stable carrier-state region;
+5. then design the coded information-optimal anneal DOE analogously to P22.
 
 Do not populate production capability/tolerance numbers without local repeated-device data.
