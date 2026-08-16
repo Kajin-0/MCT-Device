@@ -27,7 +27,7 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 13. Every numerical sensitivity/tolerance must state protected output, input, operating point and evidence class. Proxies may size experiments but cannot release production specifications.
 14. A tie-line ratio such as `xS/xL` is not a local derivative `dxS/dxL` when other coordinates vary.
 15. A coded DOE result does not create a physical process tolerance.
-16. Repeated observations from one melt/source/bath/substrate genealogy are not independent replicates.
+16. Repeated observations from one melt/source/bath/substrate/anneal-source genealogy are not independent replicates.
 17. Never regress reciprocal Hall density through a p/n Hall-sign transition; use signed Hall/tensor information near transition.
 18. **Empirical/practical literature first.** Before creating a theoretical placeholder, search primary papers, theses, patents and institutional archives for actual times, temperatures, concentrations, flows, pressures, dimensions, apparatus, metrology settings, outputs and failure observations.
 19. Theory connects genuine literature gaps and checks consistency; it does not displace reported process data.
@@ -57,6 +57,14 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 43. Slider clearance, speed, smoothness, contact/separation time and separation temperature are LPE process variables.
 44. LPE thermal history is `T(t)`, not a scalar `Tgrowth`. Record actual liquidus estimate, supercooling at contact, cooling rate and cooldown.
 45. Hg-source mass/geometry/reuse and growth-melt reuse form a repeated-measures genealogy that must follow run-order composition/thickness data.
+46. **Hg anneal is trajectory defined.** A statement such as `250 °C in Hg` is incomplete; retain `T_s(t)`, `T_Hg(t)`, enclosure/source geometry and cooldown.
+47. **Isothermal and two-temperature Hg anneals are separate process branches.** `T_Hg≈T_s` and `T_Hg<T_s` can produce different equilibrium carrier states.
+48. **Hg saturation is a boundary condition, not a universal gram quantity.** Do not infer reservoir mass from another ampoule volume/geometry.
+49. Controller setpoint is not sample or reservoir temperature until spatial/lag calibration demonstrates equivalence.
+50. Do not copy multi-day bulk Hg-anneal times onto a ~9.5-µm LPE epilayer; kinetics depend on x, thickness, temperature, pHg and starting defect state.
+51. High-temperature dislocation/Te-precipitate conditioning and low-temperature vacancy/stoichiometry control are separate anneal objectives and must not be collapsed into one undocumented step.
+52. During two-zone/high-temperature branches, source/sample temperature relation must prevent uncontrolled Hg condensation/deposition/dissolution; the cooldown relation is part of the recipe.
+53. A final n-type Hall sign is not sufficient anneal release. Require stable Hall-model validity, optical/thickness preservation and defect/morphology closure.
 
 ---
 
@@ -64,10 +72,11 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 
 Latest recovery checkpoint:
 
-`research/2026-08-16_checkpoint_after_empirical_lpe_execution_round23.md`
+`research/2026-08-16_checkpoint_after_empirical_hg_anneal_round24.md`
 
 Then, as needed:
 
+- `research/2026-08-16_checkpoint_after_empirical_lpe_execution_round23.md`
 - `research/2026-08-16_checkpoint_after_empirical_czt_substrate_round22.md`
 - `research/2026-08-16_checkpoint_after_empirical_wet_mesa_round21.md`
 - `research/2026-08-16_checkpoint_after_empirical_lithography_round20.md`
@@ -81,14 +90,14 @@ Then, as needed:
 
 Latest source/gap addenda:
 
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND24.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND24.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND23.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND23.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND22.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND22.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND21.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND21.md`
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND20.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND20.md`
 - older addenda as needed.
 
 ---
@@ -124,9 +133,10 @@ Latest source/gap addenda:
 - P27 Mask-2 lithography/lift-off empirical process window + register
 - P28 wet-mesa empirical process window + register
 - P29 CdZnTe substrate/final-surface empirical process window + register
-- **P30 Te-rich LPE apparatus/charge/contact/wipe-off empirical process window + register**
+- P30 Te-rich LPE apparatus/charge/contact/wipe-off empirical process window + register
+- **P31 Hg-overpressure anneal apparatus/reservoir/trajectory empirical process window + register**
 
-P24–P30 are deliberately empirical/practical and supplement earlier physics/provenance modules.
+P24–P31 are deliberately empirical/practical and supplement earlier physics/provenance modules.
 
 ---
 
@@ -143,7 +153,6 @@ P24–P30 are deliberately empirical/practical and supplement earlier physics/pr
 ## Mesa/passivation
 - wet chemical mesa before anodic oxide
 - native anodic oxide `~800 Å = 80 nm`
-- exact historical wet chemistry/anodization chemistry open
 
 ## Contact-window RIE
 - Plasma Technology parallel-plate reactor
@@ -152,7 +161,6 @@ P24–P30 are deliberately empirical/practical and supplement earlier physics/pr
 - `100 mTorr`
 - `50 W`
 - `60 s`
-- exact reactor model/RF/electrode geometry/self-bias/sample T/individual gas flows open
 
 ## Converted region / LBIC
 - average converted n `~2.0×10^15 cm^-3`
@@ -161,7 +169,7 @@ P24–P30 are deliberately empirical/practical and supplement earlier physics/pr
 - earlier same-lineage ~8-µm n+ conversion under similar conditions
 - LBIC square 300×300 µm; Nd:YLF 1.047 µm CW; ~400 mW/cm²; 80 K
 
-Do not combine 2e15 cm^-3 and 8 µm into one directly measured canonical sheet density.
+Do not combine 2e15 cm^-3 and 8 µm into one directly measured sheet density.
 
 ## Mask-2 / metal / TLM
 - resist ~4–5 µm
@@ -187,160 +195,173 @@ Do not combine 2e15 cm^-3 and 8 µm into one directly measured canonical sheet d
 
 ---
 
+# P31 — empirical Hg-overpressure anneal state
+
+P31 is the empirical apparatus/execution layer for P04/P04A/P04B/P23.
+
+## Historical RP-01 status
+
+RP-01 closes the final material state but does not publicly close the anneal execution. It may also be possible that the purchased Fermionics material arrived already in the quoted n/µ state; this historical branch remains `OPEN`.
+
+## Strongest low-temperature first-transfer branch
+
+Harman primary process-family example:
+
+- pseudo-isothermal/Hg-saturated;
+- sample ~`250 °C`;
+- ~`1 h`;
+- then cooldown.
+
+This is a **screening anchor only**.
+
+Nagahama near-composition x≈0.17–0.30 LPE evidence:
+
+- Hg-overpressure annealing `250–400 °C`;
+- `250–300 °C` -> well-behaved n-type layers without apparent composition change;
+- `400 °C` -> detectable interface-region composition change.
+
+Therefore first x≈0.30 local stoichiometry work remains below 300 °C unless a separate defect-control objective is justified.
+
+## Jones isothermal/two-temperature distinction
+
+Jones et al. directly use Hg reservoirs in closed/open tube systems:
+
+- isothermal: `T_Hg≈T_s`, favors p→n native-defect conversion;
+- two-temperature: `T_Hg<T_s`, lower Hg chemical potential and different native-acceptor equilibrium.
+
+Do not treat these as one recipe.
+
+## Concrete two-zone hardware transfer branch
+
+US5079192:
+
+- long sealed ampoule;
+- LPE HgCdTe sample at one end;
+- sufficient elemental Hg reservoir at remote end;
+- two independently heated zones.
+
+Preferred high-T/dislocation-control example:
+
+- sample ~400 °C;
+- reservoir initially <200 °C;
+- ~1 h;
+- reservoir then ~390 °C while sample remains ~400 °C;
+- ~1 h;
+- subsequent stoichiometric anneal <325 °C for hours–days;
+- cooldown to room T.
+
+This proves architecture/trajectory mechanics but is **not** the baseline RP-01 low-T recipe.
+
+## Condensation/dissolution rule
+
+The TI two-zone branch deliberately keeps Hg source colder than the sample during part of the trajectory to prevent Hg depositing on/dissolving the specimen. Therefore P31 records source/sample temperatures through cooldown, not merely during dwell.
+
+## Hg inventory
+
+No universal elemental-Hg mass has been recovered. “Sufficient Hg for saturation” depends on ampoule volume, reservoir free area, temperature, condensation surfaces, leakage and duration.
+
+P31 records source mass/geometry/reuse but does not release a gram value.
+
+## Time/thickness state
+
+Bulk TI low-temperature examples around 270 °C can require `3–7 days`; Harman's epitaxial branch uses ~1 h. Chandra/Schaake/Kinch show kinetics depend strongly on x/T/starting vacancy concentration. Therefore:
+
+`t_required = F(x,T_s,pHg,S_initial,thickness,surface boundary)`.
+
+Do not transfer bulk times to the ~9.5-µm epilayer.
+
+## P31 required run chain
+
+`P30/P05/P06 starting state`
+
+`-> enclosure/ampoule revision`
+
+`-> Hg source identity/mass/geometry`
+
+`-> calibrated T_s(t), T_Hg(t)`
+
+`-> reconstructed/qualified pHg state`
+
+`-> dwell`
+
+`-> controlled source-coupled cooldown`
+
+`-> P05 signed Hall/tensor state`
+
+`-> P06 same-site optical/thickness`
+
+`-> morphology/defect state`
+
+`-> P13/P11/P12 detector bridge`.
+
+Near p/n conversion use P23 labels `N-LIKE / P-LIKE / TRANSITION-MULTICARRIER`; never force reciprocal Hall density through cancellation.
+
+## P31 remaining OPEN
+
+- exact RP-01 historical anneal/no-anneal supplier state;
+- exact local ampoule dimensions/free volume;
+- exact Hg reservoir mass/area;
+- sample/source spacing;
+- local pHg reconstruction relation;
+- sample/source thermometry uncertainty;
+- ramp/cooldown trajectory;
+- local x≈0.30 time dependence and boundary margin;
+- defect/dislocation response;
+- detector-level optimum.
+
+---
+
 # P30 — empirical Te-rich LPE execution state
-
-P30 is now the empirical execution layer for P03/P03A–P03E.
-
-## Honeywell composition and apparatus
 
 Direct Honeywell tie line:
 
-`xL=.082, yL=.810, TL=507 °C -> xS≈.29`, with `xS/xL=3.54`.
+`xL=.082, yL=.810, TL=507 °C -> xS≈.29`; derived source mass fractions Hg `.249738`, Cd `.012502`, Te `.737760`.
 
-Derived source mass fractions:
-
-- Hg `.249738`
-- Cd `.012502`
-- Te `.737760`
-
-These fractions do **not** establish total charge mass.
+Composition does not establish total charge mass.
 
 Direct Honeywell apparatus family:
-
 - covered graphite base/slider/cover;
 - substrate recess;
 - plugged growth-solution well;
 - auxiliary HgTe or HgTe+Te source;
-- Hg-distribution moats/grooves;
+- Hg-distribution grooves;
 - quartz tube;
 - N2 purge before heating;
 - flowing H2;
-- slide well over substrate after thermal equilibration.
+- slider contact/separation.
 
-Exact boat dimensions, gas flows and RP-01 supplier configuration remain OPEN.
-
-## Direct Honeywell thermal families
-
-Solution is heated above liquidus, then brought below liquidus for growth by:
-
-- step supercooling;
-- slow cooling after contact;
-- or a combination.
-
-The patent gives an example of ~0.5 h growth. Do not treat this as the canonical x=.29 duration.
-
-## Harman 1980 direct operating scales
-
-Primary Te-rich horizontal-slider branch:
-
+Harman branch:
 - growth `450–550 °C`;
-- growth/contact times `0.25–10 min`;
+- contact `0.25–10 min`;
 - typical equilibration `~1 h at 550 °C`;
-- source wafers + supercooled solutions + `(111)` substrates for highest-quality layers;
-- layer thickness `3–15 µm`.
+- 3–15 µm layers.
 
-These are direct branch values, not a single RP-01 recipe.
+Radhakrishnan 2003 transfer:
+- 6N Hg/Cd/Te;
+- 10 g synthesized at 700 °C / 8 h in evacuated quartz;
+- ground/mixed;
+- ~4.8 g/run;
+- 3 g HgTe/run;
+- 15×15×1 mm substrate recess.
 
-## Radhakrishnan 2003 source-prep transfer branch
+Do not overwrite Honeywell x=.29 with these masses.
 
-Direct:
+Honeywell wipe-off generations:
+- CdTe pieces in ~1-mm-spaced slots;
+- later scribed-CdTe drainage apron.
 
-- high-purity/high-density graphite slider;
-- `15×15×1 mm` CdZnTe recess;
-- solution bins + HgTe cavity;
-- tightly fitting graphite cover;
-- quartz tube with gas/push-pull/TC ports;
-- in-situ meltback provision;
-- `10 g` growth-compound synthesis;
-- `6N` Hg/Cd/Te;
-- evacuated quartz ampoule;
-- `700 °C / 8 h`;
-- grind + thorough mix;
-- `~4.8 g` charge/run;
-- `3 g HgTe` compensation/run.
-
-Representative branch coordinates are around `z=.049, y=.84`; masses are transfer data only and may not overwrite Honeywell x=.29.
-
-## Alternate in-situ source preparation
-
-Bernardi 1988 demonstrated Hg-vapor transport into a Cd-rich Te melt to prepare the MCT solution in situ. Keep separate from sealed-ampoule source synthesis.
-
-## Thermal-trajectory thickness evidence
-
-Shinohara 1994:
-
-- equilibrium cooling -> `2–4 µm` layers;
-- step/supercooling with `15 K` supercooling -> `30–40 µm` layers;
-- `x≈.25–.42`.
-
-Therefore record full `T(t)`, actual `DeltaT_SC`, cooling rate and source history.
-
-## Honeywell wipe-off hardware
-
-### US4592304A
-- dedicated wipe-off well adjacent to growth well;
-- CdTe pieces in vertical slots about `1 mm` apart;
-- polycrystalline/unpolished pieces permitted;
-- mechanical wiping + surface-tension adhesion + capillary wicking;
-- discard after cooldown.
-
-### US4706604A
-- later, separate scribed-CdTe-apron generation;
-- apron in tandem with substrate;
-- diagonal diamond scribes;
-- final residual melt directed/retained on apron;
-- finite slider clearance is required to avoid scratching;
-- patent reports complete/100% wipe-off for described geometry.
-
-Do not combine these two generations into one historical apparatus.
-
-## P30 release chain
-
-`P29 substrate -> source/boat genealogy -> purge/H2 -> above-liquidus hold/equilibration -> measured T(t)/supercool -> slider contact -> measured contact time -> slide-out/wipe-off -> cooldown -> residual-melt/scratch map -> P06 x/d -> P05 transport -> P04 -> P13/device proxy`.
-
-Exact RP-01 total charge, boat dimensions, source synthesis, gas flows, contact duration, slider speed/clearance, wipe-off generation, cooldown and source reuse remain OPEN.
+Keep separate.
 
 ---
 
-# P29 — empirical CdZnTe substrate / LPE-interface state
+# P29/P28/P27/P26/P25/P24 concise state
 
-RP-01 closes only electrically insulating CdZnTe. Exact y(Zn), plane/polarity, miscut, dimensions, supplier, resistivity, impurities, polish and final surface remain OPEN.
-
-Strong x≈0.30 transfer center: `Cd0.96Zn0.04Te`. Historical benchmark study reports representative best substrate `EPD≈5×10^4 cm^-2` and XRD linewidth `≈25 arcsec`; benchmarks only.
-
-Detector-LPE surface transfer branch uses `(111)B`, ~4% Zn, `10×10×1 mm³`, chemical+mechanical polish, `(2–3)% Br2/MeOH` for a few seconds then graphite-boat loading; exact concentration basis/rinse/removed depth/timing remain open.
-
-Direct A/B slider comparison shows polarity affects wetting/residual melt; do not freeze B polarity by convention. Direct dipping-LPE miscut result near `1.2° off (111)` is transfer evidence only.
-
----
-
-# P28 — empirical wet mesa
-
-Near-x transfer center: nominal `2% Br2 in 3:1 EG:HBr`, 21 °C, `R_V≈2.78 µm/min`, ~±26% variation, `A≈0.63±11%`, best roughness ~2 nm, `Ea≈7.5 kcal/mol`, rate ~doubles/+10 °C.
-
-Percentage basis, EG:HBr basis, HBr assay, agitation and rinse remain OPEN. `9.5/2.78≈3.42 min` is diagnostic only; release from measured depth/profile + isolation.
-
----
-
-# P27/P26/P25/P24 concise state
-
-- **P27 Mask-2:** historical `4–5 µm -> 80 °C/30 min -> chlorobenzene 30 min -> pattern/develop/water rinse -> RIE -> Cr/Au lift-off`; exact resist/dose/developer/lift-off solvent open.
-- **P26 Cr/Au:** direct Cr 30 nm / Au 270 nm / 80-K `rho_c≈9×10^-4 Ω·cm²`; thermal evaporation strongest same-UWA transfer method, not historical proof; Cr rate open; record RIE→metal exposure.
-- **P25 anodic oxide:** strongest transfer center 0.1 M KOH in 90% EG/10% DI, ~0.30 mA/cm², ~15 V, ~2 min, ~80 nm; record full V(t), charge/area and downstream state.
-- **P24 blocking:** direct 100 mTorr / 64 sccm / 50 W / 60 s / printed CH4/5H2; physical etch depth != electrical conversion depth; release plasma/material -> TLM -> minority blocking -> full detector.
-
----
-
-# Anneal state — P04/P23
-
-Cooldown is part of Hg anneal. Record `T_sample(t), T_reservoir(t), pHg(t)` and initial state.
-
-State labels:
-- `N-LIKE`
-- `P-LIKE`
-- `TRANSITION-MULTICARRIER`
-
-Never fit one reciprocal-Hall-density model through sign reversal. No unique RP-01 anneal dwell/T/pHg/cooldown is released.
+- **P29 CdZnTe:** strong transfer center `Cd0.96Zn0.04Te {111}`; exact RP-01 y/polarity/miscut/final surface open; polarity affects wetting/residual melt.
+- **P28 wet mesa:** nominal `2% Br2 in 3:1 EG:HBr`, 21 °C, `R_V≈2.78 µm/min`, ±26%, `A≈0.63`, best roughness ~2 nm; percentage basis/HBr assay/agitation/rinse open; release by measured depth + electrical isolation, not timer.
+- **P27 Mask-2:** `4–5 µm -> 80 °C/30 min -> chlorobenzene 30 min -> pattern/develop/water rinse -> RIE -> lift-off`; exact resist/dose/developer/solvent open.
+- **P26 Cr/Au:** Cr 30 nm / Au 270 nm / 80-K `rho_c≈9×10^-4 Ω·cm²`; deposition details remain partly open.
+- **P25 anodic oxide:** strongest transfer center 0.1 M KOH, 90% EG/10% DI, ~0.30 mA/cm², ~15 V, ~2 min, ~80 nm; transfer only.
+- **P24 blocking contact:** direct 100 mTorr / 64 sccm / 50 W / 60 s / printed CH4/5H2; physical etch depth != electrical conversion depth.
 
 ---
 
@@ -358,41 +379,45 @@ Never fit one reciprocal-Hall-density model through sign reversal. No unique RP-
 
 ---
 
-# Highest-priority OPEN practical details after Round 23
+# Highest-priority OPEN practical details after Round 24
 
-## Hg anneal — strongest next empirical target
+## Mask-1 / wet-mesa lithography — strongest next empirical target
 
-Recover primary values for:
+P28 chemistry is substantially improved, but actual Mask-1 execution remains weak:
 
-- sealed/open ampoule or boat geometry;
-- Hg reservoir form/mass;
-- sample-reservoir spacing;
-- sample and reservoir temperatures independently;
-- pHg equilibrium/calibration method;
-- ramp/dwell/cooldown trajectories;
-- vacuum/backfill/ambient;
-- sample encapsulation/holder material;
-- carrier-type/density/mobility outcomes;
-- spectral/surface effects.
+- historical resist identity;
+- resist thickness needed to survive through-mesa wet etch;
+- spin/bake;
+- exposure tool/wavelength/dose;
+- developer;
+- wet-etch resist selectivity/swelling/edge retreat;
+- strip solvent/time;
+- effect of sidewall undercut and mask bias on final active geometry;
+- resist-to-Br2/EG/HBr compatibility.
 
-P23 has the state-boundary physics; it still lacks an executable empirical hardware trajectory.
+Recover primary UWA/near-x HgCdTe wet-mesa lithography evidence and create P32 only if supported.
+
+## Hg anneal remaining
+
+- exact RP-01 supplier anneal history;
+- ampoule/reservoir geometry and Hg mass;
+- pHg relation;
+- x≈0.30 local time/cooldown state boundary;
+- defect response.
 
 ## LPE remaining
 
 - exact Honeywell/Fermionics boat dimensions;
 - x=.29 total charge mass/melt height;
-- exact source synthesis;
+- source synthesis;
 - gas flows/purity/dew point;
-- TC position/calibration;
-- exact equilibration/supercooling/contact duration;
-- slider speed/clearance;
-- wipe-off generation used by supplier;
-- cooldown and melt reuse.
+- exact contact time/slider speed/clearance;
+- supplier wipe-off generation and reuse history.
 
-## CdZnTe / wet mesa / RIE / metallization / lithography
+## Other persistent gaps
 
-- exact RP-01 CZT y/face/miscut/final surface;
-- exact UWA wet-mesa formulation and concentration basis;
+- exact RP-01 CdZnTe y/face/miscut/final surface;
+- exact UWA wet-mesa formulation basis;
 - exact Plasma Technology reactor/RF/self-bias/sample T;
 - exact metal deposition method/rates/vacuum;
 - exact Mask-2 resist/exposure/developer/lift-off solvent.
@@ -408,7 +433,9 @@ Identified but not fully recovered through current routes:
 - Ryan Westerhout 2013 UWA thesis experimental text
 - Smith et al. 2000 in-situ vacuum processing full experimental text
 - Musca/Smith/Dell/Faraone photoconductor contact/passivation proceedings traveler
-- exact Honeywell dimensioned LPE boat drawings/process travelers
+- exact Honeywell/Fermionics dimensioned LPE travelers
+- full Jones et al. anneal experimental tables/geometry through accessible route
+- exact Nagahama anneal apparatus/time/reservoir details
 
 “Not recovered” does not mean absent.
 
@@ -416,13 +443,13 @@ Identified but not fully recovered through current routes:
 
 # Next logical work
 
-Proceed with **Round 24: empirical Hg-anneal apparatus / reservoir / pHg / cooldown recovery**.
+Proceed with **Round 25: empirical Mask-1 / wet-mesa lithography / resist-selectivity recovery**.
 
-1. Search primary HgCdTe anneal papers, Honeywell/Fermionics/UWA sources, patents and theses.
-2. Recover actual ampoule/boat geometry, Hg charge/reservoir, sample-reservoir spacing, independent temperature histories, pHg method, dwell and cooldown.
-3. Keep n↔p conversion/state-boundary evidence separate from one-carrier Hall fits near transition.
-4. Connect anneal execution to P05 transport, P06 optical edge/thickness, P13 lifetime and downstream detector noise.
-5. Create P31 empirical anneal execution window/traveler only if the primary evidence supports it.
-6. Do not invent Hg mass, reservoir temperature, pHg, ramp rate or cooldown.
+1. Search primary HgCdTe photoconductor/mesa papers, theses, patents and process records for Mask-1 resist, thickness, bake, exposure, developer and strip.
+2. Prioritize Br2/HBr/EG and related bromine wet-etch compatibility/selectivity with positive photoresists.
+3. Recover actual mask bias/undercut/sidewall/CD data near deep (~9.5 µm) HgCdTe mesa etches.
+4. Keep lithography process-family evidence separate from Mask-2 chlorobenzene lift-off.
+5. Build P32 empirical Mask-1/wet-mesa resist window + traveler if evidence supports it.
+6. If primary Mask-1 recovery fails, pivot to another empirical gap rather than inventing resist values.
 
 Do not populate production tolerances without repeated local fabrication data.
