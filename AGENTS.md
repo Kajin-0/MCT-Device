@@ -166,6 +166,17 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 152. Matching the literature etch rate does not prove chemistry identity. Release still requires `R_V`, `R_L`, profile/roughness, through-layer isolation, material preservation and P25 handoff.
 153. **Wet-etch-to-passivation is a surface-state trajectory.** Record etch end, quench/rinse, dry or wet transfer, air exposure/storage and P25 start; same depth after different exposure histories is not the same state.
 154. Srivastav IISc thesis `G25544.pdf` is officially identified but current direct retrieval returns 403; classify as `IDENTIFIED-NOT-RECOVERED`, not as evidence that the thesis lacks chemistry details.
+155. **Round-37 RIE gas rule:** direct UWA primary sources still print `CH4/5H2`; no separate historical CH4/H2 MFC values were recovered. P08A remains the correct provenance layer.
+156. Same-lineage `CH4:H2=1:5` plus direct 64-sccm total gives only derived candidate flows `10.6667 sccm CH4 / 53.3333 sccm H2`; never relabel them direct RP-01 values.
+157. Do not repeat generic RIE gas-ratio searches unless a genuinely new source family appears (UWA reactor traveler/notebook, thesis appendix, equipment log, or equivalent).
+158. **P25A is the controlled anodization apparatus/electrolyte instantiation layer.** P25 remains the physical/interface/device qualification layer.
+159. TI US3977018 closes the KOH inventory as `0.1 mole KOH in 1 liter` of the stated `90% EG / 10% DI-water` solvent, but the recovered source does not explicitly label the 90:10 basis as v/v or w/w. Keep that basis open.
+160. TI US3977018 carbon-rod photoconductor cell and US5036376A circular-Pt horizontal cell are different apparatus lineages. Do not splice them into one “published” process.
+161. **Anodization current density uses actual electrochemically exposed area.** `I=J A_exposed`; nominal die footprint is insufficient when sidewalls/backside/fixture leakage contribute.
+162. TI `~0.3 mA/cm² / ~15 V / ~2 min / ~800 Å / deep blue` is a strong photoconductor transfer center, not a universal endpoint and not RP-01 historical identity.
+163. P25/P25A must retain raw `V(t)`, induction behavior where present, current stability and `Q/A`; same final thickness after a different V(t) trajectory is not automatic process equivalence.
+164. P28->P25 and P25->Mask2/P08 are timed surface-state handoffs. Rinse/dry/air/storage histories remain part of passivation genealogy.
+165. **P25A method existence does not close P16A R15.** R15 remains `OPEN-CHOICE` until actual electrolyte mathematics/reagents/cell/anode/cathode/area/J/endpoint/rinse are instantiated for a laboratory.
 
 ---
 
@@ -173,10 +184,11 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 
 Latest:
 
-`research/2026-08-16_checkpoint_after_wet_mesa_chemistry_round36.md`
+`research/2026-08-16_checkpoint_after_rie_gas_anodization_round37.md`
 
 Then, as needed:
 
+- `research/2026-08-16_checkpoint_after_wet_mesa_chemistry_round36.md`
 - `research/2026-08-16_checkpoint_after_lpe_absolute_charge_round35.md`
 - `research/2026-08-16_checkpoint_after_first_build_readiness_round34.md`
 - `research/2026-08-16_checkpoint_after_singulation_round33.md`
@@ -189,10 +201,10 @@ Then, as needed:
 
 Latest source/gap addenda:
 
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND37.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND37.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND36.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND36.md`
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND35.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND35.md`
 - older addenda as needed.
 
 ---
@@ -223,10 +235,10 @@ Latest source/gap addenda:
 - P22 information-optimal DOE
 - P23 Hg-anneal state boundary / local Jacobian
 - P24 blocking-contact empirical window + register
-- P25 anodic-oxide empirical window + register
+- **P25 anodic-oxide empirical window + P25A cell/electrolyte/current-density instantiation + registers**
 - P26 Cr/Au metallization/lift-off empirical window + register
 - P27 Mask-2 empirical window + register
-- **P28 wet-mesa empirical window + P28A chemistry-definition/lineage/handoff closure + registers**
+- P28 wet-mesa empirical window + P28A chemistry-definition/lineage/handoff closure + registers
 - P29 CdZnTe/final-surface empirical window + register
 - P30 Te-rich LPE apparatus/charge/contact/wipe-off empirical window + P30A absolute-charge/apparatus-capacity calibration + registers
 - P31 Hg-overpressure anneal apparatus/reservoir/trajectory empirical window + register
@@ -235,7 +247,7 @@ Latest source/gap addenda:
 - P34 CH4/H2 RIE reactor-equivalence empirical window + register
 - P35 HgCdTe/CdZnTe singulation/die-edge empirical process window + register
 
-Rounds 28–32 did not require new top-level physical process modules because their base SOPs were already method-complete. Round 33 created P35. Rounds 34–36 add integration/calibration/lineage-closure layers rather than inventing historical process settings.
+Rounds 28–32 did not require new top-level physical process modules because their base SOPs were already method-complete. Round 33 created P35. Rounds 34–37 add integration/calibration/lineage/instantiation layers rather than inventing historical process settings.
 
 ---
 
@@ -291,7 +303,28 @@ Current state:
 - `HISTORICAL-RP01-REPRODUCED = NO`
 - `REPRODUCIBLE-RELEASE = NO`
 
-P16A contains 36 readiness coordinates. P30A and P28A now provide controlled closure routes for LPE and wet-mesa chemistry respectively, but method existence does not freeze physical laboratory branches.
+P16A contains 36 readiness coordinates. P30A, P28A and P25A now provide controlled closure routes for LPE, wet-mesa chemistry and anodization, but method existence does not freeze physical laboratory branches.
+
+## P25/P25A anodic oxide
+
+Direct RP-01 closes native anodic oxide and ~80-nm thickness only.
+
+Strong photoconductor transfer center from TI US3977018:
+
+- `0.1 M KOH / 90% EG / 10% DI water`;
+- explicitly `0.1 mole KOH in 1 liter` of the stated mixed solvent;
+- HgCdTe anode;
+- carbon-rod cathode;
+- `J≈0.3 mA/cm²`;
+- formation voltage ~15 V;
+- time ~2 min;
+- ~800 Å, uniform deep-blue oxide.
+
+Still open: 90:10 ratio basis, exact UWA cell/electrolyte, rinse/dry and handoff clocks.
+
+Separate apparatus transfer: US5036376A horizontal two-electrode Teflon cell, W/Ti anode probe, circular Pt cathode, unstirred room-temperature bath. Do not merge it with the earlier carbon-rod branch.
+
+P25A now owns electrolyte mathematics/reagent genealogy/cell geometry/A_exposed/J/V(t)/Q/A/rinse instantiation. R15 remains `OPEN-CHOICE` until a real branch is frozen.
 
 ## P28/P28A wet mesa
 
@@ -303,32 +336,13 @@ Direct quantitative transfer center remains Srivastav x=.28:
 - A≈.63;
 - best roughness near ~2 nm.
 
-Still historical-open:
+Still historical-open: Br2 percentage basis, EG:HBr mass/volume basis, HBr stock assay, mixing order, bath volume, reported agitation and exact patterned-mesa rinse/dry.
 
-- Br2 percentage basis;
-- EG:HBr mass/volume basis;
-- HBr stock assay;
-- mixing order;
-- bath volume;
-- reported agitation;
-- exact patterned-mesa rinse/dry.
-
-Strong new Round-36 convention evidence:
-
-- same-SSPL/overlapping-author passivation patent explicitly uses `v/v` for Br2/MeOH;
-- same-author review expresses Br2/MeOH concentration in vol%;
-- Leech 1989 explicitly uses `0.1% (w/w) Br:HBr`, proving non-universal convention.
-
-Therefore `v/v` is `CANDIDATE-VV-SAME-LAB`, not direct history. P28A requires explicit local concentration mathematics, HBr assay, genealogy and P25 handoff qualification.
+`v/v` is `CANDIDATE-VV-SAME-LAB`, not direct history. P28A requires explicit local concentration mathematics, HBr assay, genealogy and P25 handoff qualification.
 
 ## P30/P30A LPE
 
-Direct Honeywell composition center:
-
-- `xL=.082`
-- `yL=.810`
-- `TL=507 °C`
-- `xS≈.29`
+Direct Honeywell composition center: `xL=.082`, `yL=.810`, `TL=507 °C`, `xS≈.29`.
 
 Direct Honeywell topology: covered graphite horizontal slider, substrate recess, tapered through-well(s), plug, separate Hg-source recess, top/bottom Hg distribution grooves/moats, quartz tube, N2 purge then H2, above-liquidus preparation then below-liquidus growth.
 
@@ -336,7 +350,11 @@ Still historical-open: numerical boat dimensions, x≈.29 charge grams, Hg-sourc
 
 Strong transfer scale: Radhakrishnan 2003 uses 15×15×1-mm CdZnTe, ~4.8-g growth charge and 3-g HgTe reservoir in a different Te-rich branch. Never area-scale these values into Honeywell.
 
-P30A controls measured boat capacity, mass calculation after local `M_charge` selection, atmosphere, thermometry, contact matrix, mass balance and P06/P05 output closure.
+## P34 RIE
+
+Direct controller center remains `64 sccm / 100 mTorr / 50 W / 60 s / CH4/5H2`.
+
+Round-37 re-audit recovered no direct individual MFCs. P08A's same-lineage `1:5` decoding remains the best candidate, with derived 10.67/53.33-sccm split. A local gas/reactor branch is still an execution blocker until actual delivery, reactor/sheath/thermal/chamber state and physical/electrical outputs are frozen.
 
 ## P06/P06A FTIR
 
@@ -354,10 +372,6 @@ Keep `{d_physical,d_FTIR,lambda_edge,Eg/x_opt,lambda_det,c}` distinct. At 80 K, 
 
 P35 owns finished-device singulation; P33 owns package construction and sends cryogenic edge survival back to P35. Mechanical yield is not functional detector yield.
 
-## P34 RIE
-
-Direct controller center remains `64 sccm / 100 mTorr / 50 W / 60 s / CH4/5H2`; reactor equivalence requires measured plasma/sheath/thermal/chamber and physical/electrical outputs. A local gas/reactor branch is still an execution blocker until frozen.
-
 ---
 
 # Persistent highest-value OPEN items
@@ -367,16 +381,18 @@ Execution-critical / high current priority:
 - actual local P30/P30A LPE hardware/dimensions/charge/gas/trajectory instantiation
 - exact/selectable final CdZnTe surface process
 - exact/selectable Hg anneal apparatus/trajectory
-- executable Mask-1 + **explicitly defined P28A wet-mesa chemistry/HBr assay/rinse/P25 handoff**
-- executable anodic-oxide cell/bath branch
+- executable Mask-1 + explicitly defined P28A wet-mesa chemistry/HBr assay/rinse/P25 handoff
+- **executable P25A anodic-oxide electrolyte/cell/area/current/rinse branch**
 - executable Mask-2 resist/exposure/developer/chlorobenzene/lift-off branch
-- **executable local CH4/H2 gas realization and reactor/sheath/thermal branch**
-- executable Cr/Au deposition/RIE-to-metal/lift-off branch
+- executable local CH4/H2 gas realization and reactor/sheath/thermal branch
+- **executable Cr/Au deposition/RIE-to-metal/lift-off branch**
 - executable singulation branch
 - executable package/interconnect branch
 
 Historical identity still open but lower immediate first-build priority once a local calibrated branch exists:
 
+- exact RP-01/UWA anodization traveler
+- exact RP-01 individual CH4/H2 MFC values
 - exact RP-01 Optronics optical bench/calibration chain
 - exact RP-01 bias/load/preamp circuit and HP35665A settings
 - exact RP-01 temporal response/lifetime
@@ -390,7 +406,7 @@ Historical identity still open but lower immediate first-build priority once a l
 
 Identified but not fully recovered:
 
-- **Vanya Srivastav IISc thesis `G25544.pdf` — official record/file identified; current direct retrieval path returns 403; relevant chemistry text not recovered**
+- Vanya Srivastav IISc thesis `G25544.pdf` — official record/file identified; current direct retrieval path returns 403; relevant chemistry text not recovered
 - John Kenion White 2005 UWA thesis full experimental text
 - Ryan Westerhout 2013 UWA thesis experimental text
 - J. F. Siliquini 1995 UWA PhD thesis
@@ -398,6 +414,9 @@ Identified but not fully recovered:
 - Smith et al. 2000 in-situ vacuum processing full text
 - exact Honeywell/Fermionics LPE travelers / boat drawings / absolute charge records
 - exact UWA Mask-1/Mask-2 travelers
+- **exact UWA/RP-01 native-anodization electrolyte/cell/current/endpoint/rinse traveler**
+- **exact RP-01 separate CH4/H2 MFC values or premix/delivery record**
+- **exact RP-01 Cr/Au deposition method/tool/base pressure/rates/source geometry/lift-off record**
 - exact RP-01 package traveler
 - exact RP-01 singulation/dicing traveler / mask-layout street drawing
 - exact RP-01 Optronics calibration records
@@ -423,32 +442,52 @@ Round-36 negative searches retained:
 - IISc thesis full relevant text could not be retrieved through current official route;
 - same-SSPL v/v evidence is not sufficient to rewrite Srivastav notation as v/v.
 
+Round-37 negative searches retained:
+
+- Smith et al. 1999/2001 primary sources still do not expose separate historical CH4/H2 MFC values;
+- no new primary source upgraded P08A's 1:5 candidate ratio to direct RP-01;
+- UWA institutional records confirm same-lab passivation papers but do not expose the native-anodization recipe;
+- TI US3977018 does not explicitly label its 90% EG / 10% DI-water proportion as v/v or w/w.
+
 “Not recovered” does not mean absent.
 
 ---
 
 # Next logical work
 
-Proceed with **Round 37: R17 / CH4-H2 gas-realization provenance and delivery closure**.
+Proceed with **Round 38: P26 / R20 Cr-Au deposition apparatus, rate and vacuum provenance audit**.
 
-First audit `P08_RIE_BLOCKING_CONTACT_QUALIFICATION.md`, `P08A_RIE_GAS_RATIO_PROVENANCE_ADDENDUM.md`, P24, P34 and all earlier RIE source/gap ledgers. Do not repeat searches if the notation has already been exhausted.
+Do not duplicate P26. First determine whether its exact historical-source search has already been exhausted.
 
-Target the RP-01 printed condition:
+Direct RP-01 anchors remain:
 
-`CH4/5H2`, total flow `64 sccm`, `100 mTorr`, `50 W`, `60 s`.
+- Cr `30 nm`;
+- Au `270 nm`;
+- Mask-2 lift-off context;
+- nine `300×300 µm` contacts with 50–400-µm gaps;
+- `rho_c≈9×10^-4 Ω cm²` at 80 K.
 
-Round 37 should determine, from primary evidence if possible:
+Still open:
 
-1. what the historical `CH4/5H2` notation actually means;
-2. whether it denotes separate CH4 and H2 flows, a premixed cylinder composition, a ratio notation, or another gas-delivery convention;
-3. actual CH4:H2 split or premix assay if directly recoverable;
-4. same-UWA/Plasma Technology gas-handling evidence and whether it is truly same reactor lineage;
-5. MFC identities/ranges/calibration or at least what remains apparatus-specific;
-6. whether total 64 sccm plus recovered mixture definition is sufficient to calculate component flows;
-7. how gas-definition uncertainty propagates into P34 reactor equivalence and P24 conversion/blocking outputs;
-8. if exact historical gas realization remains unrecovered, create a controlled local gas-definition/qualification addendum rather than guessing;
-9. update P16A R17 only if a real executable gas branch is source-closed or explicitly locally frozen.
+- exact deposition method/tool;
+- base pressure;
+- Cr/Au deposition rates;
+- source boats/crucibles;
+- source-to-sample geometry/orientation;
+- substrate temperature/cooling;
+- exact RIE-to-Cr air/vacuum trajectory on the reported devices;
+- lift-off solvent/time/agitation.
 
-**Pivot rule:** if P08A/P24/P34 already exhaust this question and no materially new primary evidence can be found, do not create a redundant RIE addendum. Pivot Round 37 to P16A R15 / P25 anodic-oxide cell/bath execution closure, which is the next strong source-recoverable chemical blocker.
+Round 38 should:
 
-Update source/gap ledgers, checkpoint and AGENTS either way.
+1. audit P09/P09A/P26 and P26 register before adding anything;
+2. search primary UWA papers, theses and proceedings for exact Cr/Au deposition hardware and quantitative conditions;
+3. preserve same-UWA 1998 **angled thermal evaporation** as method evidence, not exact RP-01 identity;
+4. re-audit whether RP-01's proposed load-lock RIE->metal architecture was actually used on the reported devices or only proposed as an advantage;
+5. recover any same-lab deposition rates, base pressures, source geometry and substrate cooling from 1997–2005 HgCdTe fabrication papers;
+6. do not import angled ion milling or other pre-metal surface treatments from photovoltaic structures into the RP-01 RIE-contact branch;
+7. if historical apparatus/rates remain unavailable, create a focused `P26A` deposition-apparatus/rate/vacuum instantiation addendum + register rather than inventing values;
+8. integrate R20 into P16A without marking it closed until an actual laboratory tool/branch is instantiated;
+9. update source/gap ledgers, checkpoint and AGENTS.
+
+**Pivot rule:** if P26 already exhausts this exact source path and no materially new primary evidence is recoverable, pivot within Round 38 to P16A R12/R16 lithography product/developer source recovery instead of repeating old searches.
