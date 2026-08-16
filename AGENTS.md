@@ -136,6 +136,19 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 122. Scribe/cleave inherits P29 crystallographic plane/polarity/miscut and defect genealogy; rectangular die cannot be assumed to cleave equivalently in two orthogonal directions.
 123. Tool age/dressing/wire condition and coolant/slurry genealogy are repeated-measures process variables.
 124. P35 has two release stages: `SINGULATION-ROOM-TEMP-QUALIFIED`, then final `RP01-SINGULATION-QUALIFIED` only after P33 cryogenic edge-survival feedback.
+125. **Round-34 maturity rule:** `TRACEABLE-FIRST-BUILD-READY`, `HISTORICAL-RP01-REPRODUCED`, and `REPRODUCIBLE-RELEASE` are different claims. Never use them interchangeably.
+126. Use Round-34 blocker classes: `HISTORICAL-IDENTITY-ONLY`, `EXECUTION-BLOCKER`, `LOCAL-IMPLEMENTATION-GATE`, `RELEASE-BLOCKER`.
+127. Missing historical instrument identity does not automatically block a local qualification build if a calibrated local method is explicitly frozen and not mislabeled as historical.
+128. An `EXECUTION-BLOCKER` means an operator would still have to invent an irreversible process choice. `TRACEABLE-FIRST-BUILD-READY` requires those choices to be frozen as direct or local-transfer branches before end-to-end authorization.
+129. A controlled method can still be a `LOCAL-IMPLEMENTATION-GATE` until the actual laboratory tool/reference/calibration chain is instantiated.
+130. **P16 Phase G STEP G1 now uses P35.** P15/P33 own package construction after the P35 handoff; P33 cryogenic results feed back to final P35 edge-survival disposition.
+131. Mechanical singulation/package yield is not detector functional yield. P17A separately tracks mechanical and electrical/noise/optical yield.
+132. P17A makes changes in singulation method/tool/consumable/protection/clean/street and P33 carrier/attach/interconnect/optical/vacuum state formal change-control/requalification triggers.
+133. P18A is the controlled diagnostic extension for post-singulation/edge/package-interaction failures; do not diagnose all post-dice noise/responsivity changes as passivation/contact defects.
+134. **P16A and its 36-row readiness register are the authoritative first-build readiness gate.** The weakest mandatory coordinate controls the disposition.
+135. Current Round-34 disposition is `TRACEABLE-FIRST-BUILD-READY=NO`, `HISTORICAL-RP01-REPRODUCED=NO`, `REPRODUCIBLE-RELEASE=NO`.
+136. Current dominant blockers are empirical execution branches, not missing theory. Historical Optronics/HP35665A/cutoff/lifetime details are lower immediate execution priority than unfrozen LPE, lithography/etch, RIE, metal, singulation and package branches.
+137. **Do not derive an executable absolute LPE charge mass from tie-line fractions alone.** P30 absolute inventory requires actual well/melt geometry and an empirically qualified apparatus branch.
 
 ---
 
@@ -143,10 +156,11 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 
 Latest:
 
-`research/2026-08-16_checkpoint_after_singulation_round33.md`
+`research/2026-08-16_checkpoint_after_first_build_readiness_round34.md`
 
 Then, as needed:
 
+- `research/2026-08-16_checkpoint_after_singulation_round33.md`
 - `research/2026-08-16_checkpoint_after_ftir_composition_thickness_round32.md`
 - `research/2026-08-16_checkpoint_after_temporal_deembedding_round31.md`
 - `research/2026-08-16_checkpoint_after_bias_network_round30.md`
@@ -156,10 +170,10 @@ Then, as needed:
 
 Latest source/gap addenda:
 
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND34.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND34.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND33.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND33.md`
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND32.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND32.md`
 - older addenda as needed.
 
 ---
@@ -181,10 +195,10 @@ Latest source/gap addenda:
 - P13 temporal/frequency response + P13A detailed UWA TPCD apparatus/de-embedding + register
 - P14 lithography/CD + P14A
 - P15 cryogenic package framework
-- P16 master end-to-end traveler
-- P17 statistical release/capability
-- P18 failure analysis/CAPA
-- P19 requirements traceability
+- **P16 master end-to-end traveler + P16A first-build/release-readiness audit + 36-row register**
+- **P17 statistical release/capability + P17A singulation/package change-control extension**
+- **P18 failure analysis/CAPA + P18A singulation/package-edge diagnostic extension**
+- P19 requirements traceability, now including P35/P33 path
 - P20 analytical sensitivity / requirements allocation
 - P21 LPE response surface / empirical Jacobian
 - P22 information-optimal DOE
@@ -200,9 +214,9 @@ Latest source/gap addenda:
 - P32 Mask-1/wet-mesa lithography empirical window + register
 - P33 cryogenic die-attach/interconnect/package empirical window + register
 - P34 CH4/H2 RIE reactor-equivalence empirical window + register
-- **P35 HgCdTe/CdZnTe singulation/die-edge empirical process window + register**
+- P35 HgCdTe/CdZnTe singulation/die-edge empirical process window + register
 
-Rounds 28–32 did not require new top-level modules because their base SOPs were already method-complete. Round 33 **did** identify a genuine fabrication execution gap and created P35.
+Rounds 28–32 did not require new top-level process modules because their base SOPs were already method-complete. Round 33 created P35. Round 34 added system-integration/readiness/change-control/diagnostic addenda rather than a new physical process module.
 
 ---
 
@@ -223,7 +237,7 @@ Rounds 28–32 did not require new top-level modules because their base SOPs wer
 - Cr 30 nm / Au 270 nm
 - nine 300×300-µm contacts; gaps 50–400 µm in 50-µm increments
 - `rho_c≈9×10^-4 Ω cm²` at 80 K
-- **singulation method/final die outline/edge exclusion OPEN**
+- singulation method/final die outline/edge exclusion OPEN
 
 ## Detector / radiometry / noise
 
@@ -250,6 +264,16 @@ Rounds 28–32 did not require new top-level modules because their base SOPs wer
 
 # Current empirical-state summary
 
+## P16/P16A readiness
+
+Current state:
+
+- `TRACEABLE-FIRST-BUILD-READY = NO`
+- `HISTORICAL-RP01-REPRODUCED = NO`
+- `REPRODUCIBLE-RELEASE = NO`
+
+P16A contains 36 readiness coordinates. Highest-impact execution blockers are P30 LPE, P29/P07C final surface, P31 anneal, P32/P28 mesa, P25 oxide, P27 Mask-2, P34 RIE, P26 metal, P35 singulation and P33 package. P05/P06/P10–P13 remain local implementation gates until actual lab hardware/calibration branches are instantiated.
+
 ## P06/P06A FTIR
 
 Keep `{d_physical,d_FTIR,lambda_edge,Eg/x_opt,lambda_det,c}` distinct. At 80 K, Hansen x=.300 gives `lambda_g,eq=5.0879 µm`; treating 4.4 µm as `hc/Eg` would give Hansen-equivalent x≈.3241. This is a consistency warning only.
@@ -264,11 +288,11 @@ Keep `{d_physical,d_FTIR,lambda_edge,Eg/x_opt,lambda_det,c}` distinct. At 80 K, 
 
 ## P33 package
 
-Package attachment/interconnect/thermal response is device physics. P35 now hands a room-temperature-qualified singulated die into P33 and receives cryogenic edge-survival feedback.
+Package attachment/interconnect/thermal response is device physics. P35 hands a room-temperature-qualified singulated die into P33 and receives cryogenic edge-survival feedback. P17A now treats package construction changes as release/change-control events.
 
 ## P34 RIE
 
-Direct controller center remains `64 sccm / 100 mTorr / 50 W / 60 s / CH4/5H2`; reactor equivalence requires measured plasma/sheath/thermal/chamber and physical/electrical outputs.
+Direct controller center remains `64 sccm / 100 mTorr / 50 W / 60 s / CH4/5H2`; reactor equivalence requires measured plasma/sheath/thermal/chamber and physical/electrical outputs. A local gas/reactor branch is still an execution blocker until frozen.
 
 ## P35 singulation
 
@@ -281,26 +305,33 @@ Strong transfer branches:
 - Szeles 2006 CdZnTe: hidden saw damage may require ~100 µm removal even after low-damage wire saw; blade damage can be deeper;
 - Rockwell II–VI laser: ablation can change stoichiometry.
 
-These are transfer evidence only. P35 releases the actual finished HgCdTe/CdZnTe stack using mechanical + subsurface + electrical/noise + cryogenic outputs.
+These are transfer evidence only. P35 releases the actual finished HgCdTe/CdZnTe stack using mechanical + subsurface + electrical/noise + cryogenic outputs. P18A now owns post-singulation diagnostic branches.
 
 ---
 
 # Persistent highest-value OPEN items
 
-- exact RP-01 Mask-1/Mask-2 commercial lithography details
-- exact UWA wet-mesa formulation basis/HBr assay
-- exact RP-01 CdZnTe composition/face/polarity/miscut/final surface
-- exact Honeywell/Fermionics LPE boat/charge/gas/contact trajectory
-- exact supplier/UWA anneal history
-- exact Cr/Au deposition hardware/rates/vacuum
-- exact RP-01 singulation/die outline/street/protection/clean
-- exact RP-01 package construction
-- exact Plasma Technology RIE hardware/self-bias/sample temperature
+Execution-critical / high current priority:
+
+- exact or selected local Honeywell/Fermionics-like LPE boat/well/absolute charge/gas/contact/wipe/cooldown branch
+- exact/selectable final CdZnTe surface process
+- exact/selectable Hg anneal apparatus/trajectory
+- executable Mask-1 + wet-mesa resist/chemistry basis/HBr assay/rinse/strip
+- executable anodic-oxide cell/bath branch
+- executable Mask-2 resist/exposure/developer/chlorobenzene/lift-off branch
+- executable local CH4/H2 reactor/gas/sheath/thermal branch
+- executable Cr/Au deposition/RIE-to-metal/lift-off branch
+- executable singulation branch
+- executable package/interconnect branch
+
+Historical identity still open but lower immediate first-build priority once a local calibrated branch exists:
+
 - exact RP-01 Optronics optical bench/calibration chain
-- exact RP-01 bias/load/preamp circuit
+- exact RP-01 bias/load/preamp circuit and HP35665A settings
 - exact RP-01 temporal response/lifetime
 - exact historical method behind `x≈0.30` and `9.5 µm`
-- exact detector cutoff convention for `4.4 µm`.
+- exact detector cutoff convention for `4.4 µm`
+- exact RP-01 singulation/package identities.
 
 ---
 
@@ -314,42 +345,36 @@ Identified but not fully recovered:
 - J. F. Siliquini 1995 UWA PhD thesis
 - Redfern/Musca/Smith/Dell/Faraone 1999 TPCD conference full experimental text
 - Smith et al. 2000 in-situ vacuum processing full text
-- exact Honeywell/Fermionics LPE travelers
-- exact UWA Mask-1 traveler
+- **exact Honeywell/Fermionics LPE travelers / boat drawings / absolute charge records**
+- exact UWA Mask-1/Mask-2 travelers
 - exact RP-01 package traveler
-- **exact RP-01 singulation/dicing traveler / mask-layout street drawing**
+- exact RP-01 singulation/dicing traveler / mask-layout street drawing
 - exact RP-01 Optronics calibration records
 - exact Figure-5 HP35665A raw/acquisition record
 - original Figure-3/5/6/7 device notebook identifying contact pair/current/resistance
 - supplier/UWA material certificate identifying how `x≈0.30` and `9.5 µm` were measured
 - primary PDF line for Gopal et al. 1992 thickness-range unit conflict.
 
-Same-UWA public repository searches in Round 33 identified neighboring device papers but did not recover an executable singulation traveler. “Not recovered” does not mean absent.
+“Not recovered” does not mean absent.
 
 ---
 
 # Next logical work
 
-Proceed with **Round 34: P16 end-to-end first-build / reproducibility / release-readiness audit**.
+Proceed with **Round 35: P30 LPE absolute apparatus / charge / contact-trajectory closure**.
 
-The major fabrication chain now has empirical execution layers through singulation and package handoff. Do not create another process module reflexively.
+P16A ranks P30 as the highest-leverage current execution blocker. Do not create another theoretical LPE chapter or derive an absolute charge from tie-line fractions alone.
 
-Round 34 should:
+Round 35 should:
 
-1. audit every P16 phase against the latest P24–P35 empirical modules and travelers;
-2. update/reconcile P16's generic references where newer empirical modules own execution, especially P35 for STEP G1;
-3. classify every remaining unresolved variable as one of:
-   - `HISTORICAL-IDENTITY-ONLY` — unknown historical detail not required to execute a scientifically traceable local equivalent;
-   - `EXECUTION-BLOCKER` — cannot perform the step without defining/qualifying it;
-   - `RELEASE-BLOCKER` — a build can be attempted but cannot be accepted without closure;
-   - `LOCAL-QUALIFIABLE` — can be replaced by explicit empirical qualification without claiming UWA historical identity;
-4. create a first-build readiness matrix by phase and process state;
-5. identify missing cross-module handoff data and travelers;
-6. distinguish three claims rigorously:
-   - `TRACEABLE-FIRST-BUILD-READY`;
-   - `HISTORICAL-RP01-REPRODUCED`;
-   - final `REPRODUCIBLE-RELEASE`;
-7. do not let historical-identity gaps unnecessarily block a local scientifically controlled build, but do not erase them;
-8. preserve all empirical provenance and negative searches in the audit.
+1. audit P03/P03A–E/P30 and all previous LPE source ledgers before adding anything new;
+2. search primary Honeywell/Fermionics patents, papers, proceedings, theses and archival records for actual slider-boat drawings/dimensions, substrate recess/well geometry, absolute charge masses, Hg-source geometry, gas/pressure state, thermometry placement, contact/wipe mechanics and cooldown;
+3. re-open Bowers–Schmit and related Te-rich horizontal-slider primary literature specifically for apparatus and absolute inventory, not just phase-equilibrium values;
+4. retain source-use/reuse and Hg-loss genealogy as execution variables;
+5. build the target execution vector:
+   `X_LPE_EXEC={boat/well geometry,substrate recess,total melt mass/depth,Hg/Cd/Te/HgTe inventory,Hg-source state,atmosphere/flow/pressure,thermometry geometry/calibration,equilibration criterion,T_contact,t_contact,T(t),separation/wipe geometry/motion,cooldown}`;
+6. never combine apparatus dimensions from one branch with charge/time from another and label it historical;
+7. if direct historical closure fails, define the minimum local calibration program needed to move each P16A P30 row from `OPEN-CHOICE/APPARATUS-NOT-SELECTED` to `LOCAL-BRANCH-FROZEN`;
+8. update source/gap ledgers, checkpoint and AGENTS.
 
-The likely goal of Round 34 is to determine the **minimum remaining closure set before a competent laboratory could execute the first fully traceable fabrication run from substrate through packaged detector**.
+The objective is an **executable, explicitly sourced or explicitly local-qualified LPE branch**, not additional unsupported specificity.
