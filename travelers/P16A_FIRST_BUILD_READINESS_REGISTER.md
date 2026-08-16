@@ -19,13 +19,13 @@ Use with `procedures/P16A_FIRST_BUILD_RELEASE_READINESS_AUDIT.md`.
 
 `TRACEABLE-FIRST-BUILD-READY` requires every mandatory execution/metrology row to be `DIRECT-EXECUTABLE`, `LOCAL-BRANCH-FROZEN`, or justified `NOT-APPLICABLE`.
 
-A controlled method for closing a row is not the same as row closure. Round 35 added P30A as the closure route for R04–R07; Round 36 added P28A for R13–R14; Round 37 confirms P08A as the current documentary-limit gas-split route for R17 and adds P25A as the apparatus/electrolyte instantiation route for R15. These rows remain open until actual laboratory branches are instantiated numerically and physically.
+A controlled method for closing a row is not the same as row closure. Round 35 added P30A as the closure route for R04–R07; Round 36 added P28A for R13–R14; Round 37 confirmed P08A as the current documentary-limit gas-split route for R17 and added P25A as the apparatus/electrolyte instantiation route for R15; Round 38 adds P26A as the actual-tool/vacuum/source/QCM/thermal/handoff instantiation route for R20. These rows remain open until actual laboratory branches are instantiated numerically and physically.
 
 ---
 
 ## 2. Master readiness table
 
-| ID | Process / measurement | Controlled modules | Blocker class | Mandatory for packaged first build? | Current Round-37 state | Required closure before build |
+| ID | Process / measurement | Controlled modules | Blocker class | Mandatory for packaged first build? | Current Round-38 state | Required closure before build |
 |---|---|---|---|---|---|---|
 | R01 | source-element identity/inventory | P03/P30/P30A | execution | YES | `OPEN-CHOICE` | freeze supplier/lots/purity/inventory and actual source/charge branch |
 | R02 | CdZnTe substrate composition/face/miscut | P07/P29 | execution | YES | `OPEN-CHOICE` | select incoming substrate specification and record measured plane/polarity/miscut |
@@ -46,7 +46,7 @@ A controlled method for closing a row is not the same as row closure. Round 35 a
 | R17 | RIE gas realization | P08/P08A/P24/P34 | execution | YES | `UNDEFINED-BASIS` | direct primary record still gives `CH4/5H2` + 64 sccm without individual MFCs; if using P08A 1:5 same-lineage candidate, explicitly freeze 10.67/53.33-sccm nominal branch, actual gas delivery/MFC calibration and provenance as local transfer rather than historical fact |
 | R18 | RIE reactor/sheath/thermal state | P08D/P24/P34 | execution | YES | `APPARATUS-NOT-SELECTED` | select reactor and freeze geometry, pressure control, RF, self-bias proxy, holder/Ts, clean/season |
 | R19 | oxide clear + semiconductor exposure | P08D/P34 | execution | YES | `OPEN-CHOICE` | measure t_clear and freeze t_sem/output gates for selected reactor |
-| R20 | Cr/Au deposition | P09/P09A/P26 | execution | YES | `APPARATUS-NOT-SELECTED` | select deposition tool/method, base pressure, rates, QCM, thermal limit and RIE-to-Cr clock |
+| R20 | Cr/Au deposition | P09/P09A/P26/P26A | execution | YES | `APPARATUS-NOT-SELECTED` | instantiate P26A through `P26-APPARATUS-READY`: actual deposition method/tool/revision, Cr/Au source hardware and geometry, calibrated vacuum chain/base-accept rule, separate Cr/Au QCM/witness calibration, selected rate branches, thermal-load criterion, actual RIE-to-Cr handoff/clock and Cr-to-Au vacuum-history rule; then link P26 outcome qualification |
 | R21 | lift-off | P14A/P26/P27 | execution | YES | `OPEN-CHOICE` | freeze solvent/time/temperature/agitation/rinse compatible with final device |
 | R22 | final CD/contact geometry | P14/P10 | local implementation | YES | `METROLOGY-NOT-IMPLEMENTED` | freeze measurement method and device/contact-pair naming |
 | R23 | TLM/contact QC | P09/P24/P26 | local implementation | YES | `METROLOGY-NOT-IMPLEMENTED` | freeze 80-K electrical fixture, geometry reduction and blocking-contact functional gate |
@@ -82,6 +82,14 @@ The P08A gas-ratio problem was re-audited rather than duplicated. The direct 199
 
 P25A materially improves R15 closure. TI US3977018 directly ties the preferred photoconductor electrolyte to `0.1 mole KOH in 1 liter of 90% EG / 10% DI-water solvent`, while the exact 90:10 preparation basis remains historically undefined. US5036376A supplies a separate explicit horizontal two-electrode cell transfer branch. P25A keeps those apparatus generations separate and requires the local electrolyte mathematics, electrochemically exposed area and cell geometry to be frozen before first-build authorization. R15 remains `OPEN-CHOICE` until this physical instantiation occurs.
 
+### Round-38 Cr/Au metallization status note
+
+The historical RP-01 metal stack and downstream TLM result are direct, but the deposition traveler remains undocumented in the recovered source set. Same-UWA 1998 HgCdTe photovoltaic papers explicitly use **angled thermal evaporation for contact-metal deposition**, which makes thermal evaporation the strongest current UWA method-family candidate but does not establish that RP-01 used thermal evaporation or an angled geometry.
+
+RP-01's load-lock wording is retained as `DIRECT-RP01-PROPOSED-ARCHITECTURE`: the paper describes the benefit/capability of connecting RIE to metal deposition by load lock but does not establish that the reported experimental devices were processed with zero air break.
+
+P26A now controls the actual laboratory deposition apparatus state. R20 remains `APPARATUS-NOT-SELECTED` until the P26A apparatus register is physically instantiated through `P26-APPARATUS-READY`; creating the method does not freeze a tool.
+
 ---
 
 ## 3. Historical-identity register
@@ -99,7 +107,7 @@ These do not block a clearly labeled local qualification build but block literal
 | exact wet-mesa rinse/air-exposure/anodization handoff | `HISTORICAL-IDENTITY-OPEN` | same-SSPL and other primary transfer branches establish trajectory importance but do not identify RP-01 handoff |
 | exact UWA native-anodic-oxide electrolyte/cell/current/endpoint/rinse | `HISTORICAL-IDENTITY-OPEN` | P25A provides a TI-photoconductor-anchored local instantiation route; do not relabel it UWA |
 | exact Plasma Technology reactor hardware/gas realization | `HISTORICAL-IDENTITY-OPEN` and execution currently unresolved | primary re-audit still gives `CH4/5H2`; P08A 1:5 is same-lineage candidate only; local P34 branch may substitute once frozen |
-| exact Cr/Au deposition hardware/rates/vacuum | `HISTORICAL-IDENTITY-OPEN` | local P26 branch may substitute |
+| exact Cr/Au deposition hardware/rates/vacuum/transfer history | `HISTORICAL-IDENTITY-OPEN` | Round-38 same-UWA evidence supports thermal evaporation as method-family candidate only; local P26A/P26 branch may substitute once apparatus-ready and qualified |
 | exact material method behind x≈0.30 / 9.5 µm | `HISTORICAL-IDENTITY-OPEN` | modern P06/P06A may measure local state |
 | exact Optronics model/calibration | `HISTORICAL-IDENTITY-OPEN` | modern P11/P11A may establish absolute response |
 | exact preamp/HP35665A settings | `HISTORICAL-IDENTITY-OPEN` | modern P12 chain may measure detector noise |
@@ -122,6 +130,10 @@ Before declaring `TRACEABLE-FIRST-BUILD-READY`, answer YES to all applicable que
 - [ ] P25A contains a mathematically defined electrolyte, actual reagent genealogy, dimensioned cell, specified anode/cathode configuration and measured electrochemical area.
 - [ ] P25A contains a traceable selected current density/current, V(t)/Q/A recording rule, bath state and rinse/dry/handoff branch.
 - [ ] The P08/P08A gas branch states actual individual CH4/H2 delivery and provenance; candidate 1:5 values are not labeled direct RP-01.
+- [ ] P26A identifies the actual deposition method/tool/chamber revision, Cr and Au source hardware/material genealogy and source/sample/QCM geometry.
+- [ ] P26A contains separate calibrated Cr/Au thickness-monitor/witness results, selected local rate branches and a documented thermal-load calibration/hold criterion.
+- [ ] P26A contains the actual RIE-to-Cr transfer branch/clock and Cr-to-Au vacuum-history rule; RP-01 load-lock capability is not mislabeled as the measured historical run path.
+- [ ] P26A has reached `P26-APPARATUS-READY` and links to a frozen P26/P27 first-build metallization/lift-off branch.
 - [ ] Every commercial consumable/product is identified by manufacturer/product/lot or a controlled equivalent specification.
 - [ ] Every process tool is identified by model/serial/revision and required calibration state.
 - [ ] Every required setpoint or trajectory is specified numerically or by a calibrated physical endpoint.
