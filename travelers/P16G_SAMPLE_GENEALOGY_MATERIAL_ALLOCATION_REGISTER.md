@@ -1,8 +1,8 @@
 # P16G — sample genealogy / HgCdTe material-allocation register
 
-**Status:** CONTROLLED PRE-EXPERIMENT REGISTER / ROUND 45  
+**Status:** CONTROLLED PRE-EXPERIMENT REGISTER / ROUND-47 INTERFACE REPAIR  
 **Date:** 2026-08-16 America/New_York  
-**Use with:** P16F, P22B, P21/P22/P22A, P23, P24/P25, P33/P35, P05/P06/P10-P13.
+**Use with:** P16F, P22B/P22C/P22D, P21/P22/P22A, P23, P24/P25, P33/P35, P05/P06/P10-P13, P16H/P16I.
 
 ## 1. Purpose
 
@@ -16,7 +16,25 @@ Current repository state:
 
 `NO / NOT PHYSICALLY INSTANTIATED`.
 
-P16G is a prerequisite input to the P16F genealogy/material-feasibility gate. It is not empirical verification, build readiness or P17 release.
+### Round-47 interface rule
+
+P16G does **not** require final `P16F-EMPIRICAL-JACOBIAN-CAMPAIGN-READY` as its input.
+
+P16G consumes:
+
+`P16F-DESIGN-DEFINITION-READY = YES`
+
+for the campaign being allocated.
+
+After P16G closes, its result becomes an input to final P16F readiness.
+
+Permanent dependency:
+
+`P16F design definition -> P16G material/genealogy feasibility -> final P16F campaign readiness`.
+
+This removes the former monolithic P16F/P16G prerequisite cycle.
+
+For Stage-0 only, a narrower provisional material-protection block may be used before full P16G closure; that provisional block cannot be relabeled final P16G readiness.
 
 ---
 
@@ -26,15 +44,37 @@ Laboratory/facility: ____________________
 Responsible process engineer: ____________________  
 Responsible statistician: ____________________  
 P16G revision: ____________________  
-P16F revision: ____________________  
-P22B revision: ____________________  
+P16F design-definition revision/ID: ____________________  
+P22B/P22D revision: ____________________  
 Date opened: ____________________  
 Selected F2 design branch: ____________________  
 Protected detector requirement(s): ____________________
 
+Input gate:
+
+`P16F-DESIGN-DEFINITION-READY = YES / NO`
+
+If NO, final P16G disposition must remain NO; only Stage-0/provisional material protection may be recorded.
+
 ---
 
-# 3. Structural-count basis
+# 3. Stage-0 provisional material-protection block
+
+Use only when authorizing Stage-0 before final design definition exists.
+
+Stage-0 objective: ____________________  
+Synthetic/pilot/real material class: ____________________  
+Number/area proposed for Stage-0: ____________________  
+Future protected roles known at this stage: ____________________  
+Proposed Stage-0 consumption would eliminate a plausible future protected role: YES / NO  
+Archive/identity requirements: ____________________  
+Disposition: PASS / HOLD
+
+This block is scope-limited. It is not `P16G-MATERIAL-GENEALOGY-PLAN-READY`.
+
+---
+
+# 4. Structural-count basis
 
 Selected F2 fitted-design branch:
 
@@ -64,7 +104,7 @@ These are design/root counts, not physical-area or procurement quantities.
 
 ---
 
-# 4. Stage-0 reuse disposition
+# 5. Stage-0 reuse disposition
 
 | Growth ID | Stage-0 purpose | same apparatus/process revision? | same design center? | compatible P06 method? | selected independent of outcome? | formal design row? | disposition |
 |---|---|---|---|---|---|---|---|
@@ -79,7 +119,7 @@ Allowed dispositions:
 
 ---
 
-# 5. Root-growth material register
+# 6. Root-growth material register
 
 One row per independent LPE root.
 
@@ -91,7 +131,7 @@ No descendant cut from one root may later be relabeled an independent LPE root.
 
 ---
 
-# 6. Parent usable-area / layout register
+# 7. Parent usable-area / layout register
 
 For each root or large treated parent:
 
@@ -117,7 +157,7 @@ Unused reserve geometry: ____________________
 
 ---
 
-# 7. Measurement/process compatibility decisions
+# 8. Measurement/process compatibility decisions
 
 ## P06
 
@@ -146,7 +186,7 @@ Measurement order: ____________________
 
 ---
 
-# 8. F2 descendant-selection register
+# 9. F2 descendant-selection register
 
 Do not fabricate full detector descendants from every F2 root by default.
 
@@ -158,7 +198,7 @@ P06->P11 bridge-selected roots: ____________________
 
 ---
 
-# 9. F3 anneal-treatment register
+# 10. F3 anneal-treatment register
 
 ## Experimental-unit definition
 
@@ -183,7 +223,7 @@ For a four-factor first-order n-like axial fit, structural fitted count `2k_A+3 
 
 ---
 
-# 10. F4 RIE chamber-treatment bundle register
+# 11. F4 RIE chamber-treatment bundle register
 
 Number of independently controlled RIE factors `k_R`: __________  
 Jacobian-first fitted chamber-treatment count `2k_R+3`: __________  
@@ -203,7 +243,7 @@ Selection rationale / decision-information value: ____________________
 
 ---
 
-# 11. Passivation/surface-state descendant register
+# 12. Passivation/surface-state descendant register
 
 Frozen incoming RIE/material state(s): ____________________
 
@@ -216,7 +256,7 @@ If YES, model/design ID: ____________________
 
 ---
 
-# 12. F1 / P10-P13 shared detector register
+# 13. F1 / P10-P13 shared detector register
 
 | Detector ID | root | anneal | RIE | passivation | metal | pre-package state | P10 | P11 | P12 | P13 | F1 field derivative | still eligible for package? |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -227,7 +267,7 @@ Default target: zero when existing qualified descendants suffice.
 
 ---
 
-# 13. F5 package-build die allocation
+# 14. F5 package-build die allocation
 
 Non-HgCdTe surrogate screen complete: YES / NO  
 Selected construction family: ____________________
@@ -243,7 +283,7 @@ Unless qualified reversible rework exists, these numbers are one-for-one.
 
 ---
 
-# 14. Holdout register
+# 15. Holdout register
 
 | Holdout ID | campaign | root | treatment event | why independent? | model frozen before result? | measurement vector | terminal state |
 |---|---|---|---|---|---|---|---|
@@ -256,9 +296,11 @@ Checks:
 - F4 holdout = independent new chamber treatment: YES / NO
 - F5 holdout = independent package assembly: YES / NO
 
+Round-47 rule: holdout material is locked and is not automatically available as a process reserve.
+
 ---
 
-# 15. Archive / destructive / contingency register
+# 16. Archive / destructive / contingency register
 
 | Piece ID | root | role | archive / destructive / reserve | reserved decision | destructive method if any | may be reassigned? | terminal disposition |
 |---|---|---|---|---|---|---|---|
@@ -268,7 +310,7 @@ No destructive analysis may consume the sole remaining detector bridge/holdout d
 
 ---
 
-# 16. Reserve terms
+# 17. Reserve terms
 
 Do not collapse into one guessed reserve percentage.
 
@@ -277,15 +319,17 @@ Do not collapse into one guessed reserve percentage.
 | `R_PROCESS` |  |  |  | OPEN |
 | `R_METROLOGY` |  |  |  | OPEN |
 | `R_LAYOUT` |  |  |  | OPEN |
-| `R_HOLDOUT` |  |  |  |  |
-| `R_FA` |  |  |  |  |
+| `R_HOLDOUT` |  |  |  | LOCKED/OPEN |
+| `R_FA` |  |  |  | LOCKED/OPEN |
 | `R_POWER` |  |  |  | OPEN |
 
 When a success probability `p` becomes available, attach the binomial/genealogy-aware sizing calculation rather than using an arbitrary multiplier.
 
+Reserve release must follow P16H/P22C triggers; an unrelated failure does not unlock `R_HOLDOUT`.
+
 ---
 
-# 17. Treatment-root confounding audit
+# 18. Treatment-root confounding audit
 
 | Treatment/campaign | root/block distribution | wafer-position balance | run-order/time alias | source/chamber/ampoule alias | estimable treatment contrast? | action |
 |---|---|---|---|---|---|---|
@@ -298,7 +342,7 @@ Reject a plan where treatment is perfectly aliased with root growth or another u
 
 ---
 
-# 18. Material balance
+# 19. Material balance
 
 ## Independent roots
 
@@ -327,7 +371,7 @@ Power/yield reserve demonstrated: YES / NO
 
 ---
 
-# 19. Anti-pseudoreplication review
+# 20. Anti-pseudoreplication review
 
 - P06 map points counted only as within-growth observations: PASS / FAIL
 - sibling coupons not counted as LPE replicates: PASS / FAIL
@@ -341,8 +385,9 @@ Reviewer comments: ____________________
 
 ---
 
-# 20. P16G disposition
+# 21. P16G disposition
 
+Input `P16F-DESIGN-DEFINITION-READY = YES`: YES / NO  
 Selected F2 root design frozen: YES / NO  
 Stage-0 reuse disposition complete: YES / NO  
 All root usable outlines/layouts established: YES / NO  
@@ -356,7 +401,7 @@ Destructive witnesses protected: YES / NO
 Confounding audit passed: YES / NO  
 Structural material balance closes: YES / NO  
 Yield/power reserve status explicitly open or justified: YES / NO  
-EH&S/infrastructure available: YES / NO
+EH&S/infrastructure material-handling constraints incorporated: YES / NO
 
 Final state:
 
@@ -365,4 +410,9 @@ Final state:
 Reviewer: ____________________  
 Date: ____________________
 
-**Reminder:** P16G readiness means the structural material genealogy is feasible. It does not prove P16F empirical campaign readiness, P16E allocation closure, P16A first-build readiness, or P17 release.
+**Reminder:**
+
+- Stage-0 provisional protection is not final P16G readiness;
+- P16G readiness consumes P16F design definition, not final P16F readiness;
+- P16G readiness then feeds final P16F readiness;
+- P16G readiness does not prove empirical verification, P16E allocation closure, P16A first-build readiness, P16H physical implementation or P17 release.

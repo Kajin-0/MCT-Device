@@ -1,8 +1,8 @@
 # P16F — empirical-Jacobian / information-optimal campaign register
 
-**Status:** CONTROLLED PRE-EXPERIMENT REGISTER / ROUND 44  
+**Status:** CONTROLLED PRE-EXPERIMENT REGISTER / ROUND-47 PHASED-READINESS REPAIR  
 **Date:** 2026-08-16 America/New_York  
-**Use with:** P20/P20A, P21, P22/P22A, P23, P24, P25, P33, P16E.
+**Use with:** P20/P20A, P21, P22/P22A/P22B/P22C/P22D, P23, P24, P25, P33, P16E, P16G, P16I.
 
 ## 1. Purpose
 
@@ -10,11 +10,25 @@ Provide the future laboratory fill-in record for converting `EMPIRICAL-JACOBIAN-
 
 This register is not a fabrication traveler and does not authorize HgCdTe processing by itself.
 
-Program state:
+Round 47 repairs a dependency-cycle ambiguity by separating P16F into three scoped states rather than treating final campaign readiness as a prerequisite for the Stage-0 data needed to define that readiness.
 
-`P16F-EMPIRICAL-JACOBIAN-CAMPAIGN-READY = YES / NO`.
+### P16F phased states
 
-Current repository state: `NO / NOT PHYSICALLY INSTANTIATED`.
+1. `P16F-CAMPAIGN-SKELETON-DEFINED`
+2. `P16F-DESIGN-DEFINITION-READY`
+3. `P16F-EMPIRICAL-JACOBIAN-CAMPAIGN-READY`
+
+Current repository state:
+
+- `P16F-CAMPAIGN-SKELETON-DEFINED = DESIGN METHOD EXISTS / LOCAL INSTANTIATION OPEN`;
+- `P16F-DESIGN-DEFINITION-READY = NO / NOT PHYSICALLY INSTANTIATED`;
+- `P16F-EMPIRICAL-JACOBIAN-CAMPAIGN-READY = NO / NOT PHYSICALLY INSTANTIATED`.
+
+Permanent dependency:
+
+`campaign skeleton -> Stage-0 -> design definition -> P16G genealogy/material feasibility -> final P16F readiness`.
+
+P16G therefore consumes the **design-definition** state, not final P16F readiness.
 
 ---
 
@@ -24,15 +38,51 @@ Laboratory/facility: ____________________
 Responsible engineer/statistician: ____________________  
 P16F revision: ____________________  
 P16E revision: ____________________  
-P22A revision: ____________________  
+P16G revision: ____________________  
+P22A/P22D revision: ____________________  
 Date opened: ____________________  
 Protected detector requirement(s): ____________________
 
 ---
 
-# 3. Universal campaign-design record
+# 3. Phase 0 — campaign skeleton
 
-Complete one block for every campaign F1–F5.
+Complete before Stage-0 material is authorized.
+
+Protected quantity/decision: ____________________  
+Response vector: ____________________  
+Independent experimental unit: ____________________  
+Within-unit repeated/spatial observations: ____________________  
+Candidate controllable factors/state descriptors: ____________________  
+Known blocking/genealogy variables: ____________________  
+Hard-to-change/sequential variables: ____________________  
+Stage-0 repeatability/variance objective: ____________________  
+Stage-0 measurement chain: ____________________  
+Preliminary feasibility/safety bounds: ____________________  
+Provisional failure/invalidation rule: ____________________
+
+Skeleton checks:
+
+- protected quantity/decision identified: YES / NO
+- response vector identified: YES / NO
+- independent unit identified: YES / NO
+- candidate factors/state identified: YES / NO
+- Stage-0 variance/repeatability plan defined: YES / NO
+- preliminary feasibility/safety limits defined: YES / NO
+- scoped P16E measurement discrimination adequate for Stage-0: YES / NO
+- Stage-0 protected-material allocation exists: YES / NO
+
+State:
+
+`P16F-CAMPAIGN-SKELETON-DEFINED = YES / NO`
+
+**Round-47 rule:** Stage-0 does not require Stage-0 variance to already exist and does not require final P16F readiness.
+
+---
+
+# 4. Universal campaign-design record
+
+Complete one block for every campaign F1-F5 after the required Stage-0 information exists.
 
 ## Requirement / decision
 
@@ -76,14 +126,37 @@ For each factor:
 
 ## Holdout / stopping
 
-Holdout state(s): ____________________  
+Holdout state/type/count: ____________________  
+Independent-unit basis of holdout: ____________________  
 Model discrepancy check: ____________________  
 Stopping criterion: ____________________  
 Failure/invalidation rule: ____________________
 
 ---
 
-# 4. F1 — canonical field-derivative campaign
+# 5. Design-definition disposition — input to P16G
+
+This is the state P16G is permitted to consume.
+
+All active campaign experimental units frozen: YES / NO  
+Required Stage-0 variance available: YES / NO  
+Model/design family defined: YES / NO  
+Structural fitted-design count defined: YES / NO  
+Physical perturbation ranges resolution-verified or explicitly HOLD: YES / NO  
+Model rank/conditioning structurally adequate: YES / NO  
+Blocking/hard-to-change structure defined: YES / NO  
+Holdout structural requirement defined: YES / NO  
+Stopping/invalidation logic defined: YES / NO
+
+State:
+
+`P16F-DESIGN-DEFINITION-READY = YES / NO`
+
+If NO, P16G may perform only provisional/Stage-0 material protection; it may not claim final full-campaign genealogy closure from an undefined design.
+
+---
+
+# 6. F1 — canonical field-derivative campaign
 
 ### Requirement link
 
@@ -132,7 +205,7 @@ Evidence state: ____________________
 
 ---
 
-# 5. F2 — P21 LPE campaign
+# 7. F2 — P21 LPE campaign
 
 Boat/source/process block ID: ____________________  
 Growth is the independent unit: CONFIRMED / NO
@@ -182,14 +255,14 @@ Morphology/yield: ____________________
 P05 selected descendants: ____________________  
 P11 detector descendants: ____________________
 
-P06→P11 bridge state: ____________________
+P06->P11 bridge state: ____________________
 
 Holdout: ____________________  
 Evidence state: ____________________
 
 ---
 
-# 6. F3 — P23 anneal boundary / n-like Jacobian
+# 8. F3 — P23 anneal boundary / n-like Jacobian
 
 Growth/wafer blocks: ____________________  
 Coupon matching strategy: ____________________  
@@ -235,7 +308,7 @@ Evidence state: ____________________
 
 ---
 
-# 7. F4 — blocking-contact / passivation campaign
+# 9. F4 — blocking-contact / passivation campaign
 
 Incoming material block: ____________________  
 P25 passivation baseline revision: ____________________  
@@ -288,8 +361,8 @@ Additional combined states: ____________________
 ### Passivation subcampaign
 
 Independent surface-state coordinates: ____________________  
-Mesa→oxide handoff control: ____________________  
-Oxide→Mask2 handoff control: ____________________  
+Mesa->oxide handoff control: ____________________  
+Oxide->Mask2 handoff control: ____________________  
 1/f/lifetime/responsivity responses: ____________________
 
 Matched detector holdout: ____________________  
@@ -297,7 +370,7 @@ Evidence state: ____________________
 
 ---
 
-# 8. F5 — package thermal/dynamic campaign
+# 10. F5 — package thermal/dynamic campaign
 
 Surrogate-screen revision: ____________________  
 Selected carrier family: ____________________  
@@ -339,7 +412,7 @@ Evidence state: ____________________
 
 ---
 
-# 9. Cross-campaign descendant allocation
+# 11. Cross-campaign descendant allocation
 
 | Upstream state ID | P05 | P06 | P10 | P11 | P12 | P13 | package state | genealogy complete? |
 |---|---|---|---|---|---|---|---|---|
@@ -347,9 +420,11 @@ Evidence state: ____________________
 
 Do not combine detector metrics from unmatched descendants without an explicit correction model.
 
+This section supplies descendant **roles and requirements** to P16G after `P16F-DESIGN-DEFINITION-READY` is reached. P16G then decides whether those roles physically fit and remain statistically independent.
+
 ---
 
-# 10. Next-run information log
+# 12. Next-run information log
 
 | Campaign | candidate state | information criterion | expected decision-variance reduction | material/cost burden | confounding risk | feasible? | surrogate substitute? | selected? |
 |---|---|---|---|---|---|---|---|---|
@@ -357,7 +432,7 @@ Do not combine detector metrics from unmatched descendants without an explicit c
 
 ---
 
-# 11. Evidence promotion log
+# 13. Evidence promotion log
 
 | Derivative/boundary | prior state | new state | local valid range | uncertainty | holdout ID/result | detector bridge | P20/P16E eligible? |
 |---|---|---|---|---|---|---|---|
@@ -369,16 +444,15 @@ Allowed progression:
 
 ---
 
-# 12. P16F disposition
+# 14. Final P16F disposition
 
-All campaign experimental units defined: YES / NO  
-Stage-0 variance available for active campaigns: YES / NO  
-Physical perturbation ranges resolution-verified: YES / NO  
+`P16F-DESIGN-DEFINITION-READY = YES`: YES / NO  
+P16G genealogy/material plan feasible: YES / NO  
+Required physical perturbation ranges resolution-verified: YES / NO  
 Model rank/conditioning passed: YES / NO  
-Genealogy/material plan feasible: YES / NO  
-Holdouts defined: YES / NO  
+Holdouts defined and materially protected: YES / NO  
 Stopping rules defined: YES / NO  
-EH&S/infrastructure available: YES / NO
+Relevant EH&S/infrastructure available: YES / NO
 
 Final state:
 
@@ -387,4 +461,9 @@ Final state:
 Reviewer: ____________________  
 Date: ____________________
 
-**Reminder:** P16F readiness does not imply empirical verification, P16E completion, P16A readiness or P17 release.
+**Reminder:**
+
+- the campaign skeleton is not final campaign readiness;
+- design-definition readiness is the upstream input to P16G;
+- P16G feasibility is then required for final P16F readiness;
+- final P16F readiness does not imply empirical verification, P16E completion, P16A readiness or P17 release.
