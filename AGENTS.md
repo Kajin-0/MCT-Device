@@ -35,6 +35,8 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains a
 21. **Empirical/practical literature first.** Before creating another theoretical placeholder for a process variable, search primary papers, theses, patents and institutional repositories for actual times, temperatures, flows, pressures, concentrations, dimensions, apparatus, metrology settings, output values and failure observations.
 22. Theory is used to connect genuine literature gaps, check consistency and allocate requirements — not to displace experimentally reported process information.
 23. A successful historical process condition is not automatically an optimum. Preserve author statements identifying unoptimized variables.
+24. For anodic passivation, equal oxide thickness does not imply equal interface state. Record bath chemistry, starting surface, cell geometry, current density, full `V(t)`, charge/area, physical oxide and downstream electrical/device response.
+25. Color is secondary oxide metrology only. Never release anodic-oxide thickness or quality from color without a calibrated physical correlation.
 
 ---
 
@@ -42,10 +44,11 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains a
 
 Latest recovery checkpoint:
 
-`research/2026-08-16_checkpoint_after_empirical_blocking_contact_round17.md`
+`research/2026-08-16_checkpoint_after_empirical_passivation_round18.md`
 
 Then read, in descending order as needed:
 
+- `research/2026-08-16_checkpoint_after_empirical_blocking_contact_round17.md`
 - `research/2026-08-16_checkpoint_after_hg_anneal_boundary_round16.md`
 - `research/2026-08-16_checkpoint_after_information_design_round15.md`
 - `research/2026-08-16_checkpoint_after_lpe_jacobian_round14.md`
@@ -53,6 +56,8 @@ Then read, in descending order as needed:
 
 Latest empirical source/gap files:
 
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND18.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND18.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND17.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND17.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND16.md`
@@ -90,9 +95,10 @@ Older round-6/7/8/9 source and gap addenda retain important provenance and rejec
 - P21 LPE response-surface / empirical Jacobian + register
 - P22 information-optimal DOE planning + register
 - P23 Hg-anneal state-boundary / local Jacobian + register
-- **P24 blocking-contact empirical process window + empirical qualification register**
+- P24 blocking-contact empirical process window + empirical qualification register
+- **P25 anodic-oxide empirical process window + empirical qualification register**
 
-P24 is deliberately empirical/practical and supplements P08/P08D/P08F rather than replacing them.
+P24 and P25 are deliberately empirical/practical and supplement the earlier physics/provenance modules rather than replacing them.
 
 ---
 
@@ -107,9 +113,16 @@ P24 is deliberately empirical/practical and supplements P08/P08D/P08F rather tha
 - active thickness `9.5 µm`
 - supplier n/mu measurement temperature remains undisclosed
 
-## Anodic oxide / contact-window RIE
+## Anodic oxide
 
-- anodic oxide `~800 Å = 80 nm`
+- native anodic oxide
+- nominal thickness `~800 Å = 80 nm`
+- formed after mesa definition and before contact-window RIE
+
+RP-01 does **not** directly close bath/current/electrodes/endpoint/time/rinse.
+
+## Contact-window RIE
+
 - Plasma Technology parallel-plate reactor
 - printed `CH4/5H2`
 - total `64 sccm`
@@ -190,13 +203,119 @@ The exact contact pair/gap of the canonical plotted device remains open.
 
 ---
 
+# P25 — empirical native anodic-oxide/passivation state
+
+P25 is now the controlling empirical front end for the P02 native-oxide branch.
+
+## Strongest executable transfer center
+
+Texas Instruments U.S. Patent 3,977,018 discloses an actual HgCdTe photoconductor anodization process:
+
+- HgCdTe specimen = **anode**
+- **carbon-rod cathode**
+- electrolyte `0.1 M KOH`
+- solvent `90% ethylene glycol / 10% DI water`
+- galvanostatic constant current
+- current density approximately `0.30 mA/cm²`
+- formation/terminal region approximately `15 V`
+- approximate formation time `2 min`
+- oxide approximately `800 Å = 80 nm`
+- reported visual appearance: uniform deep blue
+
+This is the default **transfer center**, not the historical UWA/RP-01 anodization recipe.
+
+Independent experimental HgCdTe work validates the same bath family at room temperature and approximately `0.2–0.5 mA/cm²`, including ~70-nm oxide examples.
+
+## Cell/bath rules
+
+Every P25 run records:
+
+- KOH/EG/water batch and age
+- reagent lots/grades
+- exact locally adopted 90:10 preparation convention
+- bath temperature
+- anode-contact method
+- cathode material/area
+- electrode separation/orientation
+- immersion depth
+- electrochemically exposed area
+- agitation state
+- bubbles/abnormalities
+
+Later Pt-cathode HgCdTe cells are separate process lineages. Do not merge them with the TI carbon-cathode process.
+
+## V(t) is a process fingerprint
+
+The x≈0.30 anodic-oxidation lineage shows an initial dissolution/precipitation/induction stage whose behavior depends on current density, pH, starting surface and mass transport.
+
+Therefore record/reduce:
+
+- raw `V(t)`
+- induction time `t_ind`
+- defined growth-region `dV/dt`
+- terminal voltage
+- total charge
+- charge/area
+- physical oxide thickness
+
+`0.30 mA/cm² for ~2 min` is not a sufficient process record.
+
+A final ~80-nm oxide reached after an abnormal V(t) trace is not automatically process-equivalent.
+
+## Agitation and starting surface
+
+Agitation is a controlled variable because it can change dissolution/precipitation kinetics. First transfer uses a static/unstirred bath unless a selected primary implementation requires otherwise.
+
+Do not transplant aggressive Br2 surface-removal conditions from bulk/mechanism studies into the 9.5-µm RP-01 LPE layer.
+
+## Physical and electrical oxide are separate outputs
+
+Equal d_ox does not imply equal:
+
+- oxide chemistry
+- fixed charge
+- interface-state density
+- surface accumulation
+- shunting
+- recombination
+- 1/f noise
+
+Other-x native-oxide interface values are diagnostic scales only, not RP-01 specifications.
+
+Same-UWA x≈0.23 gate-controlled photoconductor work proves the practical tradeoff: accumulation can suppress recombination but excessive accumulation can shunt the detector. That device's ~50-mV optimum, ~72-mV floating state and ~70% responsivity gain are **transfer-only** numbers.
+
+## Sidewall / downstream closure
+
+Because RP-01 anodizes after mesa formation, P02C sidewall/perimeter qualification is mandatory.
+
+P25 release chain:
+
+`incoming surface -> bath/cell/V(t) -> physical oxide -> sidewall/interface -> P08 oxide clear+n+ conversion -> P09 TLM -> P10 dark electrical -> P11 responsivity -> P12 noise/D* -> P13 dynamics -> stability`.
+
+An 80-nm planar witness alone cannot release P25.
+
+## P25 main blockers
+
+- exact historical UWA anodization traveler
+- local bath ratio convention/reagent grades
+- local cathode geometry/separation
+- exposed-area fixture definition
+- RP-01-compatible final pre-anodization clean
+- post-anodization rinse/dry
+- repeated x≈0.30 LPE V(t)/Q/A/thickness data
+- interface/noise acceptance metric
+- sidewall closure
+- P08 clear compatibility
+- storage/thermal stability
+- P17 capability
+
+---
+
 # P24 — empirical blocking-contact state
 
-P24 is now the controlling empirical front end for the RIE/contact branch.
+P24 is the controlling empirical front end for the RIE/contact branch.
 
-## Key practical literature findings
-
-### Physical etch is not electrical conversion depth
+## Physical etch is not electrical conversion depth
 
 Siliquini et al. 1997, vacancy-doped p-Hg0.69Cd0.31Te:
 
@@ -208,7 +327,7 @@ Siliquini et al. 1997, vacancy-doped p-Hg0.69Cd0.31Te:
 
 Therefore `d_etch != d_conv` is experimentally established as a process warning.
 
-### x≈.29 extrinsic p-type LBIC/doping branch
+## x≈.29 extrinsic p-type LBIC/doping branch
 
 UWA institutional record, Siliquini et al. 1998:
 
@@ -220,9 +339,9 @@ UWA institutional record, Siliquini et al. 1998:
 - LBIC 80–300 K
 - SEMICAD DEVICE fit for effective converted-region doping
 
-Some public snippets give ~390 mTorr. Preserve the conflict; UWA institutional primary record states 340 mTorr.
+Some public snippets give ~390 mTorr. Preserve the conflict; UWA institutional record states 340 mTorr.
 
-### Plasma factor priority
+## Plasma factor priority
 
 Park et al. 2007, p-Hg0.7Cd0.3Te ICPRIE:
 
@@ -239,21 +358,22 @@ Local RP-01 optimization priority after historical-center replication:
 4. self-bias/ion-energy/RF state
 5. gas-ratio refinement
 
-### Post-RIE thermal/storage history
+## Post-RIE thermal/storage history
 
-Smith et al. 1998, p-type x=.31 transfer branch:
+Transfer-family evidence shows the plasma-induced state can relax or be thermally reversed. These are not RP-01 stability limits.
 
-- RIE: 400 mTorr / CH4-H2 / 90 W
-- subsequent sealed-tube Hg anneal: 200 °C / 17 h
-- RIE-induced n region disappeared by LBIC and Hall returned to p-like starting state
+Record:
 
-Other x=.21 plasma-converted work reports 77-K conductivity falling below half after ~2×10^5 s room-temperature storage, with ~5× faster relaxation at 323 K.
+- `t_RIE->Hall`
+- `t_RIE->LBIC`
+- `t_RIE->metal`
+- storage temperature/ambient
+- cumulative room-temperature exposure
+- later thermal excursions
 
-These are **not RP-01 stability limits**. They establish that post-RIE elapsed time, storage temperature/ambient and later thermal exposure must be recorded and locally qualified.
+## Historical contact was not optimized
 
-### Historical contact was not optimized
-
-Smith et al. explicitly report remaining high-field sweepout and identify n+ density/junction depth as process variables requiring further optimization.
+Smith et al. explicitly report remaining high-field sweepout and identify n+ density/junction depth as variables requiring further optimization.
 
 Therefore `100 mTorr / 64 sccm / 50 W / 60 s` is a successful historical center, not a proven optimum.
 
@@ -328,7 +448,7 @@ No unique RP-01 dwell/T/pHg/cooldown is released.
 
 ---
 
-# Substrate / surface / passivation state
+# Substrate / wet mesa / surface
 
 - CdZnTe is the correct substrate family.
 - Exact RP-01 Zn fraction/orientation/miscut/final-surface history remain qualification variables.
@@ -346,28 +466,13 @@ Wet mesa near-x branch:
 
 Do not guess wt%, vol%, or wt/vol.
 
-Anodic oxide:
-
-- RP-01 directly closes native oxide identity + ~80 nm only
-- TI-family candidate: 0.1 M KOH, 90% EG/10% DI, ~0.3 mA/cm², endpoint ~15 V, ~2 min, ~80 nm
-- candidate is transfer-family, not historical UWA process
-
-P02C requires sidewall/perimeter passivation verification because surface state can affect 1/f, lifetime and responsivity.
-
 ---
 
 # Measurement state
 
 ## Hall — P05
 
-Use:
-
-- current reversal
-- field reversal
-- van der Pauw redundancy
-- variable field
-- current-linearity/self-heating test
-- multicarrier/QMSA escalation when curvature/sign changes/MR invalidate one-carrier interpretation
+Use current reversal, field reversal, van der Pauw redundancy, variable field and current-linearity/self-heating checks. Escalate to multicarrier/QMSA when curvature/sign changes/MR invalidate one-carrier interpretation.
 
 RP-01 one-carrier screening consistency:
 
@@ -377,9 +482,7 @@ RP-01 one-carrier screening consistency:
 
 ## FTIR — P06
 
-Controlled Hansen model exists for `x,T -> Eg -> lambda_Eg`.
-
-At x=.30, 80 K:
+At x=.30, 80 K, controlled Hansen model gives:
 
 - Eg ~0.243684 eV
 - lambda_Eg ~5.0879 µm
@@ -392,13 +495,13 @@ Use measured gap and active voltage:
 
 `E = V_active/L_measured`.
 
-At fixed E, simple one-carrier screening gives Joule power proportional to E². Use this as a sensitivity, not a substitute for measured detector temperature.
+At fixed E, simple one-carrier screening gives Joule power proportional to E². This is a sensitivity, not a substitute for measured detector temperature.
 
 ## Radiometry — P11
 
 Preferred absolute responsivity uses calibrated radiance/transfer detector and measured physical aperture/view factor.
 
-Historical 300-K / 4.4-µm-step / 60-degree-full-cone model gives ~1.12×10^15 photons cm^-2 s^-1 and is consistent with the quoted ~1e15 scale, but this remains a reconstruction rather than a historical aperture proof.
+Historical 300-K / 4.4-µm-step / 60-degree-full-cone reconstruction gives ~1.12×10^15 photons cm^-2 s^-1, near the quoted ~1e15 scale, but remains a reconstruction.
 
 ## Noise — P12
 
@@ -414,11 +517,7 @@ Subtract independent contributions at PSD level, not ASD level.
 
 De-embed external transfer before calling a rolloff detector bandwidth.
 
-A one-pole model uses
-
-`f_3dB=1/(2*pi*tau)`
-
-only after amplitude+phase validate that model. Use `tau_eff` unless bulk-lifetime interpretation is independently justified.
+Use `tau_eff` unless bulk-lifetime interpretation is independently justified.
 
 ---
 
@@ -426,11 +525,11 @@ only after amplitude+phase validate that model. Use `tau_eff` unless bulk-lifeti
 
 ## P17 statistical release
 
-Before capability claims, separate:
+Separate:
 
 `measurement -> within-wafer spatial -> run-to-run -> source/substrate lot -> long-term tool/operator`.
 
-No generic Cpk threshold is imposed. Current end-to-end process is below `PILOT-RELEASE` because no local repeated fabrication dataset exists.
+No generic Cpk threshold. Current end-to-end process remains below `PILOT-RELEASE` because no local repeated fabrication dataset exists.
 
 ## P18 failure analysis
 
@@ -438,7 +537,7 @@ Use:
 
 `signature -> competing mechanisms -> discriminating tests -> root cause -> containment/corrective action -> verification`.
 
-Preserve failed/negative runs; do not silently discard them from DOE/process history.
+Preserve failed/negative runs.
 
 ## P19 traceability
 
@@ -456,14 +555,14 @@ Requirement classes:
 
 ## P20 sensitivity/allocation
 
-Sensitivity evidence classes:
+Evidence classes:
 
 - `IDENTITY`
 - `MODEL-CONDITIONAL`
 - `PROXY-CONDITIONAL`
 - `EMPIRICAL-REQUIRED`
 
-Notable exact/model results retained:
+Support results retained:
 
 - D*: responsivity +1, noise ASD -1, area +0.5 normalized sensitivity
 - ideal Joule power: field +2
@@ -475,6 +574,32 @@ These are support tools, not substitutes for empirical process data.
 ---
 
 # Current highest-priority OPEN practical details
+
+## P09 metallization — next empirical target
+
+RP-01 directly closes:
+
+- Cr 30 nm
+- Au 270 nm
+- resulting TLM `rho_c≈9×10^-4 Ω·cm²` at 80 K
+
+Still recover/qualify:
+
+- thermal vs e-beam evaporation
+- base pressure
+- Cr deposition rate
+- Au deposition rate
+- source material/purity
+- boat/crucible/source geometry
+- substrate/chuck temperature
+- rotation/fixture
+- RIE-to-metal delay/storage/ambient
+- in-situ vs air transfer
+- thickness calibration/tooling factor
+- lift-off solvent/time/agitation
+- post-metal clean/anneal, if any
+- adhesion and cryogenic-cycle stability
+- contact aging
 
 ## Blocking contact
 
@@ -489,14 +614,23 @@ These are support tools, not substitutes for empirical process data.
 - exact process tied to ~8-µm n-type conversion depth
 - canonical n(z) / lateral conversion
 - RP-01 post-RIE aging/thermal budget
-- direct n-type MWIR pressure/T/time/power response matrix
-- direct process-to-D*/bandwidth optimization data
 
-## Other fabrication modules
+## Native oxide
 
-- exact RP-01 anodization electrolyte/current/end-point procedure
+- exact UWA/RP-01 bath/current/cell/rinse
+- local bath ratio convention/reagent grades
+- selected cathode geometry/separation
+- final pre-anodization clean
+- rinse/dry
+- local V(t)/Q/A/thickness capability
+- interface/noise limits
+- sidewall closure
+- P08 clear compatibility
+- storage/thermal stability
+
+## Other fabrication gaps
+
 - exact lithography resist/spin/exposure/developer
-- exact Cr/Au deposition method/rates/base pressure
 - exact CdZnTe face/miscut/final clean
 - complete Hg anneal architecture/trajectory
 - full LPE source synthesis/charge mass/well geometry/growth trajectory
@@ -505,27 +639,30 @@ These gaps should trigger **literature recovery first**, not arbitrary local num
 
 ---
 
-# Negative search retained from round 17
+# Active source-recovery targets / negative searches
 
-A targeted indexed UWA search for Smith/Siliquini/Musca/Winchester HgCdTe theses did not surface the missing blocking-contact dissertation files.
+Round 18 identified but did not recover full experimental text for:
 
-This means only:
+- John Kenion White 2005 UWA thesis, “Mid-wave infrared HgCdTe photodiode technology based on plasma induced p-to-n type conversion” — institutional record and PDF endpoint found; current PDF retrieval returned access/403.
+- Ryan Westerhout 2013 UWA thesis on passivation/dark current/1/f noise — institutional record and PDF endpoint found; current PDF retrieval returned access/403.
+- Smith et al. 2000 “Dry plasma technology for in-situ vacuum processing of HgCdTe infrared photodetectors” — bibliographic record / IEEE document 939185 identified; full experimental text not recovered.
+- same-UWA Musca/Smith/Dell/Faraone photoconductor passivation/contact proceedings paper — relevant bibliographic identity known, experimental traveler still unrecovered.
 
-**not recovered in the current indexed search**.
-
-It does **not** mean the theses do not exist or are unavailable through another catalog/archive route.
+These are **not recovered by the current routes**, not evidence that the information does not exist.
 
 ---
 
 # Next logical work
 
-The user has explicitly asked that the manual remain empirical/practical.
+The user explicitly wants the manual to remain empirical/practical.
 
-Strongest next sequence:
+Proceed with **Round 19: empirical P09 Cr/Au metallization and lift-off recovery**.
 
-1. continue targeted source recovery for the missing P24 blocking-contact apparatus/process numbers, especially theses, full PDFs, patents and archived UWA records;
-2. if those remain inaccessible, move to the next weakly closed practical fabrication module and perform the same literature-first extraction — likely **P02 anodic oxide/passivation** or **P09 Cr/Au deposition**;
-3. create practical source tables/travelers with actual reported numbers and clearly marked transfer branches;
-4. use theory only where the literature genuinely stops and the gap matters to a process decision.
+1. Search exact RP-01/UWA papers, theses, proceedings, patents and archived records for deposition apparatus and actual numbers.
+2. Recover if possible: evaporation method, base pressure, deposition rates, source purity, substrate temperature, RIE-to-metal delay, in-situ/air transfer, lift-off solvent/time/agitation, post-metal thermal treatment and cryogenic stability.
+3. Build a P26 practical metallization process window and traveler using actual values with provenance classes.
+4. Preserve 30-nm Cr / 270-nm Au / ~9e-4 Ω·cm² at 80 K as the direct RP-01 anchor.
+5. If the exact UWA conditions remain inaccessible, use the strongest same-lineage/composition-matched primary process as a transfer center and mark it clearly.
+6. Use theory only after empirical recovery is exhausted and only where a missing number materially blocks a process decision.
 
-Do not populate production capability/tolerance numbers without local repeated-device data.
+Do not populate production tolerances without local repeated-device data.
