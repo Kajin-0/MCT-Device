@@ -6,8 +6,10 @@ Status codes:
 
 - `CLOSED-P` — directly closed by published experimental source.
 - `CLOSED-D` — closed by a documented derivation from published quantities.
+- `CANDIDATE-P` — a primary-source process compatible enough to qualify, but not proven to be the exact RP-01 lineage/process.
 - `CAL` — must be calibrated on the actual apparatus.
 - `QUAL` — requires a qualification experiment before release.
+- `PARTIAL` — only part of the required variable/evidence set is closed.
 - `OPEN` — source/procedure not yet identified.
 - `N/A` — not required for this architecture.
 
@@ -43,16 +45,26 @@ Status codes:
 | Mask 1 | resist identity | OPEN | source search |
 | Mask 1 | resist coating/bake | OPEN | source search |
 | Mask 1 | exposure/develop | OPEN | source search |
-| Mesa etch | chemistry | OPEN | highest-priority process gap |
-| Mesa etch | concentration/temperature | OPEN | highest-priority process gap |
-| Mesa etch | etch rate/depth | OPEN | highest-priority process gap |
-| Mesa etch | undercut/CD acceptance | QUAL | requires actual-mask/tool data |
+| Mesa etch | process family | CLOSED-P | RP-01 states wet chemical; same UWA lineage explicitly uses bromine in HBr for x=0.31 PCs |
+| Mesa etch | candidate chemistry | CANDIDATE-P | 2% Br2 in 3:1 EG:HBr from Srivastav et al. x=0.28 study; see procedures/P01_WET_MESA_QUALIFICATION.md |
+| Mesa etch | concentration basis | OPEN | paper does not unambiguously define basis of “2% Br2”; release blocker |
+| Mesa etch | candidate temperature | CANDIDATE-P / QUAL | 21 °C characterized; lower temperature improves profile; transfer DOE required |
+| Mesa etch | etch rate | CANDIDATE-P / QUAL | mean 2.78 µm/min with ±26% variation for source process; must remeasure on x≈0.30 |
+| Mesa etch | anisotropy | CANDIDATE-P / QUAL | A≈0.63 ±11% source reference |
+| Mesa etch | surface roughness | CANDIDATE-P / QUAL | ~2 nm best-case source result; 2–7 nm reported across conditions |
+| Mesa etch | final isolation depth/overetch | OPEN / QUAL | RP-01 9.5 µm film implies through-layer isolation, but production overetch is not published |
+| Mesa etch | undercut/CD acceptance | QUAL | requires actual-mask/process-capability data |
+| Mesa etch | post-etch rinse/quench | OPEN | must be closed before release |
 | Passivation | film identity | CLOSED-P | anodic oxide for experimental devices |
 | Passivation | thickness | CLOSED-P | 800 Å |
-| Passivation | electrolyte | OPEN | search UWA/Faraone lineage |
-| Passivation | electrical growth condition | OPEN | search UWA/Faraone lineage |
-| Passivation | time/temperature | OPEN | search UWA/Faraone lineage |
-| Passivation | thickness calibration | CAL/QUAL | actual anodization apparatus |
+| Passivation | candidate electrolyte | CANDIDATE-P | 0.1 M KOH in 90% EG / 10% DI water from independent HgCdTe primary sources; exact UWA recipe still unknown |
+| Passivation | candidate electrical condition | CANDIDATE-P / QUAL | constant current ~0.30 mA/cm²; ~15 V formation endpoint from TI primary process disclosure |
+| Passivation | candidate time/temperature | CANDIDATE-P / QUAL | ~2 min for ~800 Å in TI process; independent work uses room-temperature constant-current anodization |
+| Passivation | solvent-ratio preparation basis | OPEN | 90:10 preparation convention must be explicitly closed |
+| Passivation | counter-electrode/fixture | OPEN | primary process transfer detail required |
+| Passivation | rinse/dry sequence | OPEN | must be closed before release |
+| Passivation | thickness calibration | CAL/QUAL | actual anodization apparatus; independent thickness measurement required |
+| Passivation | voltage-time signature | QUAL | log every run; establish control envelope during transfer DOE |
 | Mask 2 | resist thickness | CLOSED-P | ~4–5 µm |
 | Mask 2 | prebake | CLOSED-P | specified by source |
 | Mask 2 | solvent soak | CLOSED-P | specified by source |
@@ -94,6 +106,13 @@ Status codes:
 | Performance | D* condition/result | CLOSED-P | reported BLIP result |
 | Performance | independent reproduction equation inputs | PARTIAL | exact active area/bandwidth chain still open |
 
+## Current controlled qualification modules
+
+- `procedures/P01_WET_MESA_QUALIFICATION.md`
+- `procedures/P02_ANODIC_OXIDE_QUALIFICATION.md`
+
+Neither is a released production procedure yet. Their release blockers are intentionally explicit.
+
 ## Release rule
 
-RP-01 cannot be labeled `REPRODUCIBLE-RELEASE` while any variable that materially affects device identity or performance remains `OPEN`. `CAL` and `QUAL` variables may remain apparatus-specific only if the manual contains an explicit calibration/qualification procedure and numerical acceptance rule.
+RP-01 cannot be labeled `REPRODUCIBLE-RELEASE` while any variable that materially affects device identity or performance remains `OPEN`. `CAL` and `QUAL` variables may remain apparatus-specific only if the manual contains an explicit calibration/qualification procedure and numerical acceptance rule. `CANDIDATE-P` must be converted to either a lineage-confirmed `CLOSED-P` or a statistically qualified local process before production release.
