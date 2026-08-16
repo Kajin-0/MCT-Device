@@ -146,9 +146,18 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 132. P17A makes changes in singulation method/tool/consumable/protection/clean/street and P33 carrier/attach/interconnect/optical/vacuum state formal change-control/requalification triggers.
 133. P18A is the controlled diagnostic extension for post-singulation/edge/package-interaction failures; do not diagnose all post-dice noise/responsivity changes as passivation/contact defects.
 134. **P16A and its 36-row readiness register are the authoritative first-build readiness gate.** The weakest mandatory coordinate controls the disposition.
-135. Current Round-34 disposition is `TRACEABLE-FIRST-BUILD-READY=NO`, `HISTORICAL-RP01-REPRODUCED=NO`, `REPRODUCIBLE-RELEASE=NO`.
+135. Current disposition is `TRACEABLE-FIRST-BUILD-READY=NO`, `HISTORICAL-RP01-REPRODUCED=NO`, `REPRODUCIBLE-RELEASE=NO`.
 136. Current dominant blockers are empirical execution branches, not missing theory. Historical Optronics/HP35665A/cutoff/lifetime details are lower immediate execution priority than unfrozen LPE, lithography/etch, RIE, metal, singulation and package branches.
 137. **Do not derive an executable absolute LPE charge mass from tie-line fractions alone.** P30 absolute inventory requires actual well/melt geometry and an empirically qualified apparatus branch.
+138. **Round-35 LPE rule:** absolute charge is an apparatus coordinate. `V_well`, plug displacement, usable hot volume, `M_charge`, melt depth/meniscus, overlap area and auxiliary Hg-source mass remain separate variables.
+139. The Honeywell x≈.29 tie line (`xL=.082,yL=.810,TL=507°C`) closes composition, not grams. Round-35 re-audit found detailed tapered-well/moat/recess topology but no numerical well dimensions or x≈.29 charge mass.
+140. **Do not area-scale another laboratory's LPE charge.** `M_new=M_ref A_new/A_ref` is prohibited unless well depth/shape, melt depth, free surface/Hg-loss geometry, overlap, thermal field and depletion equivalence are independently demonstrated.
+141. Radhakrishnan 2003 `15×15×1 mm / ~4.8 g growth charge / 3 g HgTe` is strong Te-rich apparatus transfer evidence but is not a Honeywell/Fermionics x≈.29 charge.
+142. Fermionics-supplied UWA LPE material is real material-lineage evidence; no recovered Fermionics internal boat/charge traveler means `FERMIONICS MATERIAL PROVENANCE != FERMIONICS PROCESS RECIPE`.
+143. Preserve Harman 1980 and Harman 1981 as distinct sources/branches. Do not merge their trajectory data into one historical recipe.
+144. P30A is now the controlled method for moving P16A R04–R07 toward `LOCAL-BRANCH-FROZEN`, but **method existence does not close readiness**. Actual hardware dimensions, numerical charge, gas branch and T/contact/wipe/cooldown trajectory must be instantiated.
+145. For xL=.082/yL=.810, after local `M_charge` selection only, current derived mass fractions are approximately `w_Hg=.249740`, `w_Cd=.012502`, `w_Te=.737758`. They calculate component masses; they do not determine total mass.
+146. Wipe-off hardware generation is part of LPE genealogy. Honeywell CdTe-piece well and scribed-apron branches remain distinct.
 
 ---
 
@@ -156,10 +165,11 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 
 Latest:
 
-`research/2026-08-16_checkpoint_after_first_build_readiness_round34.md`
+`research/2026-08-16_checkpoint_after_lpe_absolute_charge_round35.md`
 
 Then, as needed:
 
+- `research/2026-08-16_checkpoint_after_first_build_readiness_round34.md`
 - `research/2026-08-16_checkpoint_after_singulation_round33.md`
 - `research/2026-08-16_checkpoint_after_ftir_composition_thickness_round32.md`
 - `research/2026-08-16_checkpoint_after_temporal_deembedding_round31.md`
@@ -170,10 +180,10 @@ Then, as needed:
 
 Latest source/gap addenda:
 
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND35.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND35.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND34.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND34.md`
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND33.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND33.md`
 - older addenda as needed.
 
 ---
@@ -195,10 +205,10 @@ Latest source/gap addenda:
 - P13 temporal/frequency response + P13A detailed UWA TPCD apparatus/de-embedding + register
 - P14 lithography/CD + P14A
 - P15 cryogenic package framework
-- **P16 master end-to-end traveler + P16A first-build/release-readiness audit + 36-row register**
-- **P17 statistical release/capability + P17A singulation/package change-control extension**
-- **P18 failure analysis/CAPA + P18A singulation/package-edge diagnostic extension**
-- P19 requirements traceability, now including P35/P33 path
+- P16 master end-to-end traveler + P16A first-build/release-readiness audit + 36-row register
+- P17 statistical release/capability + P17A singulation/package change-control extension
+- P18 failure analysis/CAPA + P18A singulation/package-edge diagnostic extension
+- P19 requirements traceability
 - P20 analytical sensitivity / requirements allocation
 - P21 LPE response surface / empirical Jacobian
 - P22 information-optimal DOE
@@ -209,14 +219,14 @@ Latest source/gap addenda:
 - P27 Mask-2 empirical window + register
 - P28 wet-mesa empirical window + register
 - P29 CdZnTe/final-surface empirical window + register
-- P30 Te-rich LPE apparatus/charge/contact/wipe-off empirical window + register
+- **P30 Te-rich LPE apparatus/charge/contact/wipe-off empirical window + P30A absolute-charge/apparatus-capacity calibration + registers**
 - P31 Hg-overpressure anneal apparatus/reservoir/trajectory empirical window + register
 - P32 Mask-1/wet-mesa lithography empirical window + register
 - P33 cryogenic die-attach/interconnect/package empirical window + register
 - P34 CH4/H2 RIE reactor-equivalence empirical window + register
 - P35 HgCdTe/CdZnTe singulation/die-edge empirical process window + register
 
-Rounds 28–32 did not require new top-level process modules because their base SOPs were already method-complete. Round 33 created P35. Round 34 added system-integration/readiness/change-control/diagnostic addenda rather than a new physical process module.
+Rounds 28–32 did not require new top-level physical process modules because their base SOPs were already method-complete. Round 33 created P35. Rounds 34–35 add integration/calibration layers rather than inventing historical process settings.
 
 ---
 
@@ -272,7 +282,24 @@ Current state:
 - `HISTORICAL-RP01-REPRODUCED = NO`
 - `REPRODUCIBLE-RELEASE = NO`
 
-P16A contains 36 readiness coordinates. Highest-impact execution blockers are P30 LPE, P29/P07C final surface, P31 anneal, P32/P28 mesa, P25 oxide, P27 Mask-2, P34 RIE, P26 metal, P35 singulation and P33 package. P05/P06/P10–P13 remain local implementation gates until actual lab hardware/calibration branches are instantiated.
+P16A contains 36 readiness coordinates. Round 35 provides a complete closure route for R04–R07 but those rows remain blocking until real apparatus/process values are instantiated.
+
+## P30/P30A LPE
+
+Direct Honeywell composition center:
+
+- `xL=.082`
+- `yL=.810`
+- `TL=507 °C`
+- `xS≈.29`
+
+Direct Honeywell topology: covered graphite horizontal slider, substrate recess, tapered through-well(s), plug, separate Hg-source recess, top/bottom Hg distribution grooves/moats, quartz tube, N2 purge then H2, above-liquidus preparation then below-liquidus growth.
+
+Still historical-open: numerical boat dimensions, x≈.29 charge grams, Hg-source grams, flows, exact thermometry, 9.5-µm trajectory, wipe generation and cooldown.
+
+Strong transfer scale: Radhakrishnan 2003 uses 15×15×1-mm CdZnTe, ~4.8-g growth charge and 3-g HgTe reservoir in a different Te-rich branch. Never area-scale these values into Honeywell.
+
+P30A now controls measured boat capacity, mass calculation after local `M_charge` selection, atmosphere, thermometry, contact matrix, mass balance and P06/P05 output closure.
 
 ## P06/P06A FTIR
 
@@ -286,26 +313,13 @@ Keep `{d_physical,d_FTIR,lambda_edge,Eg/x_opt,lambda_det,c}` distinct. At 80 K, 
 - RP-01 lifetime/f3dB remain open;
 - package thermal poles must be excluded from detector lifetime.
 
-## P33 package
+## P33/P35
 
-Package attachment/interconnect/thermal response is device physics. P35 hands a room-temperature-qualified singulated die into P33 and receives cryogenic edge-survival feedback. P17A now treats package construction changes as release/change-control events.
+P35 owns finished-device singulation; P33 owns package construction and sends cryogenic edge survival back to P35. Mechanical yield is not functional detector yield.
 
 ## P34 RIE
 
 Direct controller center remains `64 sccm / 100 mTorr / 50 W / 60 s / CH4/5H2`; reactor equivalence requires measured plasma/sheath/thermal/chamber and physical/electrical outputs. A local gas/reactor branch is still an execution blocker until frozen.
-
-## P35 singulation
-
-Historical RP-01 method remains open.
-
-Strong transfer branches:
-
-- Rockwell HgCdTe: conventional diamond-grit saw problems and excimer edge-performance branch;
-- Yoo 1998 finished CdZnTe: graphite/wax + photoresist protection + 125-mm stainless wire + 16-µm BN slurry + ~1 h/cut;
-- Szeles 2006 CdZnTe: hidden saw damage may require ~100 µm removal even after low-damage wire saw; blade damage can be deeper;
-- Rockwell II–VI laser: ablation can change stoichiometry.
-
-These are transfer evidence only. P35 releases the actual finished HgCdTe/CdZnTe stack using mechanical + subsurface + electrical/noise + cryogenic outputs. P18A now owns post-singulation diagnostic branches.
 
 ---
 
@@ -313,10 +327,10 @@ These are transfer evidence only. P35 releases the actual finished HgCdTe/CdZnTe
 
 Execution-critical / high current priority:
 
-- exact or selected local Honeywell/Fermionics-like LPE boat/well/absolute charge/gas/contact/wipe/cooldown branch
+- actual local P30/P30A LPE hardware/dimensions/charge/gas/trajectory instantiation
 - exact/selectable final CdZnTe surface process
 - exact/selectable Hg anneal apparatus/trajectory
-- executable Mask-1 + wet-mesa resist/chemistry basis/HBr assay/rinse/strip
+- **executable Mask-1 + wet-mesa resist/chemistry basis/HBr assay/rinse/strip**
 - executable anodic-oxide cell/bath branch
 - executable Mask-2 resist/exposure/developer/chlorobenzene/lift-off branch
 - executable local CH4/H2 reactor/gas/sheath/thermal branch
@@ -339,13 +353,13 @@ Historical identity still open but lower immediate first-build priority once a l
 
 Identified but not fully recovered:
 
-- Vanya Srivastav IISc thesis `G25544.pdf`
+- **Vanya Srivastav IISc thesis `G25544.pdf` — highest-priority Round-36 wet-etch target**
 - John Kenion White 2005 UWA thesis full experimental text
 - Ryan Westerhout 2013 UWA thesis experimental text
 - J. F. Siliquini 1995 UWA PhD thesis
 - Redfern/Musca/Smith/Dell/Faraone 1999 TPCD conference full experimental text
 - Smith et al. 2000 in-situ vacuum processing full text
-- **exact Honeywell/Fermionics LPE travelers / boat drawings / absolute charge records**
+- exact Honeywell/Fermionics LPE travelers / boat drawings / absolute charge records
 - exact UWA Mask-1/Mask-2 travelers
 - exact RP-01 package traveler
 - exact RP-01 singulation/dicing traveler / mask-layout street drawing
@@ -355,26 +369,38 @@ Identified but not fully recovered:
 - supplier/UWA material certificate identifying how `x≈0.30` and `9.5 µm` were measured
 - primary PDF line for Gopal et al. 1992 thickness-range unit conflict.
 
+Round-35 negative searches to retain:
+
+- no dimensioned Honeywell x≈.29 boat recovered;
+- no Honeywell x≈.29 growth-charge mass recovered;
+- no universal Honeywell Hg-source mass recovered;
+- no exact Honeywell N2/H2 flows recovered;
+- no Fermionics internal LPE traveler recovered;
+- no universal Harman growth-solution gram loading recovered.
+
 “Not recovered” does not mean absent.
 
 ---
 
 # Next logical work
 
-Proceed with **Round 35: P30 LPE absolute apparatus / charge / contact-trajectory closure**.
+Proceed with **Round 36: wet-mesa etchant preparation-basis recovery**, centered on P16A R13 (`UNDEFINED-BASIS`).
 
-P16A ranks P30 as the highest-leverage current execution blocker. Do not create another theoretical LPE chapter or derive an absolute charge from tie-line fractions alone.
+Do not define `2% Br2` or `3:1 EG:HBr` by intuition.
 
-Round 35 should:
+Round 36 should:
 
-1. audit P03/P03A–E/P30 and all previous LPE source ledgers before adding anything new;
-2. search primary Honeywell/Fermionics patents, papers, proceedings, theses and archival records for actual slider-boat drawings/dimensions, substrate recess/well geometry, absolute charge masses, Hg-source geometry, gas/pressure state, thermometry placement, contact/wipe mechanics and cooldown;
-3. re-open Bowers–Schmit and related Te-rich horizontal-slider primary literature specifically for apparatus and absolute inventory, not just phase-equilibrium values;
-4. retain source-use/reuse and Hg-loss genealogy as execution variables;
-5. build the target execution vector:
-   `X_LPE_EXEC={boat/well geometry,substrate recess,total melt mass/depth,Hg/Cd/Te/HgTe inventory,Hg-source state,atmosphere/flow/pressure,thermometry geometry/calibration,equilibration criterion,T_contact,t_contact,T(t),separation/wipe geometry/motion,cooldown}`;
-6. never combine apparatus dimensions from one branch with charge/time from another and label it historical;
-7. if direct historical closure fails, define the minimum local calibration program needed to move each P16A P30 row from `OPEN-CHOICE/APPARATUS-NOT-SELECTED` to `LOCAL-BRANCH-FROZEN`;
-8. update source/gap ledgers, checkpoint and AGENTS.
+1. audit P01/P01A/P28/P32 and all wet-etch source ledgers first;
+2. aggressively recover Vanya Srivastav IISc thesis `G25544.pdf` or another primary full-text route;
+3. identify the exact primary source behind the near-x≈.3 `2% Br2 / 3:1 EG:HBr / 21°C / 2.78 µm min^-1` branch;
+4. determine whether `2% Br2` is wt%, vol%, mass/volume or another basis;
+5. determine whether `3:1 EG:HBr` is volume, mass, molar or another preparation basis;
+6. recover HBr stock assay/concentration;
+7. recover reagent addition order, bath volume, bath age, agitation, temperature and sample orientation;
+8. recover rinse/quench/dry sequence and wet-etch-to-passivation clock where possible;
+9. keep etch-rate evidence separate from recipe identity;
+10. if primary basis recovery still fails, create a **P28A local chemistry-definition/qualification addendum + register** rather than guessing the historical basis;
+11. update P16A readiness only if an actual executable basis is source-closed or a fully explicit local branch is defined;
+12. update source/gap ledgers, checkpoint and AGENTS.
 
-The objective is an **executable, explicitly sourced or explicitly local-qualified LPE branch**, not additional unsupported specificity.
+The objective is to eliminate an `UNDEFINED-BASIS` chemical operation from the first-build path.
