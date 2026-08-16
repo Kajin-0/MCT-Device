@@ -24,20 +24,29 @@ Status codes:
 | Material | incoming mobility | CLOSED-P | Smith et al. |
 | Material | incoming resistivity | CLOSED-D / QUAL | derived consistency value; measured value preferred |
 | Substrate | material | CLOSED-P | insulating CdZnTe |
-| Substrate | Zn fraction | OPEN | locate supplier/process source |
-| Substrate | crystal orientation/miscut | OPEN | locate supplier/process source |
+| Substrate | Zn fraction / lattice match | PARTIAL / QUAL | x≈0.30-compatible CdZnTe with a few mol% Zn is primary-source supported; y≈0.04 reported by Tranchart et al., while separate lattice-match work gives ~0.029 for Hg0.7Cd0.3Te; release from measured mismatch, not a universal nominal value |
+| Substrate | crystal orientation/miscut | PARTIAL / OPEN | {111} family is strongly supported for Te-rich LPE; exact RP-01 face and permitted miscut still require closure |
 | Substrate | thickness/planarity | OPEN | locate source or define qualification |
 | Substrate prep | incoming clean | OPEN | same process-lineage source preferred |
-| LPE | growth method | CLOSED-P | LPE, but supplier recipe unknown |
-| LPE | melt composition | OPEN | identify x≈0.30 compatible primary process |
-| LPE | furnace/boat geometry | OPEN | evaluate Tung/Harman/Radhakrishnan lineage |
-| LPE | growth temperature | OPEN | same |
-| LPE | equilibration | OPEN | same |
-| LPE | supercooling/cooling profile | OPEN | same |
-| LPE | contact/growth time | OPEN | same |
-| LPE | Hg-loss compensation | OPEN | determine compatible method |
-| LPE | thickness uniformity metric | OPEN | define map and acceptance threshold |
-| Post-growth | Hg stoichiometry anneal | OPEN | composition/electrical-state matched source needed |
+| LPE | growth method | CLOSED-P | RP-01 states LPE; x≈0.30 Te-rich horizontal-slider growth is demonstrated in Schmit–Hager–Wood lineage |
+| LPE | candidate melt composition | CANDIDATE-P | Bowers–Schmit tie line xL=0.082, yL=0.810, TL=507 °C gives xS=0.29; see P03 |
+| LPE | elemental charge fractions | CLOSED-D / QUAL | for the candidate tie line: mole fractions Hg 0.17442, Cd 0.01558, Te 0.81000; derived mass fractions Hg 0.249738, Cd 0.012502, Te 0.737760 |
+| LPE | total charge mass / melt depth | OPEN / CAL | must be selected from actual growth-well geometry and depletion behavior; do not combine Radhakrishnan 4.8 g with the Honeywell composition as a published recipe |
+| LPE | charge synthesis / homogenization | PARTIAL / QUAL | Radhakrishnan demonstrates 6N elemental sources and 700 °C/8 h evacuated-ampoule synthesis for a different composition; transfer to x≈0.30 must be qualified |
+| LPE | furnace/boat architecture | CANDIDATE-P / CAL | covered graphite horizontal slider, separate Hg source, quartz tube, N2 purge/H2 process atmosphere are primary-source anchored; exact dimensions are apparatus-specific |
+| LPE | Hg-loss compensation | CANDIDATE-P / CAL | HgTe or HgTe+Te auxiliary vapor source demonstrated by Bowers–Schmit; source mass/area/free-volume capability must be qualified |
+| LPE | growth temperature | CANDIDATE-P / QUAL | TL=507 °C tie line; growth near 500 °C is primary-source supported, giving a derived ~7 °C supercooling center point |
+| LPE | equilibration | OPEN / QUAL | Harman reports ~1 h at 550 °C in a different process; equilibrium criterion for selected x≈0.30 charge/boat must be established |
+| LPE | supercooling/cooling profile | PARTIAL / QUAL | primary source requires heating above liquidus and growth below it; exact ΔT, ramp and cooling trajectory remain to qualify |
+| LPE | substrate meltback | CANDIDATE-P / QUAL | Radhakrishnan demonstrates in-situ meltback as an interface-cleaning method; x≈0.30 chemistry/time/removed depth remain open |
+| LPE | contact/growth time | OPEN / QUAL | must be calibrated against thickness at fixed composition/thermal condition; literature times are process-specific |
+| LPE | growth termination / wipe-off | PARTIAL / CAL | slider translation to separate melt/substrate is primary-source anchored; velocity, geometry and residual-melt control remain open |
+| LPE | thickness uniformity metric | OPEN / QUAL | define spatial map, instrument, repeatability and numerical acceptance threshold |
+| LPE | composition uniformity metric | OPEN / QUAL | define spatial FTIR/composition map and acceptable x/cutoff spread |
+| Post-growth | Hg-overpressure anneal architecture | CANDIDATE-P / QUAL | primary work on x≈0.17–0.30 shows 250–300 °C Hg-overpressure annealing can produce n-type material without the composition change seen near 400 °C |
+| Post-growth | anneal time/Hg chemical potential/cooldown | OPEN | full primary method still required before release |
+| Post-growth | final carrier-density target | CLOSED-P / QUAL | RP-01 n≈9.8×10^14 cm^-3; anneal must be qualified to reproduce this state |
+| Post-growth | final mobility target | CLOSED-P / QUAL | RP-01 µe≈4.0×10^4 cm² V^-1 s^-1; anneal/material process must reproduce it |
 | Material metrology | thickness method | OPEN | establish FTIR/profilometry/cross-section procedure |
 | Material metrology | x/cutoff mapping | OPEN | define instrument and cutoff convention |
 | Material metrology | Hall/Van der Pauw | PARTIAL | paper reports Hall use; full measurement SOP still open |
@@ -110,8 +119,9 @@ Status codes:
 
 - `procedures/P01_WET_MESA_QUALIFICATION.md`
 - `procedures/P02_ANODIC_OXIDE_QUALIFICATION.md`
+- `procedures/P03_LPE_X030_QUALIFICATION.md`
 
-Neither is a released production procedure yet. Their release blockers are intentionally explicit.
+None is a released production procedure yet. Their release blockers are intentionally explicit.
 
 ## Release rule
 
