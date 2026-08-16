@@ -19,7 +19,7 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 5. Preserve negative searches, failed branches, rejected inferences, corrections and source conflicts.
 6. Use measured fabricated geometry for field, active area and `D*` normalization.
 7. Keep Hall quantities, optical-edge quantities, physical etch depth, electrical conversion depth, sheet density, `rho_c` and minority-carrier blocking metrics distinct.
-8. Treat passivation, post-RIE exposure, wet-etch surface exposure, metal-interface exposure, LPE source genealogy, anneal cooldown, substrate clean-to-load, RIE chamber state, packaging and thermal-cycle history as process variables.
+8. Treat passivation, post-RIE exposure, wet-etch surface exposure, metal-interface exposure, LPE source genealogy, anneal cooldown, substrate clean-to-load, RIE chamber state, packaging, singulation and thermal-cycle history as process variables.
 9. Measured system bandwidth is not detector bandwidth until external transfer functions are de-embedded.
 10. Specifications derive from downstream material/device performance, not observed process spread.
 11. Failure diagnosis: signature -> competing mechanisms -> discriminating tests -> root cause -> CAPA -> verification.
@@ -27,7 +27,7 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 13. Numerical sensitivities/tolerances state protected output, input, operating point and evidence class. Proxies may size experiments but cannot release production specifications.
 14. `xS/xL` is not `dxS/dxL` when other equilibrium coordinates vary.
 15. Coded DOE coordinates do not create physical process tolerances.
-16. Repeated observations from one melt/source/bath/substrate/anneal-source/chamber/package genealogy are not iid replicates.
+16. Repeated observations from one melt/source/bath/substrate/anneal-source/chamber/package/tool genealogy are not iid replicates.
 17. Never regress reciprocal Hall density through a p/n Hall-sign transition; use signed Hall/tensor information near transition.
 18. **Empirical/practical literature first.** Before theoretical placeholders, search primary papers, theses, patents, proceedings and institutional archives for actual process/apparatus values and outcomes.
 19. Theory checks consistency and bridges genuine gaps; it does not displace empirical process data.
@@ -124,6 +124,18 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 110. Surface preparation from an optical transfer paper, including a Br2/methanol premeasurement treatment, is part of that experiment's sample state and is not automatically an RP-01 P06 preparation step.
 111. Full-spectrum composition/thickness fitting must freeze optical constants, absorption model, substrate model and software/version; do not allow hidden coefficient/model drift between wafers.
 112. `DEVICE-CORRELATED` optical metrology requires a traceable material-coordinate/genealogy link from P06/P06A to P11 detector spectral response; adjacent or nominally similar material is not the same physical state.
+113. **P35 is the controlled empirical singulation layer.** P15 remains the package framework; P35 owns finished-device separation/tool/protection/clean/edge-damage qualification.
+114. Historical RP-01 singulation method, die outline, tool and edge exclusion remain `OPEN-HISTORICAL`; conventional HgCdTe diamond-saw use in another source does not prove UWA used it.
+115. **Visible dicing damage is not the same as functional or subsurface damage.** Preserve `d_visible`, `d_functional`, and locally released `d_release` separately.
+116. HgCdTe array transfer data showing roughly `9–19 µm` mechanical-saw and `0–6 µm` excimer no-measured-degradation clearances are architecture-specific transfer evidence, not RP-01 edge rules.
+117. **No visible chip does not prove no subsurface damage.** Bulk-CdZnTe manufacturing evidence shows saw-damage depths can greatly exceed visible edge defects.
+118. Deep bromine saw-damage-removal etches from bulk CdZnTe are **not** a completed-RP-01 post-dice clean. A ~9.5-µm HgCdTe active layer plus oxide/RIE/Cr-Au cannot inherit `5% Br/methanol / 5 min` or ~100-µm removal logic without a separate material-removal qualification.
+119. The Yoo 1998 `125-mm stainless wire / 16-µm BN slurry / ~1-h cut / wax + photoresist protection` branch is direct finished-CdZnTe transfer evidence, not an RP-01 recipe.
+120. **Laser/non-contact does not mean chemically inert.** Excimer ablation can change II–VI stoichiometry; a laser P35 branch must qualify near-edge chemistry/redeposition as well as chipping and detector function.
+121. Protection polymers, temporary wax/tape, slurry/coolant and release solvents are detector-process variables after final metal/passivation; no generic semiconductor clean is inserted by default.
+122. Scribe/cleave inherits P29 crystallographic plane/polarity/miscut and defect genealogy; rectangular die cannot be assumed to cleave equivalently in two orthogonal directions.
+123. Tool age/dressing/wire condition and coolant/slurry genealogy are repeated-measures process variables.
+124. P35 has two release stages: `SINGULATION-ROOM-TEMP-QUALIFIED`, then final `RP01-SINGULATION-QUALIFIED` only after P33 cryogenic edge-survival feedback.
 
 ---
 
@@ -131,24 +143,23 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 
 Latest:
 
-`research/2026-08-16_checkpoint_after_ftir_composition_thickness_round32.md`
+`research/2026-08-16_checkpoint_after_singulation_round33.md`
 
 Then, as needed:
 
+- `research/2026-08-16_checkpoint_after_ftir_composition_thickness_round32.md`
 - `research/2026-08-16_checkpoint_after_temporal_deembedding_round31.md`
 - `research/2026-08-16_checkpoint_after_bias_network_round30.md`
 - `research/2026-08-16_checkpoint_after_noise_chain_round29.md`
 - `research/2026-08-16_checkpoint_after_radiometry_round28.md`
-- `research/2026-08-16_checkpoint_after_rie_reactor_equivalence_round27.md`
-- `research/2026-08-16_checkpoint_after_empirical_packaging_round26.md`
 - older checkpoints for detailed fabrication genealogy.
 
 Latest source/gap addenda:
 
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND33.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND33.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND32.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND32.md`
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND31.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND31.md`
 - older addenda as needed.
 
 ---
@@ -160,7 +171,7 @@ Latest source/gap addenda:
 - P03 x≈0.30 LPE + P03A/P03B/P03C/P03D/P03E
 - P04 Hg anneal + P04A/P04B
 - P05 Hall/VdP
-- **P06 FTIR composition/thickness + P06A FTIR apparatus/model/cutoff lineage + register**
+- P06 FTIR composition/thickness + P06A FTIR apparatus/model/cutoff lineage + register
 - P07 CdZnTe + P07A/P07B/P07C
 - P08 RIE blocking contact + P08A–P08G
 - P09 Cr/Au/TLM + P09A
@@ -169,7 +180,7 @@ Latest source/gap addenda:
 - P12 noise/PSD/NEP/D* + P12A preamp lineage + P12B analyzer transfer + P12C state identity + register
 - P13 temporal/frequency response + P13A detailed UWA TPCD apparatus/de-embedding + register
 - P14 lithography/CD + P14A
-- P15 cryogenic package
+- P15 cryogenic package framework
 - P16 master end-to-end traveler
 - P17 statistical release/capability
 - P18 failure analysis/CAPA
@@ -189,8 +200,9 @@ Latest source/gap addenda:
 - P32 Mask-1/wet-mesa lithography empirical window + register
 - P33 cryogenic die-attach/interconnect/package empirical window + register
 - P34 CH4/H2 RIE reactor-equivalence empirical window + register
+- **P35 HgCdTe/CdZnTe singulation/die-edge empirical process window + register**
 
-No new top-level module was created in Rounds 28–32 because P11/P12/P10/P13/P06 were already method-complete; the missing layer was historical lineage/state/apparatus/model transfer.
+Rounds 28–32 did not require new top-level modules because their base SOPs were already method-complete. Round 33 **did** identify a genuine fabrication execution gap and created P35.
 
 ---
 
@@ -204,15 +216,14 @@ No new top-level module was created in Rounds 28–32 because P11/P12/P10/P13/P0
 - supplier `mu=4.0×10^4 cm²/V·s`
 - active thickness `9.5 µm`
 - supplier n/µ measurement temperature undisclosed
-- **method used historically to obtain x≈0.30 and 9.5 µm is OPEN**
+- method used historically to obtain x≈0.30 and 9.5 µm is OPEN
 - native anodic oxide `~800 Å = 80 nm`
 - RIE: Plasma Technology parallel-plate; printed `CH4/5H2`; total 64 sccm; 100 mTorr; 50 W; 60 s
 - converted average n `~2.0×10^15 cm^-3`; mobility `~3.3×10^4 cm²/V·s`
 - Cr 30 nm / Au 270 nm
 - nine 300×300-µm contacts; gaps 50–400 µm in 50-µm increments
 - `rho_c≈9×10^-4 Ω cm²` at 80 K
-
-Do not combine average converted n with the separate ~8-µm conversion-depth lineage into one direct sheet density.
+- **singulation method/final die outline/edge exclusion OPEN**
 
 ## Detector / radiometry / noise
 
@@ -225,7 +236,7 @@ Do not combine average converted n with the separate ~8-µm conversion-depth lin
 - Figures 5–7 at 10 V/cm
 - Figures 3/5/6/7 same physical detector
 - exact contact pair/gap remains open
-- detector cutoff stated ~4.4 µm; **exact cutoff criterion remains OPEN**
+- detector cutoff stated ~4.4 µm; exact cutoff criterion remains OPEN
 - BLIP `D*≈2×10^11 cm Hz^1/2/W` at 4 µm
 - quoted 300-K/60° photon flux ~`1×10^15 cm^-2 s^-1`
 - quoted QE ~70%
@@ -237,55 +248,44 @@ Do not combine average converted n with the separate ~8-µm conversion-depth lin
 
 ---
 
-# Current measurement-state layers
+# Current empirical-state summary
 
-## P06/P06A FTIR / material optical state
+## P06/P06A FTIR
 
-P06 remains the canonical operator SOP. P06A adds empirical apparatus/model provenance and a qualification register.
+Keep `{d_physical,d_FTIR,lambda_edge,Eg/x_opt,lambda_det,c}` distinct. At 80 K, Hansen x=.300 gives `lambda_g,eq=5.0879 µm`; treating 4.4 µm as `hc/Eg` would give Hansen-equivalent x≈.3241. This is a consistency warning only.
 
-Permanent measurement vector:
+## P10A/P11A/P12C/P13A
 
-`{d_physical, d_FTIR, lambda_50T/lambda_T-int, Eg,opt, x_opt, lambda_det,c}`
-
-with explicit definitions and no automatic equality.
-
-Strong apparatus-transfer examples:
-
-- Chang et al. 2005: Thermo Nicolet Centaur µs IR microscope + Nicolet 870 FTIR + computerized x-y stage; ~1-µm stated stage precision; ~100-µm mapping aperture; automated x/thickness maps.
-- Murthy et al. 2009: Te-rich horizontal-slider LPE HgCdTe/Cd0.96Zn0.04Te; Bruker IFS 66v/S; composition from 300-K IR absorption and thickness from interference fringes.
-- Yue et al. 2019: Bruker IFS 66v/S + KBr beamsplitter + LN2 HgCdTe detector + evacuated path.
-
-These are transfer branches, not RP-01 bench identity.
-
-Hansen consistency only: x=.300 at 80 K gives band-gap-equivalent 5.0879 µm; the 4.4-µm detector cutoff would correspond to Hansen-equivalent x≈.3241 if one intentionally made the `hc/lambda` substitution. This mismatch is a warning against conflation, not a corrected historical composition.
-
-## P10A bias/load
-
-Historical field target is contact voltage divided by active gap. Exact bias-source/load/preamp circuit remains open. Local transfer measures `V_source`, `V_contact`, I, E, P, static/differential R, `H_sig(f)`, `H_noise(f)`, `Z_pre(f)`, source noise and package thermal state.
-
-## P11A radiometry
-
-Same-UWA Optronics lineage is real; exact model/calibration chain remains open. 60° full-cone interpretation is a Planck-flux consistency check only. Absolute work uses radiance temperature, actual aperture/view factor and transmission.
-
-## P12C noise
-
-Same physical detector for Figs 3/5/6/7; Figure 5 is 80 K / 10 V/cm / 60° FOV. Do not use 24.5 nV/sqrtHz automatically at 1 kHz. HP35665A exact span/lines/window/averaging remain open.
-
-## P13/P13A temporal
-
-RP-01 `tau/f_3dB` open. Strongest same-UWA method branch is Rajaduray 1998: 1.047 µm / 25 ns / 1 kHz / 77 K vacuum / low current bias / AC-coupled amplifier / HP54522A / 500×20-ns samples / 128 averages. Local release requires source waveform, injection-level, bias/readout, package thermal, fit-model and time-frequency consistency gates.
+- field uses measured contact voltage / measured active gap;
+- radiometry requires real view factor/radiance state;
+- 24.5 nV/sqrtHz is not automatically 1-kHz noise;
+- RP-01 lifetime/f3dB remain open;
+- package thermal poles must be excluded from detector lifetime.
 
 ## P33 package
 
-HgCdTe PC bonding layers can create several-ms and hundreds-ms thermal recovery. Measure package thermal kernel before assigning slow detector poles.
+Package attachment/interconnect/thermal response is device physics. P35 now hands a room-temperature-qualified singulated die into P33 and receives cryogenic edge-survival feedback.
 
 ## P34 RIE
 
-Direct controller center remains 64 sccm / 100 mTorr / 50 W / 60 s / CH4/5H2. Transfer requires self-bias/sheath proxy, sample T(t), oxide-clear, physical etch, electrical conversion and downstream contact/blocking/noise closure.
+Direct controller center remains `64 sccm / 100 mTorr / 50 W / 60 s / CH4/5H2`; reactor equivalence requires measured plasma/sheath/thermal/chamber and physical/electrical outputs.
+
+## P35 singulation
+
+Historical RP-01 method remains open.
+
+Strong transfer branches:
+
+- Rockwell HgCdTe: conventional diamond-grit saw problems and excimer edge-performance branch;
+- Yoo 1998 finished CdZnTe: graphite/wax + photoresist protection + 125-mm stainless wire + 16-µm BN slurry + ~1 h/cut;
+- Szeles 2006 CdZnTe: hidden saw damage may require ~100 µm removal even after low-damage wire saw; blade damage can be deeper;
+- Rockwell II–VI laser: ablation can change stoichiometry.
+
+These are transfer evidence only. P35 releases the actual finished HgCdTe/CdZnTe stack using mechanical + subsurface + electrical/noise + cryogenic outputs.
 
 ---
 
-# Persistent fabrication/process OPEN items
+# Persistent highest-value OPEN items
 
 - exact RP-01 Mask-1/Mask-2 commercial lithography details
 - exact UWA wet-mesa formulation basis/HBr assay
@@ -293,7 +293,7 @@ Direct controller center remains 64 sccm / 100 mTorr / 50 W / 60 s / CH4/5H2. Tr
 - exact Honeywell/Fermionics LPE boat/charge/gas/contact trajectory
 - exact supplier/UWA anneal history
 - exact Cr/Au deposition hardware/rates/vacuum
-- exact RP-01 singulation/die-separation method and edge-clean state
+- exact RP-01 singulation/die outline/street/protection/clean
 - exact RP-01 package construction
 - exact Plasma Technology RIE hardware/self-bias/sample temperature
 - exact RP-01 Optronics optical bench/calibration chain
@@ -311,38 +311,45 @@ Identified but not fully recovered:
 - Vanya Srivastav IISc thesis `G25544.pdf`
 - John Kenion White 2005 UWA thesis full experimental text
 - Ryan Westerhout 2013 UWA thesis experimental text
-- J. F. Siliquini 1995 UWA PhD thesis — highest-value P10/P12 electronics target
+- J. F. Siliquini 1995 UWA PhD thesis
 - Redfern/Musca/Smith/Dell/Faraone 1999 TPCD conference full experimental text
-- exact Rajaduray AC amplifier/Keithley/laser-energy setup records
 - Smith et al. 2000 in-situ vacuum processing full text
 - exact Honeywell/Fermionics LPE travelers
 - exact UWA Mask-1 traveler
 - exact RP-01 package traveler
-- exact RP-01 singulation/dicing traveler
-- 1989 SPIE Optronics/low-background-radiometry full text
+- **exact RP-01 singulation/dicing traveler / mask-layout street drawing**
 - exact RP-01 Optronics calibration records
 - exact Figure-5 HP35665A raw/acquisition record
 - original Figure-3/5/6/7 device notebook identifying contact pair/current/resistance
-- supplier/UWA material certificate or notebook identifying how `x≈0.30` and `9.5 µm` were measured
+- supplier/UWA material certificate identifying how `x≈0.30` and `9.5 µm` were measured
 - primary PDF line for Gopal et al. 1992 thickness-range unit conflict.
 
-“Not recovered” does not mean absent.
+Same-UWA public repository searches in Round 33 identified neighboring device papers but did not recover an executable singulation traveler. “Not recovered” does not mean absent.
 
 ---
 
 # Next logical work
 
-Proceed with **Round 33: singulation / dicing / die-edge damage / package-ready die preparation**.
+Proceed with **Round 34: P16 end-to-end first-build / reproducibility / release-readiness audit**.
 
-This appears to be a genuine end-to-end fabrication gap rather than another already-complete metrology method.
+The major fabrication chain now has empirical execution layers through singulation and package handoff. Do not create another process module reflexively.
 
-1. Audit `procedures/P15_DIE_ATTACH_INTERCONNECT_CRYOGENIC_PACKAGE_QUALIFICATION.md`, `procedures/P33_CRYOGENIC_DIE_ATTACH_INTERCONNECT_EMPIRICAL_PROCESS_WINDOW.md`, `procedures/P16_MASTER_END_TO_END_PROCESS_TRAVELER.md`, and relevant P18 failure records.
-2. Search primary HgCdTe/CdZnTe detector papers, patents, theses and institutional process records for saw, scribe/cleave, lap or other die-separation methods.
-3. Recover blade/grit/thickness, spindle/feed/depth, coolant, protective coating/tape, street/kerf, chipping/subsurface-damage and cleaning parameters where primary evidence exists.
-4. Treat dicing coolant/cleaner/residue as a detector surface/process variable; do not introduce a cleaning chemistry because it is standard for Si/GaAs.
-5. Record edge-to-active-region exclusion, chip/crack metrics, contamination/particle state, die pickup/handling and post-singulation storage.
-6. Require pre/post-singulation electrical/noise/optical checks on qualification units and cryogenic survival before package release.
-7. Separate mechanical die yield from detector-performance yield; an intact die can still have dicing-induced electrical/noise degradation.
-8. Create a new empirical top-level module only if the audit confirms no existing controlled singulation procedure; current repo state strongly suggests this is missing.
+Round 34 should:
 
-Do not populate production tolerances without repeated local fabrication data.
+1. audit every P16 phase against the latest P24–P35 empirical modules and travelers;
+2. update/reconcile P16's generic references where newer empirical modules own execution, especially P35 for STEP G1;
+3. classify every remaining unresolved variable as one of:
+   - `HISTORICAL-IDENTITY-ONLY` — unknown historical detail not required to execute a scientifically traceable local equivalent;
+   - `EXECUTION-BLOCKER` — cannot perform the step without defining/qualifying it;
+   - `RELEASE-BLOCKER` — a build can be attempted but cannot be accepted without closure;
+   - `LOCAL-QUALIFIABLE` — can be replaced by explicit empirical qualification without claiming UWA historical identity;
+4. create a first-build readiness matrix by phase and process state;
+5. identify missing cross-module handoff data and travelers;
+6. distinguish three claims rigorously:
+   - `TRACEABLE-FIRST-BUILD-READY`;
+   - `HISTORICAL-RP01-REPRODUCED`;
+   - final `REPRODUCIBLE-RELEASE`;
+7. do not let historical-identity gaps unnecessarily block a local scientifically controlled build, but do not erase them;
+8. preserve all empirical provenance and negative searches in the audit.
+
+The likely goal of Round 34 is to determine the **minimum remaining closure set before a competent laboratory could execute the first fully traceable fabrication run from substrate through packaged detector**.
