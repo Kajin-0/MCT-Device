@@ -5,12 +5,16 @@ on:
     paths:
       - "schemas/**"
       - "tools/validate_mct_provenance.py"
+      - "tools/mct_provenance_store.py"
+      - "tools/run_round49_reference.py"
       - "provenance/**"
       - ".github/workflows/provenance-validation.yml"
   pull_request:
     paths:
       - "schemas/**"
       - "tools/validate_mct_provenance.py"
+      - "tools/mct_provenance_store.py"
+      - "tools/run_round49_reference.py"
       - "provenance/**"
       - ".github/workflows/provenance-validation.yml"
 
@@ -29,5 +33,11 @@ jobs:
       - name: Check schema JSON syntax
         run: python -m json.tool schemas/mct_provenance_bundle.schema.json > /dev/null
 
-      - name: Run provenance semantic self-test
+      - name: Run Round-48 provenance semantic self-test
         run: python tools/validate_mct_provenance.py --self-test
+
+      - name: Compile Round-49 operational modules
+        run: python -m py_compile tools/mct_provenance_store.py tools/run_round49_reference.py
+
+      - name: Run Round-49 operational reference self-test
+        run: python tools/run_round49_reference.py
