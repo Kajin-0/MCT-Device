@@ -110,7 +110,9 @@ Detector characterization:
 
 - exact mask geometry for the measured photoconductors;
 - photoresist and exposure/development conditions for Mask 1;
-- exact wet chemical mesa etchant composition, temperature, agitation, etch rate, endpoint, depth, and rinse sequence.
+- exact wet chemical mesa etchant concentration, temperature, agitation, etch rate, endpoint, depth, and rinse sequence.
+
+**Mesa branch decision now closed:** same-UWA-lineage papers from 1999 and 2000 establish that the intended RP-01-style n-type x≈0.31 photoconductors should retain the wet bromine/HBr mesa branch. Blanket CH4/H2 dry mesa etching modifies active-region electrical properties and degraded detector performance in the published comparison. Use RIE narrowly at RP-01 contact windows, where the n+ conversion is intentional.
 
 ### Passivation
 
@@ -121,6 +123,8 @@ Detector characterization:
 - oxide growth calibration;
 - post-anodization rinse/dry;
 - whether ZnS was present on the actual experimental devices discussed in RP-01 (paper explicitly states 800 Å anodic oxide for experimental devices; do not add ZnS without evidence).
+
+**Passivation candidate now identified:** historical HgCdTe photoconductor processes report 800 Å native anodic oxide using a constant-current KOH/ethylene-glycol/water process. This is a strong qualification candidate because it independently reproduces the RP-01 film thickness, but it is not yet proven to be the exact UWA recipe. See `research/2026-08-15_passivation_lineage.md`.
 
 ### Metal deposition/lift-off
 
@@ -141,14 +145,43 @@ Detector characterization:
 - FFT/RBW/ENBW/averaging settings;
 - spectral bandwidth definition used for reported D*.
 
+## Same-lineage process sources now accepted into the research tree
+
+### Smith et al. 1999 — mesa RIE versus wet etch
+
+E. P. G. Smith et al., *J. Vac. Sci. Technol. A* 17, 2503–2509 (1999), DOI `10.1116/1.581988`.
+
+Use: establishes electrical modification from CH4/H2 RIE and supports wet chemical mesa isolation when preserving active-region electrical state is the priority.
+
+### Smith et al. 2000 — detector-level mesa comparison
+
+E. P. G. Smith et al., *J. Electron. Mater.* 29(6), 853–858 (2000), DOI `10.1007/s11664-000-0237-7`.
+
+Use: direct n-type x≈0.31 photoconductor comparison of wet bromine/HBr versus H2/CH4 dry mesa processing; strongly supports RP-01 wet-mesa branch.
+
+### Musca et al. 1998 — RIE-induced n-type region characterization
+
+C. A. Musca et al., *J. Electron. Mater.* 27, 661–667 (1998), DOI `10.1007/s11664-998-0032-4`.
+
+Use: LBIC confirmation and spatial characterization of RIE-induced n-type/n+ regions; this is the correct lineage to audit for conversion-depth claims.
+
+### Agnihotri, Musca, Faraone 1998 — passivation review
+
+O. P. Agnihotri, C. A. Musca, and L. Faraone, *Semicond. Sci. Technol.* 13, 839–847 (1998), DOI `10.1088/0268-1242/13/8/002`.
+
+Use: map same-laboratory passivation physics and primary anodic-oxide references; executable setpoints still need primary-source closure.
+
 ## Upstream LPE lead under investigation
 
 Radhakrishnan, Sitharaman, and Gupta, *J. Crystal Growth* 252, 79–86 (2003), DOI 10.1016/S0022-0248(02)02530-7, reports a modified horizontal-slider Te-rich LPE process with Hg-loss compensation and in-situ meltback. Published anchors include 6N elemental sources, synthesis at 700 °C for 8 h, ~4.8 g charge per growth run, 3 g HgTe for Hg-loss compensation, and a 15×15×1 mm CdZnTe substrate recess. This is a strong apparatus/process source but **must not yet be declared the RP-01 upstream recipe** until material composition and electrical-state compatibility are closed.
 
+Tung et al., *J. Crystal Growth* 56, 485–489 (1982), DOI `10.1016/0022-0248(82)90468-7`, is the high-priority composition-matched lead because its Te-rich horizontal-slider work explicitly includes x≈0.30 material.
+
 ## Most natural next work
 
-1. Extract the complete Smith et al. process paper into a structured claim table, including every stated and unstated process variable.
-2. Identify primary sources for the mesa etch and anodic-oxide recipes used by the same UWA/Faraone process lineage.
-3. Identify a Te-rich LPE primary source that explicitly produces x≈0.30 material on CdZnTe with sufficient process detail to close growth conditions.
-4. Build the first `procedures/` modules only after these interfaces are reconciled.
-5. Maintain `research/YYYY-MM-DD_*.md` with findings and rejected branches after each research session.
+1. Recover the **exact Br2/HBr wet mesa recipe** from the UWA 1999/2000 experimental sections or directly linked theses/process papers.
+2. Recover the **exact UWA anodic-oxide process** used for the 800 Å RP-01 film; if unavailable, formalize and qualify the historical 800 Å constant-current candidate rather than silently adopting it.
+3. Audit Musca et al. 1998 for exact RIE conversion-depth conditions and separate them from RP-01 contact-window conditions.
+4. Fully extract the x≈0.30 Tung LPE process and compare material/electrical outputs with RP-01.
+5. Build the first `procedures/` module only when one step has complete setpoints, apparatus transfer requirements, metrology, and go/no-go criteria.
+6. Continue dated research logs for all accepted and rejected branches.
