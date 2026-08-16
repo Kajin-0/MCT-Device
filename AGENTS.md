@@ -6,7 +6,7 @@ Build a source-traceable, end-to-end HgCdTe photodetector fabrication and charac
 
 Canonical first process: **RP-01**, E. P. G. Smith et al., *Semiconductor Science and Technology* 16, 455–462 (2001), DOI `10.1088/0268-1242/16/6/306`.
 
-There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains direct historical anchors, empirical transfer procedures, metrology SOPs, qualification travelers, failure/release architecture and explicit unresolved gaps.
+There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains direct historical anchors, empirical transfer procedures, metrology SOPs, qualification travelers, failure/release architecture, negative-search records and explicit unresolved gaps.
 
 ---
 
@@ -17,9 +17,9 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 3. Separate direct RP-01, same-lineage, transfer-family, model, derived, apparatus-calibration and local-qualification evidence.
 4. Every critical process step needs output metrology and a pass/fail/qualification gate.
 5. Preserve negative searches, failed branches, rejected inferences, corrections and source conflicts.
-6. Use measured fabricated geometry for field, active area and D* normalization.
+6. Use measured fabricated geometry for field, active area and `D*` normalization.
 7. Keep Hall quantities, optical-edge quantities, physical etch depth, electrical conversion depth, sheet density, `rho_c` and minority-carrier blocking metrics distinct.
-8. Treat passivation, post-RIE exposure, wet-etch surface exposure, metal-interface exposure, anneal cooldown, substrate clean-to-load, LPE source genealogy, chamber state and packaging as process variables.
+8. Treat passivation, post-RIE exposure, wet-etch surface exposure, metal-interface exposure, anneal cooldown, substrate clean-to-load, LPE source genealogy, RIE chamber state and packaging as process variables.
 9. Measured system bandwidth is not detector bandwidth until external transfer functions are de-embedded.
 10. Specifications derive from required material/device performance, not observed process spread.
 11. Failure diagnosis: signature -> competing mechanisms -> discriminating tests -> root cause -> CAPA -> verification.
@@ -72,7 +72,7 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 58. Resist-product/profile changes reopen P28 dimensional transfer/mask bias.
 59. Resist stripping is part of HgCdTe surface processing; acetone from another branch is not historical proof.
 60. No default ultrasonics for Mask-1 stripping.
-61. **P05 audit rule:** P05 is already the canonical Hall/VdP execution SOP; do not duplicate it without materially new method evidence.
+61. **P05 audit rule:** P05 is the canonical Hall/VdP execution SOP; do not duplicate it without materially new method evidence.
 62. **Die attach is a detector variable.** Mechanical compliance, CTE, bondline thermal conductance, cure and noise/electrical state are coupled.
 63. Adhesive product identity is not a bondline specification; measure thickness/coverage/voiding/tilt.
 64. Honeywell 5-g/40-g thermocompression values are transfer experiment values, not RP-01 setpoints.
@@ -80,22 +80,29 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 66. Thermal-cycle genealogy is not independent replication.
 67. Do not transplant p-HgCdTe/FPA interconnect metallurgies into the RP-01 Cr/Au chain without reopening P26/P24.
 68. A package is not released by die shear/wire pull alone.
-69. **RIE watts are not an ion-energy coordinate.** Record measured dc self-bias or another calibrated sheath/ion-energy proxy for reactor transfer.
+69. **RIE watts are not an ion-energy coordinate.** Record dc self-bias or another calibrated sheath/ion-energy proxy for reactor transfer.
 70. **RIE physical depth is not electrical conversion depth.** Keep `d_etch`, `d_conv` and `L_conv` separate.
-71. **Separate oxide clear from semiconductor exposure:** `t_sem = t_RF - t_clear` only after local `t_clear` is measured.
-72. A same-era Plasma Technology RIE80 using 13.56 MHz does not prove RP-01 used RIE80 or 13.56 MHz.
+71. **Separate oxide clear from semiconductor exposure:** `t_sem=t_RF-t_clear` only after local `t_clear` is measured.
+72. Same-era Plasma Technology RIE80 evidence does not prove RP-01 used RIE80 or 13.56 MHz.
 73. Do not infer RP-01 electrode area from `50 W / 0.4 W cm^-2`.
-74. RIE chamber clean/seasoning/loading history is a genealogy variable; pre/post-clean runs are not iid replicates.
-75. Preserve P29 crystallographic plane/polarity into P34 because primary CH4/H2 HgCdTe data show orientation-dependent etch rate/morphology.
+74. RIE chamber clean/seasoning/loading history is a genealogy variable.
+75. Preserve P29 plane/polarity into P34 because CH4/H2 HgCdTe etch rate/morphology is orientation-dependent.
 76. Matching `64 sccm / 100 mTorr / 50 W / 60 s` alone is **not reactor equivalence**.
-77. **P11 audit rule:** P11 is the canonical absolute-radiometry SOP; do not create a duplicate top-level module unless new evidence materially changes the method.
-78. Same-UWA use of an Optronics Laboratories Spectral Response Measurement System establishes measurement-lineage continuity, not exact historical instrument identity/configuration.
-79. **A stated FOV angle is not a radiometric geometry.** Record physical aperture radii/areas, separations, offsets, window/shield geometry and the resulting view factor.
-80. The provisional interpretation of RP-01 `60° FOV` as a 60° full cone is a consistency inference from the quoted 300-K photon flux, not documentary proof.
-81. **Blackbody controller/contact temperature is not radiance temperature.** Absolute background calibration requires calibrated radiance or radiance temperature plus emissivity/geometry/transmission uncertainty.
-82. For photoconductive HgCdTe, responsivity linearity must be qualified versus actual irradiance and background state; equal total radiant power with different spot area/background is not automatically equivalent.
-83. P11 responsivity and P12 noise may be combined into D* only when temperature, electric field, package/window state, FOV/background, active-area convention and frequency convention are matched or explicitly corrected.
-84. Optronics model `735D` remains a historical lead only; do not assign it to RP-01 until primary documentary evidence closes the identity.
+77. **P11 audit rule:** P11 is the canonical absolute-radiometry SOP; do not create a duplicate top-level module without materially new method evidence.
+78. Same-UWA Optronics use establishes measurement-lineage continuity, not exact historical bench identity/configuration.
+79. **A stated FOV angle is not a radiometric geometry.** Record physical apertures, separations, offsets, window/shield geometry and view factor.
+80. RP-01 `60° FOV` as a 60° full cone is a photon-flux consistency inference, not documentary proof.
+81. **Blackbody controller/contact temperature is not radiance temperature.**
+82. HgCdTe photoconductor responsivity linearity is qualified versus actual irradiance/background, not total power alone.
+83. P11 responsivity and P12 noise may be combined into `D*` only when temperature, field, package/window, FOV/background, active area and frequency conventions match or are explicitly corrected.
+84. Optronics `735D` remains a historical lead only; do not assign it to RP-01 without primary documentary closure.
+85. **P12 audit rule:** P12/P12B are already the canonical noise/PSD/analyzer metrology methods; Round 29 adds P12C historical-state closure rather than a duplicate top-level noise module.
+86. **Same-device identity does not close active geometry.** RP-01 Figures 3/5/6/7 are the same physical detector, but the exact contact pair/gap remains `OPEN-HISTORICAL`.
+87. RP-01 Figure 5 directly states `80 K`, `10 V/cm`, and `60° FOV`; do not relabel the published noise spectrum as optically blocked. The exact radiance/aperture behind that FOV remains open.
+88. **Do not substitute the 24.5-nV/sqrtHz high-frequency g-r plateau for 1-kHz noise.** RP-01's `1 kHz` signal frequency lies below the reported `~3 kHz` 1/f knee; historical Figure-7 noise convention remains open.
+89. For historical Figure-5 comparison, the knee is the intersection of the low-frequency 1/f trend and high-frequency g-r level. Keep it distinct from a -3-dB or Lorentzian corner.
+90. Analyzer display output is not detector-terminal ASD until bias/load transfer, preamplifier gain/noise/loading, analyzer normalization and ENBW/window processing are calibrated.
+91. Same-UWA HgCdTe noise work explicitly includes background-illumination fluctuations; record background stability during noise spectra and do not automatically label background-driven low-frequency noise as intrinsic detector 1/f.
 
 ---
 
@@ -103,25 +110,24 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 
 Latest:
 
-`research/2026-08-16_checkpoint_after_radiometry_round28.md`
+`research/2026-08-16_checkpoint_after_noise_chain_round29.md`
 
 Then, as needed:
 
+- `research/2026-08-16_checkpoint_after_radiometry_round28.md`
 - `research/2026-08-16_checkpoint_after_rie_reactor_equivalence_round27.md`
 - `research/2026-08-16_checkpoint_after_empirical_packaging_round26.md`
 - `research/2026-08-16_checkpoint_after_empirical_mask1_round25.md`
 - `research/2026-08-16_checkpoint_after_empirical_hg_anneal_round24.md`
 - `research/2026-08-16_checkpoint_after_empirical_lpe_execution_round23.md`
-- `research/2026-08-16_checkpoint_after_empirical_czt_substrate_round22.md`
-- `research/2026-08-16_checkpoint_after_empirical_wet_mesa_round21.md`
 - older checkpoints as needed.
 
 Latest source/gap addenda:
 
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND29.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND29.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND28.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND28.md`
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND27.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND27.md`
 - older addenda as needed.
 
 ---
@@ -138,8 +144,8 @@ Latest source/gap addenda:
 - P08 RIE blocking contact + P08A–P08G
 - P09 Cr/Au/TLM + P09A
 - P10 DC bias/self-heating
-- P11 absolute radiometry/responsivity + **P11A UWA Optronics lineage/transfer addendum + register**
-- P12 noise/PSD/NEP/D* + P12A/P12B
+- P11 absolute radiometry/responsivity + P11A Optronics lineage/transfer + register
+- **P12 noise/PSD/NEP/D* + P12A preamplifier lineage + P12B analyzer transfer + P12C RP-01 state identity + register**
 - P13 temporal/frequency response + P13A
 - P14 lithography/CD + P14A
 - P15 cryogenic package
@@ -163,7 +169,7 @@ Latest source/gap addenda:
 - P33 cryogenic die-attach/interconnect/package empirical process window + register
 - P34 CH4/H2 RIE reactor-equivalence empirical process window + register
 
-P24–P34 are empirical/practical execution layers supplementing earlier physics/metrology modules. P11A is a lineage/transfer addendum because P11 itself was already operationally complete; **no P35 was created in Round 28**.
+P24–P34 are empirical execution layers. P11A and P12C are lineage/state-transfer addenda because the underlying P11/P12 metrology SOPs were already operationally complete. No P35/P36 was created in Rounds 28–29.
 
 ---
 
@@ -198,7 +204,7 @@ P24–P34 are empirical/practical execution layers supplementing earlier physics
 
 Do not combine `2e15 cm^-3` and `8 µm` into one directly measured sheet density.
 
-## Mask-2 / metal / TLM
+## Mask-2 / metal / contact geometry
 - resist ~4–5 µm
 - prebake 80 °C / 30 min
 - chlorobenzene 30 min
@@ -208,165 +214,162 @@ Do not combine `2e15 cm^-3` and `8 µm` into one directly measured sheet density
 - gaps 50–400 µm in 50-µm increments
 - `rho_c≈9×10^-4 Ω·cm²` at 80 K
 
-## Detector / radiometry benchmark
+## Detector / radiometry / noise benchmark
 - ~80 K
 - Optronics Laboratories Spectral Response Measurement System
-- stated 60° FOV
-- responsivity/spectral response chopped at 1 kHz
-- single-wavelength responsivity near 4 µm versus field
-- spectral responsivity / D* state at 10 V/cm
+- stated `60° FOV`
+- responsivity/spectral response chopped at `1 kHz`
+- spectral responsivity / `D*` state at `10 V/cm`
 - cutoff ~4.4 µm
-- BLIP D* ~`2×10^11 cm Hz^1/2/W` at 4 µm
-- quoted 300-K/60° background photon flux ~`1×10^15 photons cm^-2 s^-1`
+- BLIP `D* ~2×10^11 cm Hz^1/2/W` at 4 µm
+- quoted 300-K/60° background flux ~`1×10^15 photons cm^-2 s^-1`
 - quoted QE ~70%
-- noise lineage: low-noise preamp + HP35665A, 1/f knee ~3 kHz, high-frequency g-r plateau ~24.5 nV/sqrt(Hz)
+- noise chain: low-noise preamp + HP35665A
+- Figure-5 noise state: **same performance device, 80 K, 10 V/cm, stated 60° FOV**
+- `1/f` knee ~3 kHz by trend intersection
+- high-frequency g-r level ~24.5 nV/sqrtHz
+- Figures 3/5/6/7 are the **same physical detector**
+- exact performance contact pair/gap remains open
+- exact noise value used for Figure-7 `D*` remains open
 
 ---
 
-# P11A — radiometry lineage / transfer state
+# P12C — current noise-chain state
 
-## Same-UWA measurement lineage
+## Direct state closure
 
-Parish et al. 1997 independently reports an Optronics Laboratories Spectral Response Measurement System used for HgCdTe photoconductor responsivity measurements at:
+Historical performance coupling:
 
-- 1-kHz chopping;
-- 80 K;
-- approximately 3–12 µm spectral range;
-- 10 V/cm in the published spectral-response figure.
+`Fig3 field response -> Fig5 noise -> Fig6 spectral response -> Fig7 D* = same detector`.
 
-This is strong same-UWA lineage evidence. It does **not** identify the exact RP-01 Optronics model, calibration detector, slit/bandpass, FOV geometry or signal convention.
+Figure 5 directly closes `80 K / 10 V/cm / stated 60° FOV / low-noise preamp / HP35665A`.
 
-## FOV consistency
+Do not infer the active gap from the nine-contact spacing list.
 
-The existing Planck check gives strong internal consistency for interpreting RP-01 `60°` as a **full cone** (`30°` half-angle): the idealized 300-K photon flux through a 4.4-µm step response is close to the quoted `1e15 cm^-2 s^-1`.
+## 1-kHz ambiguity
 
-For a simple circular stop:
+`f_sig=1 kHz` and `f_k≈3 kHz`, so the high-frequency `24.5 nV/sqrtHz` plateau cannot automatically be inserted into the 1-kHz `D*` calculation.
 
-`a/z = tan(30°) = 0.57735`.
+Local default:
 
-Ordinary cone solid angle:
+`D*(lambda,1kHz)=R_v(lambda,1kHz)*sqrt(A)/e_det(1kHz)`
 
-`Omega = 2*pi*(1-cos 30°) ≈ 0.84179 sr`.
+under matched detector/background/loading state.
 
-Lambertian projected angular integral:
+## Historical knee
 
-`pi*sin^2(30°) = pi/4 ≈ 0.78540 sr`.
+For RP-01 comparison use the intersection of the fitted/drawn 1/f trend and high-frequency g-r level. Report any modern breakpoint or Lorentzian corner separately.
 
-These define a geometry family, **not historical dimensions**.
+## UWA preamp lineage
 
-## Blackbody transfer rule
+Hatch et al. 2011 directly describes a bias-capable low-noise voltage preamplifier and cites J. F. Siliquini's 1995 UWA PhD thesis for it. This is the highest-value archival electronics target. Exact identity with the 2001 preamp remains unproven.
 
-Absolute background calibration records calibrated radiance/radiance temperature, effective emissivity, aperture geometry, exact view factor, package transmission and uncertainty. Contact/controller temperature alone is insufficient.
+## HP35665A
 
-## Photoconductor linearity/background rule
+Official manuals:
 
-Primary HgCdTe detector metrology shows PC-HgCdTe nonlinearity can depend on irradiance, and background fluctuations can couple through detector nonlinearity into apparent responsivity drift. Local qualification therefore varies irradiance at the actual beam size/background and monitors background-dependent repeatability.
+- Operators Guide `35665-90026` (Sep. 1991)
+- Concepts Guide `35665-90028` (Sep. 1991)
 
-## D* state matching
+Official capability includes linear spectrum, PSD, cross spectrum, frequency response, time waveform/correlation, 102.4-kHz single-channel bandwidth, 51.2-kHz dual-channel bandwidth and 100/200/400/800 resolution lines.
 
-For local release:
+These are capability facts, **not Figure-5 settings**.
 
-`D* = R_v sqrt(A) / e_n`
+## Background-noise coordinate
 
-may combine P11/P11A and P12 only when the relevant temperature, field, package/window, FOV/background, area and frequency conventions match or are explicitly corrected.
+Jozwikowski et al. 2003 same-UWA HgCdTe work includes fluctuations of background illumination as a modeled/measured noise source. Record background/source stability during P12 runs.
 
-## OL-735D lead
+## Controlled output
 
-A 1989 SPIE item is repeatedly indexed as an Optronics `735D` / pyroelectric-reference / broadband-blackbody architecture. Full primary text remains unrecovered. Status: `SECONDARY-LEAD / PRIMARY-FULL-TEXT-NOT-RECOVERED`.
+`Y_NOISE={device_ID,contact_pair,T,E,I,P,FOV/background,Z_d(f),G(f),analyzer_state,e_det(f),alpha,f_k,hist,e_GR,e_n(1kHz),A,D*_closure}`.
 
-Never write “RP-01 used an OL-735D” without documentary closure.
+Before `D*`, complete the P12C P11/P12 state-identity matrix.
 
-## Historical optical blockers
+## Remaining OPEN
 
-Still open:
-
-- exact Optronics model;
-- source and monochromator configuration;
-- gratings/slits/bandpass;
-- wavelength calibration;
-- order-sorting filters;
-- reference detector and absolute calibration chain;
-- physical 60° aperture/cold-shield dimensions;
-- window/filter transmission;
-- chopper duty/waveform;
-- responsivity preamplifier/lock-in chain;
-- RMS/peak/fundamental convention;
-- beam diameter/profile;
-- active-area convention;
-- historical 4.4-µm cutoff definition;
-- exact area/noise/background conventions used for published D*.
+- exact contact pair/gap for the same Figure-3/5/6/7 detector;
+- exact 2001 preamp circuit/gain/noise;
+- bias/load/coupling network;
+- exact HP35665A span/lines/window/averaging/scaling;
+- exact Figure-5 background radiance beyond `60° FOV`;
+- exact noise frequency/value/bandwidth used for Figure-7 `D*`;
+- Siliquini 1995 thesis full text/schematic.
 
 ---
 
-# P34/P33/P32/P31/P30 concise state
+# Other current empirical states — concise recovery map
+
+## P11A radiometry
+
+Same-UWA Optronics lineage is real but exact RP-01 bench identity remains open. 60° full-cone interpretation is a Planck-flux consistency inference only. Absolute blackbody work uses calibrated radiance temperature, aperture/view factor and package transmission. P11/P12 states must match for `D*`.
 
 ## P34 RIE reactor equivalence
 
-Direct RP-01 controller center is preserved, but transfer release requires measured self-bias/sheath proxy, sample `T(t)`, oxide-clear time, physical etch, sheet state, electrical conversion depth/lateral spread, TLM and blocking/noise closure. Historical model/RF/electrode geometry/self-bias/sample temperature remain open.
+Direct controller center remains `64 sccm / 100 mTorr / 50 W / 60 s / CH4/5H2`; transfer release requires measured self-bias/sheath proxy, sample `T(t)`, oxide-clear time, physical etch, sheet state, electrical conversion depth/lateral spread, TLM and blocking/noise closure.
 
 ## P33 cryogenic package
 
-Honeywell primary evidence shows compliant silicone attachment prevented cooldown cracking in its HgCdTe experiments; NRL/Bartoli photoconductor construction shows bonding layers can create several-ms and hundreds-ms thermal recovery components. Measure package thermal kernel before assigning slow P13 poles to carrier lifetime.
+Compliant attachment can prevent cryogenic cracking; bonding layers can introduce ms-to-hundreds-ms thermal poles. Measure package thermal kernel before assigning slow P13 poles to intrinsic lifetime.
 
 ## P32 Mask-1
 
-Historical identity remains open. Strong transfer branches: AZ4620/Br2:HBr and Hunt 180CP/Br2-methanol. Release from actual resist survival plus `CD_mask -> CD_PR -> CD_mesa`, not nominal thickness.
+Historical identity open. AZ4620/Br2:HBr and Hunt 180CP/Br2-methanol are transfer branches. Release from actual mask survival and `CD_mask -> CD_PR -> CD_mesa`.
 
 ## P31 Hg anneal
 
-Low-T screening anchor ~250 °C/1 h under Hg-rich/pseudo-isothermal transfer branch; isothermal and two-temperature routes remain distinct. No universal Hg reservoir mass.
+Low-T screening anchor ~250 °C/1 h under Hg-rich/pseudo-isothermal transfer branch; isothermal and two-temperature routes distinct. No universal Hg reservoir mass.
 
 ## P30 LPE
 
-Honeywell tie line `xL=.082, yL=.810, TL=507 °C -> xS≈.29`; composition does not determine total charge. Wipe-off hardware generations remain distinct.
+Honeywell tie line `xL=.082,yL=.810,TL=507 °C -> xS≈.29`; composition does not determine total charge. Wipe-off generations remain distinct.
 
----
+## P29–P24
 
-# P29–P24 concise state
-
-- **P29 CdZnTe:** strong transfer center `Cd0.96Zn0.04Te {111}`; exact RP-01 y/polarity/miscut/final surface open.
-- **P28 wet mesa:** nominal `2% Br2 in 3:1 EG:HBr`, 21 °C, `R_V≈2.78 µm/min`, ±26%, `A≈0.63`; formulation basis/HBr assay/agitation/rinse open; release by measured depth + isolation.
-- **P27 Mask-2:** direct 4–5 µm / 80 °C 30 min / chlorobenzene 30 min anchors; exact resist/dose/developer/lift-off solvent open.
-- **P26 Cr/Au:** 30 nm Cr / 270 nm Au / `rho_c≈9×10^-4 Ω·cm²` at 80 K; exact deposition hardware/rates partly open.
-- **P25 anodic oxide:** strongest transfer center 0.1 M KOH, 90% EG/10% DI, ~0.30 mA/cm², ~15 V, ~2 min, ~80 nm; transfer only.
-- **P24 blocking contact:** direct RP-01 controller center preserved; P34 controls reactor equivalence.
+- P29 CdZnTe: exact RP-01 y/polarity/miscut/final surface open.
+- P28 wet mesa: nominal `2% Br2 in 3:1 EG:HBr`, 21 °C, `R_V≈2.78 µm/min`, ±26%, `A≈0.63`; formulation basis/HBr assay/rinse open.
+- P27 Mask-2: 4–5 µm / 80 °C 30 min / chlorobenzene 30 min anchors; exact commercial resist/exposure/developer/strip open.
+- P26 Cr/Au: 30 nm / 270 nm, `rho_c≈9e-4 Ω cm²` at 80 K; exact deposition details partly open.
+- P25 anodic oxide: strongest transfer center 0.1 M KOH, 90% EG/10% DI, ~0.30 mA/cm², ~15 V, ~2 min, ~80 nm; transfer only.
+- P24 blocking: direct controller center preserved; P34 controls reactor equivalence.
 
 ---
 
 # Measurement / release essentials
 
-- P05 Hall: canonical execution SOP; current/field reversal, VdP redundancy, variable field, self-heating, multicarrier escalation.
-- P06 FTIR: distinguish composition/bandgap model from detector cutoff.
-- P10: `E=V_active/L_measured`; package thermal resistance matters under bias.
-- P11/P11A: calibrated absolute radiometry, measured reference-plane/FOV geometry, irradiance/background linearity and matched P12 state.
-- P12: `NEP=e_n/R_v`; `D*=R_v sqrt(A)/e_n`; combine independent noise at PSD level.
-- P13: de-embed source/optics/detector/bias/preamp/cable/instrument and P33 package thermal response where relevant.
+- P05 Hall: canonical execution SOP; VdP redundancy, current/field reversal, variable field, self-heating, multicarrier escalation.
+- P06 FTIR: composition/bandgap model is not detector cutoff.
+- P10: `E=V_active/L_measured`; electrical loading and package thermal resistance matter.
+- P11/P11A: calibrated radiometry, measured FOV/reference-plane geometry, irradiance/background linearity.
+- P12/P12C: `NEP=e_n/R_v`; `D*=R_v sqrt(A)/e_n`; independent noises combine/subtract at PSD level; matched state required.
+- P13: de-embed source/optics/bias/preamp/cable/instrument and P33 package thermal response.
 - P17: separate measurement/spatial/run/lot/long-term variation; no generic Cpk threshold.
 - P18: preserve negative/failed runs and competing mechanisms.
-- P19/P20: trace final requirements and sensitivities without replacing empirical process data.
+- P19/P20: trace final requirements/sensitivities without replacing empirical process data.
 
 ---
 
-# Highest-priority OPEN practical details after Round 28
+# Highest-priority OPEN practical details after Round 29
 
-## P12 noise / analyzer / background state — strongest next empirical target
+## Bias/load/self-heating historical execution — strongest next target
 
-Audit `P12`, `P12A`, and `P12B` before creating any new top-level module.
+Audit P10 first. The remaining noise uncertainty now lies heavily in the electrical network between detector and preamplifier.
 
-Priority historical/empirical recovery:
+Priority recovery:
 
-- exact UWA low-noise preamplifier circuit/model used for RP-01;
-- HP35665A input range/coupling/window/FFT span/lines/averaging;
-- ASD/PSD normalization and analyzer ENBW/bin-width convention;
-- exact detector contact pair/active geometry tied to the published Figure-5 noise trace;
-- bias-source/load topology and bias-resistor contribution;
-- optical-background/FOV state during noise measurement;
-- whether the 60° FOV was filled by a 300-K scene during the PSD measurement or merely quoted as detector environment;
-- calibration from analyzer input back to detector-terminal V/sqrt(Hz);
-- preamp gain/bandwidth/input-noise/loading;
-- matched P11/P12 temperature, field, area, package and background for D* closure.
+- exact UWA/RP-01 detector bias-source topology;
+- load/series resistor values and temperature;
+- where detector voltage was sensed;
+- AC-coupling/bias-tee topology;
+- preamplifier input impedance/loading;
+- detector differential resistance/current at 10 V/cm;
+- same Figure-3/5/6/7 contact pair/gap;
+- actual active-region voltage versus source voltage;
+- how the responsivity and noise readout shared or differed in bias electronics;
+- Siliquini thesis schematic/electronics details.
 
-If P12/P12A/P12B are already operator-complete, create only a lineage/transfer addendum analogous to P11A rather than duplicate documentation.
+If P10 is already operator-complete, create only a lineage/bias-network transfer addendum + register rather than a duplicate top-level procedure.
+
+Alternative if no new bias evidence is recoverable: audit P13/P13A and close historical transient/source/readout apparatus while explicitly separating intrinsic detector response from P33 package thermal poles.
 
 ## Persistent historical fabrication gaps
 
@@ -384,18 +387,20 @@ If P12/P12A/P12B are already operator-complete, create only a lineage/transfer a
 
 # Active source-recovery record
 
-Identified but not fully recovered through current routes:
+Identified but not fully recovered:
 
 - Vanya Srivastav IISc thesis `G25544.pdf` full process text;
-- John Kenion White 2005 UWA thesis full experimental text — current repository PDF route returns 403;
+- John Kenion White 2005 UWA thesis full experimental text — current repository PDF route returned 403;
 - Ryan Westerhout 2013 UWA thesis experimental text;
+- **J. F. Siliquini 1995 UWA PhD thesis — highest-value P10/P12 electronics target**;
 - Smith et al. 2000 in-situ vacuum processing full experimental text;
 - Musca/Smith/Dell/Faraone photoconductor contact/passivation traveler;
 - exact Honeywell/Fermionics LPE travelers;
 - exact UWA Mask-1 traveler;
 - exact RP-01 die attach/interconnect/Dewar traveler;
-- 1989 SPIE “Relative Spectral Response And Low Background Radiometric Detector Measurements” full primary text;
-- exact RP-01 Optronics system traveler / calibration records.
+- 1989 SPIE Optronics/low-background-radiometry full primary text;
+- exact RP-01 Optronics calibration records;
+- exact RP-01 Figure-5 analyzer state/raw data.
 
 “Not recovered” does not mean absent.
 
@@ -403,15 +408,15 @@ Identified but not fully recovered through current routes:
 
 # Next logical work
 
-Proceed with **Round 29: audit and empirical reconstruction of P12 noise / preamplifier / HP35665A / optical-background state**.
+Proceed with **Round 30: audit/reconstruct P10 bias-source / load-network / active-field execution**.
 
-1. Audit `procedures/P12_NOISE_PSD_NEP_DETECTIVITY.md`, `P12A_UWA_PREAMPLIFIER_LINEAGE_ADDENDUM.md`, and `P12B_NOISE_READOUT_ANALYZER_TRANSFER_QUALIFICATION.md` first.
-2. Search same-UWA HgCdTe photoconductor papers, proceedings and theses for the low-noise preamplifier and HP35665A settings.
-3. Recover bias/load topology and detector-terminal noise calibration.
-4. Determine the actual FOV/background state during the published PSD measurement.
-5. Keep analyzer bin width, window ENBW, PSD and ASD definitions separate.
-6. Tie the noise trace to the actual fabricated contact pair/active geometry where possible.
-7. Require matched P11/P12 state before recomputing the historical D* benchmark.
-8. Create a new top-level module only if the audit demonstrates a real execution gap; otherwise create a lineage/transfer addendum.
+1. Audit `procedures/P10_DEVICE_DC_BIAS_SELF_HEATING.md` before creating anything new.
+2. Search RP-01, same-UWA photoconductor papers, theses and proceedings for the bias circuit, load resistor, preamp input, coupling and detector resistance/current.
+3. Prioritize Siliquini 1995 thesis acquisition/references because P12A directly ties it to the bias-capable low-noise preamp.
+4. Preserve `E=V_active/L_measured`; never infer active field from supply voltage alone.
+5. Tie any recovered circuit to the same Figure-3/5/6/7 detector state without guessing the contact gap.
+6. Determine detector-terminal noise/signal transfer through the bias network and how it interacts with P12B.
+7. If P10 is already operator-complete, create a P10 lineage/transfer addendum + traveler rather than a duplicate top-level module.
+8. If evidence cannot advance P10 materially, pivot in the same round to P13 temporal-response apparatus recovery.
 
 Do not populate production tolerances without repeated local fabrication data.
