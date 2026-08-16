@@ -6,7 +6,7 @@ Build a source-traceable, end-to-end HgCdTe photodetector fabrication and charac
 
 Canonical first process: **RP-01**, Smith et al., *Semiconductor Science and Technology* 16, 455–462 (2001), DOI `10.1088/0268-1242/16/6/306`.
 
-There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository now contains the complete control architecture from substrate/material preparation through detector characterization, statistical release, failure analysis, requirements traceability and analytical/numerical requirements allocation.
+There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository now contains the complete control architecture from substrate/material preparation through detector characterization, statistical release, failure analysis, requirements traceability, analytical/numerical requirements allocation and the first dedicated empirical-Jacobian qualification module.
 
 ## Non-negotiable rules
 
@@ -25,12 +25,15 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository now contai
 13. Every controlled process variable should trace forward to a final detector requirement.
 14. Repository scientific specifications do not replace institution-specific Hg/Cd/Br2/HBr/H2/CH4/high-temperature/vacuum/cryogenic EH&S authorization.
 15. Every numerical sensitivity or allocated tolerance must state the protected output, input variable, operating point and evidence class. `PROXY-CONDITIONAL` relations may size experiments but cannot release production specifications.
+16. A tabulated equilibrium ratio such as `xS/xL` is not a local derivative `dxS/dxL`; directional secants from tie-line tables are not independent partial derivatives when other composition/temperature coordinates change simultaneously.
 
 ## Current checkpoint — READ THIS FIRST
 
 Latest recovery checkpoint:
 
-`research/2026-08-16_checkpoint_after_analytical_sensitivity_round13.md`
+`research/2026-08-16_checkpoint_after_lpe_jacobian_round14.md`
+
+Read the round-13 checkpoint immediately afterward for the general P20 sensitivity framework.
 
 Current integration files:
 
@@ -42,8 +45,16 @@ Current integration files:
 - `procedures/P20_ANALYTICAL_SENSITIVITY_REQUIREMENTS_ALLOCATION.md`
 - `calculations/RP01_FIRST_ORDER_SENSITIVITY_MATRIX.md`
 - `travelers/P20_REQUIREMENTS_ALLOCATION_REGISTER.md`
+- `procedures/P21_LPE_RESPONSE_SURFACE_JACOBIAN_QUALIFICATION.md`
+- `calculations/RP01_LPE_TO_SPECTRAL_JACOBIAN_FRAMEWORK.md`
+- `travelers/P21_LPE_JACOBIAN_QUALIFICATION_REGISTER.md`
 
-For detailed source provenance, also read round-9/8/7/6 source and gap addenda.
+Latest source/gap addenda:
+
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND14.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND14.md`
+
+For older provenance also read round-9/8/7/6 source and gap addenda.
 
 ## Controlled module set
 
@@ -66,7 +77,8 @@ For detailed source provenance, also read round-9/8/7/6 source and gap addenda.
 - P17 statistical process capability/release + blank register
 - P18 failure-analysis diagnostic atlas + blank failure record
 - P19 requirements / physics / process traceability matrix
-- **P20 analytical sensitivity / numerical requirements allocation + blank allocation register**.
+- P20 analytical sensitivity / numerical requirements allocation + blank allocation register
+- **P21 LPE response-surface / empirical-Jacobian qualification + blank qualification register**.
 
 ## Direct RP-01 anchors — do not drift
 
@@ -203,24 +215,6 @@ P19 links:
 
 `final detector requirement -> physical characteristic -> intermediate metric -> controlling Pxx process -> P17 release -> P18 failure response`.
 
-Key traced requirements include:
-
-- spectral band / x / absorption;
-- active thickness;
-- n-type low-density high-mobility transport;
-- substrate/epitaxial interface quality;
-- Hg-vacancy state;
-- mesa isolation/measured geometry;
-- passivation/surface recombination;
-- majority-carrier contact quality;
-- minority-carrier sweepout suppression;
-- absolute responsivity;
-- noise / NEP / D*;
-- intrinsic bandwidth;
-- self-heating;
-- package electrical/optical integrity;
-- reproducibility/yield.
-
 Requirement maturity labels:
 
 - `HISTORICAL-REFERENCE`
@@ -231,7 +225,7 @@ Requirement maturity labels:
 
 ## P20 — analytical sensitivity / requirements allocation
 
-P20 now separates numerical derivatives into:
+P20 separates numerical derivatives into:
 
 - `IDENTITY`;
 - `MODEL-CONDITIONAL`;
@@ -278,39 +272,94 @@ For a validated one-pole response, `S_f3dB,tau=-1`.
 
 To make 1 kHz lie within 1% amplitude of the low-frequency plateau requires `f_3dB >7.02 kHz` under that one-pole model. This is a model criterion, not an RP-01 bandwidth specification.
 
-### Main empirical Jacobian gaps
+## P21 — P03/P06 empirical Jacobian
 
-- P03 source/thermal/growth -> x/thickness/edge;
-- P04 full anneal/cooldown trajectory -> n/mu/lifetime;
-- P02 sidewall/interface state -> 1/f/lifetime/responsivity;
-- P08 converted profile/blocking state -> sweepout/noise/bandwidth/D*;
-- P15 package thermal/parasitic state -> self-heating/noise/bandwidth.
+P21 formalizes the first high-value empirical block:
 
-P20 uses `travelers/P20_REQUIREMENTS_ALLOCATION_REGISTER.md` to allocate a final requirement backward and promotes a numerical intermediate specification to P17 only after local verification.
+`{xL,yL,TL_actual,DeltaT_SC,t_contact,h_liquid/inventory,source-use,Hg-loss state}`
+
+`-> {x_opt,thickness,uniformity,optical edge,morphology}`.
+
+### Honeywell derivative warning
+
+Around the candidate xL=.082/yL=.810 row, the adjacent historical directional `Delta xS/Delta xL` secants are about:
+
+- 6.154 on the upper side;
+- 3.182 on the lower side;
+- 4.286 across both adjacent rows.
+
+The tabulated ratio at the candidate row is 3.54.
+
+Because yL and TL also change across these rows, none of these numbers is an independent `partial xS/partial xL`. Their spread only demonstrates why a local multivariable response must be measured.
+
+### Actual supercooling
+
+`DeltaT_SC = TL_actual - T_contact`.
+
+Retain covariance between TL_actual and T_contact when propagating uncertainty.
+
+### Finite-liquid state
+
+P21 introduces the model-conditioning coordinate
+
+`Fo_L = D_eff t_contact / h_liquid^2`
+
+and extraction loading
+
+`epsilon_m = m_epilayer/M_liquid,initial`.
+
+`Fo_L=1` is **not** a released threshold; `D_eff` and the finite-reservoir transition require local validation.
+
+### Hg-loss distinction
+
+Track cumulative/qualified Hg-loss state separately from source-use/solute extraction. Do not use run index as if it uniquely identifies the physical mechanism.
+
+### Sequential DOE
+
+- Stage 0: metrology + center-run variance;
+- Stage 1: `{xL,yL,DeltaT_SC}` source/phase block;
+- Stage 2: `{DeltaT_SC,t_contact}` kinetic block;
+- Stage 3: `{h_liquid/inventory,source-use}` finite-reservoir block with Hg loss tracked separately;
+- Stage 4: holdout confirmation.
+
+### Detector spectral bridge
+
+Matched P06/P11 data must establish
+
+`lambda_det = F(x_opt,d,composition_gradient,edge_metric,...)`
+
+under a fixed detector process, temperature and cutoff convention.
+
+Do not substitute Hansen `lambda_Eg` for this relation.
+
+### Robust-center rule
+
+Choose the final LPE center inside a morphology/yield feasible region and prefer lower sensitivity to realistic process covariance, not merely an exact 9.5-um/x target crossing.
+
+No balance, temperature, timing, melt-mass or source-use tolerance is released yet.
 
 ## Current architecture
 
-The repository now has five integrated layers:
+The repository now has six integrated layers:
 
 1. **P01–P16:** fabrication/material/device methods + end-to-end traveler;
 2. **P17:** statistical process release/capability/change control;
 3. **P18:** failure diagnosis/corrective action;
 4. **P19:** final-requirement-to-process traceability;
-5. **P20:** analytical/empirical sensitivity and numerical requirements allocation.
+5. **P20:** analytical/empirical sensitivity and numerical requirements allocation;
+6. **P21:** local response-surface/Jacobian identification for the first high-value P03/P06 block.
 
-Most numerical fabrication tolerances remain `LOCAL-SPEC-OPEN` because the high-value empirical Jacobian blocks do not yet have local repeated-device data.
+Most numerical fabrication tolerances remain `LOCAL-SPEC-OPEN` because no repeated local LPE/device dataset exists yet.
 
 ## Next logical work
 
-Strongest next path:
+Strongest next theoretical/analytical path:
 
-1. **Close the P03/P06 upstream empirical response block**
+1. build a coded/synthetic P21 Stage-1/2/3 DOE matrix;
+2. optimize identifiability and condition number under realistic factor coupling;
+3. derive derivative-detection power / required independent-run count as a function of P06 + run variance and expected effect size;
+4. use Fisher-information/D-optimal-style criteria to select the most informative growth sequence;
+5. keep absolute physical perturbation magnitudes `OPEN` until apparatus capability and same-growth-regime bounds are established;
+6. then proceed to the P04/P05/P13 anneal-trajectory sensitivity block.
 
-   `{xL,yL,actual TL,DeltaT_SC,t_growth,melt inventory,source-use,Hg-loss state} -> {xS,thickness,uniformity,optical edge}`.
-
-   This is the missing bridge needed to allocate detector spectral requirements backward into source composition, balance capability, temperature uncertainty and growth-time windows.
-
-2. Then close P04/P05/P13 anneal-trajectory sensitivities.
-3. Then close P08/P10/P12/P13 blocking-contact sensitivities.
-4. Assemble the chapter-ordered manual while retaining every `EMPIRICAL-REQUIRED`/`OPEN` flag.
-5. Do not populate production capability/tolerance numbers without local repeated-device data.
+Do not populate production capability/tolerance numbers without local repeated-device data.
