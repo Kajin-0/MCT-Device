@@ -19,13 +19,13 @@ Use with `procedures/P16A_FIRST_BUILD_RELEASE_READINESS_AUDIT.md`.
 
 `TRACEABLE-FIRST-BUILD-READY` requires every mandatory execution/metrology row to be `DIRECT-EXECUTABLE`, `LOCAL-BRANCH-FROZEN`, or justified `NOT-APPLICABLE`.
 
-A controlled method for closing a row is not the same as row closure. Round 35 added P30A as the closure route for R04–R07; Round 36 adds P28A as the chemistry-definition/lineage closure route for R13–R14. Those rows remain open until actual laboratory branches are instantiated numerically and physically.
+A controlled method for closing a row is not the same as row closure. Round 35 added P30A as the closure route for R04–R07; Round 36 added P28A for R13–R14; Round 37 confirms P08A as the current documentary-limit gas-split route for R17 and adds P25A as the apparatus/electrolyte instantiation route for R15. These rows remain open until actual laboratory branches are instantiated numerically and physically.
 
 ---
 
 ## 2. Master readiness table
 
-| ID | Process / measurement | Controlled modules | Blocker class | Mandatory for packaged first build? | Current Round-36 state | Required closure before build |
+| ID | Process / measurement | Controlled modules | Blocker class | Mandatory for packaged first build? | Current Round-37 state | Required closure before build |
 |---|---|---|---|---|---|---|
 | R01 | source-element identity/inventory | P03/P30/P30A | execution | YES | `OPEN-CHOICE` | freeze supplier/lots/purity/inventory and actual source/charge branch |
 | R02 | CdZnTe substrate composition/face/miscut | P07/P29 | execution | YES | `OPEN-CHOICE` | select incoming substrate specification and record measured plane/polarity/miscut |
@@ -41,9 +41,9 @@ A controlled method for closing a row is not the same as row closure. Round 35 a
 | R12 | Mask-1 resist/lithography | P14/P32 | execution | YES | `OPEN-CHOICE` | choose resist, coating, bake, exposure, developer, alignment and strip branch |
 | R13 | wet-mesa etchant preparation basis | P01/P01A/P28/P28A | execution | YES | `UNDEFINED-BASIS` | instantiate P28A: select an explicit Br2 definition and denominator, explicit EG:HBr ratio basis, certified HBr assay and actual reagent genealogy; same-SSPL `v/v` evidence is candidate support, not historical closure |
 | R14 | wet-mesa endpoint/rinse/passivation handoff | P01/P28/P28A | execution | YES | `OPEN-CHOICE` | freeze bath T/agitation/age, measured isolation/depth endpoint, quench/rinse/dry or wet-transfer path, air-exposure trajectory and `t_etch→P25`; qualify resulting P25 response |
-| R15 | anodic oxide cell/bath execution | P02/P25 | execution | YES | `OPEN-CHOICE` | select electrolyte/cell/exposed area/current-density/V(t)-charge endpoint/rinse branch |
+| R15 | anodic oxide cell/bath execution | P02/P25/P25A | execution | YES | `OPEN-CHOICE` | instantiate P25A: explicit EG:H2O ratio basis, KOH assay/inventory, cell/vessel revision, anode contact, cathode material/geometry, measured `A_exposed`, selected J/I, V(t)/Q/A endpoint and rinse/dry/handoff branch |
 | R16 | Mask-2 resist/exposure/develop/chlorobenzene | P14A/P27 | execution | YES | `OPEN-CHOICE` | freeze product, coating, exposure, developer, chlorobenzene bath state/sequence |
-| R17 | RIE gas realization | P08/P24/P34 | execution | YES | `UNDEFINED-BASIS` | define actual CH4/H2 composition/delivery realizing local branch; do not guess historical split |
+| R17 | RIE gas realization | P08/P08A/P24/P34 | execution | YES | `UNDEFINED-BASIS` | direct primary record still gives `CH4/5H2` + 64 sccm without individual MFCs; if using P08A 1:5 same-lineage candidate, explicitly freeze 10.67/53.33-sccm nominal branch, actual gas delivery/MFC calibration and provenance as local transfer rather than historical fact |
 | R18 | RIE reactor/sheath/thermal state | P08D/P24/P34 | execution | YES | `APPARATUS-NOT-SELECTED` | select reactor and freeze geometry, pressure control, RF, self-bias proxy, holder/Ts, clean/season |
 | R19 | oxide clear + semiconductor exposure | P08D/P34 | execution | YES | `OPEN-CHOICE` | measure t_clear and freeze t_sem/output gates for selected reactor |
 | R20 | Cr/Au deposition | P09/P09A/P26 | execution | YES | `APPARATUS-NOT-SELECTED` | select deposition tool/method, base pressure, rates, QCM, thermal limit and RIE-to-Cr clock |
@@ -76,6 +76,12 @@ P28A closes another **methodological/evidence-ranking** gap. The direct Srivasta
 
 Therefore R13 remains `UNDEFINED-BASIS` until a local recipe is mathematically and materially instantiated, and R14 remains `OPEN-CHOICE` until the post-etch trajectory is frozen and qualified.
 
+### Round-37 RIE gas / anodization status note
+
+The P08A gas-ratio problem was re-audited rather than duplicated. The direct 1999/2001 UWA primary record continues to print `CH4/5H2` without separate CH4/H2 MFC values. The strongest explicit decoding remains the same-lineage 2005 review's `CH4:H2 = 1:5`, from which the direct 64-sccm total gives derived candidate flows `10.67 sccm CH4 / 53.33 sccm H2`. Those are a local qualification center, not a direct RP-01 statement. R17 therefore remains blocking until a gas branch and actual delivery system are frozen.
+
+P25A materially improves R15 closure. TI US3977018 directly ties the preferred photoconductor electrolyte to `0.1 mole KOH in 1 liter of 90% EG / 10% DI-water solvent`, while the exact 90:10 preparation basis remains historically undefined. US5036376A supplies a separate explicit horizontal two-electrode cell transfer branch. P25A keeps those apparatus generations separate and requires the local electrolyte mathematics, electrochemically exposed area and cell geometry to be frozen before first-build authorization. R15 remains `OPEN-CHOICE` until this physical instantiation occurs.
+
 ---
 
 ## 3. Historical-identity register
@@ -91,7 +97,8 @@ These do not block a clearly labeled local qualification build but block literal
 | exact Mask-2 resist/exposure/developer/lift-off | `HISTORICAL-IDENTITY-OPEN` | local P27 branch may substitute |
 | exact Srivastav/RP-01 wet-mesa chemistry basis | `HISTORICAL-IDENTITY-OPEN` and execution currently unresolved | Round-36 same-SSPL evidence supports `v/v` as candidate only; local P28/P28A branch may substitute once explicitly defined and qualified |
 | exact wet-mesa rinse/air-exposure/anodization handoff | `HISTORICAL-IDENTITY-OPEN` | same-SSPL and other primary transfer branches establish trajectory importance but do not identify RP-01 handoff |
-| exact Plasma Technology reactor hardware/gas realization | `HISTORICAL-IDENTITY-OPEN` and execution currently unresolved | local P34 reactor branch may substitute once frozen |
+| exact UWA native-anodic-oxide electrolyte/cell/current/endpoint/rinse | `HISTORICAL-IDENTITY-OPEN` | P25A provides a TI-photoconductor-anchored local instantiation route; do not relabel it UWA |
+| exact Plasma Technology reactor hardware/gas realization | `HISTORICAL-IDENTITY-OPEN` and execution currently unresolved | primary re-audit still gives `CH4/5H2`; P08A 1:5 is same-lineage candidate only; local P34 branch may substitute once frozen |
 | exact Cr/Au deposition hardware/rates/vacuum | `HISTORICAL-IDENTITY-OPEN` | local P26 branch may substitute |
 | exact material method behind x≈0.30 / 9.5 µm | `HISTORICAL-IDENTITY-OPEN` | modern P06/P06A may measure local state |
 | exact Optronics model/calibration | `HISTORICAL-IDENTITY-OPEN` | modern P11/P11A may establish absolute response |
@@ -112,6 +119,9 @@ Before declaring `TRACEABLE-FIRST-BUILD-READY`, answer YES to all applicable que
 - [ ] Every chemical/reagent concentration has an explicit preparation basis and stock assay/grade where relevant.
 - [ ] P28A contains an explicit Br2 mathematical definition/denominator, EG:HBr definition, HBr assay and reagent genealogy for the selected local mesa branch.
 - [ ] P28/P28A contain a frozen bath-temperature/agitation/age and rinse/air-exposure/P25-handoff trajectory supported by coupon data.
+- [ ] P25A contains a mathematically defined electrolyte, actual reagent genealogy, dimensioned cell, specified anode/cathode configuration and measured electrochemical area.
+- [ ] P25A contains a traceable selected current density/current, V(t)/Q/A recording rule, bath state and rinse/dry/handoff branch.
+- [ ] The P08/P08A gas branch states actual individual CH4/H2 delivery and provenance; candidate 1:5 values are not labeled direct RP-01.
 - [ ] Every commercial consumable/product is identified by manufacturer/product/lot or a controlled equivalent specification.
 - [ ] Every process tool is identified by model/serial/revision and required calibration state.
 - [ ] Every required setpoint or trajectory is specified numerically or by a calibrated physical endpoint.
