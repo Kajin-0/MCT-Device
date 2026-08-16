@@ -6,7 +6,7 @@ Build a source-traceable, end-to-end HgCdTe photodetector fabrication and charac
 
 Canonical first process: **RP-01**, Smith et al., *Semiconductor Science and Technology* 16, 455–462 (2001), DOI `10.1088/0268-1242/16/6/306`.
 
-There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository now contains the complete control architecture from substrate/material preparation through detector characterization, statistical release, failure analysis and requirements traceability.
+There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository now contains the complete control architecture from substrate/material preparation through detector characterization, statistical release, failure analysis, requirements traceability and analytical/numerical requirements allocation.
 
 ## Non-negotiable rules
 
@@ -24,12 +24,13 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository now contai
 12. Failure diagnosis uses competing hypotheses and discriminating tests; never force one cause from one symptom.
 13. Every controlled process variable should trace forward to a final detector requirement.
 14. Repository scientific specifications do not replace institution-specific Hg/Cd/Br2/HBr/H2/CH4/high-temperature/vacuum/cryogenic EH&S authorization.
+15. Every numerical sensitivity or allocated tolerance must state the protected output, input variable, operating point and evidence class. `PROXY-CONDITIONAL` relations may size experiments but cannot release production specifications.
 
 ## Current checkpoint — READ THIS FIRST
 
 Latest recovery checkpoint:
 
-`research/2026-08-15_checkpoint_after_source_recovery_round12.md`
+`research/2026-08-16_checkpoint_after_analytical_sensitivity_round13.md`
 
 Current integration files:
 
@@ -38,6 +39,9 @@ Current integration files:
 - `procedures/P18_FAILURE_ANALYSIS_DIAGNOSTIC_ATLAS.md`
 - `travelers/P18_FAILURE_ANALYSIS_RECORD.md`
 - `procedures/P19_REQUIREMENTS_TRACEABILITY_MATRIX.md`
+- `procedures/P20_ANALYTICAL_SENSITIVITY_REQUIREMENTS_ALLOCATION.md`
+- `calculations/RP01_FIRST_ORDER_SENSITIVITY_MATRIX.md`
+- `travelers/P20_REQUIREMENTS_ALLOCATION_REGISTER.md`
 
 For detailed source provenance, also read round-9/8/7/6 source and gap addenda.
 
@@ -61,7 +65,8 @@ For detailed source provenance, also read round-9/8/7/6 source and gap addenda.
 - P16 master end-to-end traveler + blank traveler
 - P17 statistical process capability/release + blank register
 - P18 failure-analysis diagnostic atlas + blank failure record
-- **P19 requirements / physics / process traceability matrix**.
+- P19 requirements / physics / process traceability matrix
+- **P20 analytical sensitivity / numerical requirements allocation + blank allocation register**.
 
 ## Direct RP-01 anchors — do not drift
 
@@ -194,7 +199,7 @@ Prefer raw-data reanalysis and nondestructive/reversible tests before destructiv
 
 ## P19 — requirements traceability
 
-P19 now links:
+P19 links:
 
 `final detector requirement -> physical characteristic -> intermediate metric -> controlling Pxx process -> P17 release -> P18 failure response`.
 
@@ -224,23 +229,88 @@ Requirement maturity labels:
 - `LOCAL-QUALIFIED`
 - `RELEASED`.
 
-Most numerical tolerances remain `LOCAL-SPEC-OPEN` because local sensitivity/capability data do not yet exist.
+## P20 — analytical sensitivity / requirements allocation
+
+P20 now separates numerical derivatives into:
+
+- `IDENTITY`;
+- `MODEL-CONDITIONAL`;
+- `PROXY-CONDITIONAL`;
+- `EMPIRICAL-REQUIRED`.
+
+Key first-order results:
+
+### D*/NEP
+
+`D*=R_v sqrt(A)/e_n` gives exact normalized sensitivities:
+
+- responsivity `+1`;
+- detector noise ASD `-1`;
+- area `+0.5`.
+
+### Bias/self-heating
+
+Uniform one-carrier screening gives `P_J ∝ E^2`, so field has normalized Joule-power sensitivity `+2`.
+
+### Composition proxy
+
+At `x=.30, T=80 K`, Hansen gives
+
+`partial lambda_Eg/partial x≈-33.05 um/x`,
+
+or about `-33.1 nm` per `+0.001` x.
+
+This is **not** detector-cutoff sensitivity. The needed production derivative is `partial lambda_response/partial x_P06`.
+
+### 300-K background-model sensitivity
+
+For the existing ideal 60-degree-full-cone / 4.4-um-step model:
+
+- flux changes about `4.03%/K` near 300 K;
+- about `2.06% per 0.01 um` of effective long-wave boundary;
+- about `3.0% per 1 degree` of full cone angle around 60 degrees.
+
+Therefore precision BLIP verification should use calibrated source radiance, measured spectral weighting and physical aperture/view factor rather than scalar historical shorthand.
+
+### Bandwidth
+
+For a validated one-pole response, `S_f3dB,tau=-1`.
+
+To make 1 kHz lie within 1% amplitude of the low-frequency plateau requires `f_3dB >7.02 kHz` under that one-pole model. This is a model criterion, not an RP-01 bandwidth specification.
+
+### Main empirical Jacobian gaps
+
+- P03 source/thermal/growth -> x/thickness/edge;
+- P04 full anneal/cooldown trajectory -> n/mu/lifetime;
+- P02 sidewall/interface state -> 1/f/lifetime/responsivity;
+- P08 converted profile/blocking state -> sweepout/noise/bandwidth/D*;
+- P15 package thermal/parasitic state -> self-heating/noise/bandwidth.
+
+P20 uses `travelers/P20_REQUIREMENTS_ALLOCATION_REGISTER.md` to allocate a final requirement backward and promotes a numerical intermediate specification to P17 only after local verification.
 
 ## Current architecture
 
-The repository now has four integrated layers:
+The repository now has five integrated layers:
 
 1. **P01–P16:** fabrication/material/device methods + end-to-end traveler;
 2. **P17:** statistical process release/capability/change control;
 3. **P18:** failure diagnosis/corrective action;
-4. **P19:** final-requirement-to-process traceability.
+4. **P19:** final-requirement-to-process traceability;
+5. **P20:** analytical/empirical sensitivity and numerical requirements allocation.
+
+Most numerical fabrication tolerances remain `LOCAL-SPEC-OPEN` because the high-value empirical Jacobian blocks do not yet have local repeated-device data.
 
 ## Next logical work
 
-Three strong next paths:
+Strongest next path:
 
-1. **Manual assembly:** synthesize P01–P19 into chapter order without losing provenance and OPEN flags.
-2. **Numerical requirement allocation:** choose an explicit detector-level design target and derive first intermediate tolerances/sensitivity budgets.
-3. **Analytical sensitivity ranking:** estimate which currently open process variables have the largest effect on final D*, responsivity, noise and bandwidth, so qualification effort is prioritized rationally.
+1. **Close the P03/P06 upstream empirical response block**
 
-Do not populate production capability/tolerance numbers without local repeated-device data.
+   `{xL,yL,actual TL,DeltaT_SC,t_growth,melt inventory,source-use,Hg-loss state} -> {xS,thickness,uniformity,optical edge}`.
+
+   This is the missing bridge needed to allocate detector spectral requirements backward into source composition, balance capability, temperature uncertainty and growth-time windows.
+
+2. Then close P04/P05/P13 anneal-trajectory sensitivities.
+3. Then close P08/P10/P12/P13 blocking-contact sensitivities.
+4. Assemble the chapter-ordered manual while retaining every `EMPIRICAL-REQUIRED`/`OPEN` flag.
+5. Do not populate production capability/tolerance numbers without local repeated-device data.
