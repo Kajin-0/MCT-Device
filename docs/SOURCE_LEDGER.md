@@ -5,7 +5,7 @@ This file records the literature allowed to inform the controlled manual. Inclus
 ## Source classes
 
 - **Primary-A** — original peer-reviewed experimental paper.
-- **Primary-B** — original proceedings/patent/source with useful technical detail requiring additional scrutiny.
+- **Primary-B** — original patent/proceedings/source with useful technical detail requiring additional scrutiny.
 - **Secondary-A** — authoritative monograph or review used for synthesis and source discovery.
 - **Lead** — potentially useful source not yet sufficiently audited for controlled use.
 
@@ -48,11 +48,11 @@ This file records the literature allowed to inform the controlled manual. Inclus
 **Citation:** J. K. Radhakrishnan, S. Sitharaman, and S. C. Gupta, “Liquid phase epitaxial growth of HgCdTe using a modified horizontal slider,” *Journal of Crystal Growth* 252, 79–86 (2003).  
 **DOI:** `10.1016/S0022-0248(02)02530-7`
 
-**Why it matters:** Describes a high-detail horizontal-slider arrangement with explicit Hg-loss compensation and in-situ substrate meltback, together with charge-preparation information.
+**Why it matters:** Describes a high-detail horizontal-slider arrangement with explicit Hg-loss compensation and in-situ substrate meltback, together with charge-preparation information: high-purity/high-density graphite, a 15×15×1 mm CdZnTe recess, 6N elements, 700 °C/8 h charge synthesis, ~4.8 g per growth run, and 3 g HgTe compensation.
 
-**Compatibility warning:** It is an LPE process candidate, not automatically the upstream half of RP-01. Target composition, final conductivity, anneal history, and electrical properties must be reconciled first.
+**Compatibility warning:** Its typical melt/material branch is around x≈0.20. Use it as an apparatus/process-engineering source, not as the direct composition source for RP-01 x≈0.30.
 
-**Audit status:** Partially extracted. Full process conditions still require source audit.
+**Audit status:** Major apparatus/charge anchors extracted; remaining experimental details still being recovered.
 
 ---
 
@@ -60,25 +60,27 @@ This file records the literature allowed to inform the controlled manual. Inclus
 
 **Class:** Primary-A  
 **Role:** Te-rich Hg-Cd-Te liquidus/solidus and horizontal-slider LPE growth-window constraints.  
-**Citation:** T. C. Harman, “Liquidus isotherms, solidus lines and LPE growth in the Te-rich corner of the Hg-Cd-Te system,” *Journal of Electronic Materials* (1980).  
+**Citation:** T. C. Harman, “Liquidus isotherms, solidus lines and LPE growth in the Te-rich corner of the Hg-Cd-Te system,” *Journal of Electronic Materials* 9 (1980).  
 **DOI:** `10.1007/BF02822728`
 
-**Why it matters:** Experimental phase-diagram and growth information spanning a broad HgCdTe composition range, including controlled horizontal-slider growth.
+**Why it matters:** Reports Te-rich liquidus isotherms from 425–600 °C, horizontal-slider growth under flowing H2, solid x≈0.1–0.8, growth temperatures 450–550 °C, growth times 0.25–10 min, typical equilibration about 1 h at 550 °C, and 3–15 µm layer thicknesses.
 
 **Audit status:** Abstract-level process constraints extracted; full article audit pending.
 
 ---
 
-## S005 — Tung et al. 1982
+## S005 — Schmit, Hager, Wood 1982
 
 **Class:** Primary-A  
 **Role:** High-priority x≈0.30 Te-rich horizontal-slider LPE source.  
-**Citation:** “Liquid phase epitaxy of Hg1−xCdxTe,” *Journal of Crystal Growth* 56, 485–489 (1982).  
+**Citation:** J. L. Schmit, R. J. Hager, and R. A. Wood, “Liquid phase epitaxy of Hg1−xCdxTe,” *Journal of Crystal Growth* 56, 485–489 (1982).  
 **DOI:** `10.1016/0022-0248(82)90468-7`
 
-**Why it matters:** Reports controlled growth for x values including 0.30, directly overlapping the nominal composition of RP-01.
+**Why it matters:** Reports atmospheric-pressure horizontal-slider Te-rich LPE of n- and p-HgCdTe on substrates up to 2×3 cm, explicitly including controlled solid compositions x=0.2, 0.3, and 0.4.
 
-**Audit status:** Lead identified; full experimental details not yet extracted.
+**Correction:** This source was previously mislabeled “Tung et al. 1982” in the project. The correct authors are Schmit, Hager, and Wood.
+
+**Audit status:** Metadata/abstract verified. Full experimental section remains a high-priority acquisition target.
 
 ---
 
@@ -101,11 +103,9 @@ This file records the literature allowed to inform the controlled manual. Inclus
 **Citation:** E. P. G. Smith, C. A. Musca, D. A. Redfern, J. M. Dell, and L. Faraone, “H2-based dry plasma etching for mesa structuring of HgCdTe,” *Journal of Electronic Materials* 29(6), 853–858 (2000).  
 **DOI:** `10.1007/s11664-000-0237-7`
 
-**Why it matters:** Directly compares mesa isolation of n-type x≈0.31 HgCdTe photoconductors using H2/CH4 RIE and wet chemical etching using bromine in hydrobromic acid. The published performance comparison supports preserving wet mesa isolation in RP-01 rather than replacing it with an all-dry flow.
+**Why it matters:** Directly compares mesa isolation of n-type x≈0.31 HgCdTe photoconductors using H2/CH4 RIE and wet chemical etching using bromine in hydrobromic acid. The detector-level comparison strongly supports preserving wet mesa isolation in RP-01.
 
-**Important limitation:** The exact Br2/HBr formulation, bath temperature, etch rate, mask chemistry, depth, and rinse/strip details have not yet been recovered from the full experimental section. Do not infer them from unrelated Br2/HBr recipes.
-
-**Audit status:** Bibliographic/abstract evidence verified; full quantitative process extraction pending.
+**Audit status:** Bibliographic/abstract evidence verified; exact wet formulation is not sufficiently disclosed in accessible material.
 
 ---
 
@@ -116,9 +116,9 @@ This file records the literature allowed to inform the controlled manual. Inclus
 **Citation:** C. A. Musca, J. F. Siliquini, E. P. G. Smith, J. M. Dell, and L. Faraone, “Laser Beam Induced Current Imaging of Reactive Ion Etching Induced n-Type Doping in HgCdTe,” *Journal of Electronic Materials* 27, 661–667 (1998).  
 **DOI:** `10.1007/s11664-998-0032-4`
 
-**Why it matters:** Demonstrates LBIC as a nondestructive method for confirming the presence, depth behavior, and lateral extent of the n+ region produced by RIE in HgCdTe. This source is directly cited by the later RP-01 paper and is therefore the correct lineage to audit for conversion-depth claims.
+**Why it matters:** Demonstrates LBIC as a nondestructive method for confirming the presence and spatial extent of RIE-induced n-type/n+ regions and is directly cited by RP-01.
 
-**Audit status:** Metadata and abstract verified; full quantitative junction-depth/RIE-condition extraction pending.
+**Audit status:** Metadata/abstract verified; full quantitative depth extraction pending.
 
 ---
 
@@ -129,33 +129,101 @@ This file records the literature allowed to inform the controlled manual. Inclus
 **Citation:** O. P. Agnihotri, C. A. Musca, and L. Faraone, “Current status and issues in the surface passivation technology of mercury cadmium telluride infrared detectors,” *Semiconductor Science and Technology* 13, 839–847 (1998).  
 **DOI:** `10.1088/0268-1242/13/8/002`
 
-**Why it matters:** Surface passivation is a dominant determinant of HgCdTe detector leakage/noise. This source is useful for tracing the UWA group’s understanding of native anodic oxide, deposited films, interface charge, and process compatibility.
+**Use restriction:** Executable anodization setpoints must be traced to primary experiments.
 
-**Use restriction:** It is a review, so executable anodization setpoints should be traced to the primary experiments it cites rather than copied without lineage verification.
-
-**Audit status:** Identified; primary references and exact anodic-oxide recipe still to be extracted.
+**Audit status:** Identified; primary references being followed.
 
 ---
 
-## S010 — Nemirovsky and Bahir 1989 — passivation source lead
+## S010 — Nemirovsky and Bahir 1989 — passivation
 
 **Class:** Primary-A  
-**Role:** High-priority primary source for HgCdTe surface-passivation methods and interface behavior.  
+**Role:** HgCdTe surface-passivation/interface-behavior source.  
 **Citation:** Y. Nemirovsky and G. Bahir, “Passivation of mercury cadmium telluride surfaces,” *Journal of Vacuum Science & Technology A* 7, 450–459 (1989).  
 **DOI:** `10.1116/1.576202`
-
-**Why it matters:** It is explicitly cited in the RP-01 paper’s passivation discussion and is a likely route to closing the anodic-oxide process and interface-physics requirements.
 
 **Audit status:** Citation identified; full method extraction pending.
 
 ---
 
+## S011 — Srivastav et al. 2005 — wet mesa optimization
+
+**Class:** Primary-A  
+**Role:** Best current quantitative transfer source for Br2/HBr/ethylene-glycol wet mesa etching near RP-01 composition.  
+**Citation:** V. Srivastav, R. Pal, B. L. Sharma, A. Naik, D. S. Rawal, V. Gopal, and H. P. Vyas, “Etching of Mesa Structures in HgCdTe,” *Journal of Electronic Materials* 34, 1440–1445 (2005).  
+**DOI:** `10.1007/s11664-005-0203-5`
+
+**Key anchors:** x=0.28 material; selected 2% Br2 in 3:1 ethylene glycol:HBr; 21 °C mean vertical rate 2.78 µm/min; anisotropy ~0.63; process temperature 5–50 °C; lower temperature improves dimensional control; best reported roughness around 2 nm.
+
+**Critical limitation:** The accessible primary text does not unambiguously define the concentration basis of “2% Br2.” The process therefore remains a qualification candidate, not a released recipe.
+
+**Procedure:** `procedures/P01_WET_MESA_QUALIFICATION.md`.
+
+---
+
+## S012 — Texas Instruments native anodic oxide process
+
+**Class:** Primary-B  
+**Role:** Strong historical qualification candidate for the RP-01 800 Å native anodic oxide.  
+**Citation:** Texas Instruments Incorporated, “Passivation of mercury cadmium telluride semiconductor surfaces by anodic oxidation,” U.S. Patent 3,977,018.
+
+**Key anchors:** 0.1 M KOH in 90% ethylene glycol / 10% deionized water; constant-current anodization around 0.3 mA/cm²; endpoint near 15 V; approximately 2 min; approximately 800 Å oxide; profilometric/optical thickness verification described.
+
+**Compatibility warning:** The numerical match to RP-01's 800 Å film does not prove that the UWA RP-01 process used the identical chemistry/electrical conditions.
+
+**Procedure:** `procedures/P02_ANODIC_OXIDE_QUALIFICATION.md`.
+
+---
+
+## S013 — Bowers and Schmit 1982 — Hg containment / x≈0.30 tie-line
+
+**Class:** Primary-B  
+**Role:** Highest-detail current source for a composition-matched Te-rich horizontal-slider charge and Hg containment architecture.  
+**Citation:** J. E. Bowers and J. L. Schmit, “Mercury containment for liquid phase growth of mercury cadmium telluride from tellurium-rich solution,” U.S. Patent 4,317,689 (1982).
+
+**Why it matters:** Same Honeywell/Schmit process lineage as S005. Gives covered graphite-slider architecture, N2 purge/H2 flow, HgTe or HgTe+Te auxiliary Hg source, and explicit liquid/solid tie-line data.
+
+**Critical tie line:** liquid xL=0.082, yL=0.810, TL=507 °C → solid xS=0.29, k=3.54. The source describes growth near 500 °C after first taking the melt above liquidus and then operating below liquidus.
+
+**Audit status:** Detailed text extracted. This source materially closes the candidate x≈0.30 melt-composition variable.
+
+**Procedure:** `procedures/P03_LPE_X030_QUALIFICATION.md`.
+
+---
+
+## S014 — Tranchart et al. 1985 — CdZnTe substrate for x≈0.30 LPE
+
+**Class:** Primary-A  
+**Role:** Substrate compatibility for RP-01-like x≈0.30 Te-rich LPE material.  
+**Citation:** J. C. Tranchart, B. Latorre, C. Foucher, and Y. Le Gouge, “LPE growth of Hg1−xCdxTe on Cd1−yZnyTe substrates,” *Journal of Crystal Growth* 72, 468–473 (1985).
+
+**Why it matters:** Reports Cd1−yZnyTe with y≈0.04 and improved-quality Te-rich LPE HgCdTe around x≈0.30; 32-element 3–5 µm detector arrays were made from the material.
+
+**Important nuance:** Other primary lattice-matching work reports an optimum ZnTe fraction near 2.9% for Hg0.7Cd0.3Te. The controlled manual will therefore specify substrate lattice mismatch from measurement rather than declare a universal exact Zn fraction.
+
+**Audit status:** Abstract verified; full experimental section still needed.
+
+---
+
+## S015 — Nagahama et al. 1984 — post-growth Hg annealing
+
+**Class:** Primary-A  
+**Role:** Candidate bridge from as-grown Te-rich p-type material to RP-01 low-density n-type material.  
+**Citation:** K. Nagahama, R. Ohkata, K. Nishitani, and T. Murotani, “LPE growth of Hg1−xCdxTe using conventional slider boat and effects of annealing on properties of the epilayers” (1984; complete journal metadata pending verification).
+
+**Key anchors:** x≈0.17–0.30; conventional slider, open-tube H2; as-grown p-type; Hg-overpressure annealing studied from 250–400 °C; 250–300 °C produced well-behaved n-type layers without apparent composition change, whereas 400 °C produced compositional change near the interface.
+
+**Limitation:** Anneal duration, Hg source configuration, cooldown, and the final n/µ for RP-01 x≈0.30 are not yet closed.
+
+---
+
 # Priority source gaps
 
-1. **RP-01 mesa isolation:** exact Br2/HBr formulation, bath temperature, etch rate, target depth, mask compatibility, rinse/strip, and dimensional-control data from S007 or its immediate process references.
-2. **RP-01 anodic oxide:** electrolyte, current/voltage mode, current density, temperature, time, endpoint, and thickness calibration from S009/S010 primary lineage.
-3. **RIE conversion depth:** extract the exact RIE conditions and inferred depth/lateral profile from S008 and distinguish them from the RP-01 2001 contact-window recipe.
-4. **x≈0.30 LPE process:** complete growth process compatible with CdZnTe and the RP-01 electrical state.
-5. **Post-growth stoichiometry/anneal:** process consistent with the desired carrier density and cutoff.
-6. **Cr/Au contact deposition:** deposition and surface-preparation details from the same process lineage.
-7. **Measurement closure:** full responsivity/noise calibration chain required to reproduce D*, not merely detector fabrication.
+1. **x≈0.30 LPE process:** full S005 experimental section, especially charge synthesis, exact supercooling/cooling rate, equilibration, thickness/time relation, and electrical outputs.
+2. **CdZnTe substrate:** full S014 process and a measurement-based lattice-mismatch specification for the selected RP-01 substrate.
+3. **Post-growth n-type anneal:** full S015 metadata/method, especially time, Hg chemical potential/source geometry, and cooldown.
+4. **RP-01 mesa isolation:** resolve the basis of “2% Br2,” reagent stock concentration, preparation order, rinse/strip, and transfer capability on x≈0.30.
+5. **RP-01 anodic oxide:** exact UWA recipe if recoverable; otherwise complete local transfer qualification of S012-family process.
+6. **RIE conversion depth:** exact conditions/depth from S008 and the related LBIC junction-depth paper.
+7. **Cr/Au contact deposition:** deposition and surface-preparation details from the same process lineage.
+8. **Measurement closure:** full responsivity/noise calibration chain required to independently reproduce D*.
