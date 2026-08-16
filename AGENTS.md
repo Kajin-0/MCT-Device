@@ -2,272 +2,475 @@
 
 ## Mission
 
-Develop an extremely detailed, source-traceable procedure for fabricating and characterizing HgCdTe photodetectors. The endpoint is a booklet/manual plus process travelers that specify measurements, metrics, times, equipment, machinery, tolerances, calibration requirements, acceptance criteria, failure modes, and provenance sufficiently well that a competent researcher can reproduce the process without relying on undocumented tribal knowledge.
+Develop an extremely detailed, source-traceable procedure for fabricating and characterizing HgCdTe photodetectors. The endpoint is a booklet/manual plus process travelers specifying measurements, metrics, times, equipment, machinery, tolerances, calibration requirements, acceptance criteria, failure modes, and provenance sufficiently well that a competent researcher can reproduce the selected reference process without undocumented tribal knowledge.
 
 ## Non-negotiable research rules
 
-1. **Do not fabricate missing numbers.** A blank or `[OPEN]`/`[QUAL]` requirement is preferable to a plausible but untraceable setpoint.
-2. **Do not splice process families casually.** HgCdTe composition, substrate orientation, melt chemistry, Hg chemical potential, passivation, etch history, doping, and thermal history are coupled.
-3. **Primary literature first.** Books/reviews are excellent maps, but process-critical numbers should be traced to original experimental sources wherever possible.
-4. **Separate published observation, derived physics, apparatus calibration, and proposed qualification experiments.**
-5. **Preserve negative results and rejected branches.** Record why an apparently useful process was not adopted.
-6. **Every critical process step needs metrology.** A setpoint without measurement confirming the resulting material/device state is insufficient.
-7. **Every process module needs a gate.** State what must be true before the sample advances.
-8. **Safety is part of reproducibility.** Hg, Cd-containing material, Br2/HBr/KOH chemistry, vacuum systems, high temperatures, methane/hydrogen plasmas, cryogens, and electrical systems require institution-approved EH&S procedures and apparatus-specific risk assessment. Repository procedures are scientific process specifications, not operating authorization.
+1. **Never fabricate missing numbers.** `[OPEN]` or `[QUAL]` is better than a plausible but unsupported setpoint.
+2. **Do not splice process families casually.** Composition, substrate, melt chemistry, Hg chemical potential, thermal history, surface treatment, passivation, etch history and doping are coupled.
+3. **Primary literature first.** Reviews/books are maps; process-critical numbers should be traced to original experimental sources or official metrology documentation where possible.
+4. **Separate evidence classes:** directly published observation, derived physics, apparatus calibration, local qualification experiment.
+5. **Preserve rejected branches and corrections.** Record why a seemingly useful recipe was not promoted.
+6. **Every critical process step needs metrology.** A furnace/RIE/etch setpoint without measured material outcome is incomplete.
+7. **Every module needs a gate.** State what must be true before the sample advances.
+8. **Safety is part of reproducibility.** Hg, Cd, Br2/HBr/KOH chemistry, high-temperature graphite/quartz systems, H2/CH4 plasma, vacuum/pressure systems and cryogens require institution-approved EH&S procedures. Repo documents are scientific specifications, not operating authorization.
+9. **Do not collapse distinct spectral quantities.** Transmission edge, optical band gap, inferred x and detector-response cutoff must remain separately defined.
+10. **Do not collapse Hall quantities.** Report Hall density/mobility unless Hall-factor and multicarrier assumptions have been justified.
 
-## Reference process RP-01
+---
 
-The first downstream reference process is:
+# RP-01 — first canonical reference process
 
-> E. P. G. Smith, K. J. Winchester, C. A. Musca, J. M. Dell, and L. Faraone, “A simplified fabrication process for HgCdTe photoconductive detectors using CH4/H2 reactive-ion-etching-induced blocking contacts,” *Semiconductor Science and Technology* 16, 455–462 (2001). DOI `10.1088/0268-1242/16/6/306`.
+Primary anchor:
 
-RP-01 was selected because actual n-type HgCdTe photoconductors were fabricated and measured and the paper gives unusually strong downstream process anchors.
+E. P. G. Smith, K. J. Winchester, C. A. Musca, J. M. Dell, L. Faraone, “A simplified fabrication process for HgCdTe photoconductive detectors using CH4/H2 reactive-ion-etching-induced blocking contacts,” *Semiconductor Science and Technology* 16, 455–462 (2001), DOI `10.1088/0268-1242/16/6/306`.
 
-### RP-01 material state
+RP-01 was selected because actual n-type HgCdTe photoconductors were fabricated and characterized and the downstream process is unusually well documented.
 
-- LPE-grown HgCdTe on insulating CdZnTe `[P]`.
-- x≈0.30, n-type `[P]`.
-- carrier density 9.8×10^14 cm^-3 `[P]`.
-- electron mobility 4.0×10^4 cm² V^-1 s^-1 `[P]`.
-- experimental device-layer thickness 9.5 µm `[P]`.
+## RP-01 starting material — directly stated
 
-### RP-01 RIE/contact anchors
+- LPE-grown HgCdTe on electrically insulating CdZnTe.
+- approximately x=0.30, n-type.
+- supplier-specified carrier density: `9.8×10^14 cm^-3`.
+- supplier-specified electron mobility: `4.0×10^4 cm²/V·s`.
+- experimental device-layer thickness: `9.5 µm`.
 
-- parallel-plate Plasma Technology reactor `[P]`.
-- CH4/5H2 gas mixture `[P]`.
-- total flow 64 sccm `[P]`.
-- chamber pressure 100 mTorr `[P]`.
-- RF power 50 W `[P]`.
-- process time 1 min `[P]`.
-- RIE-converted carrier density 2.0×10^15 cm^-3 `[P]`.
-- RIE-converted mobility 3.3×10^4 cm² V^-1 s^-1 `[P]`.
-- older same-lineage work reports deep RIE-induced conversion; do not equate those depth values with a directly measured RP-01 depth without source matching.
+**Important 2026-08-15 audit result:** Smith et al. give no measurement temperature for the Fermionics-specified `n` and `µ`. Do not relabel those historical values as “77 K” or “80 K.” Temperature remains `OPEN`.
 
-### RP-01 lithography/passivation/metallization anchors
+## RP-01 contact-window RIE — directly stated
 
-- photoresist thickness ~4–5 µm `[P]`.
-- prebake 80 °C, 30 min `[P]`.
-- chlorobenzene soak 30 min `[P]`.
-- anodic oxide 800 Å `[P]`.
-- Cr 300 Å `[P]`.
-- Au 2700 Å `[P]`.
-- resist identity, exposure dose, developer, deposition rate/base pressure, lift-off solvent, and RIE-to-metal transfer delay remain open.
+- Plasma Technology parallel-plate reactor.
+- CH4/5H2 gas mixture.
+- total gas flow `64 sccm`.
+- pressure `100 mTorr`.
+- RF power `50 W`.
+- time `1 min`.
+- RIE-converted density `2.0×10^15 cm^-3`.
+- RIE-converted mobility `3.3×10^4 cm²/V·s`.
 
-### RP-01 TLM anchors
+Smith et al. explicitly state that RIE-converted material was measured at **80 K and 300 K using a van der Pauw structure and variable magnetic field up to 2 T**. The currently available text does not yet assign the reported summary density/mobility pair unambiguously to one temperature.
 
-- nine contacts `[P]`.
-- each 300 µm × 300 µm `[P]`.
-- first spacing 50 µm, successive spacing increment 50 µm `[P]`.
-- 80 K specific contact resistivity 9×10^-4 Ω cm² `[P]`.
+## RP-01 lithography/passivation/metallization — directly stated
 
-### RP-01 detector-characterization anchors
+- photoresist thickness approximately `4–5 µm`.
+- prebake `80 °C`, `30 min`.
+- chlorobenzene soak `30 min`.
+- anodic oxide `800 Å = 80 nm`.
+- Cr `300 Å`.
+- Au `2700 Å`.
 
-- Optronics Laboratories Spectral Response Measurement System `[P]`.
-- detector temperature 80 K `[P]`.
-- field of view 60° `[P]`.
-- chopping frequency 1 kHz `[P]`.
-- representative noise field 10 V/cm `[P]`.
-- HP35665A spectrum analyzer with low-noise preamplifier `[P]`.
-- 1/f knee ~3 kHz `[P]`.
-- g-r noise ~24.5 nV/√Hz `[P]`.
-- measured spectral cutoff 4.4 µm `[P]`.
-- BLIP D* 2.0×10^11 cm Hz^1/2 W^-1 at 4 µm `[P]`.
-- reported 300 K/60° background photon flux 1.0×10^15 cm^-2 s^-1 `[P]`.
-- reported quantum efficiency 70% `[P]`.
+Still open: resist identity, exposure dose, developer, develop time, exact anodization recipe, metal-deposition method/base pressure/rate, lift-off solvent/time, RIE-to-metal delay.
 
-## Current process architecture
+## RP-01 TLM structure — directly stated
 
-The working RP-01 process architecture is now:
+- nine contacts.
+- each `300 µm × 300 µm`.
+- first separation `50 µm`.
+- successive separation increment `50 µm`.
+- 80-K specific contact resistivity `~9×10^-4 Ω·cm²`.
+
+## RP-01 detector benchmark — directly stated
+
+- detector operating temperature `80 K`.
+- FOV `60°`.
+- chopping frequency `1 kHz`.
+- representative noise field `10 V/cm`.
+- HP35665A analyzer + low-noise preamp.
+- 1/f knee ~`3 kHz`.
+- g-r noise ~`24.5 nV/√Hz`.
+- detector spectral cutoff reported near `4.4 µm`.
+- BLIP `D*≈2.0×10^11 cm·Hz^1/2/W` at `4 µm`.
+- reported 300-K/60° background photon flux `1.0×10^15 cm^-2 s^-1`.
+- QE `~70%`.
+
+---
+
+# Controlled process architecture
+
+Current coherent RP-01 reconstruction:
 
 1. qualify semi-insulating CdZnTe substrate;
-2. grow x≈0.30 HgCdTe by Te-rich horizontal-slider LPE;
-3. qualify post-growth Hg-overpressure treatment to reach the RP-01 n-type electrical state;
-4. wet-chemical mesa isolation;
-5. native anodic-oxide passivation;
-6. contact-window lithography;
-7. localized CH4/H2 RIE under contact regions only;
-8. Cr/Au metallization and lift-off;
-9. TLM/contact QC;
-10. packaging/interconnection;
-11. electrical, spectral, noise, temporal and absolute-performance characterization.
+2. synthesize/prepare composition-matched Te-rich LPE source;
+3. grow x≈0.30 HgCdTe in a Hg-contained horizontal-slider system;
+4. inspect/map as-grown thickness, composition and electrical state;
+5. Hg-overpressure anneal to the required n-type state;
+6. repeat FTIR + Hall gates;
+7. wet-chemical mesa isolation;
+8. native anodic-oxide passivation;
+9. contact-window lithography;
+10. localized CH4/H2 RIE only under contact regions;
+11. Cr/Au deposition/lift-off;
+12. TLM/contact QC;
+13. detector packaging/interconnection;
+14. electrical, spectral, noise, temporal and absolute-performance characterization.
 
-This is a controlled architecture, not yet a released manufacturing traveler.
+This is a controlled **architecture**, not yet a released end-to-end traveler.
 
-## Mesa-isolation decision
+---
 
-Same-UWA-lineage detector work closes the architectural choice: retain **wet mesa isolation** and use RIE only locally where its n+ conversion is intentional.
+# P01 — wet mesa qualification
 
-Key source:
+Same-UWA-lineage detector work establishes the architectural decision: wet mesa isolation is preferred over blanket H2/CH4 RIE mesa processing for this photoconductor branch.
+
+Primary same-lineage source:
 
 E. P. G. Smith et al., “H2-based dry plasma etching for mesa structuring of HgCdTe,” *J. Electron. Mater.* 29, 853–858 (2000), DOI `10.1007/s11664-000-0237-7`.
 
-The x≈0.31 n-HgCdTe detector comparison showed much higher D* for wet bromine/HBr mesa processing than for blanket H2/CH4 dry-mesa processing. Do not “modernize” RP-01 into an all-dry process without defining a new reference process.
+Quantitative transfer source near RP-01 composition:
 
-### Wet-mesa quantitative transfer source
+V. Srivastav et al., *J. Electron. Mater.* 34, 1440–1445 (2005), DOI `10.1007/s11664-005-0203-5`, x=0.28:
 
-V. Srivastav et al., *J. Electron. Mater.* 34, 1440–1445 (2005), DOI `10.1007/s11664-005-0203-5`, reports on x=0.28 HgCdTe:
-
-- selected 2% Br2 in 3:1 EG:HBr;
-- 21 °C mean vertical etch rate 2.78 µm/min;
-- ~±26% rate variation;
-- anisotropy ~0.63 ±11%;
-- best reported RMS roughness around 2 nm;
-- process temperatures 5–50 °C;
+- selected `2% Br2` in `3:1 EG:HBr`;
+- 21 °C mean vertical rate `2.78 µm/min`;
+- process variation ~`±26%`;
+- anisotropy `A≈0.63 ±11%`;
+- best reported RMS roughness ~`2 nm`;
+- 5–50 °C investigated;
 - rate approximately doubles per +10 °C;
 - lower temperature improves dimensional control.
 
-**Release blocker:** accessible primary text does not unambiguously define the concentration basis of “2% Br2.” Do not invent it.
+**Release blocker:** accessible primary text does not unambiguously define the concentration basis of “2% Br2.” Do not invent w/v, v/v or mass fraction.
 
-Controlled module: `procedures/P01_WET_MESA_QUALIFICATION.md`.
+File: `procedures/P01_WET_MESA_QUALIFICATION.md`.
 
-## Passivation branch
+---
 
-RP-01 directly closes the target film as 800 Å native anodic oxide but not its formation recipe.
+# P02 — anodic-oxide qualification
 
-A strong historical qualification candidate from a Texas Instruments primary process disclosure uses:
+RP-01 closes the target film thickness (`800 Å`) but not the recipe.
 
-- 0.1 M KOH;
-- 90% ethylene glycol / 10% deionized water;
-- constant current ~0.3 mA/cm²;
-- formation endpoint ~15 V;
-- ~2 min;
-- resulting oxide ~800 Å.
+Strong historical transfer candidate from a TI primary process disclosure:
 
-Independent primary HgCdTe work supports the same electrolyte family and a 0.2–0.5 mA/cm² constant-current regime.
+- `0.1 M KOH`;
+- `90% ethylene glycol / 10% DI water`;
+- constant current ~`0.3 mA/cm²`;
+- formation endpoint ~`15 V`;
+- ~`2 min`;
+- resulting native oxide ~`800 Å`.
 
-**Do not call this the exact UWA recipe.** It remains a transfer/qualification candidate until the UWA lineage is recovered or local x≈0.30 qualification closes thickness, electrical/interface behavior, and compatibility with the contact-window RIE.
+Independent HgCdTe experiments support the same electrolyte family and 0.2–0.5 mA/cm² constant-current regime.
 
-Controlled module: `procedures/P02_ANODIC_OXIDE_QUALIFICATION.md`.
+**Do not call this the exact UWA recipe.** It remains a transfer candidate until lineage or local x≈0.30 qualification closes interface/electrical behavior and compatibility with contact-window RIE.
 
-## Upstream LPE branch — major closure achieved 2026-08-15
+File: `procedures/P02_ANODIC_OXIDE_QUALIFICATION.md`.
 
-### Corrected key source
+---
+
+# P03 — x≈0.30 Te-rich horizontal-slider LPE qualification
+
+## Corrected core article
 
 DOI `10.1016/0022-0248(82)90468-7` is:
 
-J. L. Schmit, R. J. Hager, and R. A. Wood, “Liquid phase epitaxy of Hg1−xCdxTe,” *Journal of Crystal Growth* 56, 485–489 (1982).
+J. L. Schmit, R. J. Hager, R. A. Wood, “Liquid phase epitaxy of Hg1−xCdxTe,” *Journal of Crystal Growth* 56, 485–489 (1982).
 
-It was previously mislabeled as “Tung et al.” Correct that attribution everywhere. The paper explicitly reports Te-rich atmospheric-pressure horizontal-slider growth of solid x=0.2, 0.3, and 0.4 material.
+Earlier project attribution to “Tung et al.” was wrong. The paper explicitly includes x=0.2, 0.3 and 0.4 growth.
 
-### Composition-matched tie line
+## Best composition-matched tie line
 
-J. E. Bowers and J. L. Schmit, U.S. Patent 4,317,689 (1982), in the same Honeywell/Schmit Te-rich slider lineage, provides the strongest explicit composition anchor found so far:
+Bowers–Schmit, U.S. Patent 4,317,689, same Honeywell/Schmit Te-rich-slider lineage:
 
-- liquid metal Cd fraction `xL=0.082` `[P]`;
-- liquid Te fraction `yL=0.810` `[P]`;
-- liquidus `TL=507 °C` `[P]`;
-- grown solid `xS=0.29` `[P]`;
-- `k=xS/xL=3.54` `[P]`.
+- liquid metal Cd fraction `xL=0.082`;
+- liquid Te fraction `yL=0.810`;
+- liquidus `TL=507 °C`;
+- grown solid `xS=0.29`;
+- `xS/xL=3.54`.
 
-For `(Hg_(1−xL)Cd_xL)_(1−yL)Te_yL`, derived elemental mole fractions are:
+Derived elemental mole fractions:
 
-- Hg 0.17442 `[D]`;
-- Cd 0.01558 `[D]`;
-- Te 0.81000 `[D]`.
+- Hg `0.17442`;
+- Cd `0.01558`;
+- Te `0.81000`.
 
-Derived mass fractions are:
+Derived mass fractions:
 
-- Hg 0.249738 `[D]`;
-- Cd 0.012502 `[D]`;
-- Te 0.737760 `[D]`.
+- Hg `0.249738`;
+- Cd `0.012502`;
+- Te `0.737760`.
 
-For total charge mass `M`, use `mHg=0.249738M`, `mCd=0.012502M`, `mTe=0.737760M`; **M is still OPEN/CAL** because melt depth and solute inventory depend on the actual boat geometry.
+For total selected charge mass `M`:
 
-### LPE apparatus/process architecture now supported
+- `mHg=0.249738M`;
+- `mCd=0.012502M`;
+- `mTe=0.737760M`.
 
-Bowers–Schmit demonstrates:
+**Total charge mass remains OPEN/CAL.** Do not combine Radhakrishnan's 4.8-g charge with this Honeywell composition and call the combination published.
 
-- covered graphite horizontal-slider boat;
-- separate HgTe or HgTe+Te Hg-vapor source;
-- Hg-distribution groove/moat geometry;
-- quartz furnace tube;
-- nitrogen purge before heating;
-- flowing H2 during processing;
-- heating the charge above liquidus before growth below liquidus;
-- operation near 500 °C for the relevant process family.
+## Charge metrology sensitivity
 
-For the xS=0.29 tie line, growth near 500 °C corresponds to a derived center-point supercooling `ΔT≈7 °C`; treat this as a qualification center point, not a released setpoint.
+File: `calculations/LPE_CHARGE_COMPOSITION_SENSITIVITY.md`.
 
-### Radhakrishnan source — engineering module, not composition module
+At a hypothetical 5.000-g charge, nominal Cd mass is only ~62.508 mg. A +0.1-mg Cd error gives `δxL≈+1.20×10^-4`, while +0.1 mg Hg gives only `δxL≈−6.0×10^-6`. Cd weighing precision dominates direct xL error.
 
-J. K. Radhakrishnan, S. Sitharaman, S. C. Gupta, *J. Crystal Growth* 252, 79–86 (2003), DOI `10.1016/S0022-0248(02)02530-7`, gives useful apparatus/process detail:
+Balance selection must therefore be based on propagated composition uncertainty near the **tens-of-milligrams Cd range**, not simply nominal balance readability.
 
-- high-purity/high-density graphite slider;
-- 15×15×1 mm CdZnTe recess;
-- quartz tube with stainless-steel end flanges;
-- gas-flow/push-pull/thermocouple ports;
-- 6N Cd/Te/Hg;
-- 700 °C for 8 h evacuated-ampoule charge synthesis;
-- ~4.8 g per growth run;
-- 3 g HgTe compensation;
+## LPE apparatus architecture
+
+Bowers–Schmit supports:
+
+- covered graphite horizontal slider;
+- separate HgTe or HgTe+Te vapor source;
+- Hg-distribution grooves/moats;
+- quartz tube;
+- N2 purge before heating;
+- flowing H2;
+- heat above liquidus then grow below liquidus;
+- operation near 500 °C for the selected branch.
+
+For `TL=507 °C`, `Tgrowth≈500 °C` corresponds to derived `ΔT≈7 °C`; this is a qualification center point, not a released setpoint.
+
+Radhakrishnan et al. 2003 contributes engineering/process ideas, not the x≈0.30 composition:
+
+- high-density graphite;
+- `15×15×1 mm` CdZnTe recess;
+- 6N Hg/Cd/Te;
+- evacuated-ampoule source synthesis `700 °C / 8 h` for their composition;
+- ~4.8 g/run and 3 g HgTe in their apparatus;
 - in-situ meltback;
 - improved wipe-off geometry.
 
-Its typical composition branch is around x≈0.20. **Never combine its 4.8-g charge or 3-g HgTe number with the Bowers–Schmit xL=0.082/yL=0.810 formulation and present that as a published x≈0.30 recipe.**
+Do not transfer their 4.8-g/3-g masses blindly into the Honeywell composition branch.
 
-### Substrate branch
+File: `procedures/P03_LPE_X030_QUALIFICATION.md`.
 
-Tranchart et al., *J. Crystal Growth* 72, 468–473 (1985), support CdZnTe around y≈0.04 for x≈0.30 Te-rich LPE material and detector arrays. Separate primary lattice-match work gives an optimum near 2.9 mol% ZnTe for Hg0.7Cd0.3Te.
+---
+
+# LPE wipe-off architecture
+
+Correct high-value patent:
+
+**US4592304A**, “Apparatus for liquid phase epitaxy of mercury cadmium telluride.”
+
+Important correction: an earlier note pointing to US4706604 was wrong for this purpose.
+
+The patent uses:
+
+- dedicated wipe-off well adjacent to growth well;
+- loose unpolished polycrystalline CdTe pieces;
+- pieces in vertical slots roughly `1 mm` apart;
+- slider motion draws the pieces across the grown layer;
+- melt removed by mechanical wiping + surface-tension adhesion + capillary wicking;
+- wipe well maintained under the same Hg-rich environment;
+- CdTe wipe pieces discarded after cooldown.
+
+Still open:
+
+- translation speed;
+- exact wiper dimensions/contact force;
+- wipe temperature;
+- scratch tolerance;
+- residual-droplet acceptance limits.
+
+Research record: `research/2026-08-15_wipeoff_and_hg_anneal.md`.
+
+---
+
+# CdZnTe substrate branch
+
+RP-01 closes the substrate family as insulating CdZnTe.
+
+Tranchart et al. 1985 support CdZnTe around y≈0.04 for x≈0.30 Te-rich LPE detector material. Separate lattice-matching primary work gives an optimum ZnTe fraction around 2.9 mol% for Hg0.7Cd0.3Te.
 
 Therefore:
 
-- CdZnTe substrate family is closed;
-- exact production Zn fraction is not a universal number;
-- release the substrate specification from measured lattice mismatch, orientation and material quality.
+- do not declare one universal “exact 4% Zn” number;
+- release substrate based on measured lattice mismatch, orientation, miscut and quality;
+- {111} family is strongly supported for Te-rich LPE, but exact RP-01 face/miscut remains open.
 
-### Electrical-state problem
+---
 
-As-grown Te-rich LPE material may be p-type because of Hg vacancies. Nagahama et al. report x≈0.17–0.30 material and Hg-overpressure annealing from 250–400 °C; 250–300 °C produced well-behaved n-type material without the apparent composition change seen at 400 °C.
+# P04 — Hg-overpressure anneal qualification
 
-This makes low-temperature Hg-overpressure treatment the leading bridge to the RP-01 target n≈9.8×10^14 cm^-3, but anneal time, Hg chemical-potential control, geometry, cooldown and final x≈0.30 n/µ remain open.
+File: `procedures/P04_HG_ANNEAL_QUALIFICATION.md`.
 
-Controlled upstream module: `procedures/P03_LPE_X030_QUALIFICATION.md`.
+Primary Harman process anchor, US Patent 4,642,142:
 
-Research reconciliation record: `research/2026-08-15_lpe_process_reconciliation.md`.
+- anneal regime broadly `200–300 °C`;
+- Hg partial pressure broadly `0.1–250 Torr`, selected according to defect state;
+- pseudo-isothermal Hg-saturated example `250 °C / 1 h`;
+- then cool to room temperature;
+- sample temperature and Hg chemical potential are both state variables;
+- this specific process typically ended in the low `10^16 cm^-3` carrier-density range.
 
-## Current controlled qualification modules
+Thus `250 °C / 1 h` is a legitimate kinetic screening anchor but **not** an RP-01 electrical endpoint.
+
+Nagahama branch, x≈0.17–0.30:
+
+- as-grown p-type;
+- Hg-overpressure anneal studied 250–400 °C;
+- 250–300 °C produced well-behaved n-type material without apparent composition change;
+- 400 °C produced interface-region composition change.
+
+Chandra–Schaake–Kinch 2003:
+
+- anneal kinetics depend on x, vacancy concentration and temperature;
+- rate decreases with increasing x over the investigated range;
+- for x above roughly 0.26, incomplete metal-vacancy ionization at 77 K complicates electrical inference of defect state.
+
+**P04 control principle:** final state is defined by measured `(carrier sign, n_H/transport state, mobility, optical composition/edge, thickness, morphology)`, not temperature×time alone.
+
+Initial qualification DOE in P04 brackets `250 °C / 1 h` with time/temperature/Hg-chemical-potential variation, but these are qualification experiments, not a released recipe.
+
+---
+
+# P05 — Hall / van der Pauw material metrology
+
+File: `procedures/P05_HALL_VDP_MATERIAL_METROLOGY.md`.
+
+Status: controlled qualification metrology.
+
+Key decisions:
+
+- report `n_H/p_H` and `µ_H` unless Hall-factor/multicarrier correction is explicitly justified;
+- use small peripheral ohmic contacts on a valid van der Pauw geometry;
+- measure in darkness at recorded temperature;
+- current-linearity/self-heating screening before selecting drive current;
+- eight zero-field current-reversal/reciprocity measurements;
+- solve full van der Pauw equation, not a symmetry approximation unless justified;
+- symmetric variable-B sweep during process qualification;
+- current reversal + magnetic-field reversal;
+- retain all raw voltages/fields/currents/temperatures;
+- antisymmetrize Hall voltage in B;
+- test Hall linearity before one-carrier reduction;
+- escalate to multicarrier/mobility-spectrum analysis when curvature/sign changes/unexplained MR appear.
+
+NIST consistency gate adopted:
+
+- `≤3%`: routine PASS;
+- `>3–5%`: conditional/repeat/investigate;
+- `>5%`: fail basic van der Pauw reduction.
+
+NIST general field-uniformity guidance: ~3%; current and field reversals required for offset control.
+
+Initial proposed qualification field grid for RP-01-like n material:
+
+`B = 0, ±0.01, ±0.025, ±0.05, ±0.10, ±0.20, ±0.50 T`.
+
+This is a project qualification grid, not an original RP-01 setting.
+
+Derived RP-01 one-carrier benchmark for `n=9.8×10^14 cm^-3`, `µ=4×10^4 cm²/Vs`, `t=9.5 µm`:
+
+- `ρ≈0.1592 Ω·cm`;
+- `Rs≈167.6 Ω/square`;
+- `|RH|≈6.37×10^3 cm³/C`;
+- at `I=100 µA`, `B=0.10 T`, ideal `|VH|≈6.70 mV`.
+
+Research record: `research/2026-08-15_hall_metrology_and_rp01_temperature.md`.
+
+---
+
+# P06 — FTIR composition/thickness mapping
+
+File: `procedures/P06_FTIR_COMPOSITION_THICKNESS_MAPPING.md`.
+
+Status: controlled qualification metrology.
+
+Core rule: keep separate
+
+- measured transmission edge;
+- optically inferred band gap;
+- inferred alloy x;
+- detector-response cutoff.
+
+Hougen 1989, DOI `10.1063/1.344038`, is the preferred primary model lineage because it explicitly models LPE HgCdTe transmission including thickness, composition profile, surface nonuniformity and back reflection.
+
+Preferred method:
+
+- spatial FTIR transmission map;
+- retain raw spectrum;
+- report a traceable normalized edge metric such as `λ_50T` separately;
+- use low-absorption interference fringes for thickness information;
+- full-spectrum physical fit preferred over one-point composition conversion;
+- cross-calibrate FTIR thickness against independent profilometry/cross section during process qualification;
+- before/after anneal measurements at identical coordinates and method version.
+
+Initial project method candidates:
+
+- spectral range roughly `500–5000 cm^-1` for x≈0.30 MWIR material;
+- resolution `≤4 cm^-1` during qualification;
+- minimum 9-point spatial map; 5×5 or denser preferred for LPE process development.
+
+These are project qualification settings, not RP-01 published settings.
+
+### Important RP-01 spectral consistency observation
+
+Hansen relation at `x=0.30`, `80 K` gives:
+
+- `Eg≈0.243684 eV`;
+- band-gap-equivalent `hc/Eg≈5.09 µm`.
+
+RP-01 detector-response cutoff is reported around `4.4 µm` at 80 K.
+
+Do not declare this a contradiction. `x≈0.30` is approximate, detector cutoff is convention/device dependent, and finite absorption/optical structure/grading matter. It is evidence that the manual must not force `λ_det=hc/Eg`.
+
+---
+
+# Current controlled modules
 
 1. `procedures/P01_WET_MESA_QUALIFICATION.md`
 2. `procedures/P02_ANODIC_OXIDE_QUALIFICATION.md`
 3. `procedures/P03_LPE_X030_QUALIFICATION.md`
+4. `procedures/P04_HG_ANNEAL_QUALIFICATION.md`
+5. `procedures/P05_HALL_VDP_MATERIAL_METROLOGY.md`
+6. `procedures/P06_FTIR_COMPOSITION_THICKNESS_MAPPING.md`
 
-All three are qualification modules, **not released production travelers**.
+Supporting calculations:
 
-## Highest-priority open variables
+- `calculations/HANSEN_BANDGAP_MODEL.md`
+- `calculations/LPE_CHARGE_COMPOSITION_SENSITIVITY.md`
 
-### Upstream material
+Research records preserve initial reasoning, mesa lineage, passivation lineage, LPE reconciliation, wipe-off/anneal and Hall audit.
 
-- full Schmit–Hager–Wood 1982 experimental details;
+---
+
+# Highest-priority open variables
+
+## Upstream growth/material
+
+- full Schmit–Hager–Wood 1982 experimental section;
 - exact CdZnTe orientation/miscut and measured mismatch target;
-- substrate cleaning/polishing process;
-- selected boat dimensions/well volume and total charge mass;
-- exact x≈0.30 charge synthesis/homogenization protocol;
+- substrate polish/clean and in-situ interface preparation;
+- selected boat/well dimensions and total charge mass;
+- exact x≈0.30 source synthesis/homogenization process;
 - N2 purge/H2 flow/purity criteria;
+- Hg-source capacity/free-volume rule;
 - equilibrium hold criterion;
 - exact supercooling/cooling trajectory;
 - growth-time/thickness calibration to 9.5 µm;
-- slider velocity/wipe-off mechanics;
-- post-growth Hg anneal time/source/cooldown required to hit n≈9.8×10^14 cm^-3 and µ≈4.0×10^4 cm²/V·s.
+- wipe-off translation speed and acceptance limits;
+- exact anneal Hg source/pressure/time/cooldown to hit target transport state;
+- precise production FTIR x/thickness uniformity limits;
+- final Hall acceptance windows and Hall-factor convention.
 
-### Downstream device
+## Downstream fabrication
 
-- exact RP-01 active detector dimensions;
+- exact detector active dimensions;
 - Mask-1 resist/exposure/develop process;
-- Br2 concentration basis and post-etch rinse;
-- exact UWA 800 Å anodization recipe or complete local qualification of the historical candidate;
+- Br2 2% concentration basis and post-etch quench/rinse;
+- exact UWA anodization lineage or local P02 qualification;
 - Mask-2 resist identity/exposure/develop;
-- RIE electrode geometry, self-bias, sample temperature and conversion depth;
-- Cr/Au deposition method/base pressure/rates and RIE-to-metal delay;
-- lift-off process;
-- die attach and wire-bond metallurgy;
-- full responsivity/noise calibration chain including preamplifier, RBW/ENBW, averaging and electronics-floor subtraction.
+- RIE electrode geometry, DC self-bias, sample temperature, etch rate and conversion depth;
+- Cr/Au deposition method, base pressure, rates, sample temperature and transfer delay;
+- lift-off method;
+- die attach and wire bond;
+- package optical/thermal geometry.
 
-## Most natural next work
+## Final characterization
 
-1. Recover the full Schmit–Hager–Wood x≈0.30 LPE experimental section or equivalent same-lineage primary detail.
-2. Recover full Tranchart CdZnTe substrate preparation/growth details.
-3. Recover complete Nagahama anneal metadata and especially time, Hg source/pressure arrangement and cooldown.
-4. Audit the Honeywell wipe-off/slider-termination patent lineage for translation geometry/speed and melt-removal control.
-5. Build `P04_HG_ANNEAL_QUALIFICATION.md` once the anneal parameters are sufficiently closed.
-6. Continue RIE-depth, lithography, metallization and measurement-chain closure in parallel.
-7. Maintain dated research logs for accepted, rejected and unresolved branches.
+- calibrated electrical bias/load network;
+- absolute responsivity radiometry;
+- blackbody/aperture/FOV calibration;
+- noise preamplifier model and full PSD/ENBW chain;
+- bandwidth/lifetime procedure;
+- final D* uncertainty budget.
+
+---
+
+# Most natural next work
+
+1. Close **substrate preparation and orientation/miscut** from primary LPE sources.
+2. Close **RIE conversion depth / reactor transfer variables** from same-UWA primary work.
+3. Close **metal deposition and vacuum transfer** from the UWA/Faraone lineage.
+4. Build a controlled **material morphology/crystal-quality metrology** module: Nomarski/optical defect map, XRD rocking curve, EPD/defect metric and acceptance schema.
+5. Build a controlled **spectral-responsivity/radiometry** module once the downstream device geometry is sufficiently closed.
+6. Keep `docs/RP01_GAP_MATRIX.md` and dated research records synchronized after each branch.
