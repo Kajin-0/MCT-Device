@@ -1,0 +1,129 @@
+# P16A — first-build readiness register
+
+**Status:** CONTROLLED PRE-EXECUTION REGISTER  
+**Date:** 2026-08-16 America/New_York
+
+Use with `procedures/P16A_FIRST_BUILD_RELEASE_READINESS_AUDIT.md`.
+
+## 1. Allowed row states
+
+- `DIRECT-EXECUTABLE`
+- `LOCAL-BRANCH-FROZEN`
+- `OPEN-CHOICE`
+- `UNDEFINED-BASIS`
+- `APPARATUS-NOT-SELECTED`
+- `METROLOGY-NOT-IMPLEMENTED`
+- `RELEASE-DATA-OPEN`
+- `HISTORICAL-IDENTITY-OPEN`
+- `NOT-APPLICABLE`
+
+`TRACEABLE-FIRST-BUILD-READY` requires every mandatory execution/metrology row to be `DIRECT-EXECUTABLE`, `LOCAL-BRANCH-FROZEN`, or justified `NOT-APPLICABLE`.
+
+---
+
+## 2. Master readiness table
+
+| ID | Process / measurement | Controlled modules | Blocker class | Mandatory for packaged first build? | Current Round-34 state | Required closure before build |
+|---|---|---|---|---|---|---|
+| R01 | source-element identity/inventory | P03/P30 | execution | YES | `OPEN-CHOICE` | freeze supplier/lots/purity/inventory and actual source/charge branch |
+| R02 | CdZnTe substrate composition/face/miscut | P07/P29 | execution | YES | `OPEN-CHOICE` | select incoming substrate specification and record measured plane/polarity/miscut |
+| R03 | final CdZnTe pre-LPE surface | P07C/P29 | execution | YES | `OPEN-CHOICE` | freeze mechanical/chemical final surface + removed depth + clean-to-load branch |
+| R04 | LPE boat/well/source hardware | P03/P30 | execution | YES | `APPARATUS-NOT-SELECTED` | identify actual boat/revision/well/substrate recess/source geometry and calibration |
+| R05 | absolute LPE charge inventory | P03C/P03D/P30 | execution | YES | `OPEN-CHOICE` | define total mass/depth and actual Hg/Cd/Te/HgTe inventory for selected apparatus |
+| R06 | LPE atmosphere | P03/P30 | execution | YES | `OPEN-CHOICE` | freeze gas identities, flows, pressure and purity/monitoring branch |
+| R07 | LPE thermal/contact/wipe/cooldown trajectory | P03B/P03E/P30 | execution | YES | `OPEN-CHOICE` | freeze T(t), liquidus/supercooling realization, contact interval, separation/wipe motion and cooldown |
+| R08 | as-grown optical material metrology | P06/P06A | local implementation | YES | `METROLOGY-NOT-IMPLEMENTED` | select/qualify FTIR, optical model, map geometry and independent thickness reference |
+| R09 | as-grown Hall/VdP | P05 | local implementation | YES | `METROLOGY-NOT-IMPLEMENTED` | select/qualify magnet, cryostat, contacts, current/voltage chain and reduction |
+| R10 | Hg anneal enclosure/reservoir | P04/P31 | execution | YES | `APPARATUS-NOT-SELECTED` | freeze sample/reservoir geometry and Hg-source state |
+| R11 | Hg anneal trajectory | P04A/P04B/P23/P31 | execution | YES | `OPEN-CHOICE` | freeze Ts(t), THg(t), pHg/source proxy, dwell and cooldown with Hall/optical gates |
+| R12 | Mask-1 resist/lithography | P14/P32 | execution | YES | `OPEN-CHOICE` | choose resist, coating, bake, exposure, developer, alignment and strip branch |
+| R13 | wet-mesa etchant preparation basis | P01/P01A/P28 | execution | YES | `UNDEFINED-BASIS` | explicitly define Br2 percentage basis, EG:HBr basis, HBr assay or select another fully qualified local bath |
+| R14 | wet-mesa endpoint/rinse/passivation handoff | P01/P28 | execution | YES | `OPEN-CHOICE` | freeze bath T/agitation/age, measured isolation/depth endpoint, rinse/dry and elapsed-time rule |
+| R15 | anodic oxide cell/bath execution | P02/P25 | execution | YES | `OPEN-CHOICE` | select electrolyte/cell/exposed area/current-density/V(t)-charge endpoint/rinse branch |
+| R16 | Mask-2 resist/exposure/develop/chlorobenzene | P14A/P27 | execution | YES | `OPEN-CHOICE` | freeze product, coating, exposure, developer, chlorobenzene bath state/sequence |
+| R17 | RIE gas realization | P08/P24/P34 | execution | YES | `UNDEFINED-BASIS` | define actual CH4/H2 composition/delivery realizing local branch; do not guess historical split |
+| R18 | RIE reactor/sheath/thermal state | P08D/P24/P34 | execution | YES | `APPARATUS-NOT-SELECTED` | select reactor and freeze geometry, pressure control, RF, self-bias proxy, holder/Ts, clean/season |
+| R19 | oxide clear + semiconductor exposure | P08D/P34 | execution | YES | `OPEN-CHOICE` | measure t_clear and freeze t_sem/output gates for selected reactor |
+| R20 | Cr/Au deposition | P09/P09A/P26 | execution | YES | `APPARATUS-NOT-SELECTED` | select deposition tool/method, base pressure, rates, QCM, thermal limit and RIE-to-Cr clock |
+| R21 | lift-off | P14A/P26/P27 | execution | YES | `OPEN-CHOICE` | freeze solvent/time/temperature/agitation/rinse compatible with final device |
+| R22 | final CD/contact geometry | P14/P10 | local implementation | YES | `METROLOGY-NOT-IMPLEMENTED` | freeze measurement method and device/contact-pair naming |
+| R23 | TLM/contact QC | P09/P24/P26 | local implementation | YES | `METROLOGY-NOT-IMPLEMENTED` | freeze 80-K electrical fixture, geometry reduction and blocking-contact functional gate |
+| R24 | bare-device bias/load/self-heating | P10/P10A | local implementation | YES | `METROLOGY-NOT-IMPLEMENTED` | freeze actual bias/load/preamp network and detector-contact voltage measurement |
+| R25 | absolute responsivity | P11/P11A | local implementation | YES | `METROLOGY-NOT-IMPLEMENTED` | freeze calibrated optical transfer/radiometry chain and state conventions |
+| R26 | detector-terminal noise/PSD | P12/P12B/P12C | local implementation | YES | `METROLOGY-NOT-IMPLEMENTED` | freeze preamp/analyzer transfer, FFT/window/ENBW, background and terminal referral |
+| R27 | temporal/frequency response | P13/P13A | local implementation | qualification YES | `METROLOGY-NOT-IMPLEMENTED` | freeze source, injection, electrical/package transfer and analysis branch |
+| R28 | singulation street/method/support/protection | P35 | execution | YES for packaged route | `OPEN-CHOICE` | select branch and define sacrificial street/edge-exclusion geometry |
+| R29 | singulation clean/edge/subsurface inspection | P35 | execution + metrology | YES for packaged route | `OPEN-CHOICE` | freeze compatible clean and edge/subsurface-damage measurement route |
+| R30 | die attach/carrier/cold finger | P15/P33 | execution | YES | `OPEN-CHOICE` | select materials, bondline, cure, carrier geometry and thermal qualification branch |
+| R31 | wire/interconnect | P15/P33 | execution | YES | `OPEN-CHOICE` | select wire/ribbon, bonder/tool/settings and coupon qualification branch |
+| R32 | aperture/window/shield/FOV | P11/P15/P33 | execution + metrology | YES | `OPEN-CHOICE` | define physical geometry, transmission and radiometric reference plane |
+| R33 | vacuum/pump/bake/cooldown | P15/P33 | execution | YES | `OPEN-CHOICE` | freeze pressure measurement, pump/purge/bake thermal budget and cooldown trajectory |
+| R34 | cryogenic singulation/package survival | P33/P35 | release of package-ready die | YES | `RELEASE-DATA-OPEN` | demonstrate no crack propagation/electrical-noise-optical degradation after intended cycles |
+| R35 | end-to-end genealogy/data capture | P16/P17 | execution | YES | `LOCAL-BRANCH-FROZEN` conceptually | instantiate IDs, raw-data paths, revisions, deviations and signatures for actual laboratory |
+| R36 | statistical process capability/yield | P17 | release | NO for first qualification build | `RELEASE-DATA-OPEN` | repeated frozen-route runs, MSA, stability, limits, yield and change control |
+
+---
+
+## 3. Historical-identity register
+
+These do not block a clearly labeled local qualification build but block literal historical claims unless closed.
+
+| Historical item | Current state | First-build effect |
+|---|---|---|
+| exact RP-01 CdZnTe supplier face/miscut/final surface | `HISTORICAL-IDENTITY-OPEN` | local qualified substrate branch may substitute |
+| exact Honeywell/Fermionics LPE boat/charge/gas/contact traveler | `HISTORICAL-IDENTITY-OPEN` | local P30 branch may substitute |
+| exact supplier/UWA Hg-anneal history | `HISTORICAL-IDENTITY-OPEN` | local P31 branch may substitute |
+| exact Mask-1 product/process | `HISTORICAL-IDENTITY-OPEN` | local P32 branch may substitute |
+| exact Mask-2 resist/exposure/developer/lift-off | `HISTORICAL-IDENTITY-OPEN` | local P27 branch may substitute |
+| exact wet-mesa chemistry basis | `HISTORICAL-IDENTITY-OPEN` and execution currently unresolved | execution still requires a defined local bath |
+| exact Plasma Technology reactor hardware/gas realization | `HISTORICAL-IDENTITY-OPEN` and execution currently unresolved | local P34 reactor branch may substitute once frozen |
+| exact Cr/Au deposition hardware/rates/vacuum | `HISTORICAL-IDENTITY-OPEN` | local P26 branch may substitute |
+| exact material method behind x≈0.30 / 9.5 µm | `HISTORICAL-IDENTITY-OPEN` | modern P06/P06A may measure local state |
+| exact Optronics model/calibration | `HISTORICAL-IDENTITY-OPEN` | modern P11/P11A may establish absolute response |
+| exact preamp/HP35665A settings | `HISTORICAL-IDENTITY-OPEN` | modern P12 chain may measure detector noise |
+| exact performance contact pair/gap | `HISTORICAL-IDENTITY-OPEN` | local selected/measured pair is valid for local device |
+| exact 4.4-µm cutoff convention | `HISTORICAL-IDENTITY-OPEN` | local response must state its own cutoff convention |
+| exact RP-01 singulation/die outline | `HISTORICAL-IDENTITY-OPEN` | local P35 branch may substitute |
+| exact RP-01 package/interconnect | `HISTORICAL-IDENTITY-OPEN` | local P33 branch may substitute |
+| direct RP-01 lifetime/f3dB | `HISTORICAL-IDENTITY-OPEN` | local P13 may characterize actual device |
+
+---
+
+## 4. Pre-build authorization checklist
+
+Before declaring `TRACEABLE-FIRST-BUILD-READY`, answer YES to all applicable questions:
+
+- [ ] Every irreversible process has a selected branch and revision.
+- [ ] Every chemical/reagent concentration has an explicit preparation basis and stock assay/grade where relevant.
+- [ ] Every commercial consumable/product is identified by manufacturer/product/lot or a controlled equivalent specification.
+- [ ] Every process tool is identified by model/serial/revision and required calibration state.
+- [ ] Every required setpoint or trajectory is specified numerically or by a calibrated physical endpoint.
+- [ ] Every sensitive elapsed-time handoff has a recorded clock and current qualification rule.
+- [ ] Every endpoint/gate has an implemented measurement method.
+- [ ] Required destructive qualification is assigned to witnesses/coupons rather than the only detector die.
+- [ ] Every historical substitution is labeled as local transfer rather than historical RP-01 fact.
+- [ ] P35 is selected for packaged route and P33 accepts its incoming die state.
+- [ ] P10–P13 share or explicitly correct detector state variables where combined.
+- [ ] Data/genealogy identifiers and raw-data storage paths are instantiated before work begins.
+- [ ] EH&S/facility authorizations are separately satisfied for the actual laboratory.
+
+Authorization:
+
+`TRACEABLE-FIRST-BUILD-READY = YES / NO`
+
+Reviewer: __________  Date: __________  Revision: __________
+
+---
+
+## 5. Post-run maturity disposition
+
+After one complete run, select only labels supported by evidence:
+
+- [ ] `QUALIFICATION-RUN-COMPLETE`
+- [ ] `QUALIFICATION-RUN-FAILED`
+- [ ] one or more modules `LOCAL-QUALIFIED`
+- [ ] `HISTORICAL-RP01-REPRODUCED`
+- [ ] `PILOT-RELEASE`
+- [ ] `REPRODUCIBLE-RELEASE`
+
+Attach the P17 justification for any release label above qualification-run status.
