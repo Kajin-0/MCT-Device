@@ -155,9 +155,17 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 141. Radhakrishnan 2003 `15×15×1 mm / ~4.8 g growth charge / 3 g HgTe` is strong Te-rich apparatus transfer evidence but is not a Honeywell/Fermionics x≈.29 charge.
 142. Fermionics-supplied UWA LPE material is real material-lineage evidence; no recovered Fermionics internal boat/charge traveler means `FERMIONICS MATERIAL PROVENANCE != FERMIONICS PROCESS RECIPE`.
 143. Preserve Harman 1980 and Harman 1981 as distinct sources/branches. Do not merge their trajectory data into one historical recipe.
-144. P30A is now the controlled method for moving P16A R04–R07 toward `LOCAL-BRANCH-FROZEN`, but **method existence does not close readiness**. Actual hardware dimensions, numerical charge, gas branch and T/contact/wipe/cooldown trajectory must be instantiated.
+144. P30A is the controlled method for moving P16A R04–R07 toward `LOCAL-BRANCH-FROZEN`, but **method existence does not close readiness**. Actual hardware dimensions, numerical charge, gas branch and T/contact/wipe/cooldown trajectory must be instantiated.
 145. For xL=.082/yL=.810, after local `M_charge` selection only, current derived mass fractions are approximately `w_Hg=.249740`, `w_Cd=.012502`, `w_Te=.737758`. They calculate component masses; they do not determine total mass.
 146. Wipe-off hardware generation is part of LPE genealogy. Honeywell CdTe-piece well and scribed-apron branches remain distinct.
+147. **Round-36 wet-etch convention rule:** same-SSPL/overlapping-author `v/v` bromine notation raises v/v to `CANDIDATE-VV-SAME-LAB`; it does not prove Srivastav `2% Br2` was v/v.
+148. Primary HgCdTe literature explicitly includes `w/w` Br:HBr conventions, so an unspecified historical bromine percentage has no universal basis.
+149. The Srivastav `2% Br2` basis, `3:1 EG:HBr` basis and HBr stock assay remain `OPEN-HISTORICAL`; preserve the source notation until directly recovered or replace it with an explicitly local recipe ID.
+150. **P28A local chemistry must define the mathematics.** `phi_Br2=V_Br2/V_final` and `w_Br2=m_Br2/m_final` are different branches; equal numerical “2%” values are not pooled.
+151. HBr stock assay/water state is a process coordinate. Same `3:1 EG:HBr` notation with a different HBr stock is not automatically the same etchant.
+152. Matching the literature etch rate does not prove chemistry identity. Release still requires `R_V`, `R_L`, profile/roughness, through-layer isolation, material preservation and P25 handoff.
+153. **Wet-etch-to-passivation is a surface-state trajectory.** Record etch end, quench/rinse, dry or wet transfer, air exposure/storage and P25 start; same depth after different exposure histories is not the same state.
+154. Srivastav IISc thesis `G25544.pdf` is officially identified but current direct retrieval returns 403; classify as `IDENTIFIED-NOT-RECOVERED`, not as evidence that the thesis lacks chemistry details.
 
 ---
 
@@ -165,10 +173,11 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 
 Latest:
 
-`research/2026-08-16_checkpoint_after_lpe_absolute_charge_round35.md`
+`research/2026-08-16_checkpoint_after_wet_mesa_chemistry_round36.md`
 
 Then, as needed:
 
+- `research/2026-08-16_checkpoint_after_lpe_absolute_charge_round35.md`
 - `research/2026-08-16_checkpoint_after_first_build_readiness_round34.md`
 - `research/2026-08-16_checkpoint_after_singulation_round33.md`
 - `research/2026-08-16_checkpoint_after_ftir_composition_thickness_round32.md`
@@ -180,10 +189,10 @@ Then, as needed:
 
 Latest source/gap addenda:
 
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND36.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND36.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND35.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND35.md`
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND34.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND34.md`
 - older addenda as needed.
 
 ---
@@ -217,16 +226,16 @@ Latest source/gap addenda:
 - P25 anodic-oxide empirical window + register
 - P26 Cr/Au metallization/lift-off empirical window + register
 - P27 Mask-2 empirical window + register
-- P28 wet-mesa empirical window + register
+- **P28 wet-mesa empirical window + P28A chemistry-definition/lineage/handoff closure + registers**
 - P29 CdZnTe/final-surface empirical window + register
-- **P30 Te-rich LPE apparatus/charge/contact/wipe-off empirical window + P30A absolute-charge/apparatus-capacity calibration + registers**
+- P30 Te-rich LPE apparatus/charge/contact/wipe-off empirical window + P30A absolute-charge/apparatus-capacity calibration + registers
 - P31 Hg-overpressure anneal apparatus/reservoir/trajectory empirical window + register
 - P32 Mask-1/wet-mesa lithography empirical window + register
 - P33 cryogenic die-attach/interconnect/package empirical window + register
 - P34 CH4/H2 RIE reactor-equivalence empirical window + register
 - P35 HgCdTe/CdZnTe singulation/die-edge empirical process window + register
 
-Rounds 28–32 did not require new top-level physical process modules because their base SOPs were already method-complete. Round 33 created P35. Rounds 34–35 add integration/calibration layers rather than inventing historical process settings.
+Rounds 28–32 did not require new top-level physical process modules because their base SOPs were already method-complete. Round 33 created P35. Rounds 34–36 add integration/calibration/lineage-closure layers rather than inventing historical process settings.
 
 ---
 
@@ -282,7 +291,35 @@ Current state:
 - `HISTORICAL-RP01-REPRODUCED = NO`
 - `REPRODUCIBLE-RELEASE = NO`
 
-P16A contains 36 readiness coordinates. Round 35 provides a complete closure route for R04–R07 but those rows remain blocking until real apparatus/process values are instantiated.
+P16A contains 36 readiness coordinates. P30A and P28A now provide controlled closure routes for LPE and wet-mesa chemistry respectively, but method existence does not freeze physical laboratory branches.
+
+## P28/P28A wet mesa
+
+Direct quantitative transfer center remains Srivastav x=.28:
+
+- `2% Br2 / 3:1 EG:HBr` notation;
+- 21 °C reference;
+- mean R_V≈2.78 µm/min in process-variation work;
+- A≈.63;
+- best roughness near ~2 nm.
+
+Still historical-open:
+
+- Br2 percentage basis;
+- EG:HBr mass/volume basis;
+- HBr stock assay;
+- mixing order;
+- bath volume;
+- reported agitation;
+- exact patterned-mesa rinse/dry.
+
+Strong new Round-36 convention evidence:
+
+- same-SSPL/overlapping-author passivation patent explicitly uses `v/v` for Br2/MeOH;
+- same-author review expresses Br2/MeOH concentration in vol%;
+- Leech 1989 explicitly uses `0.1% (w/w) Br:HBr`, proving non-universal convention.
+
+Therefore `v/v` is `CANDIDATE-VV-SAME-LAB`, not direct history. P28A requires explicit local concentration mathematics, HBr assay, genealogy and P25 handoff qualification.
 
 ## P30/P30A LPE
 
@@ -299,7 +336,7 @@ Still historical-open: numerical boat dimensions, x≈.29 charge grams, Hg-sourc
 
 Strong transfer scale: Radhakrishnan 2003 uses 15×15×1-mm CdZnTe, ~4.8-g growth charge and 3-g HgTe reservoir in a different Te-rich branch. Never area-scale these values into Honeywell.
 
-P30A now controls measured boat capacity, mass calculation after local `M_charge` selection, atmosphere, thermometry, contact matrix, mass balance and P06/P05 output closure.
+P30A controls measured boat capacity, mass calculation after local `M_charge` selection, atmosphere, thermometry, contact matrix, mass balance and P06/P05 output closure.
 
 ## P06/P06A FTIR
 
@@ -330,10 +367,10 @@ Execution-critical / high current priority:
 - actual local P30/P30A LPE hardware/dimensions/charge/gas/trajectory instantiation
 - exact/selectable final CdZnTe surface process
 - exact/selectable Hg anneal apparatus/trajectory
-- **executable Mask-1 + wet-mesa resist/chemistry basis/HBr assay/rinse/strip**
+- executable Mask-1 + **explicitly defined P28A wet-mesa chemistry/HBr assay/rinse/P25 handoff**
 - executable anodic-oxide cell/bath branch
 - executable Mask-2 resist/exposure/developer/chlorobenzene/lift-off branch
-- executable local CH4/H2 reactor/gas/sheath/thermal branch
+- **executable local CH4/H2 gas realization and reactor/sheath/thermal branch**
 - executable Cr/Au deposition/RIE-to-metal/lift-off branch
 - executable singulation branch
 - executable package/interconnect branch
@@ -353,7 +390,7 @@ Historical identity still open but lower immediate first-build priority once a l
 
 Identified but not fully recovered:
 
-- **Vanya Srivastav IISc thesis `G25544.pdf` — highest-priority Round-36 wet-etch target**
+- **Vanya Srivastav IISc thesis `G25544.pdf` — official record/file identified; current direct retrieval path returns 403; relevant chemistry text not recovered**
 - John Kenion White 2005 UWA thesis full experimental text
 - Ryan Westerhout 2013 UWA thesis experimental text
 - J. F. Siliquini 1995 UWA PhD thesis
@@ -369,7 +406,7 @@ Identified but not fully recovered:
 - supplier/UWA material certificate identifying how `x≈0.30` and `9.5 µm` were measured
 - primary PDF line for Gopal et al. 1992 thickness-range unit conflict.
 
-Round-35 negative searches to retain:
+Round-35 negative searches retained:
 
 - no dimensioned Honeywell x≈.29 boat recovered;
 - no Honeywell x≈.29 growth-charge mass recovered;
@@ -378,29 +415,40 @@ Round-35 negative searches to retain:
 - no Fermionics internal LPE traveler recovered;
 - no universal Harman growth-solution gram loading recovered.
 
+Round-36 negative searches retained:
+
+- direct Srivastav 2005 paper does not state Br2 concentration basis;
+- direct paper does not state EG:HBr mass/volume basis or HBr assay;
+- exact mixing order, bath volume, agitation and patterned-mesa rinse remain unrecovered;
+- IISc thesis full relevant text could not be retrieved through current official route;
+- same-SSPL v/v evidence is not sufficient to rewrite Srivastav notation as v/v.
+
 “Not recovered” does not mean absent.
 
 ---
 
 # Next logical work
 
-Proceed with **Round 36: wet-mesa etchant preparation-basis recovery**, centered on P16A R13 (`UNDEFINED-BASIS`).
+Proceed with **Round 37: R17 / CH4-H2 gas-realization provenance and delivery closure**.
 
-Do not define `2% Br2` or `3:1 EG:HBr` by intuition.
+First audit `P08_RIE_BLOCKING_CONTACT_QUALIFICATION.md`, `P08A_RIE_GAS_RATIO_PROVENANCE_ADDENDUM.md`, P24, P34 and all earlier RIE source/gap ledgers. Do not repeat searches if the notation has already been exhausted.
 
-Round 36 should:
+Target the RP-01 printed condition:
 
-1. audit P01/P01A/P28/P32 and all wet-etch source ledgers first;
-2. aggressively recover Vanya Srivastav IISc thesis `G25544.pdf` or another primary full-text route;
-3. identify the exact primary source behind the near-x≈.3 `2% Br2 / 3:1 EG:HBr / 21°C / 2.78 µm min^-1` branch;
-4. determine whether `2% Br2` is wt%, vol%, mass/volume or another basis;
-5. determine whether `3:1 EG:HBr` is volume, mass, molar or another preparation basis;
-6. recover HBr stock assay/concentration;
-7. recover reagent addition order, bath volume, bath age, agitation, temperature and sample orientation;
-8. recover rinse/quench/dry sequence and wet-etch-to-passivation clock where possible;
-9. keep etch-rate evidence separate from recipe identity;
-10. if primary basis recovery still fails, create a **P28A local chemistry-definition/qualification addendum + register** rather than guessing the historical basis;
-11. update P16A readiness only if an actual executable basis is source-closed or a fully explicit local branch is defined;
-12. update source/gap ledgers, checkpoint and AGENTS.
+`CH4/5H2`, total flow `64 sccm`, `100 mTorr`, `50 W`, `60 s`.
 
-The objective is to eliminate an `UNDEFINED-BASIS` chemical operation from the first-build path.
+Round 37 should determine, from primary evidence if possible:
+
+1. what the historical `CH4/5H2` notation actually means;
+2. whether it denotes separate CH4 and H2 flows, a premixed cylinder composition, a ratio notation, or another gas-delivery convention;
+3. actual CH4:H2 split or premix assay if directly recoverable;
+4. same-UWA/Plasma Technology gas-handling evidence and whether it is truly same reactor lineage;
+5. MFC identities/ranges/calibration or at least what remains apparatus-specific;
+6. whether total 64 sccm plus recovered mixture definition is sufficient to calculate component flows;
+7. how gas-definition uncertainty propagates into P34 reactor equivalence and P24 conversion/blocking outputs;
+8. if exact historical gas realization remains unrecovered, create a controlled local gas-definition/qualification addendum rather than guessing;
+9. update P16A R17 only if a real executable gas branch is source-closed or explicitly locally frozen.
+
+**Pivot rule:** if P08A/P24/P34 already exhaust this question and no materially new primary evidence can be found, do not create a redundant RIE addendum. Pivot Round 37 to P16A R15 / P25 anodic-oxide cell/bath execution closure, which is the next strong source-recoverable chemical blocker.
+
+Update source/gap ledgers, checkpoint and AGENTS either way.
