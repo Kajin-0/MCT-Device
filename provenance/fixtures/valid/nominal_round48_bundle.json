@@ -1,0 +1,388 @@
+{
+  "schema_version": "mct-provenance-1.0.0",
+  "bundle_id": "BUNDLE-SYN-R48-VALID-001",
+  "created_at": "2026-08-16T21:12:00Z",
+  "mode": "SYNTHETIC",
+  "records": [
+    {
+      "id": "CFG-RIE-001",
+      "record_type": "configuration",
+      "created_at": "2026-08-16T20:00:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "config_class": "RIE",
+      "version_label": "synthetic-rie-v1",
+      "status": "ACTIVE",
+      "valid_from": "2026-08-16T20:00:00Z",
+      "valid_to": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "CAL-RIE-001",
+      "record_type": "calibration",
+      "created_at": "2026-08-16T20:05:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "configuration_id": "CFG-RIE-001",
+      "scope": "synthetic self-bias/flow/pressure qualification",
+      "status": "VALID",
+      "valid_from": "2026-08-16T20:05:00Z",
+      "valid_to": "2026-08-17T20:05:00Z"
+    },
+    {
+      "id": "MAT-SYN-R48-ROOT",
+      "record_type": "material_node",
+      "created_at": "2026-08-16T20:10:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "physical_object_id": "SYN-PHYS-ROOT-001",
+      "parent_node_ids": [],
+      "root_node_id": "MAT-SYN-R48-ROOT",
+      "state_time": "2026-08-16T20:10:00Z",
+      "state_label": "synthetic-grown-parent",
+      "roles": [
+        "FIT_POINT"
+      ],
+      "experimental_unit_id": "SYN-F2-GROWTH-001",
+      "terminal": false
+    },
+    {
+      "id": "MAT-SYN-R48-ANNEALED",
+      "record_type": "material_node",
+      "created_at": "2026-08-16T20:31:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "physical_object_id": "SYN-PHYS-ROOT-001",
+      "parent_node_ids": [
+        "MAT-SYN-R48-ROOT"
+      ],
+      "root_node_id": "MAT-SYN-R48-ROOT",
+      "state_time": "2026-08-16T20:31:00Z",
+      "state_label": "synthetic-annealed",
+      "roles": [
+        "FIT_POINT"
+      ],
+      "experimental_unit_id": "SYN-F3-HISTORY-001",
+      "terminal": false
+    },
+    {
+      "id": "EVT-ANNEAL-001",
+      "record_type": "process_event",
+      "created_at": "2026-08-16T20:31:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "event_class": "ANNEAL",
+      "procedure_ref": "P23-SYNTHETIC",
+      "input_node_ids": [
+        "MAT-SYN-R48-ROOT"
+      ],
+      "output_node_ids": [
+        "MAT-SYN-R48-ANNEALED"
+      ],
+      "configuration_ids": [],
+      "calibration_ids": [],
+      "started_at": "2026-08-16T20:20:00Z",
+      "ended_at": "2026-08-16T20:30:00Z",
+      "execution_status": "VALID",
+      "irreversible": true,
+      "state_changing": true,
+      "lineage_mode": "STATE_TRANSITION"
+    },
+    {
+      "id": "GATE-SYN-G3-001",
+      "record_type": "gate_decision",
+      "created_at": "2026-08-16T20:35:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "gate_code": "G3",
+      "node_id": "MAT-SYN-R48-ANNEALED",
+      "proposed_operation": "synthetic RIE Tier-1",
+      "evaluated_at": "2026-08-16T20:35:00Z",
+      "prerequisite_record_ids": [
+        "CAL-RIE-001",
+        "EVT-ANNEAL-001"
+      ],
+      "configuration_ids": [
+        "CFG-RIE-001"
+      ],
+      "calibration_ids": [
+        "CAL-RIE-001"
+      ],
+      "technical_status": "PASS",
+      "material_status": "PASS",
+      "decision": "GO",
+      "release_scope": "synthetic Tier-1 witness",
+      "reviewer_ids": [
+        "SYN-REVIEWER-01"
+      ],
+      "prerequisite_assertions": [
+        {
+          "key": "ANNEAL_EVENT_VALID",
+          "status": "PASS",
+          "evidence_record_ids": [
+            "EVT-ANNEAL-001"
+          ]
+        },
+        {
+          "key": "RIE_CALIBRATION_CURRENT",
+          "status": "PASS",
+          "evidence_record_ids": [
+            "CAL-RIE-001"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MAT-SYN-R48-RIE",
+      "record_type": "material_node",
+      "created_at": "2026-08-16T20:51:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "physical_object_id": "SYN-PHYS-ROOT-001",
+      "parent_node_ids": [
+        "MAT-SYN-R48-ANNEALED"
+      ],
+      "root_node_id": "MAT-SYN-R48-ROOT",
+      "state_time": "2026-08-16T20:51:00Z",
+      "state_label": "synthetic-rie-state",
+      "roles": [
+        "HOLDOUT",
+        "DETECTOR_BRIDGE"
+      ],
+      "experimental_unit_id": "SYN-F4-RUN-001",
+      "terminal": false
+    },
+    {
+      "id": "EVT-RIE-001",
+      "record_type": "process_event",
+      "created_at": "2026-08-16T20:51:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "event_class": "RIE",
+      "procedure_ref": "P24-SYNTHETIC",
+      "input_node_ids": [
+        "MAT-SYN-R48-ANNEALED"
+      ],
+      "output_node_ids": [
+        "MAT-SYN-R48-RIE"
+      ],
+      "configuration_ids": [
+        "CFG-RIE-001"
+      ],
+      "calibration_ids": [
+        "CAL-RIE-001"
+      ],
+      "started_at": "2026-08-16T20:40:00Z",
+      "ended_at": "2026-08-16T20:50:00Z",
+      "execution_status": "VALID",
+      "irreversible": true,
+      "state_changing": true,
+      "lineage_mode": "STATE_TRANSITION"
+    },
+    {
+      "id": "HLD-SYN-R48-001",
+      "record_type": "holdout_lock",
+      "created_at": "2026-08-16T20:52:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "node_id": "MAT-SYN-R48-RIE",
+      "campaign": "F4",
+      "protected_model_key": "MODEL-F4-R48",
+      "protected_response_fields": [
+        "Dstar",
+        "noise_asd"
+      ],
+      "locked_at": "2026-08-16T20:52:00Z",
+      "state": "LOCKED",
+      "replacement_rule": "replace only on predeclared execution-invalidity",
+      "model_freeze_id": "MODEL-FREEZE-R48-001"
+    },
+    {
+      "id": "MEAS-TRAIN-001",
+      "record_type": "measurement",
+      "created_at": "2026-08-16T20:54:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "node_id": "MAT-SYN-R48-ANNEALED",
+      "method_ref": "P06-SYNTHETIC",
+      "configuration_ids": [],
+      "calibration_ids": [],
+      "acquired_at": "2026-08-16T20:54:00Z",
+      "qc_status": "PASS",
+      "result_fields": [
+        "x_opt"
+      ],
+      "raw_data_refs": [
+        {
+          "uri": "synthetic://train/xopt",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "analysis_ref": "SYN-ANALYSIS-TRAIN"
+    },
+    {
+      "id": "MEAS-HOLDOUT-001",
+      "record_type": "measurement",
+      "created_at": "2026-08-16T21:00:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "node_id": "MAT-SYN-R48-RIE",
+      "method_ref": "P11-P12-SYNTHETIC",
+      "configuration_ids": [],
+      "calibration_ids": [],
+      "acquired_at": "2026-08-16T21:00:00Z",
+      "qc_status": "PASS",
+      "result_fields": [
+        "Dstar",
+        "noise_asd",
+        "temperature_qc"
+      ],
+      "raw_data_refs": [
+        {
+          "uri": "synthetic://holdout/raw",
+          "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+        }
+      ],
+      "analysis_ref": "SYN-SEALED-OUTCOME"
+    },
+    {
+      "id": "MODEL-FREEZE-R48-001",
+      "record_type": "model_freeze",
+      "created_at": "2026-08-16T21:05:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "model_key": "MODEL-F4-R48",
+      "model_revision": "r1",
+      "campaign": "F4",
+      "frozen_at": "2026-08-16T21:05:00Z",
+      "training_measurement_ids": [
+        "MEAS-TRAIN-001"
+      ],
+      "holdout_lock_ids": [
+        "HLD-SYN-R48-001"
+      ],
+      "model_digest_sha256": "3333333333333333333333333333333333333333333333333333333333333333"
+    },
+    {
+      "id": "ACC-QC-001",
+      "record_type": "access_event",
+      "created_at": "2026-08-16T21:01:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "holdout_lock_id": "HLD-SYN-R48-001",
+      "access_type": "QC",
+      "accessed_at": "2026-08-16T21:01:00Z",
+      "fields": [
+        "temperature_qc"
+      ],
+      "model_freeze_id": null
+    },
+    {
+      "id": "ACC-OUTCOME-001",
+      "record_type": "access_event",
+      "created_at": "2026-08-16T21:06:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "holdout_lock_id": "HLD-SYN-R48-001",
+      "access_type": "OUTCOME",
+      "accessed_at": "2026-08-16T21:06:00Z",
+      "fields": [
+        "Dstar",
+        "noise_asd"
+      ],
+      "model_freeze_id": "MODEL-FREEZE-R48-001"
+    },
+    {
+      "id": "MAT-SYN-R48-RESERVE",
+      "record_type": "material_node",
+      "created_at": "2026-08-16T20:12:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "physical_object_id": "SYN-PHYS-RESERVE-001",
+      "parent_node_ids": [],
+      "root_node_id": "MAT-SYN-R48-RESERVE",
+      "state_time": "2026-08-16T20:12:00Z",
+      "state_label": "synthetic-reserve-root",
+      "roles": [
+        "RESERVE"
+      ],
+      "experimental_unit_id": "SYN-F2-GROWTH-RESERVE",
+      "terminal": false
+    },
+    {
+      "id": "RSV-SYN-R48-001",
+      "record_type": "reserve_lock",
+      "created_at": "2026-08-16T20:13:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "node_ids": [
+        "MAT-SYN-R48-RESERVE"
+      ],
+      "purpose": "synthetic destructive-FA reserve",
+      "locked_at": "2026-08-16T20:13:00Z",
+      "release_trigger_key": "FA_PURPOSE_CLOSED_OR_SUBSTITUTED",
+      "release_trigger_description": "protected FA purpose closed or equivalent substitute formally allocated"
+    },
+    {
+      "id": "GATE-SYN-G8-001",
+      "record_type": "gate_decision",
+      "created_at": "2026-08-16T21:10:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "gate_code": "G8",
+      "node_id": "MAT-SYN-R48-RIE",
+      "proposed_operation": "promote verified F4 response",
+      "evaluated_at": "2026-08-16T21:10:00Z",
+      "prerequisite_record_ids": [
+        "MODEL-FREEZE-R48-001",
+        "HLD-SYN-R48-001",
+        "ACC-OUTCOME-001"
+      ],
+      "configuration_ids": [],
+      "calibration_ids": [],
+      "technical_status": "PASS",
+      "material_status": "PASS",
+      "decision": "GO",
+      "release_scope": "synthetic evidence promotion",
+      "reviewer_ids": [
+        "SYN-REVIEWER-02"
+      ],
+      "prerequisite_assertions": [
+        {
+          "key": "MODEL_FROZEN",
+          "status": "PASS",
+          "evidence_record_ids": [
+            "MODEL-FREEZE-R48-001"
+          ]
+        },
+        {
+          "key": "HOLDOUT_OUTCOME_OPENED_AFTER_FREEZE",
+          "status": "PASS",
+          "evidence_record_ids": [
+            "ACC-OUTCOME-001"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PROM-SYN-R48-001",
+      "record_type": "evidence_promotion",
+      "created_at": "2026-08-16T21:11:00Z",
+      "revision": 1,
+      "synthetic": true,
+      "quantity_id": "SYN-F4-DSTAR",
+      "from_state": "EMPIRICAL-PRELIMINARY",
+      "to_state": "EMPIRICAL-VERIFIED",
+      "promoted_at": "2026-08-16T21:11:00Z",
+      "model_freeze_id": "MODEL-FREEZE-R48-001",
+      "holdout_lock_ids": [
+        "HLD-SYN-R48-001"
+      ],
+      "holdout_result": "PASS",
+      "g8_gate_id": "GATE-SYN-G8-001",
+      "uncertainty_ref": "SYN-UQ-001",
+      "valid_range_ref": "SYN-RANGE-001",
+      "detector_bridge_ref": null
+    }
+  ]
+}

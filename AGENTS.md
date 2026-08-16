@@ -1,6 +1,6 @@
 # AGENTS.md — MCT-Device front-door continuity record
 
-**Current continuity round:** 47  
+**Current continuity round:** 48  
 **Date:** 2026-08-16 America/New_York  
 **Repository:** `Kajin-0/MCT-Device`
 
@@ -20,52 +20,58 @@ There is no end-to-end reproducible physical release yet.
 
 Latest checkpoint:
 
-`research/2026-08-16_checkpoint_after_control_system_dry_run_round47.md`
+`research/2026-08-16_checkpoint_after_digital_provenance_round48.md`
 
 Then:
 
+- `research/2026-08-16_checkpoint_after_control_system_dry_run_round47.md`
 - `research/2026-08-16_checkpoint_after_sequential_material_release_round46.md`
 - `research/2026-08-16_checkpoint_after_sample_genealogy_round45.md`
 - `research/2026-08-16_checkpoint_after_information_optimal_jacobian_round44.md`
 - `research/2026-08-16_checkpoint_after_uncertainty_allocation_round43.md`
 - `research/2026-08-16_checkpoint_after_subsystem_acceptance_round42.md`
-- `research/2026-08-16_checkpoint_after_minimum_lab_capability_round41.md`
 - earlier checkpoints as needed.
 
 Latest source/gap:
 
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND47.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND47.md`
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND48.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND48.md`
 
-Latest systems/control modules:
+Latest machine/control artifacts:
 
-- `calculations/RP01_CONTROL_DEPENDENCY_FAULT_INJECTION.md`
-- `procedures/P22D_ZERO_HGCDTE_CONTROL_SYSTEM_DRY_RUN.md`
+- `docs/DIGITAL_PROVENANCE_STATE_MACHINE_SPEC_ROUND48.md`
+- `schemas/mct_provenance_bundle.schema.json`
+- `tools/validate_mct_provenance.py`
+- `provenance/README.md`
+- `provenance/fixtures/`
+- `.github/workflows/provenance-validation.yml`
+- `travelers/P16J_DIGITAL_PROVENANCE_VALIDATION_REGISTER.md`
 - `travelers/P16I_CONTROL_SYSTEM_DRY_RUN_REGISTER.md`
+- `procedures/P22D_ZERO_HGCDTE_CONTROL_SYSTEM_DRY_RUN.md`
 - `procedures/P22C_FIRST_BUILD_CAMPAIGN_EXECUTION_MATERIAL_RELEASE_CONTROL.md`
 - `travelers/P16H_SEQUENTIAL_MATERIAL_RELEASE_CONTROL_REGISTER.md`
 - `procedures/P22B_FIRST_BUILD_DESCENDANT_GENEALOGY_MATERIAL_ALLOCATION.md`
 - `travelers/P16G_SAMPLE_GENEALOGY_MATERIAL_ALLOCATION_REGISTER.md`
 - `procedures/P22A_MULTI_SUBSYSTEM_INFORMATION_OPTIMAL_JACOBIAN_PROGRAM.md`
 - `travelers/P16F_EMPIRICAL_JACOBIAN_INFORMATION_REGISTER.md`
-- `procedures/P20A_FIRST_BUILD_UNCERTAINTY_REQUIREMENTS_ALLOCATION_ADDENDUM.md`
-- `travelers/P16E_FIRST_BUILD_UNCERTAINTY_ALLOCATION_REGISTER.md`
 
 ---
 
 # Maturity / implementation states — never conflate
 
-1. `TRACEABLE-FIRST-BUILD-READY` — complete first build can execute without undocumented irreversible choices.
+1. `TRACEABLE-FIRST-BUILD-READY` — one complete first build can execute without undocumented irreversible choices.
 2. `HISTORICAL-RP01-REPRODUCED` — evidence is sufficient to claim reproduction of Smith et al.
 3. `REPRODUCIBLE-RELEASE` — repeated frozen-route stability/MSA/capability/yield/change-control evidence exists.
-4. `P16C-INFRASTRUCTURE-READY` — actual lab infrastructure is physically selected/calibrated/implemented.
+4. `P16C-INFRASTRUCTURE-READY` — actual laboratory infrastructure is physically selected/calibrated/implemented.
 5. `P16D-SURROGATE-COMMISSIONING-COMPLETE` — relevant IQ/OQ/surrogate acceptance complete.
 6. `P16E-REQUIREMENTS-ALLOCATION-COMPLETE` — first-build uncertainty/requirements allocation complete.
-7. `P16F-EMPIRICAL-JACOBIAN-CAMPAIGN-READY` — empirical campaign physically feasible and identifiable.
+7. `P16F-EMPIRICAL-JACOBIAN-CAMPAIGN-READY` — active empirical campaign is physically feasible and identifiable.
 8. `P16G-MATERIAL-GENEALOGY-PLAN-READY` — required physical material genealogy/allocation feasible.
 9. `P16H-SEQUENTIAL-MATERIAL-RELEASE-CONTROL-READY` — real lab has instantiated sequential GO/HOLD/REWORK/STOP control.
 10. `P16I-LOGIC-DRY-RUN-PASSED` — repository-level control logic passed declared zero-HgCdTe synthetic fault tests.
 11. `P16I-LAB-DRY-RUN-PASSED` — actual laboratory traveler/LIMS/control system passed a no-HgCdTe/surrogate dry run.
+12. `P16J-REPOSITORY-PROVENANCE-VALIDATOR-PASSED` — repository schema + semantic validator accept/reject controlled fixtures correctly.
+13. `P16J-LAB-PROVENANCE-SYSTEM-READY` — actual laboratory provenance system enforces the Round-48 data/control invariants.
 
 Current:
 
@@ -80,10 +86,174 @@ Current:
 - `P16H-SEQUENTIAL-MATERIAL-RELEASE-CONTROL-READY = NO / NOT PHYSICALLY INSTANTIATED`
 - `P16I-LOGIC-DRY-RUN-PASSED = YES`
 - `P16I-LAB-DRY-RUN-PASSED = NO / NOT PHYSICALLY INSTANTIATED`
+- `P16J-REPOSITORY-PROVENANCE-VALIDATOR-PASSED = YES`
+- `P16J-LAB-PROVENANCE-SYSTEM-READY = NO / NOT PHYSICALLY INSTANTIATED`
 
 Permanent relation:
 
-`candidate branch != infrastructure ready != surrogate commissioned != uncertainty allocated != campaign design ready != genealogy ready != material-release control ready != logic dry-run pass != lab dry-run pass != first-build ready != historical identity != reproducible release`.
+`candidate branch != infrastructure ready != surrogate commissioned != uncertainty allocated != campaign ready != genealogy ready != material-release control ready != logic dry-run pass != provenance-validator pass != lab provenance ready != lab dry-run pass != first-build ready != historical identity != reproducible release`.
+
+---
+
+# Round-48 machine provenance — permanent
+
+## Two-layer validator
+
+Structural schema:
+
+`schemas/mct_provenance_bundle.schema.json`
+
+Semantic validator:
+
+`tools/validate_mct_provenance.py`
+
+Schema dialect is deliberately JSON Schema Draft 2020-12.
+
+The semantic runtime uses Python standard library only.
+
+JSON Schema controls local record shape/types/enums.
+
+The semantic validator controls cross-record invariants including:
+
+- globally unique IDs;
+- reference integrity;
+- material genealogy DAG;
+- root/parent consistency;
+- process event lineage;
+- chronology;
+- configuration/calibration validity at use time;
+- GO release logic;
+- reserve lock/release;
+- holdout freeze/access;
+- training-data leakage;
+- rework role reassignment;
+- evidence-promotion sequence.
+
+## Physical object versus scientific state
+
+Never overwrite one sample row through process history.
+
+Use:
+
+`physical_object_id`
+
+for persistent physical identity and:
+
+`material_node.id`
+
+for immutable scientific state.
+
+Ordinary state transition:
+
+`one input -> one output`, same physical-object ID.
+
+Physical split:
+
+`one input -> >=2 outputs`, distinct output physical-object IDs.
+
+## Gate prerequisite assertions
+
+Every gate contains machine-readable prerequisite assertions:
+
+`{key, status, evidence_record_ids}`.
+
+GO requires:
+
+`technical_status=PASS`
+`AND material_status=PASS`
+`AND every prerequisite assertion=PASS`.
+
+P22C/P16H remain authoritative for which prerequisite keys must exist at each G0-G8 gate.
+
+## Holdout sealing
+
+A protected holdout outcome may be physically acquired before model freeze, but protected fields may not be opened.
+
+QC and OUTCOME access are separate events.
+
+QC before freeze cannot overlap protected response fields.
+
+OUTCOME requires an applicable earlier model freeze.
+
+Protected holdout response fields cannot appear in training measurements for the model being tested.
+
+## Reserve control
+
+Reserve is append-only:
+
+`reserve_lock -> reserve_release`.
+
+A lock freezes a release-trigger key.
+
+A release must use the same key and cite basis records.
+
+GO before valid release is rejected.
+
+## Rework
+
+State-changing rework is:
+
+`old material node -> REWORK event -> new material node`.
+
+Protected roles `HOLDOUT`, `FIT_POINT`, and `DETECTOR_BRIDGE` do not survive automatically.
+
+Explicit equivalence approval is required to retain them.
+
+## Evidence promotion
+
+Allowed progression only:
+
+`EMPIRICAL-REQUIRED`
+`-> DESIGN-IDENTIFIED`
+`-> DESIGN-RESOLUTION-VERIFIED`
+`-> EMPIRICAL-PRELIMINARY`
+`-> EMPIRICAL-VERIFIED`
+`-> DETECTOR-BRIDGED`
+`-> ALLOCATION-ELIGIBLE`.
+
+No skipped states.
+
+Verified and later states require PASS holdout.
+
+Detector-bridged/allocation states require detector bridge.
+
+Allocation-eligible additionally requires uncertainty and valid-range references.
+
+## Raw-data identity
+
+Measurement raw-data references require URI + SHA-256 digest.
+
+Repository validator verifies digest syntax only.
+
+Future lab implementation must verify actual bytes.
+
+---
+
+# Round-48 synthetic machine test
+
+Controlled fixtures:
+
+- valid: `1`
+- invalid: `8`
+
+Invalid cases:
+
+1. GO with material FAIL;
+2. genealogy cycle;
+3. holdout outcome before model freeze;
+4. protected holdout response leaked into training;
+5. locked reserve consumed;
+6. reserve release wrong trigger key;
+7. stale configuration/calibration used;
+8. state-changing rework retains protected holdout/bridge role.
+
+Development result:
+
+`SELF-TEST PASSED: 1 valid + 8 invalid fixture(s)`.
+
+The nominal bundle also produced zero errors against the declared Draft-2020-12 JSON Schema during Round-48 development.
+
+This is software logic validation only, not physical reliability.
 
 ---
 
@@ -91,7 +261,7 @@ Permanent relation:
 
 Do not represent P16F as a single prerequisite node before Stage-0.
 
-Three scoped states now exist:
+States:
 
 ### `P16F-CAMPAIGN-SKELETON-DEFINED`
 
@@ -124,15 +294,13 @@ Permanent chain:
 
 `P16F skeleton -> Stage-0 -> P16F design definition -> P16G -> final P16F readiness`.
 
-This repaired the Round-47 detected `P16F <-> P16G` circular prerequisite.
-
 ---
 
 # Round-47 G0 scope rule — permanent
 
 Stage-0 G0 does not require final P16F/P16G/P17 or unrelated package capability.
 
-It requires only what is needed to execute and interpret the immediate Stage-0 edge:
+It requires only:
 
 - relevant P16C capability;
 - relevant P16D acceptance;
@@ -142,56 +310,27 @@ It requires only what is needed to execute and interpret the immediate Stage-0 e
 - data/genealogy controls;
 - EH&S.
 
-Formal later campaign releases require the stronger design/genealogy states appropriate to those edges.
-
----
-
-# Round-47 dry-run result
-
-Repository-level dependency/fault-injection exercise:
-
-- directed prerequisite cycles before repair: `1`;
-- detected cycle: `P16F <-> P16G`;
-- Stage-0 scope/deadlock ambiguity: detected;
-- directed prerequisite cycles after repair: `0`;
-- declared synthetic fault cases exercised: `15`;
-- fail-safe post-repair dispositions: `15/15`.
-
-The 15/15 result is a logic-test result only, not a reliability probability or physical process statistic.
-
-Key tested cases:
-
-- downstream package subsystem absent during upstream Stage-0;
-- P06 metrology insufficiency;
-- LPE excursion;
-- anneal multicarrier boundary;
-- RIE excursion;
-- technical PASS with material-feasibility FAIL;
-- valid holdout prediction failure;
-- execution-invalid holdout;
-- MFC/configuration change;
-- attempted holdout-as-spare use;
-- holdout rework;
-- genealogy loss;
-- detector test-chain failure;
-- package holdout failure.
-
 ---
 
 # Permanent systems-control invariants
 
-1. No irreversible GO unless both technical/scientific eligibility and post-commit material feasibility pass.
-2. Holdout outcome cannot tune the model it tests.
-3. Holdouts are not spare inventory.
-4. State-changing rework invalidates the old protected role by default.
-5. Statistical independence follows the actual experimental unit.
-6. Configuration change can invalidate acceptance before calendar calibration expiry.
-7. Unrelated late-stage subsystem absence must not deadlock an upstream experiment.
-8. Surrogate commissioning does not become HgCdTe empirical evidence.
-9. Prediction failure is not execution invalidity.
-10. Lost genealogy is never reconstructed from expected performance.
-11. STOP retains failed/negative evidence and terminal disposition.
-12. Controlled prerequisite graph must remain acyclic or any intentional loop must be proven not to be a completion prerequisite.
+1. No irreversible GO unless technical/scientific eligibility and post-commit material feasibility pass.
+2. Every declared gate prerequisite must be explicit and traceable.
+3. Holdout outcome cannot tune the model it tests.
+4. Holdouts are not spare inventory.
+5. Reserve release requires its controlled trigger.
+6. State-changing rework invalidates old protected role by default.
+7. Statistical independence follows the actual experimental unit.
+8. Configuration change can invalidate acceptance before calendar calibration expiry.
+9. Calibration is bound to configuration.
+10. Unrelated late-stage subsystem absence must not deadlock an upstream experiment.
+11. Surrogate commissioning does not become HgCdTe empirical evidence.
+12. Prediction failure is not execution invalidity.
+13. Lost genealogy is never reconstructed from expected performance.
+14. STOP retains failed/negative evidence and terminal disposition.
+15. Controlled prerequisite graph remains acyclic or any intentional loop must be proven not to be a completion prerequisite.
+16. Physical sample state history is append-only in scientific identity.
+17. No evidence-state skipping.
 
 ---
 
@@ -202,12 +341,13 @@ Key tested cases:
 - Repetition does not promote evidence class.
 - Structural DOE count is not statistical-power sample size.
 - Physical descendant count is not independent-unit count.
-- Physical separation does not create upstream independence.
+- Physical separation does not create upstream statistical independence.
 - Measurement uncertainty, operating-state uncertainty, process variation and tolerance remain distinct.
 - A controlled method is not physical implementation.
 - A logic dry-run is not a lab dry-run.
+- A repository provenance pass is not lab provenance readiness.
 - A lab dry-run is not HgCdTe process validation.
-- A historical reference value is not a production tolerance.
+- Historical reference value is not production tolerance.
 - Preserve negative searches, failed runs, failed predictions and rejected hypotheses.
 
 ---
@@ -257,7 +397,7 @@ Authoritative mass convention in `calculations/LPE_CHARGE_COMPOSITION_SENSITIVIT
 
 # Round-43 analytical results retained
 
-- common P11/P12 gain cancels from D* when the same linear path/frequency/loading applies;
+- common P11/P12 gain cancels from D* when same linear path/frequency/loading applies;
 - `S_D,A = 0.5-gamma_A`;
 - gap couples area and field: `S_D,L=0.5-gamma_L-s_R,E+s_n,E` for fixed physical V and A=WL;
 - electronics subtraction with beta=`e_elec^2/e_det^2` has sensitivities `1+beta` and `-beta`;
@@ -285,14 +425,14 @@ Require:
 
 Track separately:
 
-- independent units;
+- independent experimental units;
 - descendant pieces;
 - usable area/packing;
 - yield/power/failure reserve.
 
-Program is a genealogy DAG, not a sum of F1-F5 counts.
+Program is a genealogy DAG, not a sum of F1–F5 counts.
 
-Default P05 branch remains a dedicated material-control sibling until same-specimen Hall->anneal/device compatibility is qualified.
+Default P05 branch remains dedicated material-control sibling until same-specimen Hall->anneal/device compatibility is qualified.
 
 ## Sequential release
 
@@ -300,9 +440,7 @@ Every irreversible gate returns only:
 
 `GO / HOLD / REWORK / STOP`.
 
-GO requires:
-
-`T=PASS and M=PASS`.
+GO requires T=PASS and M=PASS plus explicit prerequisite assertions.
 
 Holdout validity QC and scientific outcome access remain separate.
 
@@ -310,34 +448,20 @@ Reserve release requires its explicit trigger/substitute/redesign.
 
 ---
 
-# Next logical work — Round 48
+# Next logical work — Round 49
 
-Build the machine-checkable **digital provenance / traveler state model**.
+Make the Round-48 provenance layer operationally instantiable.
 
-Priority objects:
+Priority:
 
-- immutable material node ID;
-- parent-child genealogy edge;
-- treatment/process event;
-- measurement event/raw-data reference;
-- configuration object;
-- calibration object;
-- gate decision;
-- holdout lock/access event;
-- reserve lock/release event;
-- model-freeze event;
-- deviation/rework event;
-- evidence-promotion event;
-- actor/signature/audit event.
+1. canonical ID namespaces/lifecycle;
+2. local file/database storage and transaction semantics;
+3. actor/role/permission matrix;
+4. holdout sealed-field enforcement;
+5. raw-data ingest + SHA-256 verification;
+6. configuration supersession/invalidation propagation;
+7. electronic signature/audit semantics without unsupported regulatory claims;
+8. a small local reference implementation that creates and validates records;
+9. automated synthetic G0–G8 traversal through that implementation.
 
-Priority invariants to encode:
-
-- no GO without required prerequisite objects and T/M PASS;
-- no protected holdout outcome access before model freeze;
-- no reserve reassignment before release trigger;
-- no reworked node retaining protected role without explicit reassignment/equivalence;
-- no descendant without immutable parent link;
-- configuration change propagates review/HOLD to dependent future gates;
-- no deleted failed/negative event history.
-
-Round 48 should remain zero-HgCdTe and should prepare the future real-lab P16I dry run.
+Round 49 should remain zero-HgCdTe.

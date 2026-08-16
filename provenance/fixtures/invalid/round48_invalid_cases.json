@@ -1,0 +1,211 @@
+{
+  "base_fixture": "../valid/nominal_round48_bundle.json",
+  "cases": [
+    {
+      "name": "gate_go_material_fail",
+      "operations": [
+        {
+          "op": "set",
+          "record_id": "GATE-SYN-G3-001",
+          "field": "material_status",
+          "value": "FAIL"
+        }
+      ]
+    },
+    {
+      "name": "holdout_outcome_before_freeze",
+      "operations": [
+        {
+          "op": "set",
+          "record_id": "ACC-OUTCOME-001",
+          "field": "accessed_at",
+          "value": "2026-08-16T21:04:00Z"
+        }
+      ]
+    },
+    {
+      "name": "genealogy_cycle",
+      "operations": [
+        {
+          "op": "set",
+          "record_id": "MAT-SYN-R48-ROOT",
+          "field": "parent_node_ids",
+          "value": [
+            "MAT-SYN-R48-RIE"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "locked_reserve_consumption",
+      "operations": [
+        {
+          "op": "append_record",
+          "record": {
+            "id": "GATE-SYN-RESERVE-001",
+            "record_type": "gate_decision",
+            "created_at": "2026-08-16T21:20:00Z",
+            "revision": 1,
+            "synthetic": true,
+            "gate_code": "G4",
+            "node_id": "MAT-SYN-R48-RESERVE",
+            "proposed_operation": "consume locked reserve",
+            "evaluated_at": "2026-08-16T21:20:00Z",
+            "prerequisite_record_ids": [
+              "RSV-SYN-R48-001"
+            ],
+            "prerequisite_assertions": [
+              {
+                "key": "RESERVE_REQUESTED",
+                "status": "PASS",
+                "evidence_record_ids": [
+                  "RSV-SYN-R48-001"
+                ]
+              }
+            ],
+            "configuration_ids": [],
+            "calibration_ids": [],
+            "technical_status": "PASS",
+            "material_status": "PASS",
+            "decision": "GO",
+            "release_scope": "synthetic invalid reserve consumption",
+            "reviewer_ids": [
+              "SYN-REVIEWER-03"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "stale_configuration",
+      "operations": [
+        {
+          "op": "set",
+          "record_id": "CFG-RIE-001",
+          "field": "valid_to",
+          "value": "2026-08-16T20:30:00Z"
+        },
+        {
+          "op": "set",
+          "record_id": "CAL-RIE-001",
+          "field": "valid_to",
+          "value": "2026-08-16T20:30:00Z"
+        }
+      ]
+    },
+    {
+      "name": "holdout_training_leak",
+      "operations": [
+        {
+          "op": "set",
+          "record_id": "MODEL-FREEZE-R48-001",
+          "field": "training_measurement_ids",
+          "value": [
+            "MEAS-TRAIN-001",
+            "MEAS-HOLDOUT-001"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "rework_retains_holdout",
+      "operations": [
+        {
+          "op": "append_record",
+          "record": {
+            "id": "MAT-SYN-R48-RIE-RW",
+            "record_type": "material_node",
+            "created_at": "2026-08-16T21:31:00Z",
+            "revision": 1,
+            "synthetic": true,
+            "physical_object_id": "SYN-PHYS-ROOT-001",
+            "parent_node_ids": [
+              "MAT-SYN-R48-RIE"
+            ],
+            "root_node_id": "MAT-SYN-R48-ROOT",
+            "state_time": "2026-08-16T21:31:00Z",
+            "state_label": "synthetic-rie-reworked",
+            "roles": [
+              "HOLDOUT",
+              "DETECTOR_BRIDGE"
+            ],
+            "experimental_unit_id": "SYN-F4-RUN-RW",
+            "terminal": false
+          }
+        },
+        {
+          "op": "append_record",
+          "record": {
+            "id": "EVT-REWORK-001",
+            "record_type": "process_event",
+            "created_at": "2026-08-16T21:31:00Z",
+            "revision": 1,
+            "synthetic": true,
+            "event_class": "REWORK",
+            "procedure_ref": "SYN-RIE-REWORK",
+            "input_node_ids": [
+              "MAT-SYN-R48-RIE"
+            ],
+            "output_node_ids": [
+              "MAT-SYN-R48-RIE-RW"
+            ],
+            "configuration_ids": [
+              "CFG-RIE-001"
+            ],
+            "calibration_ids": [
+              "CAL-RIE-001"
+            ],
+            "started_at": "2026-08-16T21:20:00Z",
+            "ended_at": "2026-08-16T21:30:00Z",
+            "execution_status": "VALID",
+            "irreversible": true,
+            "state_changing": true,
+            "lineage_mode": "STATE_TRANSITION"
+          }
+        },
+        {
+          "op": "append_record",
+          "record": {
+            "id": "DEV-REWORK-001",
+            "record_type": "deviation_rework",
+            "created_at": "2026-08-16T21:32:00Z",
+            "revision": 1,
+            "synthetic": true,
+            "node_id": "MAT-SYN-R48-RIE",
+            "deviation_class": "PROCESS_EXCURSION",
+            "detected_at": "2026-08-16T21:15:00Z",
+            "disposition": "REWORK",
+            "state_changing": true,
+            "rework_process_event_id": "EVT-REWORK-001",
+            "reassigned_role_node_id": "MAT-SYN-R48-RIE-RW",
+            "equivalence_approval_id": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "reserve_release_wrong_trigger",
+      "operations": [
+        {
+          "op": "append_record",
+          "record": {
+            "id": "RSVREL-SYN-R48-001",
+            "record_type": "reserve_release",
+            "created_at": "2026-08-16T21:15:00Z",
+            "revision": 1,
+            "synthetic": true,
+            "reserve_lock_id": "RSV-SYN-R48-001",
+            "released_at": "2026-08-16T21:15:00Z",
+            "trigger_key": "SOME_OTHER_TRIGGER",
+            "basis_record_ids": [
+              "MEAS-TRAIN-001"
+            ],
+            "reviewer_ids": [
+              "SYN-REVIEWER-04"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
