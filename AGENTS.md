@@ -6,11 +6,11 @@ Build a source-traceable, end-to-end HgCdTe photodetector fabrication and charac
 
 Canonical first process: **RP-01**, Smith et al., *Semiconductor Science and Technology* 16, 455–462 (2001), DOI `10.1088/0268-1242/16/6/306`.
 
-There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repo contains a controlled qualification/transfer architecture from CdZnTe substrate through LPE, Hg anneal, frontside processing, packaging, radiometry, noise and temporal characterization.
+There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains a controlled qualification/transfer architecture from CdZnTe substrate through LPE, Hg anneal, frontside processing, packaging, radiometry, noise and temporal characterization.
 
 ## Non-negotiable rules
 
-1. Never invent a missing process number. Use `OPEN`, `CAL`, `QUAL`, `PARTIAL`, `CANDIDATE-P`, or explicit derivation.
+1. Never invent a missing number. Use `OPEN`, `CAL`, `QUAL`, `PARTIAL`, `CANDIDATE-P`, or explicit derivation.
 2. Never splice incompatible HgCdTe process families and call the result a published recipe.
 3. Separate direct publication, derived physics, apparatus calibration and local qualification.
 4. Every critical step needs outcome metrology and a pass/fail gate.
@@ -26,27 +26,28 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repo contains a contr
 
 Latest recovery checkpoint:
 
-`research/2026-08-15_checkpoint_after_source_recovery_round7.md`
+`research/2026-08-15_checkpoint_after_source_recovery_round8.md`
 
-Then read:
+Current source/gap overrides:
 
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND7.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND7.md`
-- round-6 addenda for detailed RIE reactor/transport provenance
-- earlier round addenda for LPE, passivation, lithography, metallization and measurement-chain history.
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND8.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND8.md`
+- round-7 addenda for passivation/blocking-contact function;
+- round-6 addenda for RIE reactor/LBIC/multicarrier state;
+- earlier addenda for lithography, metallization, measurement-chain and passivation history.
 
 ## Current controlled module set
 
-Important modules/addenda:
+Important modules/addenda include:
 
 - P01 wet mesa + P01A primary experimental addendum
-- P02 anodic oxide + P02A/P02B lineage + **P02C sidewall-passivation qualification**
-- P03 x≈0.30 LPE + P03A lineage + P03B thickness/supercooling calibration
+- P02 anodic oxide + P02A/P02B lineage + P02C sidewall-passivation qualification
+- P03 x≈0.30 LPE + P03A lineage + P03B thickness/supercooling + **P03C source synthesis/homogenization + P03D melt inventory/depletion**
 - P04 Hg anneal + P04A state-mapping DOE
 - P05 Hall/VdP metrology
 - P06 FTIR composition/thickness mapping
-- P07 CdZnTe qualification + P07A surface prep
-- P08 RIE blocking contact + **P08A/P08B/P08C/P08D/P08E/P08F/P08G**
+- P07 CdZnTe qualification + P07A surface prep + **P07B face/miscut selection**
+- P08 RIE blocking contact + P08A through P08G
 - P09 Cr/Au/TLM + P09A deposition transfer DOE
 - P10 DC bias/self-heating
 - P11 absolute radiometry
@@ -65,7 +66,7 @@ Important modules/addenda:
 - supplier `n=9.8×10^14 cm^-3`
 - supplier `µ=4.0×10^4 cm²/V·s`
 - thickness `9.5 µm`
-- supplier measurement temperature for n/µ not stated.
+- supplier n/µ measurement temperature not stated.
 
 ### Contact-window RIE
 
@@ -78,9 +79,9 @@ Important modules/addenda:
 - reported converted density `~2.0×10^15 cm^-3`, explicitly averaged over converted thickness
 - mobility `~3.3×10^4 cm²/V·s`.
 
-P08A: secondary same-lineage evidence supports `CH4:H2=1:5`; conditional 64-sccm split is 10.6667/53.3333 sccm. This is not direct historical MFC closure.
+P08A: secondary same-lineage evidence supports `CH4:H2=1:5`; conditional 64-sccm split = 10.6667/53.3333 sccm. Not direct historical MFC closure.
 
-P08B: if the historical averaged density is applied over `d_conv≈8 µm`, conditional `N_s≈1.6×10^12 cm^-2`. Treat sheet/multicarrier transport and independently measured depth as primary transfer outputs.
+P08B: if historical averaged density is applied over `d_conv≈8 µm`, conditional `N_s≈1.6×10^12 cm^-2`. Use sheet/multicarrier state + independently measured depth for transfer.
 
 ### Mask-2/passivation/metal
 
@@ -115,100 +116,116 @@ P08B: if the historical averaged density is applied over `d_conv≈8 µm`, condi
 
 Do not assume 24.5 nV/√Hz is the historical 1-kHz noise used in the spectral D* curve.
 
-## RIE state — rounds 6–7
+## Upstream LPE state — round 8
 
-### Source separation
+### Historical Honeywell composition is strong; source preparation is not
 
-Do not conflate:
+Best explicit tie line:
 
-1. 1997 vacancy-doped p-type x≈0.31: 410 mTorr, CH4/H2, 0.4 W/cm², ~0.2-µm physical etch, ~1.5-µm electrical conversion.
-2. 1998 arsenic-doped p-type x≈0.29: UWA institutional record gives 340 mTorr, CH4/H2, 0.4 W/cm²; secondary 390-mTorr records are flagged as a discrepancy.
-3. RP-01 n-type x≈0.30: 100 mTorr / 64 sccm / 50 W / 60 s; cited ~8-µm n+ depth remains a prior same-lab result under similar conditions, exact process condition unrecovered.
+- `xL=.082`
+- `yL=.810`
+- `TL=507 °C`
+- historical `xS=.29`
+- `xS/xL=3.54`.
 
-### Reactor equivalence
+Derived source mass fractions:
 
-The algebraic inference `50 W / 0.4 W cm^-2 = 125 cm²` is **rejected/unreleased** because identical reactor/electrode geometry has not been proven.
+- Hg `.249738`
+- Cd `.012502`
+- Te `.737760`.
 
-P08D requires local closure of:
+The Honeywell patent treats this Te-rich growth solution as an **already prepared charge**. It does not state whether the charge was made from elements, binaries, a ternary ingot, or in situ. Source synthesis is historically `OPEN`.
 
-`{gas split, RF frequency, electrode geometry, sample loading, forward/reflected power, self-bias/ion-energy proxy, sample T, chamber history, t_clear, d_etch, transport state, d_conv, L_conv, rho_c}`.
+### P03C — source synthesis/homogenization
 
-### Multicarrier transport
+Local release is by measured outcome:
 
-Same-UWA QMSA/differential-Hall work shows RIE-converted HgCdTe can contain:
+`{mass closure, actual source composition, homogenization/thermal history, liquidus/growth behavior, P06 x/thickness, P05 mobility, P13 lifetime/device proxy, source conditioning/reuse}`.
 
-- damaged moderate-mobility surface electron sheet
-- deeper high-mobility converted n region
-- residual holes when conversion is incomplete.
+Radhakrishnan 2003 is a different x≈.20 branch and gives a candidate method only: 6N elements, evacuated quartz, 700 °C/8 h, source ground/mixed, ~4.8 g/run, 3 g HgTe. Never combine those masses with the Honeywell x=.29 composition as historical data.
 
-A single uniform n+ slab is therefore not the default model.
+An independent 1988 in-situ Hg-vapor/Te-solution preparation route is a separate process family.
 
-### Blocking-contact functional gate
+### P03D — melt inventory/depletion
 
-P08F requires detector-level proof that the contact suppresses sweepout/contact recombination over useful field without unacceptable noise or bandwidth penalty.
+Full Honeywell patent describes tapered through-wells but gives **no well diameter/depth/volume, melt depth or charge mass**. Do not infer them from drawings.
 
-Use P10/P11/P12/P13 jointly; TLM alone is insufficient.
+Primary 1990 finite-liquid modeling shows:
 
-### Blocking-contact predecessor technologies
+- growth rate falls after a characteristic time related to liquid thickness;
+- Hg loss drives the layer Cd-richer;
+- outcome depends on liquid dimensions and Hg-loss flux.
 
-P08G keeps three mechanisms distinct:
+Therefore total melt mass is not released independently of geometry/time.
 
-- ion-cleaning/contact accumulation (Ashley–Elliott 1982; historical `S_c~200–500 cm/s` scale)
-- epitaxial wider-bandgap HgCdTe heterojunction contacts (Smith/Arch/Wood 1984–85)
-- RP-01 localized RIE n+/n contacts.
+Local response:
 
-D. L. Smith 1984 theory shows stronger blocking can increase responsivity/D* while moving g-r/responsivity rolloff to lower frequency. Blocking-contact optimization is therefore a responsivity–noise–bandwidth tradeoff.
+`d_layer = f(t_growth, ΔT, thermal trajectory, liquid inventory/depth, source-use index, Hg-loss state)`.
 
-`rho_c` and `S_c` are different physical quantities. RP-01 publishes rho_c but not S_c.
+Track x/thickness/morphology versus source-use index and release a depletion limit from actual drift.
 
-## Passivation state — P02C
+Independent Suh et al. 1992 x=.2/.3/.7 slider work shows a graphite element between solution and HgTe wells can materially stabilize Hg loss/solution composition. Use as composition-matched evidence that Hg-loss geometry matters; do not transplant the hardware into Honeywell without a separate process branch.
 
-RP-01 performs wet mesa before anodic oxidation, so mesa sidewalls are exposed during passivation.
+### P07B — face/miscut
 
-Same-UWA 1994 photoconductor work reports roughly a factor-of-two responsivity loss in its LWIR branch when sidewalls were left unpassivated. This is a physics warning, not an RP-01 numerical target.
+Exact RP-01/Honeywell polarity/miscut remains `OPEN`.
 
-P02C therefore requires evidence that the released oxide process adequately passivates representative sidewalls/perimeters, using physical coverage metrology and/or perimeter-to-area scaling of responsivity, noise, leakage and lifetime.
+Independent composition-matched Te-rich slider work on Hg0.7Cd0.3Te used `(111)Cd` CdTe and found:
 
-P01 mesa geometry and P02 sidewall passivation are coupled.
+- 1° miscut -> terrace fronts tied to miscut direction;
+- terrace width decreases and height increases with larger miscut;
+- above ~2° terraces begin becoming wave-like.
 
-## Other major branch states
+This supports a local low-degree-miscut DOE around the `{111}` family, but **does not prove RP-01 used (111)Cd/A** and uses CdTe rather than CdZnTe.
 
-### P01 wet mesa
+Select locally using:
 
-Near-composition x=.28 primary source selects nominal `2% Br2 in 3:1 EG:HBr`, ~2.78 µm/min at 21 °C, anisotropy ~0.63, best RMS ~2 nm. Full primary text still does not define Br2 percentage basis; genuine source omission. Fixed time alone is not a release method.
+`Y_face={morphology, thickness uniformity, x uniformity, twin/defect metric, mobility, lifetime, usable area}`.
 
-### P02 anodic oxide
+Independent x=.30 work also shows morphology evolves with growth time, so P07B and P03B must be interpreted jointly.
 
-Exact UWA traveler remains open. Direct TI-family candidate: 0.1 M KOH / 90% EG + 10% DI water, constant current ~0.3 mA/cm², ~15-V endpoint, ~2 min, ~800 Å. x≈.30 Janousek/Carscallen lineage supports dissolution–precipitation physics and sensitivity to mass transport/pH/surface state.
+## RIE / blocking-contact state — rounds 6–7
 
-### P03 LPE
+Do not conflate p-type conversion studies with RP-01 n-type blocking contact.
 
-Best explicit Honeywell tie line: `xL=.082`, `yL=.810`, `TL=507 °C` → `xS=.29`. Derived mass fractions Hg .249738, Cd .012502, Te .737760. Same lineage supports covered graphite slider, auxiliary Hg source, N2 purge, H2, above-liquidus equilibration then growth below liquidus. ~30-min example is not tied to xS=.29 + 9.5 µm. P03B recovers local time/supercooling/thickness response surface.
+- 1997 vacancy p-type x≈.31: 410 mTorr, CH4/H2, 0.4 W/cm², ~0.2-µm physical etch vs ~1.5-µm electrical conversion.
+- 1998 As p-type x≈.29: UWA institutional record gives 340 mTorr, 0.4 W/cm²; secondary 390-mTorr value flagged as discrepancy.
+- RP-01 n-type x≈.30: 100 mTorr / 64 sccm / 50 W / 60 s; cited ~8-µm prior n+ depth remains process-unclosed.
 
-### P04 Hg anneal
+The algebraic inference `50 W / 0.4 W cm^-2 = 125 cm²` is rejected because identical reactor/electrode geometry is unproven.
 
-250–300 °C composition-matched branch can produce n-type material without the composition shift seen near 400 °C. Exact historical dwell/pHg/cooldown remains open. P04A maps T/time/Hg chemical potential to final Hall + FTIR state.
+P08D local equivalence requires gas split, RF frequency, electrode geometry, self-bias/ion-energy proxy, sample T, chamber history, oxide-clear time, physical recession, multicarrier transport, conversion depth/lateral spread and TLM.
 
-### P09 Cr/Au
+P08E: RIE-converted HgCdTe can contain a damaged surface electron sheet + deeper high-mobility converted region + residual holes. One uniform n+ slab is not the default model.
 
-Historical 30/270-nm stack is direct; historical vacuum/rates/RIE-to-metal delay remain open. P09A locally qualifies deposition environment/rates/thermal load/delay against 80-K TLM, cryogenic stability and detector noise.
+P08F/P08G: blocking-contact release requires detector-level sweepout suppression without unacceptable noise/bandwidth penalty. `rho_c` is not `S_c`. Historical predecessor accumulation/heterojunction contacts are physics benchmarks, not RP-01 recipes.
 
-### P12 measurement chain
+## Passivation/frontside state
 
-Later UWA work cites `J. F. Siliquini, Ph.D. thesis, University of Western Australia, 1995` for a custom bias-capable low-noise preamplifier. Thesis remains actionable archival target. P12B defines local gain/noise/PSD/window/ENBW/Johnson-noise calibration independent of missing historical circuit.
+P01 near-composition x=.28 wet-etch source: nominal `2% Br2 in 3:1 EG:HBr`, ~2.78 µm/min at 21 °C, anisotropy ~.63, best RMS ~2 nm. Full primary text still does not define Br2 percentage basis; genuine source omission.
 
-### P13 temporal response
+P02 exact UWA anodization traveler remains open. Direct TI-family candidate: 0.1 M KOH / 90% EG + 10% DI, ~0.3 mA/cm², ~15 V, ~2 min, ~800 Å. x≈.30 Janousek/Carscallen lineage supports dissolution–precipitation physics and strong dependence on surface state/mass transport/pH.
 
-Same-UWA x≈.30 work near 77 K deliberately used low bias to avoid sweepout into high-recombination contacts. Bulk-lifetime interpretation requires low-field/bias-independence plus external transfer de-embedding.
+P02C: same-UWA work shows sidewall passivation can materially affect photoconductor responsivity. Because RP-01 anodizes after mesa, planar 80-nm oxide thickness alone is not a complete passivation gate; qualify mesa perimeter/sidewalls electrically or physically.
+
+P09 historical Cr/Au stack 30/270 nm is direct; vacuum/rates/RIE-to-metal delay remain open. P09A locally qualifies them against 80-K TLM, cryogenic stability and noise.
+
+P14 chlorobenzene mechanism is consistent with positive diazo/novolak undercut lift-off, but exact RP-01 resist/developer remain open.
+
+## Measurement state
+
+P12A: later UWA work cites `J. F. Siliquini, Ph.D. thesis, University of Western Australia, 1995` for a custom bias-capable low-noise voltage preamplifier. Thesis remains an actionable archival target. P12B closes local gain/noise/PSD/window/ENBW/Johnson-noise calibration independent of missing historical circuit.
+
+P13: same-UWA x≈.30 work near 77 K deliberately uses low bias to avoid sweepout into high-recombination contacts. Bulk-lifetime interpretation requires low-field/bias-independence plus external transfer de-embedding.
 
 ## Highest-value next work
 
-Public blocking-contact history is now sufficiently mapped. Do not keep searching old contact papers unless a new full-text archive appears.
+The largest remaining upstream uncertainties are now bounded rather than blank. Next priorities:
 
-Next priorities:
+1. define/qualify the **x=.29 tie-line equilibration criterion and furnace thermal-uniformity/temperature-uncertainty budget**;
+2. tighten **final CdZnTe surface preparation** for x≈.30 Te-rich slider growth;
+3. improve **Hg anneal pHg/time/cooldown state mapping** toward the RP-01 low-density n state;
+4. build statistical release/capability criteria linking the P03/P04/P05/P06 material chain;
+5. pursue old UWA/Honeywell archival sources only when a genuinely new provider/document route appears.
 
-1. exact x≈0.30 LPE source synthesis/homogenization and growth-charge conditioning;
-2. final CdZnTe polarity/miscut/surface state before LPE;
-3. genuinely new archival access to Siliquini 1995 thesis / UWA lab records;
-4. exact UWA anodization/lithography details if a new source route appears;
-5. otherwise continue strengthening explicit local qualification methods rather than substituting generic cleanroom practice.
+Do not replace unresolved historical values with generic semiconductor practice.
