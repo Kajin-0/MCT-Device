@@ -1,6 +1,6 @@
 # AGENTS.md — MCT-Device front-door continuity record
 
-**Current continuity round:** 42  
+**Current continuity round:** 43  
 **Date:** 2026-08-16 America/New_York  
 **Repository:** `Kajin-0/MCT-Device`
 
@@ -20,18 +20,19 @@ There is no end-to-end reproducible release yet.
 
 Latest checkpoint:
 
-`research/2026-08-16_checkpoint_after_subsystem_acceptance_round42.md`
+`research/2026-08-16_checkpoint_after_uncertainty_allocation_round43.md`
 
 Then:
 
+- `research/2026-08-16_checkpoint_after_subsystem_acceptance_round42.md`
 - `research/2026-08-16_checkpoint_after_minimum_lab_capability_round41.md`
 - `research/2026-08-16_checkpoint_after_first_qualification_build_integration_round40.md`
 - Round39/38/37/36/35/34 checkpoints as needed.
 
 Latest source/gap:
 
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND42.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND42.md`
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND43.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND43.md`
 
 Current integration/control registers:
 
@@ -40,12 +41,17 @@ Current integration/control registers:
 - `travelers/P16C_MINIMUM_LAB_CAPABILITY_IMPLEMENTATION_REGISTER.md`
 - `travelers/P16D_SUBSYSTEM_ACCEPTANCE_REGISTER.md`
 - `travelers/P16D1_SUPPORTING_METROLOGY_MICROFAB_ACCEPTANCE_REGISTER.md`
+- `travelers/P16E_FIRST_BUILD_UNCERTAINTY_ALLOCATION_REGISTER.md`
 
-Current capability/acceptance architecture:
+Current capability/acceptance/allocation architecture:
 
 - `docs/FIRST_QUALIFICATION_BUILD_MINIMUM_LAB_CAPABILITY_SPEC.md`
 - `procedures/P36_LAB_SUBSYSTEM_COMMISSIONING_ACCEPTANCE.md`
 - `procedures/P36A_SUPPORTING_METROLOGY_LITHOGRAPHY_WET_CHEMISTRY_ACCEPTANCE.md`
+- `procedures/P20_ANALYTICAL_SENSITIVITY_REQUIREMENTS_ALLOCATION.md`
+- `procedures/P20A_FIRST_BUILD_UNCERTAINTY_REQUIREMENTS_ALLOCATION_ADDENDUM.md`
+- `calculations/RP01_FIRST_ORDER_SENSITIVITY_MATRIX.md`
+- `calculations/RP01_FIRST_BUILD_UNCERTAINTY_BUDGET.md`
 
 ---
 
@@ -55,7 +61,8 @@ Current capability/acceptance architecture:
 2. `HISTORICAL-RP01-REPRODUCED` — historical identity sufficiently closed to claim reproduction of Smith et al.
 3. `REPRODUCIBLE-RELEASE` — repeated stability/MSA/capability/yield/change-control/performance evidence exists.
 4. `P16C-INFRASTRUCTURE-READY` — actual laboratory infrastructure is identified/calibrated/commissioned to the P16C requirement.
-5. `P16D-SURROGATE-COMMISSIONING-COMPLETE` — all possible non-HgCdTe IQ/OQ/surrogate-PQ acceptance work is complete for the selected infrastructure.
+5. `P16D-SURROGATE-COMMISSIONING-COMPLETE` — all possible non-HgCdTe IQ/OQ/surrogate-PQ acceptance work is complete for selected infrastructure.
+6. `P16E-REQUIREMENTS-ALLOCATION-COMPLETE` — every first-build decision has a justified numerical allocation or an explicitly controlled qualification-only decision rule, with covariance/empirical gaps addressed.
 
 Current:
 
@@ -64,31 +71,41 @@ Current:
 - `REPRODUCIBLE-RELEASE = NO`
 - `P16C-INFRASTRUCTURE-READY = NO / NOT PHYSICALLY INSTANTIATED`
 - `P16D-SURROGATE-COMMISSIONING-COMPLETE = NO / NOT PHYSICALLY INSTANTIATED`
+- `P16E-REQUIREMENTS-ALLOCATION-COMPLETE = NO`
 
 Permanent relation:
 
-`candidate branch != infrastructure ready != surrogate commissioned != local branch frozen != historical identity != reproducible release`.
+`candidate branch != infrastructure ready != surrogate commissioned != uncertainty allocated != local branch frozen != historical identity != reproducible release`.
 
 ---
 
 # Permanent evidence discipline
 
 - Never invent a missing number.
-- Separate direct RP-01, same-lineage, transfer-family, derived, apparatus-calibration, local-qualification and acceptance evidence.
+- Separate direct RP-01, same-lineage, transfer-family, derived, apparatus-calibration, local-qualification, acceptance and uncertainty-allocation evidence.
 - Repetition does not promote evidence class.
 - “Not recovered” does not mean absent.
 - Preserve negative searches, rejected inferences, conflicts and failed branches.
-- Empirical/practical primary literature precedes theoretical placeholders.
-- Theory may check consistency; it does not manufacture process settings.
+- Theory/identities can allocate uncertainty; they do not manufacture process tolerances.
 - Do not splice incompatible process generations into a fictional recipe.
-- A controlled closure/acceptance method is not a physically closed readiness row.
 - Engineering capability ranges are not historical process setpoints.
 - Surrogate commissioning is not HgCdTe process equivalence.
-- Configuration changes can invalidate calibration even before calendar expiration.
+- Configuration changes can invalidate calibration before calendar expiration.
+- Measurement uncertainty, physical state uncertainty, process variation and engineering tolerance are distinct.
+- No final detector/system requirement -> no justified numerical process tolerance.
 
 ---
 
-# Round-41 capability classes retained
+# Evidence / allocation classes retained
+
+P20 sensitivity classes:
+
+- `IDENTITY`
+- `MODEL-CONDITIONAL`
+- `PROXY-CONDITIONAL`
+- `EMPIRICAL-REQUIRED`
+
+Round-41 capability classes:
 
 - `HARD-MINIMUM`
 - `FIRST-BUILD-ENGINEERING-ENVELOPE`
@@ -98,28 +115,19 @@ Permanent relation:
 - `LOCAL-BLANK`
 - `EH&S/FACILITY-GATE`
 
----
+Round-42 acceptance state includes `ACCEPTANCE-EVIDENCE-OPEN` and IQ -> OQ -> surrogate PQ -> HgCdTe residual qualification.
 
-# Round-42 acceptance states
+Round-43 allocation states:
 
-- `AT-NOT-STARTED`
-- `AT-IQ-PASS`
-- `AT-OQ-PASS`
-- `AT-SURROGATE-PQ-PASS`
-- `AT-HGCDTE-RESIDUAL-PENDING`
-- `AT-HGCDTE-PASS`
-- `AT-CONDITIONAL`
-- `AT-FAIL`
-- `AT-EH&S-BLOCKED`
-- `AT-NOT-APPLICABLE`
-
-New gap class:
-
-`ACCEPTANCE-EVIDENCE-OPEN` — method defined; actual tool evidence absent.
-
-Commissioning hierarchy:
-
-`IQ -> OQ -> surrogate PQ -> HgCdTe residual qualification`.
+- `REQUIREMENT-DEFINITION-OPEN`
+- `IDENTITY-ALLOCATABLE`
+- `MODEL-CONDITIONAL-ALLOCATABLE`
+- `COVARIANCE-REQUIRED`
+- `EMPIRICAL-JACOBIAN-REQUIRED`
+- `PARAMETRIC-ALLOCATION-ONLY`
+- `LOCAL-ALLOCATION-DEFINED`
+- `DETECTOR-LEVEL-VERIFIED`
+- `READY-FOR-P17`
 
 ---
 
@@ -153,15 +161,17 @@ Commissioning hierarchy:
 - key data around 80 K;
 - stated 60° FOV;
 - spectral response chopped at 1 kHz;
-- field = measured contact voltage / measured active gap;
+- field = measured active contact voltage / measured active gap;
 - Figures 5–7 use 10 V/cm;
-- cutoff ~4.4 µm;
+- cutoff ~4.4 µm, convention open;
 - BLIP `D*≈2×10^11 cm Hz^1/2/W` at 4 µm;
 - QE ~70%;
 - historical 1/f knee ~3 kHz;
 - high-frequency g-r ~24.5 nV/sqrtHz;
 - 24.5 nV/sqrtHz is not the historical 1-kHz noise;
 - RP-01 lifetime/f3dB remains open.
+
+Historical values are references, not tolerance bands.
 
 ---
 
@@ -201,149 +211,142 @@ For `xL=.082`, `yL=.810`:
 - `w_Cd=0.01250164993`;
 - `w_Te=0.7377601143`.
 
-Later P30A/P16B rounded `0.249740/0.012502/0.737758` values are a controlled ppm-scale numerical erratum. Future calculations use the frozen values. Active P30A/P16B text should be normalized together when those large files are next revised.
+Later P30A/P16B rounded `0.249740/0.012502/0.737758` values are a controlled ppm-scale numerical erratum. Future calculations use the frozen values. Normalize active large files together when next revised.
 
 `M_charge` remains apparatus-dependent.
 
 ---
 
-# Round-42 acceptance architecture — key rules
+# Round-43 major analytical results
 
-## Universal measurement-discrimination rule
+## 1. Common P11/P12 gain can cancel from D*
 
-For a process decision interval `DeltaX_decision`:
+If one linear gain `G` applies to signal and noise at the same frequency/loading:
 
-- minimum logical requirement: `U_X < DeltaX_decision/2`;
-- preferred engineering target where practical: `U_X <= DeltaX_decision/4`.
+`R_v=(S_sig/G)/P_inc`
 
-These are derived measurement-design criteria, not historical tolerances.
+`e_n=e_out/G`
 
-## LPE
+therefore
 
-Acceptance requires:
+`D*=S_sig sqrt(A)/(P_inc e_out)`.
 
-- dimensioned boat/capacity;
-- hot motion;
-- source/substrate thermal map around Round-41 ~495–520 °C engineering envelope;
-- N2/H2 flow calibration;
-- synchronized logging;
-- actual HgCdTe liquidus/growth response as residual.
+Do not double-count common gain uncertainty. If paths differ, propagate `G_noise/G_signal`.
 
-If a future branch needs to distinguish a ~2 °C supercooling difference, `U_DeltaT<1 °C` is minimum discriminability and ~<=0.5 °C is a preferred target.
+## 2. Active-area sensitivity is convention dependent
 
-## Hg anneal
+Define
 
-- dimensioned enclosure;
-- independent `T_s(t)` / `T_Hg(t)`;
-- ~250–300 °C map;
-- ~250 °C / 1 h dummy dwell;
-- enclosure integrity;
-- actual Hg/HgCdTe carrier-state response residual.
+`gamma_A=partial ln P_inc/partial ln A`.
 
-## FTIR
+Then
 
-- ~500–5000 cm^-1;
-- <=4 cm^-1 qualification resolution unless justified;
-- baseline/repeatability;
-- >=9-point map registration;
-- independent ~5–15-µm thickness-reference capability;
-- HgCdTe model validation residual.
+`S_D,A=0.5-gamma_A`.
 
-## Hall
+- direct power independent of A -> `+0.5`;
+- uniform irradiance with `P=H A` -> `-0.5`.
 
-Calibrate actual B at sample through:
+Area and optical power must be treated jointly.
 
-`0, ±.01, ±.025, ±.05, ±.10, ±.20, ±.50 T`.
+## 3. Gap metrology couples area and field
 
-±0.50 T hard minimum; ~±2 T preferred extension. Current/voltage reversal and Hall-reference surrogate required.
+For fixed physical V and `A=WL`:
 
-## Source weighing / dimensional metrology
+`S_D,L=0.5-gamma_L-s_R,E+s_n,E`.
 
-- balance acceptance at actual element mass scales, especially Cd;
-- propagate uncertainty into `xL/yL`;
-- lateral geometry and vertical film/oxide/metal metrology must be independently calibrated.
+Need local canonical-field derivatives:
 
-## Lithography / wet mesa / anodization
+`s_R,E=partial ln R_v/partial ln E`
 
-- measured resist thickness, bake thermal state and exposure dose;
-- 4–5-µm Mask-2 / 80 °C 30 min / chlorobenzene 30 min capability;
-- wet-mesa concentration/ratio bases must become locally explicit before execution;
-- anodization `A_exposed` measured and `I=J A_exposed`;
-- current/voltage/time traceable;
-- HgCdTe surface/interface behavior residual.
+`s_n,E=partial ln e_n/partial ln E`.
 
-## RIE
+Gap is not an area-only uncertainty.
 
-Acceptance at candidate/direct state includes:
+## 4. Electronics subtraction has exact conditioning
 
-- CH4 10.6667 sccm;
-- H2 53.3333 sccm;
-- total 64 sccm;
-- 100 mTorr;
-- 50 W;
-- 60 s;
-- reflected power;
-- self-bias/sheath proxy;
-- sample thermal state;
-- chamber genealogy;
-- actual P25 oxide clear/HgCdTe electrical conversion residual.
+For
 
-`50 W != reactor equivalence`.
+`e_det=sqrt(e_meas^2-e_elec^2)`
 
-## Cr/Au
+and
 
-- independent Cr QCM/witness calibration around 30 nm;
-- independent Au QCM/witness calibration around 270 nm;
-- pressure/source/QCM/sample geometry and thermal state logged;
-- sequential Cr->Au history;
-- no arbitrary base-pressure criterion;
-- HgCdTe TLM/contact residual.
+`beta=e_elec^2/e_det^2`,
 
-## Integrated detector station
+sensitivities are:
 
-Acceptance as one system includes:
+- measured ASD: `1+beta`;
+- electronics ASD: `-beta`.
 
-- 77–80 K thermal/vacuum state;
-- DC/load terminal transfer;
-- ~2–6 µm first-build radiometry envelope with 4-µm calibration and through/beyond ~4.4-µm edge;
-- 1-kHz modulation;
-- electronics PSD floor;
-- Johnson-noise validation;
-- temporal transfer at 1 kHz/10 kHz/100 kHz/1 MHz plus extension;
-- package thermal kernel;
-- matched-state metadata.
+Examples:
 
-Noise design relation:
+- beta=.10 -> 1.10 / -0.10;
+- beta=1 -> 2 / -1;
+- beta=4 -> 5 / -4.
 
-`e_elec <= 24.5 sqrt(beta) nV/sqrtHz` for PSD allocation fraction `beta`.
+## 5. D* covariance is first-class
 
-Example only: `beta=.10 -> 7.75 nV/sqrtHz`.
+`delta ln D*=delta ln R_v + 0.5 delta ln A - delta ln e_n`.
 
-Temporal instrument-sizing check if 25-ns pulse branch is used:
+Use full covariance, not blind RSS, when gain/area/gap/T/E are shared.
 
-`BW~0.35/25 ns~14 MHz`.
+## 6. Background scalar model is too sensitive for precision BLIP
 
-Neither is historical RP-01 release criterion.
+Idealized local sensitivities near 300 K / 60° full cone / 4.4 µm:
 
-## Singulation/package
+- ~4.027%/K;
+- ~3.04%/degree full cone;
+- ~2.064% per 0.01 µm step boundary.
 
-Surrogate commissioning can close mechanical, thermal, optical, vacuum and interconnect infrastructure. Actual completed HgCdTe stack remains required for functional edge damage, cracks, noise/responsivity and detector/package thermal interaction.
+One-term 1% diagnostic equivalents:
+
+- ~0.248 K;
+- ~0.329°;
+- ~4.85 nm.
+
+Do not turn the last number into a detector cutoff tolerance. Use spectral weighting/view factor.
+
+## 7. Hansen screening remains model conditional
+
+At x=.30/80K:
+
+- `d lambda_Eg/dx=-33.0525 um/x`;
+- `d lambda_Eg/dT=-0.004468 um/K`.
+
+10-nm model-equivalent uncertainty corresponds one-term to `u_x≈3.03e-4` or `u_T≈2.24 K`. Not a measured detector-edge specification.
+
+## 8. Temporal fit uncertainty is not full lifetime uncertainty
+
+After one-pole validation:
+
+`u_r(f3dB)=u_r(tau)`
+
+for the same fitted pole before model discrepancy.
+
+At the corner, local amplitude/phase slopes can size instrument precision, but source/electrical/package de-embedding and model discrepancy remain mandatory.
 
 ---
 
-# Critical handoffs — now explicit acceptance evidence
+# Current empirical Jacobian blockers
 
-Must be timestamped/reconstructable:
+Do not invent these:
 
-- final CZT surface -> LPE;
-- mesa -> anodization;
-- anodization -> Mask-2;
-- RIE -> Cr;
-- Cr -> Au;
-- singulation -> package;
-- package -> P10–P13.
+1. P21 LPE `{xL,yL,TL,DeltaT_SC,t,inventory,source-use}` -> `{x,d,uniformity,morphology}`;
+2. P23 anneal `{Ts(t),THg(t),dwell,cooldown,start state}` -> `{carrier sign,n,mu,tau}`;
+3. mesa/oxide/sidewall -> `{Rv,en,tau}`;
+4. RIE/contact `{Ns,dconv,Lconv,self-bias,damage}` -> `{sweepout,Rv,en,tau,D*}`;
+5. package `{bondline,carrier,vacuum,interconnect}` -> `{Rth,Hpkg,noise}`.
 
-No critical elapsed time should depend on operator memory.
+P16E remains NO until requirements/allocations and empirical blocks are sufficiently closed.
+
+---
+
+# Round-42 acceptance rules retained
+
+- IQ -> OQ -> surrogate PQ -> HgCdTe residual qualification.
+- `U_X<DeltaX_decision/2` is minimum measurement discriminability; approximately `<=DeltaX_decision/4` is a preferred engineering target where practical.
+- Round-43 restriction: `DeltaX_decision` must come from a detector/system requirement or deliberate DOE contrast first.
+- `50 W != reactor equivalence`; RIE self-bias/sheath/thermal/chamber state must be recorded.
+- Johnson-noise validation remains the end-to-end absolute PSD-chain check.
 
 ---
 
@@ -351,32 +354,44 @@ No critical elapsed time should depend on operator memory.
 
 Repository procedures do not replace facility/institution-specific controls for Hg/Cd compounds, Br2/HBr, H2/CH4, high temperature/sealed ampoules, solvents/chlorobenzene, RF/vacuum, high voltage or cryogens.
 
-An `AT-EH&S-BLOCKED` or P16C `EH&S-BLOCKED` state prevents physical execution regardless of scientific readiness.
+Physical execution remains blocked until institutional authorization and actual infrastructure exist.
 
 ---
 
-# Strategic state after Round 42
+# Strategic state after Round 43
 
 The project is now:
 
-**branch-selected + capability-specified + acceptance-method-specified + not physically instantiated**.
+**branch-selected + capability-specified + acceptance-method-specified + uncertainty-allocation-architecture-defined + not physically instantiated**.
 
 Generic historical searching has diminishing return unless a genuinely new archive/source family appears.
 
-The next high-value work is quantitative uncertainty allocation across the acceptance interfaces using P20/P21/P22, not tighter arbitrary instrument specs.
+The strongest analytical bottleneck is now the missing empirical process-to-material/device Jacobian.
 
 ---
 
-# Next logical work — Round 43
+# Next logical work — Round 44
 
-Build an integrated **first-build uncertainty / requirements-allocation package**.
+Build a unified **empirical-Jacobian / information-optimal DOE execution package** rather than a generic experiment list.
 
-At minimum propagate:
+Prioritize by expected reduction in final detector decision uncertainty and identifiability:
 
-1. charge-mass + thermal + FTIR/Hall uncertainty -> material state;
-2. CD/geometry + voltage/current + temperature uncertainty -> E/R/self-heating/contact state;
-3. radiometry + active area + noise-chain uncertainty -> responsivity/NEP/D*;
-4. source/electrical/package transfer uncertainty -> detector `f3dB/tau`;
-5. convert these budgets into quantitative acceptance targets only where a downstream detector-performance requirement justifies them.
+1. canonical field derivatives `s_R,E`, `s_n,E`;
+2. P21 LPE response surface;
+3. P23 anneal state boundary/Jacobian;
+4. blocking-contact/passivation vector response;
+5. package thermal/dynamic Jacobian.
 
-Preserve model-conditional versus empirically required Jacobians. Do not manufacture missing sensitivities.
+For each define:
+
+- parameter vector;
+- response vector;
+- local perturbation scale justified by Round-43 uncertainty needs;
+- interaction terms;
+- replicate/genealogy structure;
+- surrogate controls where possible;
+- holdout confirmation;
+- information/identifiability metric;
+- stopping criterion.
+
+Do not prescribe physical HgCdTe results that do not exist.
