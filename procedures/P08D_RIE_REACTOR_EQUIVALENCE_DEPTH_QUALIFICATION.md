@@ -1,6 +1,6 @@
 # P08D — RIE reactor-equivalence and conversion-depth qualification
 
-**Status:** CONTROLLED LOCAL TRANSFER METHOD. Supplements P08/P08A/P08B/P08C.
+**Status:** CONTROLLED LOCAL TRANSFER METHOD. Supplements P08/P08A/P08B/P08C. P34 is now the empirical apparatus/execution layer.
 
 ## 1. Purpose
 
@@ -18,6 +18,11 @@ Historical RP-01 direct setpoints remain:
 The exact powered-electrode area, electrode spacing, RF frequency, DC self-bias, sample temperature and individual MFC values have not been recovered from the primary RP-01 paper.
 
 Therefore a transferred reactor is accepted by **measured plasma/device outcomes**, not by nominal controller settings alone.
+
+For current empirical source evidence and the operator-level reactor traveler, use:
+
+- `procedures/P34_RIE_REACTOR_EQUIVALENCE_EMPIRICAL_PROCESS_WINDOW.md`;
+- `travelers/P34_RIE_REACTOR_EQUIVALENCE_EMPIRICAL_QUALIFICATION_REGISTER.md`.
 
 ## 2. Important rejected inference
 
@@ -160,6 +165,12 @@ Use matched anodic-oxide coupons and a short-time series to determine:
 - onset of HgCdTe physical recession;
 - repeatability versus chamber history.
 
+Define the semiconductor-exposure interval explicitly:
+
+`t_sem = t_RF - t_clear`.
+
+Do not treat all 60 s as HgCdTe exposure unless `t_clear` has independently been shown negligible.
+
 ### Stage 3 — nominal historical-center run
 
 Use the direct RP-01 nominal controller values as the first historical center where the local reactor can safely support them:
@@ -192,13 +203,29 @@ Do not vary every controller parameter simultaneously.
 
 A local process should be labeled `RP01-RIE-TRANSFER-QUALIFIED` only when repeated runs reproduce a stable multivariate outcome vector:
 
-`Y_RIE = {t_clear, d_etch, R_sheet/N_s, mu_H or transport model, d_conv, L_conv, rho_c, detector-noise delta}`.
+`Y_RIE = {t_clear, self_bias(t), T_sample(t), d_etch, R_sheet/N_s, mu_H or transport model, d_conv, L_conv, rho_c, blocking_response, detector-noise delta}`.
 
 Final numerical windows must be established from local repeatability and detector-performance correlation.
 
 Matching `50 W / 100 mTorr / 64 sccm / 60 s` alone is not equivalence.
 
-## 9. Mandatory raw records
+## 9. New empirical evidence incorporated by P34
+
+### 9.1 Self-bias is not optional metadata
+
+Semu et al. 1991 directly reported CH4/H2 HgCdTe RIE at total flow 85 sccm, 20 mTorr, 35 °C and 150 W with RF-induced dc bias in the approximate range `-360` to `-440 V`; an explicit 15-sccm CH4 / 70-sccm H2 example had about `-390 V` bias. The authors associated rough sidewalls/etched surfaces with the high dc-bias condition.
+
+**Consequence:** forward power alone is not a portable ion-energy coordinate.
+
+### 9.2 Crystallographic orientation follows the sample into RIE
+
+Elkind and Orloff 1992 directly found strong face-dependent CH4/H2 RIE rate and morphology in HgCdTe. P29 plane/polarity genealogy must therefore remain attached to every P34 run.
+
+### 9.3 Same-manufacturer hardware evidence is transfer-only
+
+A primary same-era Plasma Technology RIE80 publication documents a 13.56-MHz lower powered electrode, base pressure below 0.5 mTorr and platform-temperature control. These are useful fields to recover/measure but **do not identify the RP-01 reactor model or settings**.
+
+## 10. Mandatory raw records
 
 Store:
 
@@ -216,7 +243,7 @@ Store:
 - TLM raw I-V and regression;
 - matched detector/control electrical/noise data.
 
-## 10. Current release blockers
+## 11. Current release blockers
 
 Historical closure still sought for:
 
@@ -226,6 +253,11 @@ Historical closure still sought for:
 - powered-electrode area and spacing;
 - historical self-bias;
 - historical sample temperature;
+- base pressure / pumping / throttle configuration;
+- historical chamber clean/seasoning state;
+- RP-01 oxide-clear time and semiconductor exposure interval;
 - exact condition tied to the ~8-µm n-type conversion result.
 
-Until recovered, P08D is the controlled route to local reproducibility.
+John Kenion White's 2005 UWA thesis has been positively identified as a likely high-value source, but the current repository PDF route returned HTTP 403 and full experimental text remains unrecovered.
+
+Until historical details are recovered, P08D + P34 are the controlled route to local reproducibility.
