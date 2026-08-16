@@ -6,7 +6,7 @@ Build a source-traceable, end-to-end HgCdTe photodetector fabrication and charac
 
 Canonical first process: **RP-01**, Smith et al., *Semiconductor Science and Technology* 16, 455–462 (2001), DOI `10.1088/0268-1242/16/6/306`.
 
-There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains a controlled qualification/transfer architecture from CdZnTe substrate through LPE, Hg anneal, frontside processing, packaging, radiometry, noise and temporal characterization.
+There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains a controlled qualification/transfer architecture from CdZnTe substrate through LPE, Hg anneal, frontside processing, packaging, radiometry, noise, temporal response, statistical release and failure analysis.
 
 ## Non-negotiable rules
 
@@ -21,28 +21,25 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains a
 9. Treat passivation, post-RIE exposure, thermal cooldown and packaging as detector-process variables.
 10. A measured system bandwidth is not detector bandwidth until external transfer functions are de-embedded.
 11. Specifications come from physics/performance; observed process spread does not define its own passing limits.
-12. Repository scientific specifications do not replace institution-specific Hg/Cd/Br2/HBr/H2/CH4/high-temperature/vacuum/cryogenic EH&S authorization.
+12. Failure diagnosis uses competing hypotheses and discriminating tests; never force one cause from one symptom.
+13. Repository scientific specifications do not replace institution-specific Hg/Cd/Br2/HBr/H2/CH4/high-temperature/vacuum/cryogenic EH&S authorization.
 
 ## Current checkpoint — READ THIS FIRST
 
 Latest recovery checkpoint:
 
-`research/2026-08-15_checkpoint_after_source_recovery_round10.md`
+`research/2026-08-15_checkpoint_after_source_recovery_round11.md`
 
-Current process-release files:
+Current integration files:
 
 - `procedures/P17_STATISTICAL_PROCESS_CAPABILITY_RELEASE.md`
 - `travelers/P17_PROCESS_RELEASE_CAPABILITY_REGISTER.md`
+- `procedures/P18_FAILURE_ANALYSIS_DIAGNOSTIC_ATLAS.md`
+- `travelers/P18_FAILURE_ANALYSIS_RECORD.md`
 
-For the latest physics/source state also read:
+For the latest source/physics state also read round-9/8/7/6 source and gap addenda.
 
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND9.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND9.md`
-- earlier round addenda for RIE, blocking contacts, source synthesis, substrate and frontside history.
-
-## Current controlled module set
-
-Important modules/addenda:
+## Controlled module set
 
 - P01 wet mesa + P01A
 - P02 anodic oxide + P02A/P02B/P02C
@@ -51,7 +48,7 @@ Important modules/addenda:
 - P05 Hall/VdP
 - P06 FTIR composition/thickness
 - P07 CdZnTe + P07A/P07B/P07C
-- P08 RIE blocking contact + P08A through P08G
+- P08 RIE blocking contact + P08A–P08G
 - P09 Cr/Au/TLM + P09A
 - P10 DC bias/self-heating
 - P11 absolute radiometry
@@ -60,7 +57,8 @@ Important modules/addenda:
 - P14 lithography/CD + P14A
 - P15 cryogenic package
 - P16 master end-to-end traveler + blank traveler
-- **P17 statistical process capability/release + blank capability register**.
+- P17 statistical process capability/release + blank capability register
+- **P18 failure-analysis diagnostic atlas + blank failure-analysis record**.
 
 ## Direct RP-01 anchors — do not drift
 
@@ -121,176 +119,111 @@ P08B: if `d_conv≈8 µm`, conditional `N_s≈1.6×10^12 cm^-2`. Use sheet/multi
 
 Do not assume 24.5 nV/√Hz is the historical 1-kHz noise used in the spectral D* curve.
 
-## Upstream material state — rounds 8–9
+## Current upstream material state
 
-### Honeywell tie line
-
-Best explicit composition anchor:
+Historical Honeywell tie line remains:
 
 `xL=.082, yL=.810, TL=507 °C -> historical xS≈.29`.
 
-Derived source mass fractions:
+Derived source mass fractions Hg `.249738`, Cd `.012502`, Te `.737760`.
 
-- Hg `.249738`
-- Cd `.012502`
-- Te `.737760`.
+Historical source synthesis, charge mass/well volume, exact substrate face and exact anneal trajectory remain undisclosed, but each now has a local qualification path.
 
-Historical source synthesis, charge mass/well volume, exact substrate face and exact anneal trajectory remain undisclosed.
+### P03C/D/E
 
-### P03C/P03D source and melt
+- source preparation released by mass closure/homogenization/material output;
+- melt inventory/depletion tracked through geometry/source-use/Hg-loss state;
+- actual liquidus and local supercooling measured rather than inferred from controller display;
+- equilibration released by output convergence;
+- temperature uncertainty derived from local `∂x/∂T` and `∂d/∂T`.
 
-Honeywell treats the Te-rich source as already prepared and gives no well volume/charge mass.
+### P07B/C
 
-Local release therefore uses:
+- exact face/miscut/final clean historically open;
+- select face/miscut by morphology/x/thickness/crystal quality/mobility/lifetime;
+- final surface released by removed depth, morphology/chemistry proxy and clean-to-load history, not Br2 concentration/time alone.
 
-- source mass closure/composition/homogenization;
-- dimensioned well/melt inventory;
-- source-use/depletion state;
-- Hg-loss proxy;
-- resulting P06 x/thickness and P05/P13 material quality.
+### P04B
 
-Do not combine the Radhakrishnan x≈.20 branch's 700 °C/8 h, ~4.8 g/run and 3-g HgTe values with the Honeywell tie line as historical data.
+Cooldown is part of the Hg-stoichiometry process. Record `T_sample(t), T_reservoir(t), pHg(t)` throughout dwell/cooldown and accept on `{carrier sign,n_H/multicarrier,µ_H,optical x/edge,thickness,morphology,lifetime}`.
 
-### P03E liquidus/equilibration/thermal metrology
-
-Do not equate controller temperature to actual melt liquidus.
-
-Use/record:
-
-- `TL,heat` as equilibrium liquidus reference;
-- `Tnuc,cool` separately;
-- local `ΔT_SC=TL,measured-T_contact`;
-- sensor calibration and source-to-sensor offset;
-- spatial thermal map;
-- hold-time convergence;
-- local `∂x/∂T`, `∂d/∂T`.
-
-Derive allowed temperature uncertainty from material tolerances rather than arbitrary controller precision.
-
-### P07B/P07C substrate face and final surface
-
-Exact historical CdZnTe polarity/miscut/final clean remain open.
-
-Independent x=.30 Te-rich slider work supports low-degree `{111}` miscut screening but does not prove RP-01 polarity.
-
-Final surface release is based on:
-
-`Y_surface={removed depth,roughness,pit/wave density,chemical-state proxy,t_clean-to-load,epilayer morphology,interface defect,mobility,lifetime}`.
-
-Brief 2–3% Br2/methanol immediately before boat loading is a different-composition LPE candidate, not historical RP-01.
-
-### P04B cooldown trajectory
-
-Cooldown is part of the Hg-stoichiometry process.
-
-Kawazu x=.20 work proves quench versus gradual cooling after matched Hg-rich anneal can change final carrier state; its 8 h/~200 min values are not transferred.
-
-Jones/Quelch/Capper/Gosney x≈.17–.31 show isothermal versus two-temperature sample/reservoir conditions can drive different carrier states and kinetics.
-
-Record:
-
-`T_sample(t), T_reservoir(t), pHg(t)`
-
-through dwell and cooldown.
-
-Illustrative only: at `D_Hg~1e-9 cm²/s`, diffusion length in 200 min is ~35 µm and `L²/D` across 9.5 µm is ~15 min. This demonstrates cooldown relevance, not a timing recommendation.
-
-Final gate:
-
-`Y_cool={carrier sign,n_H/multicarrier,µ_H,optical x/edge,thickness,morphology,lifetime}`.
+Source-specific x=.20 8-h/200-min cooldown numbers are not transferred.
 
 ## RIE/blocking-contact state
 
-P08C/D/E govern source separation, reactor equivalence and multicarrier transport. Do not infer historical electrode area from `50 W/0.4 W cm^-2`.
+P08C/D/E govern source separation, reactor equivalence and multicarrier transport. Do not infer historical electrode area from `50 W / 0.4 W cm^-2`.
 
 P08F/G require detector-level sweepout suppression without unacceptable noise/bandwidth penalty. `rho_c != S_c`.
 
 ## Frontside/passivation state
 
-P01 x=.28 wet-mesa source: nominal 2% Br2 in 3:1 EG:HBr, ~2.78 µm/min at21 °C, anisotropy ~.63, best RMS ~2 nm; full primary text still does not define percentage basis.
+P01 x=.28 wet-mesa source: nominal 2% Br2 in 3:1 EG:HBr, ~2.78 µm/min at 21 °C; full primary text still does not define percentage basis.
 
-P02 exact UWA traveler open. TI-family candidate: 0.1 M KOH /90% EG+10% DI, ~0.3 mA/cm², ~15 V, ~2 min, ~800 Å. x≈.30 Janousek/Carscallen lineage supports strong surface-state/mass-transport dependence.
+P02 exact UWA traveler open. TI-family candidate: 0.1 M KOH / 90% EG +10% DI, ~0.3 mA/cm², ~15 V, ~2 min, ~800 Å; composition-matched Janousek/Carscallen supports strong surface-state/mass-transfer sensitivity.
 
 P02C requires sidewall/perimeter passivation verification.
 
-P09 historical Cr/Au 30/270 nm direct; vacuum/rates/RIE-to-metal delay open and locally qualified in P09A.
+P09 historical Cr/Au 30/270 nm direct; vacuum/rates/RIE-to-metal delay locally qualified in P09A.
 
-P14 chlorobenzene is consistent with positive diazo/novolak undercut lift-off; exact resist/developer open.
+P14 exact resist/developer remains open; chlorobenzene supports a positive-resist undercut/lift-off mechanism class, not a product identity.
 
 ## Measurement state
 
-P12A: later UWA work cites J. F. Siliquini's 1995 UWA PhD thesis for a custom bias-capable low-noise preamp. Thesis remains actionable archival target. P12B closes local gain/noise/PSD/window/ENBW/Johnson-noise calibration.
+P12A: later UWA work cites J. F. Siliquini's 1995 UWA PhD thesis for a custom bias-capable low-noise preamp. P12B closes local gain/noise/PSD/ENBW calibration independent of the missing historical circuit.
 
-P13: bulk-lifetime interpretation requires low-field/bias-independence and external transfer de-embedding.
+P13 bulk-lifetime interpretation requires low-field/bias-independence and external transfer de-embedding.
 
-## P17 — statistical release state
+## P17 statistical release
 
-P17 now defines how `QUAL` becomes a released local process window.
+Engineering specification limits come from detector physics/performance, not observed process spread.
 
-### Key rule
+Before capability claims characterize measurement repeatability, long-term variation, stability, bias, resolution, linearity, configuration dependence and uncertainty.
 
-**Engineering specification limits come from detector physics/performance, not observed process spread.**
-
-Only evaluate capability after the process is stable/in-control and the measurement system is qualified.
-
-### Measurement-system requirements
-
-Characterize each critical metric for:
-
-- repeatability;
-- long-term/reproducibility variation;
-- stability/drift;
-- bias;
-- resolution;
-- linearity;
-- geometry/configuration dependence;
-- uncertainty.
-
-Do not use one wafer's spatial map points as independent LPE-run replicates.
-
-### Variance hierarchy
-
-Separate:
+Separate variance hierarchy:
 
 `measurement -> within-wafer spatial -> run-to-run -> source/substrate lot -> long-term tool/operator`.
 
-### Capability
+P17 deliberately does not impose a generic Cpk threshold.
 
-P17 includes standard `Cp/Cpk` forms for stable approximately normal processes but deliberately does **not** hard-code a generic Cpk ≥1.33/1.67 production rule.
+Release maturity:
 
-Required capability/yield risk must be defined by the actual detector program.
+- OPEN
+- CANDIDATE-P
+- LOCAL-QUALIFIED
+- PILOT-RELEASE
+- PRODUCTION-RELEASE.
 
-### Release maturity
+Current end-to-end process remains below PILOT-RELEASE because no local repeated fabrication dataset exists.
 
-- `OPEN`
-- `CANDIDATE-P`
-- `LOCAL-QUALIFIED`
-- `PILOT-RELEASE`
-- `PRODUCTION-RELEASE`.
+## P18 failure-analysis state
 
-Current RP-01 reconstruction remains below `PILOT-RELEASE` because no local repeated fabrication dataset exists.
+P18 now covers upstream, mesa/passivation, RIE/contact, detector electrical/optical, noise/D*, temporal, packaging and metrology failure signatures.
 
-`travelers/P17_PROCESS_RELEASE_CAPABILITY_REGISTER.md` is the blank controlled register for measurement-system results, engineering limits, variance components, capability/risk, coupled LPE/anneal/RIE windows, yield, change control and signoff.
+Diagnostic rule:
+
+`signature -> competing mechanisms -> discriminating tests -> root cause -> containment/corrective action -> verification`.
+
+Prefer raw-data reanalysis and nondestructive/reversible discrimination before destructive analysis.
+
+Examples explicitly covered:
+
+- cutoff/x drift versus metrology/model artifact;
+- thickness/x gradients;
+- wrong carrier state after anneal;
+- low mobility with apparent correct n;
+- incomplete mesa/excess undercut;
+- high 1/f after passivation;
+- acceptable Hall but poor TLM;
+- acceptable TLM but severe sweepout (`rho_c != S_c`);
+- measurement-chain versus true white/g-r noise;
+- package-induced noise/capacitance/bake changes.
+
+Every confirmed failure feeds P17 variance/yield/change-control records.
 
 ## Next integration target
 
-Build the **failure-analysis / diagnostic atlas**:
+Build a master **requirements traceability matrix**:
 
-`observed signature -> plausible mechanisms -> discriminating measurement -> affected Pxx module -> containment/requalification`.
+`final detector requirement -> intermediate physical characteristic -> process variable -> measurement -> Pxx control -> release metric -> failure response`.
 
-Priority signatures should include:
-
-- cutoff/x drift;
-- thickness gradient;
-- p-type or wrong n after anneal;
-- low mobility at correct carrier density;
-- residual melt / poor morphology;
-- excessive mesa undercut;
-- high 1/f after passivation;
-- poor TLM;
-- responsivity sweepout;
-- noise plateau mismatch;
-- unexpectedly low bandwidth;
-- package-induced drift/noise.
-
-The atlas must preserve ambiguity: use discriminating tests rather than forcing one cause from one symptom.
+This should make every process control answer the question: **which final detector property does this protect, and how would failure be detected?**
