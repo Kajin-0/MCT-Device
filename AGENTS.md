@@ -2,575 +2,530 @@
 
 ## Mission
 
-Build a source-traceable, end-to-end HgCdTe photodetector fabrication and characterization manual that a competent researcher can reproduce without undocumented tribal knowledge.
+Build a source-traceable, end-to-end HgCdTe photodetector fabrication and characterization **manual/booklet** that a competent researcher can execute without undocumented tribal knowledge.
 
-Canonical first process: **RP-01**, Smith et al., *Semiconductor Science and Technology* 16, 455–462 (2001), DOI `10.1088/0268-1242/16/6/306`.
+Canonical first process: **RP-01**, E. P. G. Smith et al., *Semiconductor Science and Technology* 16, 455–462 (2001), DOI `10.1088/0268-1242/16/6/306`.
 
-There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository now contains the control architecture from substrate/material preparation through detector characterization, statistical release, failure analysis, requirements traceability, analytical/numerical requirements allocation, empirical-Jacobian qualification, information-optimal DOE planning, and the first hybrid state-boundary/local-Jacobian model for Hg annealing.
+There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains a controlled fabrication/measurement architecture plus explicit routes for closing literature gaps locally.
 
-## Non-negotiable rules
+---
 
-1. Never invent a missing number. Use `OPEN`, `CAL`, `QUAL`, `PARTIAL`, `CANDIDATE-P`, or explicit derivation.
+# Non-negotiable rules
+
+1. **Never invent a missing number.** Use `OPEN`, `CAL`, `QUAL`, `PARTIAL`, `CANDIDATE-P`, explicit derivation, or an evidence class.
 2. Never splice incompatible HgCdTe process families and call the result a published recipe.
-3. Separate direct publication, derived physics, apparatus calibration and local qualification.
-4. Every critical step needs outcome metrology and a pass/fail gate.
+3. Separate direct publication, same-lineage evidence, transfer-family evidence, model values, derived physics, apparatus calibration and local qualification.
+4. Every critical process step requires output metrology and a pass/fail or qualification gate.
 5. Preserve negative searches, rejected inferences, corrections and source conflicts.
 6. Keep Hall quantities, optical-edge quantities, physical etch depth, electrical conversion depth, sheet density and measured geometry distinct.
-7. Keep majority-carrier contact resistivity `rho_c` distinct from minority-carrier contact recombination velocity `S_c`.
-8. Use measured fabricated geometry for field/area/D* normalization.
-9. Treat passivation, post-RIE exposure, thermal cooldown and packaging as detector-process variables.
+7. Keep majority-carrier contact resistivity `rho_c` distinct from minority-carrier contact recombination velocity/effective loss boundary `S_c`.
+8. Use measured fabricated geometry for field, area and D* normalization.
+9. Treat passivation, post-RIE elapsed time/thermal exposure, anneal cooldown and packaging as detector-process variables.
 10. A measured system bandwidth is not detector bandwidth until external transfer functions are de-embedded.
-11. Specifications come from physics/performance; observed process spread does not define its own passing limits.
+11. Engineering specifications come from required detector/material performance; observed process spread does not define its own passing limits.
 12. Failure diagnosis uses competing hypotheses and discriminating tests; never force one cause from one symptom.
-13. Every controlled process variable should trace forward to a final detector requirement.
+13. Every controlled process variable should trace forward to a detector requirement.
 14. Repository scientific specifications do not replace institution-specific Hg/Cd/Br2/HBr/H2/CH4/high-temperature/vacuum/cryogenic EH&S authorization.
-15. Every numerical sensitivity or allocated tolerance must state the protected output, input variable, operating point and evidence class. `PROXY-CONDITIONAL` relations may size experiments but cannot release production specifications.
-16. A tabulated equilibrium ratio such as `xS/xL` is not a local derivative `dxS/dxL`; directional secants from tie-line tables are not independent partial derivatives when other composition/temperature coordinates change simultaneously.
-17. A coded DOE result does not create a physical process tolerance. Physical perturbation magnitudes require independent-run variance, apparatus control and same-regime/morphology bounds.
-18. Repeated observations from one source genealogy are not independent process replicates. Source-use is sequential and must be analyzed at the correct hierarchical/repeated-measures level.
-19. Never regress reciprocal Hall density through a p/n Hall-sign transition. In a multicarrier transition, apparent `1/(q|R_H|)` is singular; use signed Hall/tensor information for the boundary and local `n_H/mu_H` derivatives only inside a verified stable carrier-state region.
-20. Anneal tolerances must satisfy both the detector/material performance budget and margin to the carrier-state transition/multicarrier zone. The tighter constraint controls.
+15. Every numerical sensitivity/tolerance must state protected output, input variable, operating point and evidence class. Proxy relations may size an experiment but cannot release a production specification.
+16. A tabulated equilibrium ratio such as `xS/xL` is not a differential `dxS/dxL`; changing tie-line coordinates simultaneously does not produce an independent partial derivative.
+17. A coded DOE result does not create a physical process tolerance. Physical perturbations require metrology/run variance, apparatus capability and same-regime bounds.
+18. Repeated observations from one melt/source genealogy are not independent process replicates.
+19. Never regress reciprocal Hall density through a p/n Hall-sign transition. Near the transition use signed Hall/tensor information and multicarrier analysis.
+20. Anneal tolerances must satisfy both the detector/material-performance budget and margin to the carrier-state transition zone.
+21. **Empirical/practical literature first.** Before creating another theoretical placeholder for a process variable, search primary papers, theses, patents and institutional repositories for actual times, temperatures, flows, pressures, concentrations, dimensions, apparatus, metrology settings, output values and failure observations.
+22. Theory is used to connect genuine literature gaps, check consistency and allocate requirements — not to displace experimentally reported process information.
+23. A successful historical process condition is not automatically an optimum. Preserve author statements identifying unoptimized variables.
 
-## Current checkpoint — READ THIS FIRST
+---
+
+# Current checkpoint — READ THIS FIRST
 
 Latest recovery checkpoint:
 
-`research/2026-08-16_checkpoint_after_hg_anneal_boundary_round16.md`
+`research/2026-08-16_checkpoint_after_empirical_blocking_contact_round17.md`
 
-Then read:
+Then read, in descending order as needed:
 
-- `research/2026-08-16_checkpoint_after_information_design_round15.md`;
-- `research/2026-08-16_checkpoint_after_lpe_jacobian_round14.md`;
-- `research/2026-08-16_checkpoint_after_analytical_sensitivity_round13.md`.
+- `research/2026-08-16_checkpoint_after_hg_anneal_boundary_round16.md`
+- `research/2026-08-16_checkpoint_after_information_design_round15.md`
+- `research/2026-08-16_checkpoint_after_lpe_jacobian_round14.md`
+- `research/2026-08-16_checkpoint_after_analytical_sensitivity_round13.md`
 
-Current integration files:
+Latest empirical source/gap files:
 
-- `procedures/P17_STATISTICAL_PROCESS_CAPABILITY_RELEASE.md`
-- `travelers/P17_PROCESS_RELEASE_CAPABILITY_REGISTER.md`
-- `procedures/P18_FAILURE_ANALYSIS_DIAGNOSTIC_ATLAS.md`
-- `travelers/P18_FAILURE_ANALYSIS_RECORD.md`
-- `procedures/P19_REQUIREMENTS_TRACEABILITY_MATRIX.md`
-- `procedures/P20_ANALYTICAL_SENSITIVITY_REQUIREMENTS_ALLOCATION.md`
-- `calculations/RP01_FIRST_ORDER_SENSITIVITY_MATRIX.md`
-- `travelers/P20_REQUIREMENTS_ALLOCATION_REGISTER.md`
-- `procedures/P21_LPE_RESPONSE_SURFACE_JACOBIAN_QUALIFICATION.md`
-- `calculations/RP01_LPE_TO_SPECTRAL_JACOBIAN_FRAMEWORK.md`
-- `travelers/P21_LPE_JACOBIAN_QUALIFICATION_REGISTER.md`
-- `procedures/P22_INFORMATION_OPTIMAL_DOE_PLANNING.md`
-- `calculations/RP01_P21_CODED_DOE_INFORMATION_DESIGN.md`
-- `travelers/P22_DOE_INFORMATION_REGISTER.md`
-- `procedures/P23_HG_ANNEAL_STATE_BOUNDARY_JACOBIAN_QUALIFICATION.md`
-- `calculations/RP01_HG_ANNEAL_STATE_BOUNDARY_JACOBIAN.md`
-- `travelers/P23_HG_ANNEAL_STATE_BOUNDARY_JACOBIAN_REGISTER.md`
-
-Latest source/gap addenda:
-
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND17.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND17.md`
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND16.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND16.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND14.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND14.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND15.md`
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND16.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND16.md`
 
-For older provenance also read round-9/8/7/6 source and gap addenda.
+Older round-6/7/8/9 source and gap addenda retain important provenance and rejected inferences.
 
-## Controlled module set
+---
+
+# Controlled module set
 
 - P01 wet mesa + P01A
 - P02 anodic oxide + P02A/P02B/P02C
 - P03 x≈0.30 LPE + P03A/P03B/P03C/P03D/P03E
 - P04 Hg anneal + P04A/P04B
-- P05 Hall/VdP
-- P06 FTIR composition/thickness
-- P07 CdZnTe + P07A/P07B/P07C
+- P05 Hall/VdP material metrology
+- P06 FTIR composition/thickness mapping
+- P07 CdZnTe substrate + P07A/P07B/P07C
 - P08 RIE blocking contact + P08A–P08G
 - P09 Cr/Au/TLM + P09A
 - P10 DC bias/self-heating
-- P11 absolute radiometry
+- P11 absolute radiometry/responsivity
 - P12 noise/PSD/NEP/D* + P12A/P12B
-- P13 temporal response + P13A
+- P13 temporal/frequency response + P13A
 - P14 lithography/CD + P14A
 - P15 cryogenic package
 - P16 master end-to-end traveler + blank traveler
-- P17 statistical process capability/release + blank register
-- P18 failure-analysis diagnostic atlas + blank failure record
-- P19 requirements / physics / process traceability matrix
-- P20 analytical sensitivity / numerical requirements allocation + blank allocation register
-- P21 LPE response-surface / empirical-Jacobian qualification + blank qualification register
-- P22 information-optimal DOE planning + blank information register
-- **P23 Hg-anneal state-boundary / local-Jacobian qualification + blank register**.
+- P17 statistical process capability/release + register
+- P18 failure-analysis/CAPA + record
+- P19 requirements traceability
+- P20 analytical sensitivity / requirements allocation + register
+- P21 LPE response-surface / empirical Jacobian + register
+- P22 information-optimal DOE planning + register
+- P23 Hg-anneal state-boundary / local Jacobian + register
+- **P24 blocking-contact empirical process window + empirical qualification register**
 
-## Direct RP-01 anchors — do not drift
+P24 is deliberately empirical/practical and supplements P08/P08D/P08F rather than replacing them.
 
-### Material
+---
 
-- LPE n-HgCdTe on insulating CdZnTe
+# Canonical RP-01 direct anchors — do not drift
+
+## Material
+
+- LPE n-HgCdTe on electrically insulating CdZnTe
 - nominal `x≈0.30`
-- supplier `n=9.8×10^14 cm^-3`
-- supplier `µ=4.0×10^4 cm²/V·s`
-- thickness `9.5 µm`
-- supplier n/µ measurement temperature not stated.
+- supplier-reported `n=9.8×10^14 cm^-3`
+- supplier-reported `mu=4.0×10^4 cm²/V·s`
+- active thickness `9.5 µm`
+- supplier n/mu measurement temperature remains undisclosed
 
-### Contact-window RIE
+## Anodic oxide / contact-window RIE
 
+- anodic oxide `~800 Å = 80 nm`
 - Plasma Technology parallel-plate reactor
 - printed `CH4/5H2`
 - total `64 sccm`
 - `100 mTorr`
 - `50 W`
 - `60 s`
-- converted density `~2.0×10^15 cm^-3`, explicitly averaged over converted thickness
-- mobility `~3.3×10^4 cm²/V·s`.
 
-P08A secondary same-lineage evidence supports `CH4:H2=1:5`; conditional split 10.6667/53.3333 sccm. Not direct historical MFC closure.
+Historical unknowns remain:
 
-P08B: if `d_conv≈8 µm`, conditional `N_s≈1.6×10^12 cm^-2`. Use sheet/multicarrier state plus independently measured depth.
+- reactor model
+- RF frequency
+- powered-electrode area/spacing
+- self-bias
+- sample temperature
+- exact individual historical gas flows
+- base pressure/seasoning details
 
-### Mask-2/passivation/metal
+P08A same-lineage evidence supports interpreting the notation as `CH4:H2=1:5`; the corresponding 10.6667/53.3333-sccm split is a **derived local candidate**, not direct historical MFC closure.
 
-- resist ~`4–5 µm`
+## Converted region
+
+Direct RP-01 paper:
+
+- converted average electron density `~2.0×10^15 cm^-3`, explicitly averaged over converted depth
+- mobility `~3.3×10^4 cm²/V·s`
+- Hall/resistivity at `80 K` and `300 K`
+- variable magnetic field to `2 T`
+
+Same-lineage earlier n-type work cited by RP-01:
+
+- approximately `8 µm` n+ conversion depth under similar RIE conditions
+
+**Do not combine 2e15 cm^-3 and 8 µm and call the derived sheet density a directly measured canonical RP-01 value.**
+
+## RP-01 LBIC practical apparatus
+
+- patterned RIE test square `300×300 µm`
+- Waterloo Scientific scanning laser microscope
+- Nd:YLF laser
+- `1.047 µm`
+- CW
+- approximately `400 mW/cm²`
+- measurement at `80 K`
+
+LBIC is the same-lineage preferred nondestructive method for confirming n+ conversion and estimating vertical/lateral extent.
+
+## Mask-2 / metal / TLM
+
+- resist `~4–5 µm`
 - prebake `80 °C / 30 min`
 - chlorobenzene `30 min`
 - pattern/develop/water rinse
-- anodic oxide `800 Å`
-- Cr `300 Å`
-- Au `2700 Å`.
-
-### Geometry/TLM
-
-- nine 300×300-µm contacts
-- adjacent gaps 50–400 µm in 50-µm increments
+- Cr `300 Å = 30 nm`
+- Au `2700 Å = 270 nm`
+- nine `300×300-µm` contacts
+- adjacent gaps `50–400 µm` in 50-µm increments
 - 80-K `rho_c≈9×10^-4 Ω·cm²`
-- Figures 3/5/6/7 same device
-- exact selected contact pair/gap remains `OPEN` and is not uniquely invertible from published D*/noise/responsivity.
 
-### Detector benchmark
+The exact historical deposition method/rates/base pressure and RIE-to-metal delay remain open.
+
+## Detector benchmark
 
 - 80 K
 - stated 60° FOV
 - spectral response at 1 kHz
+- responsivity-vs-field comparison near 4 µm
 - representative noise field 10 V/cm
 - low-noise preamp + HP35665A
 - 1/f knee ~3 kHz
-- g-r plateau ~24.5 nV/√Hz
+- high-frequency g-r plateau ~24.5 nV/√Hz
 - cutoff ~4.4 µm
 - BLIP D* ~`2.0×10^11 cm Hz^1/2 W^-1` at 4 µm
-- QE ~70%.
+- quoted QE ~70%
 
-Do not assume 24.5 nV/√Hz is the historical 1-kHz noise used in the spectral D* curve.
+Do not use the 24.5-nV/√Hz high-frequency plateau as the 1-kHz noise automatically.
 
-## Current material/process state
+The exact contact pair/gap of the canonical plotted device remains open.
+
+---
+
+# P24 — empirical blocking-contact state
+
+P24 is now the controlling empirical front end for the RIE/contact branch.
+
+## Key practical literature findings
+
+### Physical etch is not electrical conversion depth
+
+Siliquini et al. 1997, vacancy-doped p-Hg0.69Cd0.31Te:
+
+- 410 mTorr
+- CH4/H2
+- 0.4 W/cm²
+- ~0.2-µm physical etch
+- ~1.5-µm electrical conversion
+
+Therefore `d_etch != d_conv` is experimentally established as a process warning.
+
+### x≈.29 extrinsic p-type LBIC/doping branch
+
+UWA institutional record, Siliquini et al. 1998:
+
+- As-doped p-Hg0.71Cd0.29Te
+- prior Hg anneal
+- 340 mTorr
+- CH4/H2
+- 0.4 W/cm²
+- LBIC 80–300 K
+- SEMICAD DEVICE fit for effective converted-region doping
+
+Some public snippets give ~390 mTorr. Preserve the conflict; UWA institutional primary record states 340 mTorr.
+
+### Plasma factor priority
+
+Park et al. 2007, p-Hg0.7Cd0.3Te ICPRIE:
+
+- converted transport/depth most sensitive to **pressure and temperature** in the investigated space
+- RIE/ICP powers also significant
+
+Different reactor/material branch; transfer factor priority, not numerical setpoints.
+
+Local RP-01 optimization priority after historical-center replication:
+
+1. actual sample thermal state
+2. pressure
+3. semiconductor exposure after oxide clear/effective dose
+4. self-bias/ion-energy/RF state
+5. gas-ratio refinement
+
+### Post-RIE thermal/storage history
+
+Smith et al. 1998, p-type x=.31 transfer branch:
+
+- RIE: 400 mTorr / CH4-H2 / 90 W
+- subsequent sealed-tube Hg anneal: 200 °C / 17 h
+- RIE-induced n region disappeared by LBIC and Hall returned to p-like starting state
+
+Other x=.21 plasma-converted work reports 77-K conductivity falling below half after ~2×10^5 s room-temperature storage, with ~5× faster relaxation at 323 K.
+
+These are **not RP-01 stability limits**. They establish that post-RIE elapsed time, storage temperature/ambient and later thermal exposure must be recorded and locally qualified.
+
+### Historical contact was not optimized
+
+Smith et al. explicitly report remaining high-field sweepout and identify n+ density/junction depth as process variables requiring further optimization.
+
+Therefore `100 mTorr / 64 sccm / 50 W / 60 s` is a successful historical center, not a proven optimum.
+
+## P24 four-gate release hierarchy
+
+1. **plasma/material:** oxide clear, physical recession/morphology, sheet transport, LBIC vertical/lateral conversion
+2. **majority contact:** ohmic I-V, TLM, stability
+3. **minority blocking:** R(E) sweepout function with self-heating separated and matched controls
+4. **full detector:** responsivity, noise/NEP/D*, bandwidth/time response, stability, repeated devices/runs
+
+No contact process is released on TLM alone.
+
+---
+
+# LPE state — P03/P21/P22
 
 Historical Honeywell tie line:
 
 `xL=.082, yL=.810, TL=507 °C -> historical xS≈.29`.
 
-Derived source mass fractions Hg `.249738`, Cd `.012502`, Te `.737760`.
+Derived source mass fractions:
 
-Historical source synthesis, charge mass/well volume, exact substrate face, final clean and exact anneal trajectory remain undisclosed, but all now have explicit local qualification paths.
+- Hg `.249738`
+- Cd `.012502`
+- Te `.737760`
 
-### P03C/D/E
+`xS/xL=3.54` is **not** `dxS/dxL`. Adjacent table secants also change yL/TL and are not partial derivatives.
 
-- source prep: mass closure/homogenization/material output;
-- melt inventory/depletion: dimensioned geometry, source-use and Hg-loss state;
-- liquidus/equilibration: actual `TL,heat`, local `ΔT_SC`, sensor/melt offset, spatial thermal field and convergence;
-- temperature uncertainty derived from local process sensitivity.
+P03E controls actual supercooling as
 
-### P07B/C
+`DeltaT_SC = TL_actual - T_contact`.
 
-- select face/miscut from morphology/x/thickness/crystal quality/mobility/lifetime;
-- final surface released by removed depth, morphology/chemistry proxy and clean-to-load history, not etch time alone.
+P21 maps
 
-### P04/P04A/P04B/P23
+`{xL,yL,TL_actual,DeltaT_SC,t_contact,melt geometry/source use/Hg loss}`
 
-Cooldown is part of the Hg-stoichiometry process. Record `T_sample(t),T_reservoir(t),pHg(t)` and accept on `{carrier state,n_H/multicarrier,µ_H,optical x/edge,thickness,morphology,lifetime}`.
+into
 
-P23 adds the hybrid anneal model:
+`{x_opt,thickness,uniformity,optical edge,morphology}`.
 
-- first locate the `P-LIKE / TRANSITION-MULTICARRIER / N-LIKE` boundary using signed Hall/tensor information;
-- only inside a verified stable n-like region fit continuous `log10(n_H)`, `mu_H`, optical and lifetime sensitivities;
-- preserve initial-state dependence;
-- require margin to the state boundary in addition to detector-performance tolerance.
+P22 provides coded/Fisher-information DOE design but physical factor half-ranges remain local qualification values.
 
-## RIE/blocking-contact state
+Do not release a balance/T/time tolerance from the historical tie line alone.
 
-P08C/D/E govern source separation, reactor equivalence and multicarrier transport. The `50 W / 0.4 W cm^-2` electrode-area inference is rejected.
+---
 
-P08F/G require detector-level sweepout suppression without unacceptable noise/bandwidth penalty. `rho_c != S_c`.
+# Anneal state — P04/P23
 
-## Frontside/passivation state
+Cooldown is part of the Hg-stoichiometry process. Record:
 
-P01 x=.28 wet-mesa source: nominal 2% Br2 in3:1 EG:HBr, ~2.78 µm/min at21 °C; full primary text still does not define percentage basis.
+`T_sample(t), T_reservoir(t), pHg(t)`.
 
-P02 exact UWA traveler open. TI-family candidate: 0.1 M KOH /90% EG+10% DI, ~0.3 mA/cm², ~15 V, ~2 min, ~800 Å; x≈.30 lineage confirms strong surface-state/mass-transfer dependence.
+Use final measured state:
 
-P02C requires sidewall/perimeter passivation verification.
+`{carrier state, n_H/multicarrier, mu_H, optical x/edge, thickness, morphology, lifetime/device proxy}`.
 
-P09 historical Cr/Au 30/270 nm direct; vacuum/rates/RIE-to-metal delay locally qualified in P09A.
+P23 state labels:
 
-P14 exact resist/developer remains open; chlorobenzene supports a positive-resist undercut/lift-off mechanism class, not a product identity.
+- `N-LIKE`
+- `P-LIKE`
+- `TRANSITION/MULTICARRIER`
 
-## Measurement state
+For a two-carrier low-field model,
 
-P05 requires variable-field escalation when Hall curvature/sign changes/MR invalidate a one-carrier reduction. Near anneal conversion, signed Hall/tensor data are primary; reciprocal apparent Hall density is not.
+`R_H=(p mu_h²-n mu_e²)/{q(p mu_h+n mu_e)²}`
 
-P12A: later UWA work cites J. F. Siliquini's 1995 UWA PhD thesis for a custom bias-capable low-noise preamp. P12B closes local gain/noise/PSD/ENBW calibration independent of the missing historical circuit.
+so Hall-sign reversal is not p=n and apparent reciprocal Hall density becomes singular near cancellation.
 
-P13 bulk-lifetime interpretation requires low-field/bias-independence and external transfer de-embedding.
+Do not fit one global `log10(n_H)` model through conversion.
 
-## P17 — statistical release
+No unique RP-01 dwell/T/pHg/cooldown is released.
 
-Engineering specification limits come from detector physics/performance, not observed process spread.
+---
 
-Before capability claims characterize measurement repeatability, long-term variation, stability, bias, resolution, linearity, configuration dependence and uncertainty.
+# Substrate / surface / passivation state
 
-Separate:
+- CdZnTe is the correct substrate family.
+- Exact RP-01 Zn fraction/orientation/miscut/final-surface history remain qualification variables.
+- P07C releases final surface by removed depth + morphology/chemistry proxy + clean-to-load + resulting interface quality.
+- Br2/MeOH branches are transfer methods unless direct RP-01 evidence exists.
+
+Wet mesa near-x branch:
+
+- nominal 2% Br2 in 3:1 EG:HBr
+- ~2.78 µm/min at 21 °C
+- anisotropy ~0.63
+- roughness ~2 nm
+- rate variation ~±26%
+- source does not define percentage basis of “2% Br2”
+
+Do not guess wt%, vol%, or wt/vol.
+
+Anodic oxide:
+
+- RP-01 directly closes native oxide identity + ~80 nm only
+- TI-family candidate: 0.1 M KOH, 90% EG/10% DI, ~0.3 mA/cm², endpoint ~15 V, ~2 min, ~80 nm
+- candidate is transfer-family, not historical UWA process
+
+P02C requires sidewall/perimeter passivation verification because surface state can affect 1/f, lifetime and responsivity.
+
+---
+
+# Measurement state
+
+## Hall — P05
+
+Use:
+
+- current reversal
+- field reversal
+- van der Pauw redundancy
+- variable field
+- current-linearity/self-heating test
+- multicarrier/QMSA escalation when curvature/sign changes/MR invalidate one-carrier interpretation
+
+RP-01 one-carrier screening consistency:
+
+- rho ~0.159 Ω·cm
+- Rs ~168 Ω/sq for 9.5 µm
+- |RH| ~6.37×10^3 cm³/C
+
+## FTIR — P06
+
+Controlled Hansen model exists for `x,T -> Eg -> lambda_Eg`.
+
+At x=.30, 80 K:
+
+- Eg ~0.243684 eV
+- lambda_Eg ~5.0879 µm
+
+This is **not** the detector's ~4.4-µm measured cutoff. Do not force equality.
+
+## Bias/self-heating — P10
+
+Use measured gap and active voltage:
+
+`E = V_active/L_measured`.
+
+At fixed E, simple one-carrier screening gives Joule power proportional to E². Use this as a sensitivity, not a substitute for measured detector temperature.
+
+## Radiometry — P11
+
+Preferred absolute responsivity uses calibrated radiance/transfer detector and measured physical aperture/view factor.
+
+Historical 300-K / 4.4-µm-step / 60-degree-full-cone model gives ~1.12×10^15 photons cm^-2 s^-1 and is consistent with the quoted ~1e15 scale, but this remains a reconstruction rather than a historical aperture proof.
+
+## Noise — P12
+
+`NEP=e_n/R_v`
+
+`D*=R_v sqrt(A)/e_n`.
+
+Subtract independent contributions at PSD level, not ASD level.
+
+## Temporal response — P13
+
+`H_meas = H_source H_optics H_detector H_bias H_preamp H_cable H_instrument`.
+
+De-embed external transfer before calling a rolloff detector bandwidth.
+
+A one-pole model uses
+
+`f_3dB=1/(2*pi*tau)`
+
+only after amplitude+phase validate that model. Use `tau_eff` unless bulk-lifetime interpretation is independently justified.
+
+---
+
+# P17/P18/P19/P20 control architecture
+
+## P17 statistical release
+
+Before capability claims, separate:
 
 `measurement -> within-wafer spatial -> run-to-run -> source/substrate lot -> long-term tool/operator`.
 
-P17 does not impose a generic Cpk threshold. Current end-to-end process remains below `PILOT-RELEASE` because no local repeated fabrication dataset exists.
+No generic Cpk threshold is imposed. Current end-to-end process is below `PILOT-RELEASE` because no local repeated fabrication dataset exists.
 
-## P18 — failure analysis
+## P18 failure analysis
 
-Diagnostic rule:
+Use:
 
 `signature -> competing mechanisms -> discriminating tests -> root cause -> containment/corrective action -> verification`.
 
-Prefer raw-data reanalysis and nondestructive/reversible tests before destructive analysis. Every confirmed failure feeds P17 variance/yield/change-control records.
+Preserve failed/negative runs; do not silently discard them from DOE/process history.
 
-## P19 — requirements traceability
+## P19 traceability
 
-P19 links:
+Link:
 
-`final detector requirement -> physical characteristic -> intermediate metric -> controlling Pxx process -> P17 release -> P18 failure response`.
+`final detector requirement -> physical characteristic -> intermediate metric -> controlling process -> P17 release -> P18 failure response`.
 
-Requirement maturity labels:
+Requirement classes:
 
 - `HISTORICAL-REFERENCE`
 - `PHYSICS-REQUIREMENT`
 - `LOCAL-SPEC-OPEN`
 - `LOCAL-QUALIFIED`
-- `RELEASED`.
+- `RELEASED`
 
-## P20 — analytical sensitivity / requirements allocation
+## P20 sensitivity/allocation
 
-P20 separates numerical derivatives into:
+Sensitivity evidence classes:
 
-- `IDENTITY`;
-- `MODEL-CONDITIONAL`;
-- `PROXY-CONDITIONAL`;
-- `EMPIRICAL-REQUIRED`.
+- `IDENTITY`
+- `MODEL-CONDITIONAL`
+- `PROXY-CONDITIONAL`
+- `EMPIRICAL-REQUIRED`
 
-Key first-order results:
+Notable exact/model results retained:
 
-### D*/NEP
+- D*: responsivity +1, noise ASD -1, area +0.5 normalized sensitivity
+- ideal Joule power: field +2
+- Hansen lambda_Eg near x=.30/80 K: ~-33.1 nm per +0.001 x, **not detector-cutoff sensitivity**
+- one-pole f3dB vs tau: -1 normalized sensitivity
 
-`D*=R_v sqrt(A)/e_n` gives exact normalized sensitivities:
+These are support tools, not substitutes for empirical process data.
 
-- responsivity `+1`;
-- detector noise ASD `-1`;
-- area `+0.5`.
+---
 
-### Bias/self-heating
+# Current highest-priority OPEN practical details
 
-Uniform one-carrier screening gives `P_J ∝ E^2`, so field has normalized Joule-power sensitivity `+2`.
+## Blocking contact
 
-### Composition proxy
+- exact Plasma Technology reactor model
+- RF frequency
+- electrode area/spacing
+- historical self-bias
+- historical sample temperature
+- exact individual CH4/H2 flows
+- oxide-clear time
+- canonical physical HgCdTe recession
+- exact process tied to ~8-µm n-type conversion depth
+- canonical n(z) / lateral conversion
+- RP-01 post-RIE aging/thermal budget
+- direct n-type MWIR pressure/T/time/power response matrix
+- direct process-to-D*/bandwidth optimization data
 
-At `x=.30, T=80 K`, Hansen gives
+## Other fabrication modules
 
-`partial lambda_Eg/partial x≈-33.05 um/x`,
+- exact RP-01 anodization electrolyte/current/end-point procedure
+- exact lithography resist/spin/exposure/developer
+- exact Cr/Au deposition method/rates/base pressure
+- exact CdZnTe face/miscut/final clean
+- complete Hg anneal architecture/trajectory
+- full LPE source synthesis/charge mass/well geometry/growth trajectory
 
-or about `-33.1 nm` per `+0.001` x.
+These gaps should trigger **literature recovery first**, not arbitrary local numbers.
 
-This is **not** detector-cutoff sensitivity. The needed production derivative is `partial lambda_response/partial x_P06`.
+---
 
-### 300-K background-model sensitivity
+# Negative search retained from round 17
 
-For the existing ideal 60-degree-full-cone / 4.4-um-step model:
+A targeted indexed UWA search for Smith/Siliquini/Musca/Winchester HgCdTe theses did not surface the missing blocking-contact dissertation files.
 
-- flux changes about `4.03%/K` near 300 K;
-- about `2.06% per 0.01 um` of effective long-wave boundary;
-- about `3.0% per 1 degree` of full cone angle around 60 degrees.
+This means only:
 
-Therefore precision BLIP verification should use calibrated source radiance, measured spectral weighting and physical aperture/view factor rather than scalar historical shorthand.
+**not recovered in the current indexed search**.
 
-### Bandwidth
+It does **not** mean the theses do not exist or are unavailable through another catalog/archive route.
 
-For a validated one-pole response, `S_f3dB,tau=-1`.
+---
 
-To make 1 kHz lie within 1% amplitude of the low-frequency plateau requires `f_3dB >7.02 kHz` under that one-pole model. This is a model criterion, not an RP-01 bandwidth specification.
+# Next logical work
 
-## P21 — P03/P06 empirical Jacobian
+The user has explicitly asked that the manual remain empirical/practical.
 
-P21 formalizes the first high-value empirical block:
+Strongest next sequence:
 
-`{xL,yL,TL_actual,DeltaT_SC,t_contact,h_liquid/inventory,source-use,Hg-loss state}`
-
-`-> {x_opt,thickness,uniformity,optical edge,morphology}`.
-
-### Honeywell derivative warning
-
-Around the candidate xL=.082/yL=.810 row, the adjacent historical directional `Delta xS/Delta xL` secants are about:
-
-- 6.154 on the upper side;
-- 3.182 on the lower side;
-- 4.286 across both adjacent rows.
-
-The tabulated ratio at the candidate row is 3.54.
-
-Because yL and TL also change across these rows, none of these numbers is an independent `partial xS/partial xL`. Their spread only demonstrates why a local multivariable response must be measured.
-
-### Actual supercooling
-
-`DeltaT_SC = TL_actual - T_contact`.
-
-Retain covariance between TL_actual and T_contact when propagating uncertainty.
-
-### Finite-liquid state
-
-P21 introduces the model-conditioning coordinate
-
-`Fo_L = D_eff t_contact / h_liquid^2`
-
-and extraction loading
-
-`epsilon_m = m_epilayer/M_liquid,initial`.
-
-`Fo_L=1` is **not** a released threshold; `D_eff` and the finite-reservoir transition require local validation.
-
-### Hg-loss distinction
-
-Track cumulative/qualified Hg-loss state separately from source-use/solute extraction. Do not use run index as if it uniquely identifies the physical mechanism.
-
-### Sequential DOE
-
-- Stage 0: metrology + center-run variance;
-- Stage 1: `{xL,yL,DeltaT_SC}` source/phase block;
-- Stage 2: `{DeltaT_SC,t_contact}` kinetic block;
-- Stage 3: `{h_liquid/inventory,source-use}` finite-reservoir block with Hg loss tracked separately;
-- Stage 4: holdout confirmation.
-
-### Detector spectral bridge
-
-Matched P06/P11 data must establish
-
-`lambda_det = F(x_opt,d,composition_gradient,edge_metric,...)`
-
-under a fixed detector process, temperature and cutoff convention.
-
-Do not substitute Hansen `lambda_Eg` for this relation.
-
-### Robust-center rule
-
-Choose the final LPE center inside a morphology/yield feasible region and prefer lower sensitivity to realistic process covariance, not merely an exact 9.5-um/x target crossing.
-
-No balance, temperature, timing, melt-mass or source-use tolerance is released yet.
-
-## P22 — information-optimal P21 design
-
-P22 closes the coded experimental-design mathematics for the first empirical Jacobian.
-
-### Rank rule
-
-For a full local quadratic:
-
-- 3 factors require 10 coefficients;
-- `2^3 + centers` remains rank 8 and cannot identify separate quadratic terms;
-- 2 factors require 6 coefficients;
-- `2^2 + centers` remains rank 5.
-
-Center points do not de-alias individual quadratic terms.
-
-### Stage-1 candidates
-
-**17-run face-centered CCD + 3 centers**:
-
-- rank 10;
-- residual df 7;
-- `kappa(X^T X)≈19.70`;
-- internal `I_D≈0.41297`;
-- linear SE multiplier `0.3162 sigma`;
-- interaction `0.3536 sigma`;
-- quadratic `0.6109 sigma`.
-
-**15-run Box-Behnken + 3 centers**:
-
-- rank 10;
-- residual df 5;
-- `kappa≈17.97`;
-- `I_D≈0.36643`;
-- linear `0.3536 sigma`;
-- interaction `0.5000 sigma`;
-- quadratic `0.5204 sigma`.
-
-BBD internal D-information is about 88.7% of the FCCCD value under the same coded model basis, uses two fewer runs and avoids triple-extreme states.
-
-Use FCCCD when cube corners are physically feasible and derivative precision dominates. Use BBD when triple extremes threaten morphology/same-regime validity.
-
-### Stage-2 candidate
-
-11-run 2-factor face-centered CCD + 3 centers:
-
-- rank 6;
-- residual df 5;
-- `kappa≈9.50`;
-- internal `I_D≈0.42835`;
-- linear SE `0.4082 sigma`;
-- interaction `0.5000 sigma`;
-- quadratic `0.6283 sigma`.
-
-### Derivative resolution
-
-Define
-
-`eta=|partial y/partial u| Delta u / sigma_y`.
-
-One-block approximate alpha=.05 / 80%-power linear resolution:
-
-- Stage-1 FCCCD `eta_min≈1.034`;
-- Stage-1 BBD `≈1.242`;
-- Stage-2 FCCCD `≈1.435`.
-
-Thus physical perturbations must be large enough to generate resolvable response relative to independent-run sigma, while remaining inside the same physical regime.
-
-### Sequential next-run criterion
-
-For `M=X^T W X`, candidate row `x_c` and weight `w_c`:
-
-`q_c=w_c x_c^T M^-1 x_c`.
-
-Adding that run multiplies the information determinant by `1+q_c` under the assumed model. Use this only after filtering candidates through morphology, apparatus and genealogy constraints.
-
-### Stage-3 genealogy rule
-
-Source-use is sequential/repeated measures.
-
-Structural floor for quadratic depth/use support:
-
-- 3 depth levels;
-- at least 2 independent charges per depth;
-- at least 3 selected use states per charge;
-- at least 6 independent source genealogies / 18 selected growth states.
-
-This is a structural identifiability floor, not a power-based final sample size.
-
-Use mixed/repeated-measures analysis. Repeated growths from one charge are not independent replicates of the depth factor.
-
-Physical perturbation magnitudes remain OPEN.
-
-## P23 — Hg-anneal state boundary / local Jacobian
-
-P23 formalizes the second high-value empirical block:
-
-`{T_s(t),T_Hg(t),pHg(t),dwell,cooldown,initial state}`
-
-`-> {carrier-state class,n_H/multicarrier,mu_H,optical preservation,tau_eff}`.
-
-### Hall-transition singularity
-
-For the low-field two-carrier model:
-
-`R_H=(p mu_h^2-n mu_e^2)/{q(p mu_h+n mu_e)^2}`.
-
-Thus Hall sign changes at
-
-`p mu_h^2=n mu_e^2`,
-
-not `p=n`.
-
-The reciprocal apparent Hall density `1/(q|R_H|)` diverges at the sign-cancellation boundary. This is a model/measurement singularity, not a physical carrier-density divergence.
-
-### Transport-state labels
-
-Use:
-
-- `N-LIKE`;
-- `P-LIKE`;
-- `TRANSITION/MULTICARRIER`.
-
-Boundary identification uses signed Hall slope/coefficient plus P05 curvature/MR/field/temperature checks. Never force an ambiguous transition specimen into one-carrier `n_H` regression.
-
-### Hybrid model
-
-The correct local object is
-
-`{g(a)=0, transition uncertainty, J_n,a, J_p,a}`.
-
-`log10(n_H)` and `mu_H` derivatives are estimated only inside a verified stable n-like region.
-
-### Non-isothermal diffusion exposure
-
-P23 introduces the model-conditioning coordinate
-
-`Theta_D = integral D[T(t)]/L^2 dt`.
-
-For Arrhenius diffusion,
-
-`D=D0 exp[-E_a/(kT)]`.
-
-This allows ramp/dwell/cooldown contributions to be compared without reducing the process to `T*t`. It remains `MODEL-CONDITIONAL` until validated locally.
-
-Late-time slab relaxation is
-
-`Delta c_bar/Delta c_bar0 ~ exp[-lambda_1^2 Theta_D]`,
-
-with the factor `lambda_1` depending on the physical boundary conditions. One-sided versus two-sided simple slab models differ by a factor of four in characteristic time, so no precise coefficient is assumed without evidence.
-
-### Cooldown fraction
-
-`f_cool,D = Theta_D,cool/Theta_D,total`
-
-is a diagnostic for kinetic exposure, not a release criterion. Cooldown can also move the equilibrium state, so equal diffusion exposure does not guarantee equal final material state.
-
-### Boundary margin
-
-For boundary response `g(a)` and process covariance `Sigma_a`:
-
-`u_g^2 ~= grad(g)^T Sigma_a grad(g)`
-
-plus model/classification uncertainty.
-
-The selected anneal center must have adequate margin to the transition zone as well as meeting detector/material performance budgets.
-
-### Downstream bridge
-
-Selected annealed material must establish
-
-`anneal trajectory -> P05/P06 material state -> P13 lifetime -> P11/P12 responsivity/noise/D*`.
-
-Do not optimize Hall density independently of mobility, lifetime or detector performance.
-
-No anneal tolerance or unique RP-01 dwell/temperature/pHg/cooldown is released yet.
-
-## Current architecture
-
-The repository now has eight integrated layers:
-
-1. **P01–P16:** fabrication/material/device methods + end-to-end traveler;
-2. **P17:** statistical process release/capability/change control;
-3. **P18:** failure diagnosis/corrective action;
-4. **P19:** final-requirement-to-process traceability;
-5. **P20:** analytical/empirical sensitivity and numerical requirements allocation;
-6. **P21:** local response-surface/Jacobian identification for the first high-value P03/P06 block;
-7. **P22:** coded/Fisher-information experimental-design optimization;
-8. **P23:** hybrid carrier-state-boundary + within-state Jacobian for Hg annealing.
-
-Most numerical fabrication tolerances remain `LOCAL-SPEC-OPEN` because no repeated local LPE/anneal/device dataset exists yet.
-
-## Next logical work
-
-The P21/P22 LPE block and P23 anneal block are now analytically structured. Both require local data before numerical process tolerances can be released.
-
-Strongest next purely analytical branch:
-
-1. build the **P08/P10/P12/P13 blocking-contact response model**;
-2. map
-   `{RIE converted profile/depth, sheet transport state, lateral conversion, contact geometry, surface damage}`
-   into
-   `{minority-carrier sweepout boundary condition, responsivity, noise, tau_eff, D*}`;
-3. derive a minimal diffusion/recombination/contact model using an effective minority-carrier surface/contact recombination velocity `S_c`;
-4. prove analytically which combinations of `S_c`, diffusion length, contact spacing and bulk lifetime are identifiable from responsivity + temporal-response data;
-5. preserve the rule `rho_c != S_c` — TLM majority-carrier contact resistivity cannot release the minority-carrier boundary condition;
-6. then use P20/P22 to allocate blocking-contact process requirements.
+1. continue targeted source recovery for the missing P24 blocking-contact apparatus/process numbers, especially theses, full PDFs, patents and archived UWA records;
+2. if those remain inaccessible, move to the next weakly closed practical fabrication module and perform the same literature-first extraction — likely **P02 anodic oxide/passivation** or **P09 Cr/Au deposition**;
+3. create practical source tables/travelers with actual reported numbers and clearly marked transfer branches;
+4. use theory only where the literature genuinely stops and the gap matters to a process decision.
 
 Do not populate production capability/tolerance numbers without local repeated-device data.
