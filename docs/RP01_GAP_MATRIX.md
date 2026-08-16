@@ -36,20 +36,28 @@ Status codes:
 | LPE | furnace/boat architecture | CANDIDATE-P / CAL | covered graphite horizontal slider, separate Hg source, quartz tube, N2 purge/H2 process atmosphere are primary-source anchored; exact dimensions are apparatus-specific |
 | LPE | Hg-loss compensation | CANDIDATE-P / CAL | HgTe or HgTe+Te auxiliary vapor source demonstrated by Bowers–Schmit; source mass/area/free-volume capability must be qualified |
 | LPE | growth temperature | CANDIDATE-P / QUAL | TL=507 °C tie line; growth near 500 °C is primary-source supported, giving a derived ~7 °C supercooling center point |
-| LPE | equilibration | OPEN / QUAL | Harman reports ~1 h at 550 °C in a different process; equilibrium criterion for selected x≈0.30 charge/boat must be established |
-| LPE | supercooling/cooling profile | PARTIAL / QUAL | primary source requires heating above liquidus and growth below it; exact ΔT, ramp and cooling trajectory remain to qualify |
+| LPE | equilibration | OPEN / QUAL | Harman independently reports ~60 min source-wafer equilibration in a pressure-controlled process, but equilibrium criterion for the selected Honeywell x≈0.30 charge/boat must be established rather than transplanted |
+| LPE | supercooling/cooling profile | PARTIAL / QUAL | Bowers–Schmit requires heating above liquidus and growth below it; Harman independently reports 2–10 °C supercooling in another Te-rich pressure-controlled slider process; exact RP-01-compatible trajectory remains to qualify |
 | LPE | substrate meltback | CANDIDATE-P / QUAL | Radhakrishnan demonstrates in-situ meltback as an interface-cleaning method; x≈0.30 chemistry/time/removed depth remain open |
-| LPE | contact/growth time | OPEN / QUAL | must be calibrated against thickness at fixed composition/thermal condition; literature times are process-specific |
-| LPE | growth termination / wipe-off | PARTIAL / CAL | slider translation to separate melt/substrate is primary-source anchored; velocity, geometry and residual-melt control remain open |
+| LPE | contact/growth time | OPEN / QUAL | Harman gives 10 s–30 min broad range (1–20 min preferred) in a different process; selected x≈0.30 boat must be calibrated against thickness at fixed composition/thermal condition |
+| LPE | growth termination / wipe-off architecture | CANDIDATE-P / CAL | Honeywell US4592304 gives dedicated CdTe-piece wipe-off well; exact translation velocity/contact mechanics remain apparatus variables |
+| LPE | wipe-off CdTe-piece spacing | CANDIDATE-P / QUAL | patent describes loose unpolished CdTe pieces in vertical slots ~1 mm apart; verify mechanical compatibility and scratch/residual-melt performance |
+| LPE | wipe-off translation speed | OPEN / CAL | not specified in patent; determine from residual-melt versus scratch/damage DOE |
+| LPE | residual-melt acceptance | QUAL | define droplet count, area fraction, max diameter and usable-area thresholds from detector yield/performance |
 | LPE | thickness uniformity metric | OPEN / QUAL | define spatial map, instrument, repeatability and numerical acceptance threshold |
 | LPE | composition uniformity metric | OPEN / QUAL | define spatial FTIR/composition map and acceptable x/cutoff spread |
-| Post-growth | Hg-overpressure anneal architecture | CANDIDATE-P / QUAL | primary work on x≈0.17–0.30 shows 250–300 °C Hg-overpressure annealing can produce n-type material without the composition change seen near 400 °C |
-| Post-growth | anneal time/Hg chemical potential/cooldown | OPEN | full primary method still required before release |
-| Post-growth | final carrier-density target | CLOSED-P / QUAL | RP-01 n≈9.8×10^14 cm^-3; anneal must be qualified to reproduce this state |
-| Post-growth | final mobility target | CLOSED-P / QUAL | RP-01 µe≈4.0×10^4 cm² V^-1 s^-1; anneal/material process must reproduce it |
+| Post-growth | Hg-overpressure anneal architecture | CANDIDATE-P / QUAL | Harman primary process uses controlled Hg vapor; Jones et al. show isothermal Hg-rich treatment converts native-defect-controlled p-type material to n-type; see P04 |
+| Post-growth | candidate anneal temperature/time | CANDIDATE-P / QUAL | Harman gives a direct screening anchor of 250 °C for 1 h under pseudo-isothermal Hg-saturated conditions; not a released RP-01 recipe because that process typically ended in low-10^16 cm^-3 carrier density |
+| Post-growth | supported temperature window | CANDIDATE-P / QUAL | low-temperature native-defect control is <300 °C; Nagahama x≤0.30 work reports 250–300 °C n-type conversion without apparent composition change and warns of interface composition change at 400 °C |
+| Post-growth | Hg partial pressure / chemical potential | PARTIAL / QUAL | Harman gives broad 0.1–250 Torr range for ~200–300 °C annealing and explicitly couples pressure to final defect state; exact RP-01 setpoint remains open |
+| Post-growth | anneal time for RP-01 n target | OPEN / QUAL | must be calibrated by Hall state; x-dependent anneal kinetics preclude direct transfer of x≈0.20 times to x≈0.30 |
+| Post-growth | cooldown path | OPEN / QUAL | record sample/source cooling trajectory; final defect population can depend on path through T–pHg space |
+| Post-growth | final carrier-density target | CLOSED-P / QUAL | RP-01 n≈9.8×10^14 cm^-3; P04 requires post-anneal Hall verification |
+| Post-growth | final mobility target | CLOSED-P / QUAL | RP-01 µe≈4.0×10^4 cm² V^-1 s^-1; P04 requires post-anneal Hall verification |
+| Post-growth | composition-preservation gate | QUAL | pre/post spectral/composition mapping required; statistically significant unintended shift is failure |
 | Material metrology | thickness method | OPEN | establish FTIR/profilometry/cross-section procedure |
 | Material metrology | x/cutoff mapping | OPEN | define instrument and cutoff convention |
-| Material metrology | Hall/Van der Pauw | PARTIAL | paper reports Hall use; full measurement SOP still open |
+| Material metrology | Hall/Van der Pauw | PARTIAL | paper reports Hall use; full measurement SOP including B-field, T, current reversal and uncertainty is still open |
 | Mask 1 | mesa geometry | OPEN | recover exact detector dimensions |
 | Mask 1 | resist identity | OPEN | source search |
 | Mask 1 | resist coating/bake | OPEN | source search |
@@ -120,6 +128,7 @@ Status codes:
 - `procedures/P01_WET_MESA_QUALIFICATION.md`
 - `procedures/P02_ANODIC_OXIDE_QUALIFICATION.md`
 - `procedures/P03_LPE_X030_QUALIFICATION.md`
+- `procedures/P04_HG_ANNEAL_QUALIFICATION.md`
 
 None is a released production procedure yet. Their release blockers are intentionally explicit.
 
