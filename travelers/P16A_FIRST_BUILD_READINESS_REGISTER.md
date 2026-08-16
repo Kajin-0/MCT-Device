@@ -19,13 +19,13 @@ Use with `procedures/P16A_FIRST_BUILD_RELEASE_READINESS_AUDIT.md`.
 
 `TRACEABLE-FIRST-BUILD-READY` requires every mandatory execution/metrology row to be `DIRECT-EXECUTABLE`, `LOCAL-BRANCH-FROZEN`, or justified `NOT-APPLICABLE`.
 
-A controlled method for closing a row is not the same as row closure. In particular, Round 35 adds P30A as the closure route for R04–R07, but those rows remain open until an actual laboratory apparatus and numerical process branch are instantiated.
+A controlled method for closing a row is not the same as row closure. Round 35 added P30A as the closure route for R04–R07; Round 36 adds P28A as the chemistry-definition/lineage closure route for R13–R14. Those rows remain open until actual laboratory branches are instantiated numerically and physically.
 
 ---
 
 ## 2. Master readiness table
 
-| ID | Process / measurement | Controlled modules | Blocker class | Mandatory for packaged first build? | Current Round-35 state | Required closure before build |
+| ID | Process / measurement | Controlled modules | Blocker class | Mandatory for packaged first build? | Current Round-36 state | Required closure before build |
 |---|---|---|---|---|---|---|
 | R01 | source-element identity/inventory | P03/P30/P30A | execution | YES | `OPEN-CHOICE` | freeze supplier/lots/purity/inventory and actual source/charge branch |
 | R02 | CdZnTe substrate composition/face/miscut | P07/P29 | execution | YES | `OPEN-CHOICE` | select incoming substrate specification and record measured plane/polarity/miscut |
@@ -39,8 +39,8 @@ A controlled method for closing a row is not the same as row closure. In particu
 | R10 | Hg anneal enclosure/reservoir | P04/P31 | execution | YES | `APPARATUS-NOT-SELECTED` | freeze sample/reservoir geometry and Hg-source state |
 | R11 | Hg anneal trajectory | P04A/P04B/P23/P31 | execution | YES | `OPEN-CHOICE` | freeze Ts(t), THg(t), pHg/source proxy, dwell and cooldown with Hall/optical gates |
 | R12 | Mask-1 resist/lithography | P14/P32 | execution | YES | `OPEN-CHOICE` | choose resist, coating, bake, exposure, developer, alignment and strip branch |
-| R13 | wet-mesa etchant preparation basis | P01/P01A/P28 | execution | YES | `UNDEFINED-BASIS` | explicitly define Br2 percentage basis, EG:HBr basis, HBr assay or select another fully qualified local bath |
-| R14 | wet-mesa endpoint/rinse/passivation handoff | P01/P28 | execution | YES | `OPEN-CHOICE` | freeze bath T/agitation/age, measured isolation/depth endpoint, rinse/dry and elapsed-time rule |
+| R13 | wet-mesa etchant preparation basis | P01/P01A/P28/P28A | execution | YES | `UNDEFINED-BASIS` | instantiate P28A: select an explicit Br2 definition and denominator, explicit EG:HBr ratio basis, certified HBr assay and actual reagent genealogy; same-SSPL `v/v` evidence is candidate support, not historical closure |
+| R14 | wet-mesa endpoint/rinse/passivation handoff | P01/P28/P28A | execution | YES | `OPEN-CHOICE` | freeze bath T/agitation/age, measured isolation/depth endpoint, quench/rinse/dry or wet-transfer path, air-exposure trajectory and `t_etch→P25`; qualify resulting P25 response |
 | R15 | anodic oxide cell/bath execution | P02/P25 | execution | YES | `OPEN-CHOICE` | select electrolyte/cell/exposed area/current-density/V(t)-charge endpoint/rinse branch |
 | R16 | Mask-2 resist/exposure/develop/chlorobenzene | P14A/P27 | execution | YES | `OPEN-CHOICE` | freeze product, coating, exposure, developer, chlorobenzene bath state/sequence |
 | R17 | RIE gas realization | P08/P24/P34 | execution | YES | `UNDEFINED-BASIS` | define actual CH4/H2 composition/delivery realizing local branch; do not guess historical split |
@@ -66,9 +66,15 @@ A controlled method for closing a row is not the same as row closure. In particu
 
 ### Round-35 LPE status note
 
-P30A closes a **methodological** gap: there is now a controlled procedure and register for converting measured boat geometry into an empirically selected absolute charge and trajectory. It does not close the **physical implementation** gap because the project has not yet specified an actual laboratory boat/furnace/tube/actuator, numerical `M_charge`, atmosphere or trajectory.
+P30A closes a **methodological** gap: there is a controlled procedure and register for converting measured boat geometry into an empirically selected absolute charge and trajectory. It does not close the **physical implementation** gap because the project has not yet specified an actual laboratory boat/furnace/tube/actuator, numerical `M_charge`, atmosphere or trajectory.
 
 Therefore R04–R07 remain blocking rows.
+
+### Round-36 wet-mesa chemistry status note
+
+P28A closes another **methodological/evidence-ranking** gap. The direct Srivastav paper still does not define the basis of `2% Br2`, the basis of `3:1 EG:HBr`, or the HBr stock assay. Same-SSPL/overlapping-author process evidence explicitly uses `v/v` for Br2/methanol, which upgrades a volume-based interpretation to a ranked candidate but does not redefine the historical mesa formulation. Primary HgCdTe literature also explicitly contains `w/w` Br:HBr conventions.
+
+Therefore R13 remains `UNDEFINED-BASIS` until a local recipe is mathematically and materially instantiated, and R14 remains `OPEN-CHOICE` until the post-etch trajectory is frozen and qualified.
 
 ---
 
@@ -83,7 +89,8 @@ These do not block a clearly labeled local qualification build but block literal
 | exact supplier/UWA Hg-anneal history | `HISTORICAL-IDENTITY-OPEN` | local P31 branch may substitute |
 | exact Mask-1 product/process | `HISTORICAL-IDENTITY-OPEN` | local P32 branch may substitute |
 | exact Mask-2 resist/exposure/developer/lift-off | `HISTORICAL-IDENTITY-OPEN` | local P27 branch may substitute |
-| exact wet-mesa chemistry basis | `HISTORICAL-IDENTITY-OPEN` and execution currently unresolved | execution still requires a defined local bath |
+| exact Srivastav/RP-01 wet-mesa chemistry basis | `HISTORICAL-IDENTITY-OPEN` and execution currently unresolved | Round-36 same-SSPL evidence supports `v/v` as candidate only; local P28/P28A branch may substitute once explicitly defined and qualified |
+| exact wet-mesa rinse/air-exposure/anodization handoff | `HISTORICAL-IDENTITY-OPEN` | same-SSPL and other primary transfer branches establish trajectory importance but do not identify RP-01 handoff |
 | exact Plasma Technology reactor hardware/gas realization | `HISTORICAL-IDENTITY-OPEN` and execution currently unresolved | local P34 reactor branch may substitute once frozen |
 | exact Cr/Au deposition hardware/rates/vacuum | `HISTORICAL-IDENTITY-OPEN` | local P26 branch may substitute |
 | exact material method behind x≈0.30 / 9.5 µm | `HISTORICAL-IDENTITY-OPEN` | modern P06/P06A may measure local state |
@@ -103,6 +110,8 @@ Before declaring `TRACEABLE-FIRST-BUILD-READY`, answer YES to all applicable que
 
 - [ ] Every irreversible process has a selected branch and revision.
 - [ ] Every chemical/reagent concentration has an explicit preparation basis and stock assay/grade where relevant.
+- [ ] P28A contains an explicit Br2 mathematical definition/denominator, EG:HBr definition, HBr assay and reagent genealogy for the selected local mesa branch.
+- [ ] P28/P28A contain a frozen bath-temperature/agitation/age and rinse/air-exposure/P25-handoff trajectory supported by coupon data.
 - [ ] Every commercial consumable/product is identified by manufacturer/product/lot or a controlled equivalent specification.
 - [ ] Every process tool is identified by model/serial/revision and required calibration state.
 - [ ] Every required setpoint or trajectory is specified numerically or by a calibrated physical endpoint.
