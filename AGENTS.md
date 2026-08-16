@@ -6,7 +6,7 @@ Build a source-traceable, end-to-end HgCdTe photodetector fabrication and charac
 
 Canonical first process: **RP-01**, Smith et al., *Semiconductor Science and Technology* 16, 455–462 (2001), DOI `10.1088/0268-1242/16/6/306`.
 
-There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository now contains the control architecture from substrate/material preparation through detector characterization, statistical release, failure analysis, requirements traceability, analytical/numerical requirements allocation, empirical-Jacobian qualification and information-optimal DOE planning.
+There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository now contains the control architecture from substrate/material preparation through detector characterization, statistical release, failure analysis, requirements traceability, analytical/numerical requirements allocation, empirical-Jacobian qualification, information-optimal DOE planning, and the first hybrid state-boundary/local-Jacobian model for Hg annealing.
 
 ## Non-negotiable rules
 
@@ -28,15 +28,18 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository now contai
 16. A tabulated equilibrium ratio such as `xS/xL` is not a local derivative `dxS/dxL`; directional secants from tie-line tables are not independent partial derivatives when other composition/temperature coordinates change simultaneously.
 17. A coded DOE result does not create a physical process tolerance. Physical perturbation magnitudes require independent-run variance, apparatus control and same-regime/morphology bounds.
 18. Repeated observations from one source genealogy are not independent process replicates. Source-use is sequential and must be analyzed at the correct hierarchical/repeated-measures level.
+19. Never regress reciprocal Hall density through a p/n Hall-sign transition. In a multicarrier transition, apparent `1/(q|R_H|)` is singular; use signed Hall/tensor information for the boundary and local `n_H/mu_H` derivatives only inside a verified stable carrier-state region.
+20. Anneal tolerances must satisfy both the detector/material performance budget and margin to the carrier-state transition/multicarrier zone. The tighter constraint controls.
 
 ## Current checkpoint — READ THIS FIRST
 
 Latest recovery checkpoint:
 
-`research/2026-08-16_checkpoint_after_information_design_round15.md`
+`research/2026-08-16_checkpoint_after_hg_anneal_boundary_round16.md`
 
 Then read:
 
+- `research/2026-08-16_checkpoint_after_information_design_round15.md`;
 - `research/2026-08-16_checkpoint_after_lpe_jacobian_round14.md`;
 - `research/2026-08-16_checkpoint_after_analytical_sensitivity_round13.md`.
 
@@ -56,12 +59,17 @@ Current integration files:
 - `procedures/P22_INFORMATION_OPTIMAL_DOE_PLANNING.md`
 - `calculations/RP01_P21_CODED_DOE_INFORMATION_DESIGN.md`
 - `travelers/P22_DOE_INFORMATION_REGISTER.md`
+- `procedures/P23_HG_ANNEAL_STATE_BOUNDARY_JACOBIAN_QUALIFICATION.md`
+- `calculations/RP01_HG_ANNEAL_STATE_BOUNDARY_JACOBIAN.md`
+- `travelers/P23_HG_ANNEAL_STATE_BOUNDARY_JACOBIAN_REGISTER.md`
 
 Latest source/gap addenda:
 
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND14.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND14.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND15.md`
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND16.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND16.md`
 
 For older provenance also read round-9/8/7/6 source and gap addenda.
 
@@ -88,7 +96,8 @@ For older provenance also read round-9/8/7/6 source and gap addenda.
 - P19 requirements / physics / process traceability matrix
 - P20 analytical sensitivity / numerical requirements allocation + blank allocation register
 - P21 LPE response-surface / empirical-Jacobian qualification + blank qualification register
-- **P22 information-optimal DOE planning + blank information register**.
+- P22 information-optimal DOE planning + blank information register
+- **P23 Hg-anneal state-boundary / local-Jacobian qualification + blank register**.
 
 ## Direct RP-01 anchors — do not drift
 
@@ -171,9 +180,16 @@ Historical source synthesis, charge mass/well volume, exact substrate face, fina
 - select face/miscut from morphology/x/thickness/crystal quality/mobility/lifetime;
 - final surface released by removed depth, morphology/chemistry proxy and clean-to-load history, not etch time alone.
 
-### P04B
+### P04/P04A/P04B/P23
 
-Cooldown is part of the Hg-stoichiometry process. Record `T_sample(t),T_reservoir(t),pHg(t)` and accept on `{carrier sign,n_H/multicarrier,µ_H,optical x/edge,thickness,morphology,lifetime}`.
+Cooldown is part of the Hg-stoichiometry process. Record `T_sample(t),T_reservoir(t),pHg(t)` and accept on `{carrier state,n_H/multicarrier,µ_H,optical x/edge,thickness,morphology,lifetime}`.
+
+P23 adds the hybrid anneal model:
+
+- first locate the `P-LIKE / TRANSITION-MULTICARRIER / N-LIKE` boundary using signed Hall/tensor information;
+- only inside a verified stable n-like region fit continuous `log10(n_H)`, `mu_H`, optical and lifetime sensitivities;
+- preserve initial-state dependence;
+- require margin to the state boundary in addition to detector-performance tolerance.
 
 ## RIE/blocking-contact state
 
@@ -194,6 +210,8 @@ P09 historical Cr/Au 30/270 nm direct; vacuum/rates/RIE-to-metal delay locally q
 P14 exact resist/developer remains open; chlorobenzene supports a positive-resist undercut/lift-off mechanism class, not a product identity.
 
 ## Measurement state
+
+P05 requires variable-field escalation when Hall curvature/sign changes/MR invalidate a one-carrier reduction. Near anneal conversion, signed Hall/tensor data are primary; reciprocal apparent Hall density is not.
 
 P12A: later UWA work cites J. F. Siliquini's 1995 UWA PhD thesis for a custom bias-capable low-noise preamp. P12B closes local gain/noise/PSD/ENBW calibration independent of the missing historical circuit.
 
@@ -440,9 +458,93 @@ Use mixed/repeated-measures analysis. Repeated growths from one charge are not i
 
 Physical perturbation magnitudes remain OPEN.
 
+## P23 — Hg-anneal state boundary / local Jacobian
+
+P23 formalizes the second high-value empirical block:
+
+`{T_s(t),T_Hg(t),pHg(t),dwell,cooldown,initial state}`
+
+`-> {carrier-state class,n_H/multicarrier,mu_H,optical preservation,tau_eff}`.
+
+### Hall-transition singularity
+
+For the low-field two-carrier model:
+
+`R_H=(p mu_h^2-n mu_e^2)/{q(p mu_h+n mu_e)^2}`.
+
+Thus Hall sign changes at
+
+`p mu_h^2=n mu_e^2`,
+
+not `p=n`.
+
+The reciprocal apparent Hall density `1/(q|R_H|)` diverges at the sign-cancellation boundary. This is a model/measurement singularity, not a physical carrier-density divergence.
+
+### Transport-state labels
+
+Use:
+
+- `N-LIKE`;
+- `P-LIKE`;
+- `TRANSITION/MULTICARRIER`.
+
+Boundary identification uses signed Hall slope/coefficient plus P05 curvature/MR/field/temperature checks. Never force an ambiguous transition specimen into one-carrier `n_H` regression.
+
+### Hybrid model
+
+The correct local object is
+
+`{g(a)=0, transition uncertainty, J_n,a, J_p,a}`.
+
+`log10(n_H)` and `mu_H` derivatives are estimated only inside a verified stable n-like region.
+
+### Non-isothermal diffusion exposure
+
+P23 introduces the model-conditioning coordinate
+
+`Theta_D = integral D[T(t)]/L^2 dt`.
+
+For Arrhenius diffusion,
+
+`D=D0 exp[-E_a/(kT)]`.
+
+This allows ramp/dwell/cooldown contributions to be compared without reducing the process to `T*t`. It remains `MODEL-CONDITIONAL` until validated locally.
+
+Late-time slab relaxation is
+
+`Delta c_bar/Delta c_bar0 ~ exp[-lambda_1^2 Theta_D]`,
+
+with the factor `lambda_1` depending on the physical boundary conditions. One-sided versus two-sided simple slab models differ by a factor of four in characteristic time, so no precise coefficient is assumed without evidence.
+
+### Cooldown fraction
+
+`f_cool,D = Theta_D,cool/Theta_D,total`
+
+is a diagnostic for kinetic exposure, not a release criterion. Cooldown can also move the equilibrium state, so equal diffusion exposure does not guarantee equal final material state.
+
+### Boundary margin
+
+For boundary response `g(a)` and process covariance `Sigma_a`:
+
+`u_g^2 ~= grad(g)^T Sigma_a grad(g)`
+
+plus model/classification uncertainty.
+
+The selected anneal center must have adequate margin to the transition zone as well as meeting detector/material performance budgets.
+
+### Downstream bridge
+
+Selected annealed material must establish
+
+`anneal trajectory -> P05/P06 material state -> P13 lifetime -> P11/P12 responsivity/noise/D*`.
+
+Do not optimize Hall density independently of mobility, lifetime or detector performance.
+
+No anneal tolerance or unique RP-01 dwell/temperature/pHg/cooldown is released yet.
+
 ## Current architecture
 
-The repository now has seven integrated layers:
+The repository now has eight integrated layers:
 
 1. **P01–P16:** fabrication/material/device methods + end-to-end traveler;
 2. **P17:** statistical process release/capability/change control;
@@ -450,23 +552,25 @@ The repository now has seven integrated layers:
 4. **P19:** final-requirement-to-process traceability;
 5. **P20:** analytical/empirical sensitivity and numerical requirements allocation;
 6. **P21:** local response-surface/Jacobian identification for the first high-value P03/P06 block;
-7. **P22:** coded/Fisher-information experimental-design optimization for P21.
+7. **P22:** coded/Fisher-information experimental-design optimization;
+8. **P23:** hybrid carrier-state-boundary + within-state Jacobian for Hg annealing.
 
-Most numerical fabrication tolerances remain `LOCAL-SPEC-OPEN` because no repeated local LPE/device dataset exists yet.
+Most numerical fabrication tolerances remain `LOCAL-SPEC-OPEN` because no repeated local LPE/anneal/device dataset exists yet.
 
 ## Next logical work
 
-The P21 design is now analytically mature until Stage-0 apparatus/run-variance data or a concrete apparatus specification exist.
+The P21/P22 LPE block and P23 anneal block are now analytically structured. Both require local data before numerical process tolerances can be released.
 
 Strongest next purely analytical branch:
 
-1. build the **P04/P05/P13 anneal-trajectory sensitivity/state framework**;
+1. build the **P08/P10/P12/P13 blocking-contact response model**;
 2. map
-   `{T_sample(t),T_reservoir(t),pHg(t),dwell,cooldown,initial material state}`
+   `{RIE converted profile/depth, sheet transport state, lateral conversion, contact geometry, surface damage}`
    into
-   `{carrier sign,n_H/multicarrier,mu_H,tau_eff,optical-edge preservation}`;
-3. explicitly treat p/n conversion as a state/classification boundary rather than forcing one global linear Jacobian through it;
-4. derive local continuous sensitivities only within one stable carrier-state region;
-5. then design the coded information-optimal anneal DOE analogously to P22.
+   `{minority-carrier sweepout boundary condition, responsivity, noise, tau_eff, D*}`;
+3. derive a minimal diffusion/recombination/contact model using an effective minority-carrier surface/contact recombination velocity `S_c`;
+4. prove analytically which combinations of `S_c`, diffusion length, contact spacing and bulk lifetime are identifiable from responsivity + temporal-response data;
+5. preserve the rule `rho_c != S_c` — TLM majority-carrier contact resistivity cannot release the minority-carrier boundary condition;
+6. then use P20/P22 to allocate blocking-contact process requirements.
 
 Do not populate production capability/tolerance numbers without local repeated-device data.
