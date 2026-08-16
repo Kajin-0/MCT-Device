@@ -2,84 +2,92 @@
 
 ## Mission
 
-Build a source-traceable, end-to-end HgCdTe photodetector fabrication and characterization **manual/booklet** that a competent researcher can execute without undocumented tribal knowledge.
+Build a source-traceable, end-to-end HgCdTe photodetector fabrication and characterization **manual/booklet** executable by a competent researcher without undocumented tribal knowledge.
 
 Canonical first process: **RP-01**, E. P. G. Smith et al., *Semiconductor Science and Technology* 16, 455–462 (2001), DOI `10.1088/0268-1242/16/6/306`.
 
-There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains direct historical anchors, empirical transfer procedures, measurement SOPs, qualification travelers, release/failure architecture and explicit unresolved gaps.
+There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains direct historical anchors, empirical transfer procedures, metrology SOPs, qualification travelers, failure/release architecture and explicit unresolved gaps.
 
 ---
 
-# Non-negotiable rules
+# Non-negotiable scientific/provenance rules
 
-1. **Never invent a missing number.** Use `OPEN`, `CAL`, `QUAL`, `PARTIAL`, `CANDIDATE-P`, an explicit derivation, or a named evidence class.
+1. **Never invent a missing number.** Use `OPEN`, `CAL`, `QUAL`, `PARTIAL`, `CANDIDATE-P`, explicit derivation, or a named evidence class.
 2. Never splice incompatible HgCdTe process families and call the result a published recipe.
 3. Separate direct RP-01, same-lineage, transfer-family, model, derived, apparatus-calibration and local-qualification evidence.
-4. Every critical process step requires output metrology plus a pass/fail/qualification gate.
+4. Every critical process step needs output metrology and a pass/fail/qualification gate.
 5. Preserve negative searches, failed branches, rejected inferences, corrections and source conflicts.
-6. Use measured fabricated geometry for field, area and D* normalization.
+6. Use measured fabricated geometry for field, active area and D* normalization.
 7. Keep Hall quantities, optical-edge quantities, physical etch depth, electrical conversion depth, sheet density, `rho_c` and minority-carrier blocking metrics distinct.
-8. Treat passivation, post-RIE exposure, wet-etch surface exposure, metal-interface exposure, anneal cooldown, substrate clean-to-load, LPE source genealogy and packaging as process variables.
+8. Treat passivation, post-RIE exposure, wet-etch surface exposure, metal-interface exposure, anneal cooldown, substrate clean-to-load, LPE source genealogy, chamber state and packaging as process variables.
 9. Measured system bandwidth is not detector bandwidth until external transfer functions are de-embedded.
-10. Engineering specifications come from required detector/material performance; observed process spread does not define its own passing limits.
-11. Failure diagnosis uses competing hypotheses and discriminating tests.
-12. Repository scientific procedures do not replace institution-specific Hg/Cd/Br2/HBr/H2/CH4/high-temperature/vacuum/cryogenic EH&S authorization.
+10. Specifications derive from required material/device performance, not observed process spread.
+11. Failure diagnosis: signature -> competing mechanisms -> discriminating tests -> root cause -> CAPA -> verification.
+12. Repository procedures do not replace institution-specific Hg/Cd/Br2/HBr/H2/CH4/high-temperature/vacuum/cryogenic EH&S.
 13. Every numerical sensitivity/tolerance states protected output, input, operating point and evidence class. Proxies may size experiments but cannot release production specifications.
-14. A tie-line ratio such as `xS/xL` is not a local derivative `dxS/dxL` when other coordinates change.
-15. A coded DOE result does not create a physical process tolerance.
-16. Repeated observations from one melt/source/bath/substrate/anneal-source/package genealogy are not independent replicates.
+14. A tie-line ratio such as `xS/xL` is not `dxS/dxL` when other coordinates vary.
+15. Coded DOE coordinates do not create physical tolerances.
+16. Repeated observations from one melt/source/bath/substrate/anneal-source/chamber/package genealogy are not iid independent replicates.
 17. Never regress reciprocal Hall density through a p/n Hall-sign transition; use signed Hall/tensor information near transition.
-18. **Empirical/practical literature first.** Before creating theoretical placeholders, search primary papers, theses, patents, proceedings and institutional archives for actual times, temperatures, concentrations, flows, pressures, dimensions, apparatus, metrology settings, outputs and failure observations.
-19. Theory connects genuine literature gaps and checks consistency; it does not displace reported process data.
-20. A successful historical process condition is not automatically an optimum.
+18. **Empirical/practical literature first.** Before theoretical placeholders, search primary papers, theses, patents, proceedings and institutional archives for real times, temperatures, concentrations, flows, pressures, dimensions, apparatus, metrology settings and outcomes.
+19. Theory connects genuine gaps and checks consistency; it does not displace published process data.
+20. A successful historical center is not automatically an optimum.
 21. Equal anodic-oxide thickness does not imply equal interface state.
 22. No undocumented ion mill, wet etch or plasma clean may be inserted between qualified P08 RIE and Cr deposition.
 23. Baseline P26 is as-deposited; post-metal anneals from other contact architectures are transfer evidence only.
 24. Cryogenic TLM records optical-background/shield state as well as temperature/current.
-25. Chlorobenzene constrains Mask-2 to a positive diazo/DNQ-novolak AZ-type lift-off family but does not identify a commercial resist.
-26. Preserve RP-01 Mask-2 wording `prebake -> chlorobenzene -> then patterned/developed/water rinse`; do not silently reorder the sequence.
-27. A generic AZ developer/lift-off solvent is not automatically the RP-01 developer/solvent.
-28. **Wet-etch concentration rule:** a percentage without an explicit basis is not an executable formulation. Never guess Srivastav `2% Br2`.
-29. Preserve `3:1 EG:HBr` symbolically until its preparation basis is recovered or explicitly defined locally.
+25. Chlorobenzene constrains Mask-2 to a positive diazo/DNQ-novolak lift-off family but does not identify a resist product.
+26. Preserve RP-01 Mask-2 ordering `prebake -> chlorobenzene -> then patterned/developed/water rinse`; do not silently reorder it.
+27. A generic developer or lift-off solvent is not automatically historical RP-01 practice.
+28. **Wet-etch percentage without basis is not an executable formulation.** Never guess the basis of Srivastav `2% Br2`.
+29. Preserve `3:1 EG:HBr` symbolically until preparation basis is recovered or locally defined.
 30. HBr stock assay is part of wet-etch chemistry.
-31. Br2 bath age/open exposure/run order/cumulative etched area/agitation are process variables.
-32. **Wet-mesa endpoint rule:** time is an input; measured through-layer isolation is the output.
-33. Post-wet-etch air time and surface state are part of the P28→P25 handoff.
-34. **CdZnTe rule:** `4% Zn`, `{111}`, B polarity, or “epi-ready” are not direct RP-01 values unless sourced. Record actual lot, lattice/composition, polarity, miscut and final surface.
-35. A/B polarity, miscut magnitude and miscut azimuth are separate coordinates.
-36. Substrate impurity/ingot genealogy is a fabrication variable; Cu is a high-priority warning analyte for lightly doped LPE HgCdTe.
-37. A substrate surface is released from resulting LPE interface/material quality, not AFM roughness or vendor label alone.
-38. Clean-to-LPE timing/ambient must be timestamped.
-39. **LPE composition is not charge mass.** `xL/yL` defines composition; absolute charge mass requires defined well geometry/inventory.
-40. **Do not average incompatible growth-time branches.** Harman `0.25–10 min` and Honeywell ~30-min patent examples remain separate evidence.
-41. **Source-preparation branches remain separate.** Sealed-ampoule source synthesis and in-situ Hg-vapor solution preparation are not one recipe.
-42. **Wipe-off hardware generations remain separate.** CdTe-piece wipe-off and scribed-CdTe-apron wipe-off are distinct Honeywell implementations.
-43. Slider clearance, speed, smoothness, contact/separation time and separation temperature are LPE process variables.
-44. LPE thermal history is `T(t)`, not a scalar `Tgrowth`. Record liquidus estimate, actual supercooling, cooling rate and cooldown.
-45. Hg-source mass/geometry/reuse and growth-melt reuse form repeated-measures genealogies.
-46. **Hg anneal is trajectory defined.** `250 °C in Hg` is incomplete; retain `T_s(t)`, `T_Hg(t)`, enclosure/source geometry, pHg state and cooldown.
-47. **Isothermal and two-temperature Hg anneals are separate process branches.** `T_Hg≈T_s` and `T_Hg<T_s` can establish different carrier states.
-48. **Hg saturation is a boundary condition, not a universal gram quantity.**
-49. Controller setpoint is not sample/reservoir temperature until calibration and thermal lag are known.
-50. Do not copy multi-day bulk Hg-anneal times onto a ~9.5-µm LPE epilayer.
-51. High-temperature dislocation/Te-precipitate conditioning and low-temperature vacancy/stoichiometry control are separate anneal objectives.
-52. During two-zone/high-temperature anneals, source/sample temperature relation must prevent uncontrolled Hg condensation/deposition/dissolution; cooldown is part of the recipe.
-53. A final n-type Hall sign is not sufficient anneal release. Require Hall-model validity, optical/thickness preservation and defect/morphology closure.
-54. **Mask-1 and Mask-2 are different resist functions.** Do not copy Mask-2's chlorobenzene/lift-off process into Mask 1.
-55. **Mask-1 thickness is not a selectivity specification.** Release from remaining resist height, edge retreat, pinholes/adhesion and final mesa transfer through P28.
-56. AZ4620 is a strong product-identified Br2/HBr deep-mesa transfer candidate, **not** the historical RP-01 resist.
-57. Hunt 180CP is a historical deep-through-HgCdTe Br2/methanol transfer branch, not a generic modern substitute.
-58. Changing resist thickness/profile/product changes P28 dimensional transfer; requalify mask bias and edge trenching unless equivalence is demonstrated.
-59. Resist stripping is part of the HgCdTe surface process. Acetone from another branch is not historical proof.
-60. Do not introduce ultrasonics into Mask-1 stripping by default.
-61. **P05 audit rule:** the existing P05 is the canonical Hall/VdP execution SOP. Do not create a duplicate Hall module unless new evidence materially changes the method.
-62. **Die attach is a detector process variable.** Mechanical compliance, CTE match, bondline thermal conductance, cure history and detector electrical/noise stability are coupled outputs.
-63. **Adhesive product identity is not a bondline specification.** Measure bondline thickness, coverage, voiding and die tilt.
-64. Honeywell 5-g/40-g thermocompression values are controlled experimental transfer data, **not** RP-01 bond setpoints.
-65. A packaged HgCdTe photoconductor can have package-generated thermal poles on ms-to-hundreds-ms scales. Do not assign them to intrinsic carrier lifetime without P33/P13 separation.
-66. Package thermal history and thermal-cycle count are genealogical process variables. Repeated cycles of one package are not independent package replicates.
-67. Do not transplant p-HgCdTe or FPA contact/interconnect metallurgies (In solder, Mo/AuGe, indium bumps, etc.) into the RP-01 Cr/Au contact chain without reopening P26/P24.
-68. A package is not released by die shear or wire pull alone; mechanical, electrical/noise, thermal and optical/device gates must all pass.
+31. Br2 bath age/open exposure/run order/cumulative area/agitation are process variables.
+32. **Wet-mesa endpoint:** time is an input; measured through-layer isolation is the output.
+33. Post-wet-etch air time/surface state are part of the P28->P25 handoff.
+34. **CdZnTe vendor label is not interface specification.** Record actual composition/lattice state, plane, polarity, miscut, defects and final surface.
+35. A/B polarity, miscut magnitude and azimuth are separate coordinates.
+36. Substrate impurity/ingot genealogy follows the epilayer/device; Cu is a high-priority warning analyte.
+37. Release substrate surface from resulting LPE interface/material quality, not AFM roughness alone.
+38. Clean-to-LPE interval/ambient must be timestamped.
+39. **LPE composition is not charge mass.** Absolute inventory requires defined well geometry/mass.
+40. Do not average incompatible Harman/Honeywell growth-time branches.
+41. Sealed-ampoule source synthesis and in-situ Hg-vapor preparation remain separate branches.
+42. CdTe-piece wipe-off and scribed-CdTe-apron wipe-off are separate Honeywell hardware generations.
+43. Slider clearance/speed/smoothness/contact/separation temperature are LPE variables.
+44. LPE thermal history is `T(t)`, not scalar `Tgrowth`.
+45. Hg-source mass/geometry/reuse and melt reuse are repeated-measures genealogies.
+46. **Hg anneal is trajectory-defined:** retain `T_s(t)`, `T_Hg(t)`, pHg/source geometry and cooldown.
+47. Isothermal `T_Hg≈T_s` and two-temperature `T_Hg<T_s` anneals are separate branches.
+48. Hg saturation is a boundary condition, not a universal gram quantity.
+49. Controller setpoint is not sample/reservoir temperature until calibrated.
+50. Do not copy multi-day bulk anneals onto a ~9.5-µm epilayer.
+51. High-T defect/precipitate conditioning and low-T stoichiometry control are separate objectives.
+52. Two-zone cooldown relation is part of the anneal recipe.
+53. Final n-type Hall sign alone does not release an anneal.
+54. **Mask-1 and Mask-2 are different resist functions.**
+55. Mask-1 thickness is not a selectivity specification; release from surviving profile and final mesa transfer.
+56. AZ4620 is a strong Br2/HBr product-identified transfer candidate, not historical RP-01 identity.
+57. Hunt 180CP is a historical deep-through-HgCdTe Br2/methanol branch, not a generic substitute.
+58. Resist-product/profile changes reopen P28 dimensional transfer/mask bias.
+59. Resist stripping is part of HgCdTe surface processing; acetone from another branch is not historical proof.
+60. No default ultrasonics for Mask-1 stripping.
+61. **P05 audit rule:** P05 is already the canonical Hall/VdP execution SOP; do not duplicate it without materially new method evidence.
+62. **Die attach is a detector variable.** Mechanical compliance, CTE, bondline thermal conductance, cure and noise/electrical state are coupled.
+63. Adhesive product identity is not a bondline specification; measure thickness/coverage/voiding/tilt.
+64. Honeywell 5-g/40-g thermocompression values are transfer experiment values, not RP-01 setpoints.
+65. Package-generated thermal poles can occur on ms-to-hundreds-ms scales; do not assign them to intrinsic lifetime without P33/P13 separation.
+66. Thermal-cycle genealogy is not independent replication.
+67. Do not transplant p-HgCdTe/FPA interconnect metallurgies into the RP-01 Cr/Au chain without reopening P26/P24.
+68. A package is not released by die shear/wire pull alone.
+69. **RIE watts are not an ion-energy coordinate.** Record measured dc self-bias or another calibrated sheath/ion-energy proxy for reactor transfer.
+70. **RIE physical depth is not electrical conversion depth.** Keep `d_etch`, `d_conv` and `L_conv` separate.
+71. **Separate oxide clear from semiconductor exposure:** `t_sem = t_RF - t_clear` only after local `t_clear` is measured.
+72. A same-era Plasma Technology RIE80 using 13.56 MHz does not prove RP-01 used RIE80 or 13.56 MHz.
+73. Do not infer RP-01 electrode area from `50 W / 0.4 W cm^-2`.
+74. RIE chamber clean/seasoning/loading history is a genealogy variable; pre/post-clean runs are not iid replicates.
+75. Preserve P29 crystallographic plane/polarity into P34 because primary CH4/H2 HgCdTe data show orientation-dependent etch rate/morphology.
+76. Matching `64 sccm / 100 mTorr / 50 W / 60 s` alone is **not reactor equivalence**.
 
 ---
 
@@ -87,32 +95,25 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 
 Latest:
 
-`research/2026-08-16_checkpoint_after_empirical_packaging_round26.md`
+`research/2026-08-16_checkpoint_after_rie_reactor_equivalence_round27.md`
 
 Then, as needed:
 
+- `research/2026-08-16_checkpoint_after_empirical_packaging_round26.md`
 - `research/2026-08-16_checkpoint_after_empirical_mask1_round25.md`
 - `research/2026-08-16_checkpoint_after_empirical_hg_anneal_round24.md`
 - `research/2026-08-16_checkpoint_after_empirical_lpe_execution_round23.md`
 - `research/2026-08-16_checkpoint_after_empirical_czt_substrate_round22.md`
 - `research/2026-08-16_checkpoint_after_empirical_wet_mesa_round21.md`
 - `research/2026-08-16_checkpoint_after_empirical_lithography_round20.md`
-- `research/2026-08-16_checkpoint_after_empirical_metallization_round19.md`
-- `research/2026-08-16_checkpoint_after_empirical_passivation_round18.md`
-- `research/2026-08-16_checkpoint_after_empirical_blocking_contact_round17.md`
-- `research/2026-08-16_checkpoint_after_hg_anneal_boundary_round16.md`
-- `research/2026-08-16_checkpoint_after_information_design_round15.md`
-- `research/2026-08-16_checkpoint_after_lpe_jacobian_round14.md`
-- `research/2026-08-16_checkpoint_after_analytical_sensitivity_round13.md`
+- older checkpoints as needed.
 
 Latest source/gap addenda:
 
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND27.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND27.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND26.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND26.md`
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND25.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND25.md`
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND24.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND24.md`
 - older addenda as needed.
 
 ---
@@ -125,7 +126,7 @@ Latest source/gap addenda:
 - P04 Hg anneal + P04A/P04B
 - P05 Hall/VdP
 - P06 FTIR composition/thickness
-- P07 CdZnTe substrate + P07A/P07B/P07C
+- P07 CdZnTe + P07A/P07B/P07C
 - P08 RIE blocking contact + P08A–P08G
 - P09 Cr/Au/TLM + P09A
 - P10 DC bias/self-heating
@@ -151,9 +152,10 @@ Latest source/gap addenda:
 - P30 Te-rich LPE apparatus/charge/contact/wipe-off empirical process window + register
 - P31 Hg-overpressure anneal apparatus/reservoir/trajectory empirical process window + register
 - P32 Mask-1/wet-mesa lithography empirical process window + register
-- **P33 cryogenic die-attach/interconnect/package empirical process window + register**
+- P33 cryogenic die-attach/interconnect/package empirical process window + register
+- **P34 CH4/H2 RIE reactor-equivalence empirical process window + register**
 
-P24–P33 are empirical/practical supplements to the earlier controlled physics/metrology modules.
+P24–P34 are empirical/practical execution layers that supplement earlier physics/metrology modules.
 
 ---
 
@@ -169,10 +171,9 @@ P24–P33 are empirical/practical supplements to the earlier controlled physics/
 
 ## Mesa/passivation
 - Mask 1 wet chemical mesa delineation before anodic oxide
-- exact Mask-1 process open
 - native anodic oxide `~800 Å = 80 nm`
 
-## Contact-window RIE
+## RIE blocking-contact center
 - Plasma Technology parallel-plate reactor
 - printed `CH4/5H2`
 - total `64 sccm`
@@ -187,7 +188,7 @@ P24–P33 are empirical/practical supplements to the earlier controlled physics/
 - earlier same-lineage ~8-µm n+ conversion under similar conditions
 - LBIC square 300×300 µm; Nd:YLF 1.047 µm CW; ~400 mW/cm²; 80 K
 
-Do not combine 2e15 cm^-3 and 8 µm into one directly measured sheet density.
+Do not combine `2e15 cm^-3` and `8 µm` into one directly measured sheet density.
 
 ## Mask-2 / metal / TLM
 - resist ~4–5 µm
@@ -200,10 +201,10 @@ Do not combine 2e15 cm^-3 and 8 µm into one directly measured sheet density.
 - `rho_c≈9×10^-4 Ω·cm²` at 80 K
 
 ## Detector benchmark
-- 80 K
+- ~80 K
 - stated 60° FOV
 - spectral response at 1 kHz
-- representative noise field 10 V/cm
+- representative field 10 V/cm
 - low-noise preamp + HP35665A
 - 1/f knee ~3 kHz
 - high-frequency g-r plateau ~24.5 nV/√Hz
@@ -213,124 +214,103 @@ Do not combine 2e15 cm^-3 and 8 µm into one directly measured sheet density.
 
 ---
 
-# Round-26 P05 audit
+# P34 — empirical RIE reactor-equivalence state
 
-`procedures/P05_HALL_VDP_MATERIAL_METROLOGY.md` is already adequate as the controlled Hall/VdP execution SOP.
+P34 is now the apparatus/execution layer for P08/P08D/P24.
 
-It includes:
+## Historical state
 
-- ohmic-contact checks;
-- dark/temperature state;
-- current/self-heating screening;
-- full VdP current reversal/reciprocity;
-- numerical consistency gates;
-- measured field calibration;
-- symmetric B sweep;
-- current/field reversal + orthogonal Hall configurations;
-- antisymmetrization;
-- single-carrier validity checks;
-- multicarrier escalation;
-- Hall-factor discipline;
-- uncertainty and repeatability;
-- structured raw-data output.
+Direct controller center is closed, but exact historical reactor state remains open:
 
-No separate Hall P33 was created.
+- model;
+- RF frequency;
+- powered/grounded area;
+- electrode spacing;
+- sample holder/loading;
+- base pressure;
+- pump/throttle;
+- individual MFC values;
+- chamber clean/season;
+- self-bias;
+- sample temperature;
+- oxide-clear time.
 
-Remaining P05 gaps are historical contact identity, historical temperature associated with RP-01 supplier n/µ, final acceptance bands, and any later Hall-factor correction.
+## Same-UWA branches
 
----
+Keep these separate:
 
-# P33 — empirical cryogenic package state
+- 1999 mesa branch: `400 mTorr / CH4/5H2 / 0.4 W cm^-2`;
+- 1997 vacancy-p x≈.31: `410 mTorr / CH4-H2 / 0.4 W cm^-2`, `d_etch≈0.2 µm`, `d_conv≈1.5 µm`;
+- 1998 As-p x≈.29: `340 mTorr / CH4-H2 / 0.4 W cm^-2`;
+- 1998 anneal-recovery branch: `400 mTorr / CH4-H2 / 90 W`.
 
-P33 is the empirical execution layer for P15 and a required interpretation input to P10/P11/P12/P13.
+Do not average or splice them into RP-01.
 
-## Historical RP-01 state
+## Semu 1991 direct HgCdTe transfer evidence
 
-RP-01 does not close:
+Primary CH4/H2 RIE branch:
 
-- singulation/die outline;
-- die attach;
-- bondline;
-- carrier/cold finger;
-- wire/ribbon/bond process;
-- Dewar/header/window/cold shield;
-- vacuum/bake;
-- thermal cycling.
+- total `85 sccm`;
+- `20 mTorr`;
+- `35 °C`;
+- `150 W`;
+- dc bias roughly `-360` to `-440 V`.
 
-All remain `OPEN-HISTORICAL`.
+Explicit example: `15 sccm CH4 / 70 sccm H2 / 20 mTorr / 150 W / -390 V / 35 °C`.
 
-## Honeywell compliant-attachment branch
+The authors directly associated rough etched surfaces with high RF-induced dc bias and showed gas-ratio dependence of etch rate.
 
-US4081819A directly identifies glass adhesive as the cause of cryogenic cracking in its epitaxial HgCdTe device experiments and replaces it with silicone rubber.
+### Consequence
 
-Named examples:
+Every local transfer run records self-bias or calibrated ion-energy proxy.
 
-- Dow Corning 3110 RTV;
-- 3112 RTV;
-- 3116 RTV.
+## Elkind/Orloff orientation evidence
 
-Controlled 5-K comparison:
+CH4/H2 HgCdTe RIE showed strong orientation dependence; short-time rate ordering `(111)B > (100) > (111)A`, with `(111)A` smoother in the reported comparison. Preserve P29 crystallography in RIE records.
 
-- glass / 60-µm abrasion / 40-g thermocompression -> cracked;
-- silicone / ~50-µm abrasion / 40 g -> survived;
-- silicone / 15-µm abrasion / 5 g -> survived.
+## Same-manufacturer hardware-family evidence
 
-Use this as attachment-family/mechanical evidence only. The 5-g/40-g values are not RP-01 bond setpoints.
+A same-era Plasma Technology RIE80 primary publication reports a 13.56-MHz lower powered electrode, base pressure below 0.5 mTorr and platform temperature control.
 
-## Direct HgCdTe photoconductor thermal stack
+**Transfer-only:** none of those values is historical RP-01 proof.
 
-US4012691A / Bartoli et al. 1975:
+## Oxide-clear separation
 
-`HgCdTe -> epoxy -> Irtran 2 or sapphire -> GE 7031 varnish -> copper heat sink at 77 K`.
+Define locally:
 
-Primary result:
+`t_sem = t_RF - t_clear`.
 
-- package/construction-dependent recovery on several-ms scale;
-- slower recovery on hundreds-ms scale;
-- attributed to two thermally resistive bonding layers.
+Measure `t_clear` on the actual P25 oxide. Do not assume all 60 s modifies exposed HgCdTe.
 
-Pulse heating may be optical or electrical, followed by resistance-vs-time recovery.
+## Reactor-equivalence release vector
 
-### P33 consequence
+`Y_RIE = {t_clear, self_bias(t), T_sample(t), d_etch, morphology, sheet_state, d_conv, L_conv, rho_c, blocking_response, detector_noise_delta}`.
 
-Measure a package thermal kernel / `H_pkg,thermal`. Do not assign slow poles to intrinsic lifetime until package response is separated.
+Release only after repeated independent chamber-state preparations reproduce a stable vector and downstream P26/P09/P08F/device closure.
 
-## Thin-device stress / CTE transfer evidence
+## White 2005 thesis
 
-- US5462882A: thin `5–10 µm` HgCdTe mounted by epoxy to Si can develop slip/microcracks/fracture under thermomechanical mismatch/high-T processing.
-- US5365088A: sapphire buffer improves HgCdTe/Si CTE mismatch reliability over repeated cryogenic cycles.
-
-These are FPA transfer branches, not RP-01 construction identities.
-
-## P33 release hierarchy
-
-1. mechanical — cracks/delamination/shift/interconnect;
-2. electrical/noise — contact resistance, leakage, 1/f, microphonics;
-3. thermal — `R_theta`, transient kernel, self-heating;
-4. optical/device — FOV/throughput/responsivity/P13 consistency.
-
-No package is released by mechanical strength alone.
+John Kenion White's UWA thesis has been positively identified; current PDF retrieval returned HTTP 403. Treat as `IDENTIFIED / FULL-TEXT-NOT-RECOVERED`, not as absent evidence.
 
 ---
 
-# P32/P31/P30 concise state
+# P33/P32/P31/P30 concise state
+
+## P33 cryogenic package
+
+Honeywell primary evidence shows compliant silicone attachment prevented cooldown cracking in its HgCdTe experiments; NRL/Bartoli photoconductor construction shows bonding layers can create several-ms and hundreds-ms thermal recovery components. Measure package thermal kernel before assigning slow P13 poles to carrier lifetime.
 
 ## P32 Mask-1
 
-Historical resist identity remains open. Strong transfer branches:
-
-- CN101740502B: AZ4620, 3-µm resist example with explicit Br2:HBr volume-ratio deep-mesa process;
-- US4686373A: Hunt 180CP `4000 rpm/20 s`, `60 °C/3 min`, develop 30 s, rinse 15 s, ash `200 W/30 s`, then fresh `1/8% Br2/MeOH` through ~12-µm HgCdTe.
-
-Release from actual resist survival + `CD_mask -> CD_PR -> CD_mesa`, not thickness alone.
+Historical identity remains open. Strong transfer branches: AZ4620/Br2:HBr and Hunt 180CP/Br2-methanol. Release from actual resist survival plus `CD_mask -> CD_PR -> CD_mesa`, not nominal thickness.
 
 ## P31 Hg anneal
 
-Strong low-T screen: pseudo-isothermal Hg-rich ~250 °C / 1 h, transfer only. Jones isothermal vs two-temperature branches remain separate. No universal Hg mass. Record full sample/source trajectories and cooldown.
+Low-T screening anchor ~250 °C/1 h under Hg-rich/pseudo-isothermal transfer branch; isothermal and two-temperature routes remain distinct. No universal Hg reservoir mass.
 
 ## P30 LPE
 
-Honeywell tie line: `xL=.082, yL=.810, TL=507 °C -> xS≈.29`. Composition does not establish charge mass. Honeywell wipe-off generations remain separate. Radhakrishnan 2003 source-synthesis masses are transfer only.
+Honeywell tie line `xL=.082, yL=.810, TL=507 °C -> xS≈.29`; composition does not determine total charge. Wipe-off hardware generations remain distinct.
 
 ---
 
@@ -338,77 +318,74 @@ Honeywell tie line: `xL=.082, yL=.810, TL=507 °C -> xS≈.29`. Composition does
 
 - **P29 CdZnTe:** strong transfer center `Cd0.96Zn0.04Te {111}`; exact RP-01 y/polarity/miscut/final surface open.
 - **P28 wet mesa:** nominal `2% Br2 in 3:1 EG:HBr`, 21 °C, `R_V≈2.78 µm/min`, ±26%, `A≈0.63`; formulation basis/HBr assay/agitation/rinse open; release by measured depth + isolation.
-- **P27 Mask-2:** `4–5 µm -> 80 °C/30 min -> chlorobenzene 30 min -> pattern/develop/water rinse -> RIE -> lift-off`; exact resist/dose/developer/solvent open.
-- **P26 Cr/Au:** Cr 30 nm / Au 270 nm / 80-K `rho_c≈9×10^-4 Ω·cm²`; exact historical deposition details partly open.
+- **P27 Mask-2:** direct 4–5 µm / 80 °C 30 min / chlorobenzene 30 min anchors; exact resist/dose/developer/lift-off solvent open.
+- **P26 Cr/Au:** 30 nm Cr / 270 nm Au / `rho_c≈9×10^-4 Ω·cm²` at 80 K; exact deposition hardware/rates partly open.
 - **P25 anodic oxide:** strongest transfer center 0.1 M KOH, 90% EG/10% DI, ~0.30 mA/cm², ~15 V, ~2 min, ~80 nm; transfer only.
-- **P24 blocking contact:** direct 100 mTorr / 64 sccm / 50 W / 60 s / printed CH4/5H2; physical etch depth != electrical conversion depth.
+- **P24 blocking contact:** direct RP-01 controller center preserved; P34 now controls reactor equivalence.
 
 ---
 
 # Measurement / release essentials
 
-- P05 Hall: canonical controlled execution SOP; multicarrier escalation near transition.
-- P06 FTIR: distinguish bandgap/composition model from empirical detector cutoff.
+- P05 Hall: canonical execution SOP; current/field reversal, VdP redundancy, variable field, self-heating, multicarrier escalation.
+- P06 FTIR: distinguish composition/bandgap model from detector cutoff.
 - P10: `E=V_active/L_measured`; package thermal resistance matters under bias.
-- P11: calibrated absolute radiometry and measured package geometry.
-- P12: `NEP=e_n/R_v`; `D*=R_v sqrt(A)/e_n`; package/contact noise is a post-assembly gate.
-- P13: de-embed source/optics/bias/preamp/cable/instrument **and P33 package thermal response where relevant**.
+- P11: calibrated absolute radiometry and measured package/reference-plane geometry.
+- P12: `NEP=e_n/R_v`; `D*=R_v sqrt(A)/e_n`; combine independent noise at PSD level.
+- P13: de-embed source/optics/detector/bias/preamp/cable/instrument and P33 package thermal response where relevant.
 - P17: separate measurement/spatial/run/lot/long-term variation; no generic Cpk threshold.
-- P18: signature -> competing mechanisms -> discriminating tests -> root cause -> CAPA -> verification.
-- P19/P20: trace requirements and sensitivities without replacing empirical process data.
+- P18: preserve negative/failed runs and competing mechanisms.
+- P19/P20: trace final requirements and sensitivities without replacing empirical process data.
 
 ---
 
-# Highest-priority OPEN practical details after Round 26
+# Highest-priority OPEN practical details after Round 27
 
-## RIE reactor execution — strongest next empirical target
+## Absolute radiometry / FOV apparatus — strongest next empirical target
 
-P24 has an empirical blocking-contact response framework, but exact apparatus/plasma-state closure remains weak:
+Audit P11 first. If it is already operator-complete, do not create duplicate documentation.
 
-- exact Plasma Technology reactor model;
-- RF frequency;
-- electrode area/diameter;
-- electrode spacing;
-- powered/grounded geometry;
-- sample mounting and thermal coupling;
-- dc self-bias/plasma potential;
-- sample temperature during the 60-s treatment;
-- base pressure/pump/throttle configuration;
-- individual MFC flows/calibration;
-- ignition/stabilization sequence;
-- chamber clean/seasoning history;
-- oxide-clear state;
-- physical etch depth versus electrical conversion depth.
+Priority historical/empirical recovery:
 
-Search same-UWA papers/theses and primary HgCdTe CH4/H2 RIE literature first.
+- exact RP-01 blackbody/source type and temperature calibration;
+- source aperture dimensions;
+- source-to-detector distance;
+- whether stated 60° FOV is defined by cold shield, room-temperature aperture, optics or another geometry;
+- window/filter material, transmission and temperature;
+- chopper geometry/frequency/reference phase;
+- monochromator/filter spectral bandwidth where used;
+- reference detector/calibration chain;
+- radiometric reference plane;
+- background-subtraction sequence;
+- optical throughput/vignetting;
+- exact active detector/contact pair tied to published responsivity/D* curves.
 
-If the exact historical reactor cannot be recovered, create P34 as a **reactor-equivalence empirical process window**, using measurable plasma/process-state coordinates rather than fabricated historical hardware values.
+P33 now controls package optical geometry, making P11 the natural downstream closure for the historical BLIP/D* benchmark.
 
 ## Persistent historical gaps
 
-- exact RP-01 Mask-1 and Mask-2 commercial lithography details;
+- exact RP-01 Mask-1/Mask-2 commercial lithography details;
 - exact UWA wet-mesa formulation basis;
 - exact RP-01 CdZnTe y/face/miscut/final surface;
 - exact Honeywell/Fermionics LPE boat/charge/gas/contact trajectory;
 - exact supplier/UWA anneal history;
 - exact Cr/Au deposition method/rates/vacuum;
-- exact RP-01 package construction.
+- exact RP-01 package construction;
+- exact Plasma Technology RIE hardware/self-bias/sample temperature.
 
 ---
 
-# Active negative/source-recovery record
+# Active source-recovery record
 
 Identified but not fully recovered through current routes:
 
 - Vanya Srivastav IISc thesis `G25544.pdf` full process text;
-- John Kenion White 2005 UWA thesis experimental text;
+- John Kenion White 2005 UWA thesis full experimental text — current repository PDF route returns 403;
 - Ryan Westerhout 2013 UWA thesis experimental text;
 - Smith et al. 2000 in-situ vacuum processing full experimental text;
-- Musca/Smith/Dell/Faraone photoconductor contact/passivation proceedings traveler;
+- Musca/Smith/Dell/Faraone photoconductor contact/passivation traveler;
 - exact Honeywell/Fermionics LPE travelers;
 - exact UWA Mask-1 traveler;
-- full Siliquini–Faraone 1996 package details through current accessible route;
-- exact epoxy identity in the NRL/Bartoli HgCdTe photoconductor stack;
 - exact RP-01 die attach/interconnect/Dewar traveler.
 
 “Not recovered” does not mean absent.
@@ -417,13 +394,14 @@ Identified but not fully recovered through current routes:
 
 # Next logical work
 
-Proceed with **Round 27: empirical P08 RIE reactor / plasma-state / oxide-clear execution closure**.
+Proceed with **Round 28: audit and empirical reconstruction of P11 absolute radiometry / blackbody / FOV apparatus**.
 
-1. Search same-UWA HgCdTe RIE papers, theses and proceedings for Plasma Technology reactor identity, RF frequency, electrode geometry/spacing, self-bias and sample temperature.
-2. Search primary near-x HgCdTe CH4/H2 RIE process studies for pressure/power-density/sample-temperature dependencies and physical etch rates.
-3. Recover chamber base pressure, pump/throttle, MFC calibration, ignition/stabilization and chamber-conditioning details where published.
-4. Separate oxide removal from HgCdTe physical etch and from electrical conversion depth.
-5. Preserve direct RP-01 center `64 sccm / 100 mTorr / 50 W / 60 s / CH4/5H2` without inventing the missing gas split or electrode area.
-6. Create P34 only if it materially adds an executable **reactor-equivalence** qualification layer to P08/P24.
+1. Audit `procedures/P11_ABSOLUTE_SPECTRAL_RESPONSIVITY_RADIOMETRY.md` first.
+2. Search canonical RP-01 and same-UWA photoconductor papers/proceedings/theses for the actual blackbody, optical train, apertures, FOV definition, chopper, filters/monochromator and reference detector.
+3. Recover calibration temperatures, distances and dimensions before deriving flux.
+4. Distinguish geometric FOV from effective radiometric throughput.
+5. Tie D* to the actual fabricated active area/contact pair and the noise frequency used.
+6. Preserve the existing ~`1.12×10^15 photons cm^-2 s^-1` 300-K/4.4-µm/60° consistency calculation as a **derived check**, not historical apparatus proof.
+7. Create P35 only if the audit shows a material execution/provenance gap.
 
 Do not populate production tolerances without repeated local fabrication data.
