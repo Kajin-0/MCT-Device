@@ -19,19 +19,21 @@ Use with `procedures/P16A_FIRST_BUILD_RELEASE_READINESS_AUDIT.md`.
 
 `TRACEABLE-FIRST-BUILD-READY` requires every mandatory execution/metrology row to be `DIRECT-EXECUTABLE`, `LOCAL-BRANCH-FROZEN`, or justified `NOT-APPLICABLE`.
 
+A controlled method for closing a row is not the same as row closure. In particular, Round 35 adds P30A as the closure route for R04–R07, but those rows remain open until an actual laboratory apparatus and numerical process branch are instantiated.
+
 ---
 
 ## 2. Master readiness table
 
-| ID | Process / measurement | Controlled modules | Blocker class | Mandatory for packaged first build? | Current Round-34 state | Required closure before build |
+| ID | Process / measurement | Controlled modules | Blocker class | Mandatory for packaged first build? | Current Round-35 state | Required closure before build |
 |---|---|---|---|---|---|---|
-| R01 | source-element identity/inventory | P03/P30 | execution | YES | `OPEN-CHOICE` | freeze supplier/lots/purity/inventory and actual source/charge branch |
+| R01 | source-element identity/inventory | P03/P30/P30A | execution | YES | `OPEN-CHOICE` | freeze supplier/lots/purity/inventory and actual source/charge branch |
 | R02 | CdZnTe substrate composition/face/miscut | P07/P29 | execution | YES | `OPEN-CHOICE` | select incoming substrate specification and record measured plane/polarity/miscut |
 | R03 | final CdZnTe pre-LPE surface | P07C/P29 | execution | YES | `OPEN-CHOICE` | freeze mechanical/chemical final surface + removed depth + clean-to-load branch |
-| R04 | LPE boat/well/source hardware | P03/P30 | execution | YES | `APPARATUS-NOT-SELECTED` | identify actual boat/revision/well/substrate recess/source geometry and calibration |
-| R05 | absolute LPE charge inventory | P03C/P03D/P30 | execution | YES | `OPEN-CHOICE` | define total mass/depth and actual Hg/Cd/Te/HgTe inventory for selected apparatus |
-| R06 | LPE atmosphere | P03/P30 | execution | YES | `OPEN-CHOICE` | freeze gas identities, flows, pressure and purity/monitoring branch |
-| R07 | LPE thermal/contact/wipe/cooldown trajectory | P03B/P03E/P30 | execution | YES | `OPEN-CHOICE` | freeze T(t), liquidus/supercooling realization, contact interval, separation/wipe motion and cooldown |
+| R04 | LPE boat/well/source hardware | P03/P30/P30A | execution | YES | `APPARATUS-NOT-SELECTED` | instantiate P30A: specific dimensioned boat/furnace/tube/actuator; calibrated well volume, clearances, thermometry and hot motion |
+| R05 | absolute LPE charge inventory | P03C/P03D/P30/P30A | execution | YES | `OPEN-CHOICE` | after R04, select numerical `M_charge`; calculate/record actual Hg/Cd/Te masses and independent auxiliary Hg/HgTe inventory; no substrate-area scaling |
+| R06 | LPE atmosphere | P03/P30/P30A | execution | YES | `OPEN-CHOICE` | freeze gas identities/grades, purge/process flows, pressure/backpressure, purification and O2/H2O monitoring/acceptance |
+| R07 | LPE thermal/contact/wipe/cooldown trajectory | P03B/P03E/P30/P30A | execution | YES | `OPEN-CHOICE` | calibrate local liquidus/thermometry; freeze numerical T(t), `ΔT_SC`, physical contact interval, separation/wipe motion and cooldown; attach P06/P05 outcome evidence |
 | R08 | as-grown optical material metrology | P06/P06A | local implementation | YES | `METROLOGY-NOT-IMPLEMENTED` | select/qualify FTIR, optical model, map geometry and independent thickness reference |
 | R09 | as-grown Hall/VdP | P05 | local implementation | YES | `METROLOGY-NOT-IMPLEMENTED` | select/qualify magnet, cryostat, contacts, current/voltage chain and reduction |
 | R10 | Hg anneal enclosure/reservoir | P04/P31 | execution | YES | `APPARATUS-NOT-SELECTED` | freeze sample/reservoir geometry and Hg-source state |
@@ -62,6 +64,12 @@ Use with `procedures/P16A_FIRST_BUILD_RELEASE_READINESS_AUDIT.md`.
 | R35 | end-to-end genealogy/data capture | P16/P17 | execution | YES | `LOCAL-BRANCH-FROZEN` conceptually | instantiate IDs, raw-data paths, revisions, deviations and signatures for actual laboratory |
 | R36 | statistical process capability/yield | P17 | release | NO for first qualification build | `RELEASE-DATA-OPEN` | repeated frozen-route runs, MSA, stability, limits, yield and change control |
 
+### Round-35 LPE status note
+
+P30A closes a **methodological** gap: there is now a controlled procedure and register for converting measured boat geometry into an empirically selected absolute charge and trajectory. It does not close the **physical implementation** gap because the project has not yet specified an actual laboratory boat/furnace/tube/actuator, numerical `M_charge`, atmosphere or trajectory.
+
+Therefore R04–R07 remain blocking rows.
+
 ---
 
 ## 3. Historical-identity register
@@ -71,7 +79,7 @@ These do not block a clearly labeled local qualification build but block literal
 | Historical item | Current state | First-build effect |
 |---|---|---|
 | exact RP-01 CdZnTe supplier face/miscut/final surface | `HISTORICAL-IDENTITY-OPEN` | local qualified substrate branch may substitute |
-| exact Honeywell/Fermionics LPE boat/charge/gas/contact traveler | `HISTORICAL-IDENTITY-OPEN` | local P30 branch may substitute |
+| exact Honeywell/Fermionics LPE boat dimensions/charge/gas/contact traveler | `HISTORICAL-IDENTITY-OPEN` | Round-35 audit recovered detailed topology but no dimensions/grams; local P30/P30A branch may substitute once physically instantiated |
 | exact supplier/UWA Hg-anneal history | `HISTORICAL-IDENTITY-OPEN` | local P31 branch may substitute |
 | exact Mask-1 product/process | `HISTORICAL-IDENTITY-OPEN` | local P32 branch may substitute |
 | exact Mask-2 resist/exposure/developer/lift-off | `HISTORICAL-IDENTITY-OPEN` | local P27 branch may substitute |
@@ -98,6 +106,8 @@ Before declaring `TRACEABLE-FIRST-BUILD-READY`, answer YES to all applicable que
 - [ ] Every commercial consumable/product is identified by manufacturer/product/lot or a controlled equivalent specification.
 - [ ] Every process tool is identified by model/serial/revision and required calibration state.
 - [ ] Every required setpoint or trajectory is specified numerically or by a calibrated physical endpoint.
+- [ ] P30A contains a dimensioned actual boat, calibrated well volume, numerical growth charge and independently defined Hg-source inventory.
+- [ ] P30A contains an implemented gas/thermometry/contact/wipe/cooldown branch supported by P06/P05 qualification data.
 - [ ] Every sensitive elapsed-time handoff has a recorded clock and current qualification rule.
 - [ ] Every endpoint/gate has an implemented measurement method.
 - [ ] Required destructive qualification is assigned to witnesses/coupons rather than the only detector die.
