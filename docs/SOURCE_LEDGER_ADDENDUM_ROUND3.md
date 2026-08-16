@@ -49,10 +49,11 @@ This addendum records sources promoted or materially reinterpreted during source
 
 **Use restriction:** detailed electrolyte/current/pre-etch conditions currently used in P02B are explicitly identified as coming from Talasek's later technical synthesis of this experiment unless/until the complete primary experimental section is acquired.
 
-## S-R3-03 — Carscallen & Janousek 1982 — Hg0.70Cd0.30Te anodic oxidation
+## S-R3-03 — Janousek & Carscallen 1982 — Hg0.70Cd0.30Te anodic oxidation
 
 **Class:** Primary-A  
-**Citation:** R. C. Carscallen, B. K. Janousek, “Hg0.70Cd0.30Te anodic oxidation,” *Journal of Vacuum Science & Technology* 21 (1982). Exact final page/DOI metadata still to be verified against publisher archive before bibliography freeze.
+**Citation:** B. K. Janousek, R. C. Carscallen, “Hg0.70Cd0.30Te anodic oxidation,” *Journal of Vacuum Science & Technology* 21, 442 (1982).  
+**DOI:** `10.1116/1.571674`
 
 **Role:** Same-author composition-explicit companion source supporting the P02 x≈0.30 anodization lineage.
 
@@ -130,7 +131,6 @@ Do not label it the exact UWA RP-01 process.
 ## Round-3 source priorities
 
 1. acquire full Janousek/Carscallen 1982 J. Appl. Phys. experimental section and exact current-density/cell data;
-2. verify exact page/DOI metadata for “Hg0.70Cd0.30Te anodic oxidation”;
-3. recover exact UWA RP-01 anodization traveler or author/lab record;
-4. recover Br2 percentage convention from Srivastav lab lineage, if possible;
-5. continue exact UWA RIE and metallization source recovery.
+2. recover exact UWA RP-01 anodization traveler or author/lab record;
+3. recover Br2 percentage convention from Srivastav lab lineage, if possible;
+4. continue exact UWA RIE and metallization source recovery.
