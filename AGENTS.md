@@ -112,6 +112,18 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 98. HgCdTe-PC package recovery of several ms and hundreds ms from Bartoli 1975 cannot be labeled carrier lifetime without package discrimination.
 99. Redfern/Musca/Smith/Dell/Faraone 1999 TPCD conference paper is identified but full experimental text remains unrecovered.
 100. `BULK-LIFETIME-JUSTIFIED` is a terminal evidence classification in P13A, not the default name for a fitted decay.
+101. **P06 audit rule:** P06 is the canonical FTIR/transmission SOP; Round 32 adds P06A apparatus/model/cutoff transfer rather than a duplicate top-level method.
+102. **Keep physical thickness, FTIR optical thickness, optical edge, optical bandgap/composition and detector cutoff distinct:** `d_physical != d_FTIR`, and neither `lambda_edge` nor `hc/Eg` is automatically `lambda_det,c`.
+103. RP-01's `x≈0.30` and `9.5 µm` are direct reported material descriptors, but the measurement methods are `OPEN-HISTORICAL`; do not claim they were obtained by FTIR without documentary evidence.
+104. Hansen's ~`0.013 eV` is the standard error of the global empirical `Eg(x,T)` fit, not local FTIR repeatability, spatial-map precision or detector-cutoff uncertainty.
+105. **The Round-32 Hansen comparison is `DERIVED-CONSISTENCY` only:** at 80 K `x=.300 -> Eg=.243684 eV -> lambda_g,eq=5.0879 µm`; `4.4 µm -> 0.281782 eV -> x_Hansen,eq≈.3241`. Never back-fill `x=.3241` as the measured RP-01 composition.
+106. **FTIR aperture setting is not sample spatial resolution.** Measure/bound projected footprint, wavelength-dependent diffraction/blur, stage repeatability/backlash and physical coordinate registration.
+107. Preserve the Gopal 1992 thickness-range unit conflict until the primary paper line is checked; do not silently repair indexed `mm` text into `µm` in a controlled source record.
+108. Weak/absent HgCdTe/CdZnTe interference fringes can reflect interface degradation, Hg in-diffusion, scattering, free-carrier absorption or stack complexity; do not automatically classify them as instrument failure.
+109. A pre/post-anneal optical-edge shift is not automatically a composition shift. Check P05 Hall state, defects/free carriers, surface/interface state, map registration and P31 trajectory before changing x.
+110. Surface preparation from an optical transfer paper, including a Br2/methanol premeasurement treatment, is part of that experiment's sample state and is not automatically an RP-01 P06 preparation step.
+111. Full-spectrum composition/thickness fitting must freeze optical constants, absorption model, substrate model and software/version; do not allow hidden coefficient/model drift between wafers.
+112. `DEVICE-CORRELATED` optical metrology requires a traceable material-coordinate/genealogy link from P06/P06A to P11 detector spectral response; adjacent or nominally similar material is not the same physical state.
 
 ---
 
@@ -119,10 +131,11 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 
 Latest:
 
-`research/2026-08-16_checkpoint_after_temporal_deembedding_round31.md`
+`research/2026-08-16_checkpoint_after_ftir_composition_thickness_round32.md`
 
 Then, as needed:
 
+- `research/2026-08-16_checkpoint_after_temporal_deembedding_round31.md`
 - `research/2026-08-16_checkpoint_after_bias_network_round30.md`
 - `research/2026-08-16_checkpoint_after_noise_chain_round29.md`
 - `research/2026-08-16_checkpoint_after_radiometry_round28.md`
@@ -132,10 +145,10 @@ Then, as needed:
 
 Latest source/gap addenda:
 
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND32.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND32.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND31.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND31.md`
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND30.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND30.md`
 - older addenda as needed.
 
 ---
@@ -147,14 +160,14 @@ Latest source/gap addenda:
 - P03 x≈0.30 LPE + P03A/P03B/P03C/P03D/P03E
 - P04 Hg anneal + P04A/P04B
 - P05 Hall/VdP
-- P06 FTIR composition/thickness
+- **P06 FTIR composition/thickness + P06A FTIR apparatus/model/cutoff lineage + register**
 - P07 CdZnTe + P07A/P07B/P07C
 - P08 RIE blocking contact + P08A–P08G
 - P09 Cr/Au/TLM + P09A
 - P10 DC bias/self-heating + P10A bias/load transfer + register
 - P11 absolute radiometry/responsivity + P11A Optronics transfer + register
 - P12 noise/PSD/NEP/D* + P12A preamp lineage + P12B analyzer transfer + P12C state identity + register
-- **P13 temporal/frequency response + P13A detailed UWA TPCD apparatus/de-embedding + register**
+- P13 temporal/frequency response + P13A detailed UWA TPCD apparatus/de-embedding + register
 - P14 lithography/CD + P14A
 - P15 cryogenic package
 - P16 master end-to-end traveler
@@ -177,7 +190,7 @@ Latest source/gap addenda:
 - P33 cryogenic die-attach/interconnect/package empirical window + register
 - P34 CH4/H2 RIE reactor-equivalence empirical window + register
 
-No new top-level module was created in Rounds 28–31 because P11/P12/P10/P13 were already method-complete; the missing layer was historical lineage/state/apparatus transfer.
+No new top-level module was created in Rounds 28–32 because P11/P12/P10/P13/P06 were already method-complete; the missing layer was historical lineage/state/apparatus/model transfer.
 
 ---
 
@@ -191,6 +204,7 @@ No new top-level module was created in Rounds 28–31 because P11/P12/P10/P13 we
 - supplier `mu=4.0×10^4 cm²/V·s`
 - active thickness `9.5 µm`
 - supplier n/µ measurement temperature undisclosed
+- **method used historically to obtain x≈0.30 and 9.5 µm is OPEN**
 - native anodic oxide `~800 Å = 80 nm`
 - RIE: Plasma Technology parallel-plate; printed `CH4/5H2`; total 64 sccm; 100 mTorr; 50 W; 60 s
 - converted average n `~2.0×10^15 cm^-3`; mobility `~3.3×10^4 cm²/V·s`
@@ -211,7 +225,7 @@ Do not combine average converted n with the separate ~8-µm conversion-depth lin
 - Figures 5–7 at 10 V/cm
 - Figures 3/5/6/7 same physical detector
 - exact contact pair/gap remains open
-- cutoff ~4.4 µm
+- detector cutoff stated ~4.4 µm; **exact cutoff criterion remains OPEN**
 - BLIP `D*≈2×10^11 cm Hz^1/2/W` at 4 µm
 - quoted 300-K/60° photon flux ~`1×10^15 cm^-2 s^-1`
 - quoted QE ~70%
@@ -219,11 +233,31 @@ Do not combine average converted n with the separate ~8-µm conversion-depth lin
 - 1/f knee ~3 kHz by trend intersection
 - high-frequency g-r level ~24.5 nV/sqrtHz
 - exact 1-kHz noise/bandwidth convention for historical D* remains open
-- **no recovered direct RP-01 lifetime or frequency-response curve**.
+- no recovered direct RP-01 lifetime or frequency-response curve.
 
 ---
 
 # Current measurement-state layers
+
+## P06/P06A FTIR / material optical state
+
+P06 remains the canonical operator SOP. P06A adds empirical apparatus/model provenance and a qualification register.
+
+Permanent measurement vector:
+
+`{d_physical, d_FTIR, lambda_50T/lambda_T-int, Eg,opt, x_opt, lambda_det,c}`
+
+with explicit definitions and no automatic equality.
+
+Strong apparatus-transfer examples:
+
+- Chang et al. 2005: Thermo Nicolet Centaur µs IR microscope + Nicolet 870 FTIR + computerized x-y stage; ~1-µm stated stage precision; ~100-µm mapping aperture; automated x/thickness maps.
+- Murthy et al. 2009: Te-rich horizontal-slider LPE HgCdTe/Cd0.96Zn0.04Te; Bruker IFS 66v/S; composition from 300-K IR absorption and thickness from interference fringes.
+- Yue et al. 2019: Bruker IFS 66v/S + KBr beamsplitter + LN2 HgCdTe detector + evacuated path.
+
+These are transfer branches, not RP-01 bench identity.
+
+Hansen consistency only: x=.300 at 80 K gives band-gap-equivalent 5.0879 µm; the 4.4-µm detector cutoff would correspond to Hansen-equivalent x≈.3241 if one intentionally made the `hc/lambda` substitution. This mismatch is a warning against conflation, not a corrected historical composition.
 
 ## P10A bias/load
 
@@ -259,11 +293,14 @@ Direct controller center remains 64 sccm / 100 mTorr / 50 W / 60 s / CH4/5H2. Tr
 - exact Honeywell/Fermionics LPE boat/charge/gas/contact trajectory
 - exact supplier/UWA anneal history
 - exact Cr/Au deposition hardware/rates/vacuum
+- exact RP-01 singulation/die-separation method and edge-clean state
 - exact RP-01 package construction
 - exact Plasma Technology RIE hardware/self-bias/sample temperature
 - exact RP-01 Optronics optical bench/calibration chain
 - exact RP-01 bias/load/preamp circuit
-- exact RP-01 temporal response/lifetime.
+- exact RP-01 temporal response/lifetime
+- exact historical method behind `x≈0.30` and `9.5 µm`
+- exact detector cutoff convention for `4.4 µm`.
 
 ---
 
@@ -275,16 +312,19 @@ Identified but not fully recovered:
 - John Kenion White 2005 UWA thesis full experimental text
 - Ryan Westerhout 2013 UWA thesis experimental text
 - J. F. Siliquini 1995 UWA PhD thesis — highest-value P10/P12 electronics target
-- **Redfern/Musca/Smith/Dell/Faraone 1999 TPCD conference full experimental text**
+- Redfern/Musca/Smith/Dell/Faraone 1999 TPCD conference full experimental text
 - exact Rajaduray AC amplifier/Keithley/laser-energy setup records
 - Smith et al. 2000 in-situ vacuum processing full text
 - exact Honeywell/Fermionics LPE travelers
 - exact UWA Mask-1 traveler
 - exact RP-01 package traveler
+- exact RP-01 singulation/dicing traveler
 - 1989 SPIE Optronics/low-background-radiometry full text
 - exact RP-01 Optronics calibration records
 - exact Figure-5 HP35665A raw/acquisition record
-- original Figure-3/5/6/7 device notebook identifying contact pair/current/resistance.
+- original Figure-3/5/6/7 device notebook identifying contact pair/current/resistance
+- supplier/UWA material certificate or notebook identifying how `x≈0.30` and `9.5 µm` were measured
+- primary PDF line for Gopal et al. 1992 thickness-range unit conflict.
 
 “Not recovered” does not mean absent.
 
@@ -292,16 +332,17 @@ Identified but not fully recovered:
 
 # Next logical work
 
-Proceed with **Round 32: P06 FTIR composition/thickness apparatus and cutoff-definition audit**.
+Proceed with **Round 33: singulation / dicing / die-edge damage / package-ready die preparation**.
 
-1. Audit `procedures/P06_FTIR_COMPOSITION_THICKNESS_MAPPING.md` before creating anything new.
-2. Search primary same-UWA/HgCdTe optical-characterization papers, theses, vendor/manufacturer primary instrument documentation, and direct composition/thickness methods.
-3. Recover FTIR/transmission/reflection apparatus, spectral resolution, aperture/spot, wavelength/wavenumber calibration, purge/background and substrate/reference handling where possible.
-4. Separate physical layer thickness/fringe fitting from optical-edge/composition fitting.
-5. Keep `x` inferred from an optical-gap model distinct from detector spectral cutoff; specify temperature and edge convention for both.
-6. Recover refractive-index/thickness model provenance and independent profilometry/cross-section validation methods.
-7. Quantify spatial mapping geometry and uncertainty propagation from spectral calibration, thickness, substrate correction and bandgap model into x.
-8. Audit Hansen/Gopal composition-model usage for temperature/range validity; never convert a detector `lambda_c` directly to x without declaring the model and cutoff convention.
-9. If P06 is already operator-complete, create only a P06 lineage/apparatus transfer addendum + register.
+This appears to be a genuine end-to-end fabrication gap rather than another already-complete metrology method.
+
+1. Audit `procedures/P15_DIE_ATTACH_INTERCONNECT_CRYOGENIC_PACKAGE_QUALIFICATION.md`, `procedures/P33_CRYOGENIC_DIE_ATTACH_INTERCONNECT_EMPIRICAL_PROCESS_WINDOW.md`, `procedures/P16_MASTER_END_TO_END_PROCESS_TRAVELER.md`, and relevant P18 failure records.
+2. Search primary HgCdTe/CdZnTe detector papers, patents, theses and institutional process records for saw, scribe/cleave, lap or other die-separation methods.
+3. Recover blade/grit/thickness, spindle/feed/depth, coolant, protective coating/tape, street/kerf, chipping/subsurface-damage and cleaning parameters where primary evidence exists.
+4. Treat dicing coolant/cleaner/residue as a detector surface/process variable; do not introduce a cleaning chemistry because it is standard for Si/GaAs.
+5. Record edge-to-active-region exclusion, chip/crack metrics, contamination/particle state, die pickup/handling and post-singulation storage.
+6. Require pre/post-singulation electrical/noise/optical checks on qualification units and cryogenic survival before package release.
+7. Separate mechanical die yield from detector-performance yield; an intact die can still have dicing-induced electrical/noise degradation.
+8. Create a new empirical top-level module only if the audit confirms no existing controlled singulation procedure; current repo state strongly suggests this is missing.
 
 Do not populate production tolerances without repeated local fabrication data.
