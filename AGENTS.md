@@ -19,7 +19,7 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 5. Preserve negative searches, failed branches, rejected inferences, corrections and source conflicts.
 6. Use measured fabricated geometry for field, area and D* normalization.
 7. Keep Hall quantities, optical-edge quantities, physical etch depth, electrical conversion depth, sheet density, `rho_c` and minority-carrier blocking metrics distinct.
-8. Treat passivation, post-RIE elapsed time/thermal exposure, metal-interface exposure, anneal cooldown and packaging as process variables.
+8. Treat passivation, post-RIE elapsed time/thermal exposure, metal-interface exposure, wet-etch surface exposure, anneal cooldown and packaging as process variables.
 9. A measured system bandwidth is not detector bandwidth until external transfer functions are de-embedded.
 10. Engineering specifications come from required detector/material performance; observed process spread does not define its own passing limits.
 11. Failure diagnosis uses competing hypotheses and discriminating tests; never force one cause from one symptom.
@@ -27,7 +27,7 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 13. Every numerical sensitivity/tolerance must state protected output, input, operating point and evidence class. Proxy relations may size experiments but cannot release production specifications.
 14. A tie-line ratio such as `xS/xL` is not a local derivative `dxS/dxL` when other coordinates vary.
 15. A coded DOE result does not create a physical process tolerance.
-16. Repeated observations from one melt/source genealogy are not independent replicates.
+16. Repeated observations from one melt/source/bath genealogy are not independent replicates.
 17. Never regress reciprocal Hall density through a p/n Hall-sign transition; use signed Hall/tensor information near transition.
 18. **Empirical/practical literature first.** Before creating a theoretical placeholder, search primary papers, theses, patents and institutional archives for actual times, temperatures, concentrations, flows, pressures, dimensions, apparatus, metrology settings, outputs and failure observations.
 19. Theory connects genuine literature gaps and checks consistency; it does not displace experimentally reported process information.
@@ -36,9 +36,15 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 22. No undocumented ion mill, wet etch or plasma clean may be inserted between qualified P08 RIE and Cr deposition.
 23. Baseline P26 is as-deposited; post-metal anneals from other contact architectures are transfer evidence only.
 24. Cryogenic TLM records optical-background/shield state as well as temperature/current.
-25. **Mask-2 identity rule:** chlorobenzene strongly constrains the historical process to a positive diazo/DNQ-novolak AZ-type lift-off family, but it does not identify a commercial resist. Candidate-family consistency is not historical identity.
-26. **Mask-2 sequence rule:** preserve the RP-01 wording `prebake -> chlorobenzene -> then patterned/developed/water rinse`. Do not silently move the chlorobenzene step relative to exposure; carry both sequence branches until direct UWA evidence closes it.
+25. **Mask-2 identity rule:** chlorobenzene constrains the historical process to a positive diazo/DNQ-novolak AZ-type lift-off family, but it does not identify a commercial resist.
+26. **Mask-2 sequence rule:** preserve RP-01 wording `prebake -> chlorobenzene -> then patterned/developed/water rinse`; carry alternative exposure-order branches until direct UWA evidence closes it.
 27. A developer/lift-off solvent used in generic historical AZ processing is not automatically the RP-01 developer/lift-off solvent.
+28. **Wet-etch concentration rule:** a percentage without an explicit basis is not an executable formulation. Primary HgCdTe literature uses both weight and volume conventions; never guess the basis of Srivastav `2% Br2` or convert it into reagent quantities.
+29. Preserve source notation `3:1 EG:HBr` symbolically until its physical preparation basis is recovered or a new local recipe defines one explicitly.
+30. HBr stock assay is part of the wet-etch chemistry. Do not assume a commercial concentration such as 48 wt% unless the selected local recipe explicitly uses that certified product.
+31. Br2 bath age, open-vessel exposure, run order, cumulative etched area and agitation are process variables because the primary study identifies volatility/mass transport as important.
+32. **Wet-mesa endpoint rule:** time is an input; physical through-layer isolation is the output. A timer alone cannot release a mesa.
+33. Post-wet-etch air time and surface state are part of the P28→P25 passivation handoff.
 
 ---
 
@@ -46,10 +52,11 @@ There is **no end-to-end `REPRODUCIBLE-RELEASE` yet**. The repository contains d
 
 Latest recovery checkpoint:
 
-`research/2026-08-16_checkpoint_after_empirical_lithography_round20.md`
+`research/2026-08-16_checkpoint_after_empirical_wet_mesa_round21.md`
 
 Then, as needed:
 
+- `research/2026-08-16_checkpoint_after_empirical_lithography_round20.md`
 - `research/2026-08-16_checkpoint_after_empirical_metallization_round19.md`
 - `research/2026-08-16_checkpoint_after_empirical_passivation_round18.md`
 - `research/2026-08-16_checkpoint_after_empirical_blocking_contact_round17.md`
@@ -60,6 +67,8 @@ Then, as needed:
 
 Latest source/gap addenda:
 
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND21.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND21.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND20.md`
 - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND20.md`
 - `docs/SOURCE_LEDGER_ADDENDUM_ROUND19.md`
@@ -80,81 +89,97 @@ Latest source/gap addenda:
 - P04 Hg anneal + P04A/P04B
 - P05 Hall/VdP
 - P06 FTIR composition/thickness
-- P07 CdZnTe + P07A/P07B/P07C
+- P07 CdZnTe substrate + P07A/P07B/P07C
 - P08 RIE blocking contact + P08A–P08G
 - P09 Cr/Au/TLM + P09A
 - P10 DC bias/self-heating
 - P11 absolute radiometry/responsivity
 - P12 noise/PSD/NEP/D* + P12A/P12B
-- P13 temporal response + P13A
+- P13 temporal/frequency response + P13A
 - P14 lithography/CD + P14A
 - P15 cryogenic package
 - P16 master end-to-end traveler
-- P17 statistical release/capability
-- P18 failure analysis/CAPA
+- P17 statistical process capability/release
+- P18 failure-analysis/CAPA
 - P19 requirements traceability
-- P20 analytical sensitivity / allocation
-- P21 LPE empirical Jacobian
+- P20 analytical sensitivity / requirements allocation
+- P21 LPE response-surface / empirical Jacobian
 - P22 information-optimal DOE planning
-- P23 Hg-anneal state boundary / local Jacobian
+- P23 Hg-anneal state-boundary / local Jacobian
 - P24 blocking-contact empirical process window + register
 - P25 anodic-oxide empirical process window + register
 - P26 Cr/Au metallization/lift-off empirical process window + register
-- **P27 Mask-2 photoresist/exposure/developer/lift-off empirical process window + register**
+- P27 Mask-2 photoresist/exposure/developer/lift-off empirical process window + register
+- **P28 wet-mesa empirical process window + register**
 
-P24–P27 are deliberately empirical/practical.
+P24–P28 are deliberately empirical/practical and supplement earlier physics/provenance modules.
 
 ---
 
-# Canonical RP-01 anchors — do not drift
+# Canonical RP-01 direct anchors — do not drift
 
 ## Material
 
-- LPE n-HgCdTe on insulating CdZnTe
+- LPE n-HgCdTe on electrically insulating CdZnTe
 - nominal `x≈0.30`
 - supplier `n=9.8×10^14 cm^-3`
 - supplier `mu=4.0×10^4 cm²/V·s`
 - active thickness `9.5 µm`
-- supplier n/mu measurement temperature undisclosed
+- supplier n/mu measurement temperature remains undisclosed
 
-## Native oxide
+## Mesa/passivation
 
-- native anodic oxide
-- `~800 Å = 80 nm`
-- exact historical bath/current/cell/endpoint/rinse remain open
+- wet chemical mesa before anodic oxide
+- native anodic oxide `~800 Å = 80 nm`
+- exact historical wet chemistry and anodization chemistry remain open
 
-## RIE
+## Contact-window RIE
 
-- Plasma Technology parallel-plate
+- Plasma Technology parallel-plate reactor
 - printed `CH4/5H2`
-- `64 sccm` total
+- total `64 sccm`
 - `100 mTorr`
 - `50 W`
 - `60 s`
-- converted average `n≈2.0×10^15 cm^-3`
-- converted `mu≈3.3×10^4 cm²/V·s`
-- Hall/resistivity at 80 K and 300 K, variable field to 2 T
-- earlier similar-condition n-type work: ~8-µm conversion depth; do not combine with the density as one direct canonical measurement
 
-RP-01 LBIC:
+Historical reactor model/RF frequency/electrode area-spacing/self-bias/sample temperature/individual gas flows remain open.
 
-- 300×300-µm patterned RIE region
+P08A same-lineage evidence supports `CH4:H2=1:5`; derived 10.6667/53.3333-sccm split is a local candidate, not direct historical MFC closure.
+
+## Converted region
+
+Direct RP-01:
+
+- average converted electron density `~2.0×10^15 cm^-3`, explicitly averaged over converted thickness
+- mobility `~3.3×10^4 cm²/V·s`
+- Hall/resistivity at `80 K` and `300 K`
+- variable B to `2 T`
+
+Earlier same-lineage n-type work cited by RP-01:
+
+- ~`8 µm` n+ conversion under similar conditions
+
+Do not combine 2e15 cm^-3 and 8 µm and call the derived sheet density directly measured RP-01 data.
+
+## RP-01 LBIC apparatus
+
+- patterned RIE test square `300×300 µm`
 - Waterloo Scientific scanning laser microscope
-- Nd:YLF 1.047 µm CW
-- ~400 mW/cm²
-- 80 K
+- Nd:YLF `1.047 µm`, CW
+- ~`400 mW/cm²`
+- `80 K`
 
 ## Mask-2 / metal / TLM
 
 - resist `~4–5 µm`
 - prebake `80 °C / 30 min`
 - chlorobenzene `30 min`
-- then patterned/developed/water rinse
-- same resist survives RIE and supports metal lift-off
+- pattern/develop/water rinse
+- same resist remains through RIE and lift-off
 - Cr `30 nm`
 - Au `270 nm`
 - nine `300×300-µm` contacts
-- gaps 50–400 µm in 50-µm increments
+- gaps `50–400 µm` in 50-µm increments
 - 80-K `rho_c≈9×10^-4 Ω·cm²`
 
 ## Detector benchmark
@@ -162,222 +187,350 @@ RP-01 LBIC:
 - 80 K
 - stated 60° FOV
 - spectral response at 1 kHz
+- responsivity-vs-field near 4 µm
 - representative noise field 10 V/cm
+- low-noise preamp + HP35665A
 - 1/f knee ~3 kHz
 - high-frequency g-r plateau ~24.5 nV/√Hz
-- cutoff ~4.4 µm
-- BLIP D* ~`2×10^11 cm Hz^1/2 W^-1` at 4 µm
+- response cutoff ~4.4 µm
+- BLIP D* ~`2.0×10^11 cm Hz^1/2 W^-1` at 4 µm
 - quoted QE ~70%
 
-Do not use the 24.5-nV/√Hz high-frequency plateau as the historical 1-kHz noise automatically.
+Do not use the 24.5-nV/√Hz high-frequency plateau automatically as historical 1-kHz noise.
 
 ---
 
-# P27 — empirical Mask-2 state
+# P28 — empirical wet-mesa state
 
-## Process-family conclusion
+P28 is now the empirical control layer for P01/P01A.
 
-Historical chlorobenzene single-layer lift-off literature establishes a **positive AZ-type diazo/DNQ-novolak** process family using aromatic-solvent treatment to create a re-entrant profile by differential development.
+## Same-UWA functional evidence
 
-This substantially narrows chemistry, but the RP-01 commercial resist remains `OPEN`.
+Smith et al. 2000 directly compared n-type x=0.31 HgCdTe photoconductors made with wet bromine/HBr mesas versus H2/CH4 RIE mesas.
 
-## Candidate hierarchy
+Reported wet branch:
 
-### AZ4110
+- background-limited under the reported condition
+- `D_lambda*≈2.5×10^11 cm Hz^1/2 W^-1` at 80 K / 3 µm / stated 60° FOV
 
-Strong direct chlorobenzene reference. One quantified primary example:
+Dry branch in same comparison:
 
-- 4000 rpm / 30 s
-- 90 °C / 2 min bake
-- 90 mJ/cm²
-- chlorobenzene 28–30 °C / 2 min
-- aqueous developer diluted 1:1
-- 60 s development
-- ~1.1-µm film
+- ~`1.0×10^10`.
 
-Use as chlorobenzene/exposure/developer control; thickness is poor match to RP-01 in this example.
+Same-UWA LBIC work found no significant electrical-property modification for chemically etched material relative to strong RIE-induced modification.
 
-### AZ4330
+This supports wet mesa selection but does not recover the exact UWA recipe.
 
-Primary example:
+## Srivastav x=0.28 quantitative transfer center
 
-- ~4.3 µm
-- 3500 rpm / 30 s
-- 85 °C / 10 min
-- 150 mJ/cm² at 365 nm
+Primary selected notation:
 
-Strong thickness match, but the example is not a chlorobenzene process.
+`2% Br2 in 3:1 EG:HBr`
 
-### AZ4400 / AZ4620
+with figure caption `2% Br2 + 75% EG + 25% HBr`.
 
-Primary examples establish ~4–5-µm film capability; product-specific RP-01-style chlorobenzene recipes remain unrecovered.
+Direct outputs:
 
-Therefore:
+- reference T `21 °C`
+- mean `R_V≈2.78 µm/min`
+- rate variation ~`±26%`
+- `A≈0.63`, ~`±11%`
+- `A=1-R_L/R_V`
+- roughness ~2–7 nm, best ~2 nm
+- `Ea≈7.5 kcal/mol`
+- rate ~doubles per +10 °C over tested regime
+- lower-T etch improves geometry/resist preservation
+- 10 °C SEM example has better feature control than 21 °C example
 
-- AZ1350J/AZ4110 lineage = strong chlorobenzene-control reference;
-- AZ4330/AZ4400/AZ4620 class = stronger 4–5-µm thickness candidates;
-- **none is identified as RP-01**.
+Source test geometry:
 
-## Quantified chlorobenzene control branch
+- ~600-µm lines / 50-µm trenches
+- 2D mesas / 30-µm trenches
 
-Primary AZ1350J example:
+Source starting preparation included a nominal 0.1% Br2/methanol / 1 min free etch, but that percentage basis is also unclosed and the bulk-preparation sequence is not automatically transferable to the 9.5-µm RP-01 epilayer.
 
-- 3000 rpm
-- 90 °C / 20 min bake
-- chlorobenzene 15 min
-- 90 °C / 10 min post-soak bake
-- ~0.4-µm overhang in that process
-- acetone 10 min + ultrasonics, then fresh acetone 5 min
+## Formulation ambiguity is proven real
 
-Comparative branch:
+Primary HgCdTe literature includes:
 
-- 4000 rpm
-- 90 °C / 10 min
-- ~78.9 mJ/cm² exposure
-- chlorobenzene 10 min
-- Microposit 303A developer 10 s
-- ~8 h acetone/ultrasonic lift-off for its ~1-µm Cr/Al stack
+- explicit `0.1% (w/w) Br:HBr` — Leech/Gwynn/Kibel 1989;
+- explicit volume-ratio Br2:HBr — CN101740502B;
+- explicit `(V/V)` bromine/methanol — US4436580A.
 
-Use as process-control evidence only; do not transplant values into RP-01.
+Therefore never guess the basis of Srivastav `2%`.
 
-## Chlorobenzene sequence ambiguity
+Also preserve `3:1 EG:HBr` without converting it to mL until the preparation basis is recovered or explicitly defined locally.
 
-Carry two qualification branches until direct UWA evidence closes ordering:
+HBr stock assay is separately OPEN.
 
-A. `80 °C/30 min -> CB 30 min -> expose -> develop`
+## Local formulation rule
 
-B. `80 °C/30 min -> expose -> CB 30 min -> develop`
+If historical closure fails, create a new explicit local recipe, e.g. a branch whose bromine concentration and EG:HBr ratio are mathematically defined by mass or volume and whose HBr stock assay is recorded.
 
-Compare film loss, CD, undercut, scum, P08 survival and P26 lift-off.
+A local branch is **not** the exact Srivastav formulation even if its nominal number is 2%.
 
-## Exposure/developer status
+## Bath genealogy
 
-Related primary examples give useful dose scales (~79, 90, 150 mJ/cm²), not an RP-01 dose.
+Every batch records:
 
-Aqueous alkaline developer family is mechanism-consistent; exact UWA product/dilution/time remain open.
+- reagent lots/assays
+- explicit concentration definitions
+- mixing order
+- vessel and cover/seal state
+- preparation time
+- bath temperature
+- bath age/open time
+- run order
+- cumulative etched area
+- bath reuse state
 
-P27 requires a product-specific dose/development matrix on the actual 4–5-µm film after the chosen RP-01 bake/CB branch.
+Br2 evaporation is directly identified as a drift mechanism.
 
-## Chlorobenzene bath control
+Multiple coupons from one bath are not independent bath replicates.
 
-Record grade/lot, fresh/reused state, age, temperature, agitation, exact time, sample orientation and resist thickness before/after soak. `30 min` alone is not an adequate process record.
+## Agitation
 
-## RIE + lift-off gate
+Primary source says agitation assists transport of reaction products in the viscous bath, but actual published agitation method/rate is not recovered.
 
-A Mask-2 candidate must retain measurable undercut/profile after P08 and cleanly lift off the actual P26 30/270-nm Cr/Au stack.
+Agitation changes require new rate calibration.
 
-Exact historical lift-off solvent remains open. Acetone is transfer-lineage evidence only. Do not baseline ultrasonics on qualified HgCdTe without sacrificial damage validation.
+## Endpoint
+
+`9.5/2.78≈3.42 min` is diagnostic only.
+
+Using source ±26% rate spread gives ~2.71–4.62 min just to span nominal 9.5-µm removal before overetch/transfer differences.
+
+P28 releases from:
+
+- measured incoming local HgCdTe thickness
+- measured etch depth
+- lateral undercut/profile
+- electrical mesa-to-mesa isolation
+- qualified minimum overetch only after substrate-interface crossing
+
+No generic overetch fraction is released.
+
+## Rinse/quench
+
+Exact matched rinse remains OPEN.
+
+Other primary branches use different sequences (DI-water rinse for one Br2/HBr process; solvent-specific quench for Br/methanol/DMF), proving the rinse is chemistry-specific.
+
+Do not silently import DI water, methanol or acetone as historical P28 practice.
+
+## Surface/passivation handoff
+
+Br-based HgCdTe surface studies show elemental-Te/oxide and surface-recombination evolution with air exposure in other chemistries.
+
+Record:
+
+- etch/rinse/dry timestamps
+- atmosphere/storage
+- `t_etch_to_P25`
+- surface witness data
+- P25 anodization `V(t)`/induction signature
+
+P28 is not released on mesa depth alone.
+
+---
+
+# P27 — empirical Mask-2 lithography state
+
+Historical fingerprint:
+
+`4–5 µm resist -> 80 °C/30 min -> chlorobenzene 30 min -> pattern/develop/water rinse -> RIE -> 30 nm Cr + 270 nm Au lift-off`.
+
+Chlorobenzene strongly supports positive diazo/DNQ-novolak AZ-type process family, but exact commercial resist remains OPEN.
+
+Thickness evidence makes thicker AZ4000-family members more geometrically consistent than a thin AZ4110 example, while AZ1350J/AZ4110 remain strong mechanism/control branches.
+
+Historical exposure dose/developer/lift-off solvent remain OPEN. Generic acetone/ultrasound is transfer evidence only.
 
 ---
 
 # P26 — empirical Cr/Au state
 
-- thermal evaporation is the strongest current same-UWA transfer method but not historical RP-01 proof;
-- RP-01 directly proposes load-lock-connected RIE/metal vacuum processing as advantageous, but canonical execution is unproved;
-- record complete RIE-to-Cr timing/atmosphere;
-- no undocumented pre-metal surface reset;
-- Au transfer studies give 3–12 Å/s real HgCdTe rate scales; Cr rate remains open;
-- baseline no intentional post-metal anneal;
-- cryogenic TLM records optical-background/shield state;
-- full P26 sequence ends in TLM, aging, responsivity/noise/time-response closure.
+Direct:
+
+- Cr 30 nm / Au 270 nm
+- 80-K `rho_c≈9×10^-4 Ω·cm²`
+
+Thermal evaporation is strongest same-UWA transfer method, not direct RP-01 proof.
+
+Primary HgCdTe Au studies provide 3/6/10/12 Å/s screening scales; **Cr rate remains OPEN**.
+
+Record RIE→Cr time/air exposure. No undocumented surface reset. Baseline as-deposited/no intentional post-metal anneal.
+
+Cryogenic TLM records optical background/shield state.
 
 ---
 
-# P25 — empirical native oxide state
+# P25 — empirical native anodic oxide
 
-Strongest executable transfer center:
+Strongest executable transfer center from TI HgCdTe photoconductor patent:
 
-- HgCdTe anode / carbon cathode
-- 0.1 M KOH
-- 90% EG / 10% DI water
-- galvanostatic ~0.30 mA/cm²
-- ~15 V
-- ~2 min
-- ~80 nm
+- HgCdTe anode
+- carbon-rod cathode
+- `0.1 M KOH`
+- `90% EG / 10% DI water`
+- galvanostatic
+- ~`0.30 mA/cm²`
+- ~`15 V`
+- ~`2 min`
+- ~`80 nm`
+- uniform deep-blue appearance
 
-Not historical UWA identity. Record full bath/cell state, `V(t)`, induction, charge/area, thickness, interface/sidewall and detector outcomes.
+This is transfer-family, not historical UWA identity.
 
----
-
-# P24 — empirical blocking-contact state
-
-- physical etch depth and electrical conversion depth are distinct;
-- local transfer must measure oxide clear, recession, sheet transport, LBIC vertical/lateral conversion, TLM and detector sweepout/noise;
-- pressure/sample temperature are high-priority plasma-transfer coordinates;
-- post-RIE storage/thermal history must be recorded;
-- historical RP-01 contact was successful but explicitly not optimized;
-- no process is released on TLM alone.
+Record full `V(t)`, induction, dV/dt, charge/area, bath/cell state, physical oxide and electrical/device outcome. P02C sidewall closure remains mandatory.
 
 ---
 
-# LPE / anneal continuity
+# P24 — empirical blocking contact
 
-Historical Honeywell tie line: `xL=.082, yL=.810, TL=507 °C -> xS≈.29`; derived source mass fractions Hg .249738 / Cd .012502 / Te .737760. `xS/xL=3.54` is not `dxS/dxL`.
+Key direct RP-01 center:
 
-P03E actual supercooling: `DeltaT_SC=TL_actual-T_contact`.
+- 100 mTorr / 64 sccm / 50 W / 60 s / printed CH4/5H2
+- average converted n ~2e15 cm^-3
+- mobility ~3.3e4 cm²/Vs
 
-P21/P22 govern empirical growth Jacobian + DOE; physical tolerances remain local-data dependent.
+Same/transfer evidence proves physical etch depth != electrical conversion depth and that post-RIE state can age/thermally relax.
 
-P23 anneal uses signed Hall state labels `N-LIKE / P-LIKE / TRANSITION-MULTICARRIER`, records `T_sample(t), T_reservoir(t), pHg(t)` and treats cooldown as part of the process. No unique RP-01 anneal traveler is released.
+Historical contact was not optimized; n+ density/depth remain optimization variables.
 
----
+Release hierarchy:
 
-# Highest-priority OPEN practical details after Round 20
-
-## P01 wet mesa — next empirical target
-
-Near-composition empirical branch currently has:
-
-- x≈0.28
-- nominal `2% Br2` in `3:1 ethylene glycol:HBr`
-- rate ~`2.78 µm/min` at 21 °C
-- anisotropy ~`0.63`
-- roughness ~`2 nm`
-- ~±26% rate variation
-- activation energy ~`7.5 kcal/mol`
-- rate approximately doubles per +10 °C in reported range
-
-Critical unresolved item: **the source does not define the percentage basis of “2% Br2.”**
-
-Round 21 should search original/same-author papers, theses, cited formulation lineage and patents for:
-
-- wt%, vol%, wt/vol or other basis;
-- HBr concentration/reagent grades;
-- mixing order;
-- bath volume/sample area;
-- agitation/orientation;
-- temperature-control method;
-- rinse/quench/dry;
-- endpoint/overetch;
-- etch-depth and sidewall metrology;
-- post-etch surface chemistry.
-
-Do not use `9.5 µm / 2.78 µm/min ≈ 3.42 min` as a setpoint; it is diagnostic only.
-
-## Other major historical gaps
-
-- exact P27 UWA resist/exposure/developer/lift-off solvent
-- exact P26 deposition tool/vacuum/Cr-Au rates
-- exact P08 reactor geometry/self-bias/sample temperature/oxide-clear time
-- exact P25 UWA anodization traveler
-- exact CdZnTe face/miscut/final clean
-- complete Hg anneal trajectory
-- full LPE source synthesis/charge mass/well geometry/growth trajectory
-
-These gaps trigger literature recovery first.
+1. plasma/material
+2. majority contact/TLM
+3. minority blocking via responsivity/field
+4. full detector noise/D*/bandwidth/stability
 
 ---
 
-# Active source-recovery / negative record
+# LPE state — P03/P21/P22
 
-Not recovered through current public routes:
+Historical Honeywell tie line:
 
-- full John Kenion White 2005 UWA thesis experimental text
-- full Ryan Westerhout 2013 UWA thesis experimental text
-- full Smith et al. 2000 in-situ vacuum-processing experimental text
-- full Musca/Smith/Dell/Faraone 1999 contact/passivation proceedings traveler
-- UWA document naming RP-01 photoresist/developer/lift-off solvent
-- exact historical Cr/Au deposition operating details
+`xL=.082, yL=.810, TL=507 °C -> xS≈.29`.
+
+Derived source mass fractions:
+
+- Hg `.249738`
+- Cd `.012502`
+- Te `.737760`
+
+`xS/xL=3.54` is not `dxS/dxL`.
+
+P03E: `DeltaT_SC = TL_actual - T_contact`.
+
+P21 maps actual process coordinates/history to composition/thickness/morphology. P22 provides rank/information DOE planning. No physical tolerance is released from coded design or tie-line ratio alone.
+
+---
+
+# Anneal state — P04/P23
+
+Cooldown is part of anneal. Record `T_sample(t), T_reservoir(t), pHg(t)` and initial state.
+
+State labels:
+
+- `N-LIKE`
+- `P-LIKE`
+- `TRANSITION/MULTICARRIER`
+
+Two-carrier Hall:
+
+`R_H=(p mu_h²-n mu_e²)/{q(p mu_h+n mu_e)²}`.
+
+Hall sign reversal is not p=n; apparent reciprocal Hall density diverges near cancellation. Never fit one global Hall-density response through conversion.
+
+No unique RP-01 anneal dwell/T/pHg/cooldown is released.
+
+---
+
+# Measurement / release essentials
+
+P05 Hall: current/field reversal, VdP redundancy, variable field, self-heating check; multicarrier escalation when needed.
+
+P06 FTIR: Hansen x=.30/80 K gives Eg~0.243684 eV and lambda_Eg~5.0879 µm; this is not the ~4.4-µm detector cutoff.
+
+P10: use measured gap and active voltage `E=V_active/L_measured`.
+
+P11: absolute responsivity through calibrated radiometry/geometry.
+
+P12: `NEP=e_n/R_v`; `D*=R_v sqrt(A)/e_n`; subtract independent contributions at PSD level.
+
+P13: de-embed `H_source H_optics H_bias H_preamp H_cable H_instrument`; use `tau_eff` unless bulk-lifetime interpretation is justified.
+
+P17: separate measurement/spatial/run/lot/long-term variation; no generic Cpk threshold.
+
+P18: `signature -> competing mechanisms -> discriminating tests -> root cause -> CAPA -> verification`.
+
+P19: trace final detector requirement to physical characteristic/intermediate metric/process/release/failure response.
+
+P20 analytical sensitivities support experiment design; they do not replace empirical process data.
+
+---
+
+# Highest-priority OPEN practical details after Round 21
+
+## Wet mesa
+
+- exact UWA RP-01 wet formulation
+- Srivastav 2% basis
+- 3:1 EG:HBr preparation basis
+- HBr stock assay
+- mixing order
+- reported agitation method/rate
+- matched rinse/quench/dry
+- local x≈0.30 rate/anisotropy
+- minimum robust through-layer overetch
+- electrical-isolation limit
+- maximum clean-to-P25 exposure
+
+Primary recovery target: Vanya Srivastav IISc thesis `G25544.pdf`, whose institutional record is found but full experimental text has not been recovered through the current accessible route.
+
+## CdZnTe substrate / LPE interface
+
+- exact RP-01 Zn fraction
+- crystallographic face/orientation
+- miscut
+- final polish/etch/clean
+- clean-to-growth interval
+- surface roughness/chemistry acceptance
+
+## Anneal
+
+- exact RP-01 apparatus geometry
+- Hg reservoir charge/geometry
+- sample/reservoir thermal trajectories
+- pHg coordinate
+- cooldown
+
+## RIE/contact/lithography
+
+- exact Plasma Technology reactor model/RF/self-bias/sample T
+- exact RIE oxide-clear time
+- exact historical metal deposition method/rates/vacuum
+- exact Mask-2 resist/exposure/developer/lift-off solvent
+
+## LPE
+
+- source synthesis details
+- actual charge mass/well geometry
+- growth contact time/supercooling process sensitivity
+- source-use/depletion history
+
+---
+
+# Active negative/source-recovery record
+
+Identified but not fully recovered through current routes:
+
+- Vanya Srivastav IISc thesis `G25544.pdf`
+- John Kenion White 2005 UWA thesis full experimental text
+- Ryan Westerhout 2013 UWA thesis full experimental text
+- Smith et al. 2000 “Dry plasma technology for in-situ vacuum processing…” full experimental text
+- Musca/Smith/Dell/Faraone photoconductor contact/passivation proceedings traveler
 
 “Not recovered” does not mean absent.
 
@@ -385,8 +538,16 @@ Not recovered through current public routes:
 
 # Next logical work
 
-Proceed with **Round 21: empirical P01 wet-mesa chemistry / endpoint / rinse recovery**.
+Continue empirical/practical source recovery. Strongest next candidate:
 
-Keep the near-x published rate/morphology data separate from the still-unknown exact solution preparation. Recover primary numbers before proposing a local recipe. If the percent basis remains unrecoverable, define multiple chemically explicit candidate formulations rather than silently selecting one meaning of “2%.”
+## Round 22 — CdZnTe substrate face/orientation/final-surface closure
 
-Do not populate production tolerances without repeated local data.
+1. Search primary RP-01/UWA/Honeywell LPE papers, theses and patents for CdZnTe Zn fraction, face/orientation, miscut, polishing, final chemical preparation and clean-to-growth sequence.
+2. Separate bulk-substrate specification from final surface state.
+3. Recover actual surface roughness/etch/polish numbers where primary sources disclose them.
+4. Connect the released substrate surface to P03 LPE morphology/interface quality rather than accepting a vendor label alone.
+5. Create a P29 empirical substrate/final-surface window and traveler if the evidence supports it.
+
+If source recovery for P07 is poor, pivot in the same round to primary Hg-anneal apparatus/reservoir literature rather than inventing substrate values.
+
+Do not populate production tolerances without local repeated-device data.
