@@ -1,57 +1,101 @@
-# Reproducible Fabrication and Characterization of an x≈0.30 HgCdTe Photoconductor
+# Source-Traceable Qualification Fabrication and Characterization of an x≈0.30 HgCdTe Photoconductor
 
-## Source-traceable process manual based on the Smith et al. RP-01 architecture
+## Reference process manual based on the Smith et al. RP-01 architecture
 
-**Integrated manuscript draft:** 0.1  
-**Continuity round:** 51  
+**Integrated manuscript draft:** 0.2  
+**Continuity round:** 52  
 **Date:** 2026-08-16 America/New_York  
-**Status:** `INTEGRATED-MANUSCRIPT-DRAFT — REFERENCE/QUALIFICATION PROCESS`  
-**Physical maturity:** not a production release; not a claim of literal historical reproduction.
+**Status:** `TECHNICALLY-REVIEWED INTEGRATED MANUSCRIPT DRAFT — REFERENCE/QUALIFICATION PROCESS`  
+**Physical maturity:** not a production release; not a claim of literal historical reproduction; not a declaration that an unspecified laboratory is ready to execute the process.
 
 ---
 
 ## Abstract
 
-This manual consolidates a source-traceable process for fabricating and characterizing an approximately x=0.30 HgCdTe photoconductive infrared detector on insulating CdZnTe, using the two-mask blocking-contact architecture reported by Smith et al. (2001). The historical paper directly fixes several important device and process quantities—approximately 9.5 µm active-layer thickness, native anodic oxide near 80 nm, a 4–5 µm Mask-2 photoresist layer with an 80 °C/30 min prebake and 30 min chlorobenzene treatment, a CH4/H2 reactive-ion-etch step at 64 sccm total flow, 100 mTorr, 50 W and 60 s, Cr/Au metallization of 30/270 nm, a nine-contact 300×300 µm test structure with 50–400 µm gaps, and detector characterization near 80 K and 10 V/cm. The historical publication does not disclose a complete starting-material growth traveler, Hg-overpressure anneal recipe, wet-mesa formulation, anodization cell construction, photoresist identities, RIE reactor physics, deposition apparatus, singulation method, package construction, or full metrology implementations.
+This manual consolidates a source-traceable qualification route for fabricating and characterizing an approximately x=0.30 HgCdTe photoconductive infrared detector on electrically insulating CdZnTe, using the two-mask blocking-contact architecture reported by Smith et al. (2001). The historical paper directly fixes several important device and process quantities—approximately 9.5 µm active-layer thickness, native anodic oxide near 80 nm, a 4–5 µm Mask-2 photoresist layer with an 80 °C/30 min prebake and 30 min chlorobenzene treatment, a CH4/H2 reactive-ion-etch step at 64 sccm total flow, 100 mTorr, 50 W and 60 s, Cr/Au metallization of 30/270 nm, a nine-contact 300×300 µm test structure with 50–400 µm gaps, and detector characterization near 80 K and 10 V/cm. The historical publication does not disclose a complete starting-material growth traveler, Hg-overpressure anneal recipe, wet-mesa formulation, anodization cell construction, photoresist identities, RIE reactor physics, deposition apparatus, singulation method, package construction, or full metrology implementations.
 
-The present manual therefore distinguishes three classes of instructions throughout: **historically fixed values**, **literature-grounded reference qualification centers**, and **apparatus-dependent quantities that must be measured locally before irreversible processing**. The objective is not to manufacture missing historical facts. It is to give a competent laboratory a coherent, executable qualification route in which every remaining local variable is explicitly identified, measured, recorded, and accepted by a stated physical criterion. Historical identity and local reproducibility are treated as separate claims.
+The manual therefore distinguishes four operational classes throughout: **historically fixed values**, **literature-grounded reference qualification centers**, **apparatus/material-dependent quantities that must be instantiated locally**, and **historical-identity details that remain unrecovered**. A reference center is not an executable setpoint by itself. Before an irreversible operation, all required local fields for that operation must be numerically or operationally closed on the executing hardware, the applicable measurement/commissioning gate must be satisfied, and the process traveler must contain no blank or ambiguous instruction. The objective is not to manufacture missing historical facts. It is to provide a coherent qualification-development route that becomes executable when the identified local instantiation and commissioning gates are closed. Historical identity, local execution readiness, and reproducible release are treated as separate claims.
 
 ---
 
-# 1. Scope and claims
+# 1. Scope, claims, and execution semantics
 
 ## 1.1 Device being reproduced functionally
 
-The reference device is an n-type HgCdTe photoconductor grown by Te-rich liquid-phase epitaxy (LPE) on an electrically insulating CdZnTe substrate. The nominal alloy composition is approximately x=0.30, corresponding to a mid-wave infrared detector response. The reference layer thickness is approximately 9.5 µm. Localized CH4/H2 RIE is used through contact openings to create a more highly n-type near-contact region intended to suppress minority-carrier surface/contact recombination while retaining a simple two-mask photoconductor geometry.
+The reference device is an n-type HgCdTe photoconductor grown by Te-rich liquid-phase epitaxy (LPE) on an electrically insulating CdZnTe substrate. The nominal alloy composition is approximately x=0.30 and the reference active-layer thickness is approximately 9.5 µm. Localized CH4/H2 RIE through contact openings creates a more highly n-type near-contact region intended to reduce minority-carrier loss at the contacts while retaining a two-mask photoconductor geometry.
 
-The final detector is characterized using measured contact geometry, detector temperature, active electric field, optical background, modulation frequency, responsivity, detector-referred noise, and temporal/frequency response.
+The completed detector is characterized using measured contact geometry, detector temperature, active-region electric field, optical background, modulation frequency, responsivity, detector-referred noise, and temporal/frequency response.
 
-## 1.2 What this manual can claim
+## 1.2 Claims that must remain distinct
 
-A laboratory that follows this document can generate one of three scientifically distinct outcomes:
+A laboratory using this document can ultimately generate three scientifically different outcomes:
 
-1. **Reference qualification build:** follows the fixed RP-01 values where known and the explicitly identified transfer/qualification branches where history is incomplete.
-2. **Local reproducible process:** after apparatus-specific windows, measurement systems, repeatability, change control, and detector acceptance criteria are established locally.
-3. **Historical RP-01 reproduction:** only if the historically critical identities that remain open are independently recovered or otherwise demonstrated.
+1. **Reference qualification build** — fixed RP-01 quantities are used where known and explicitly labeled transfer/qualification branches are used where historical details are incomplete.
+2. **Local reproducible process** — apparatus-specific windows, measurement systems, repeatability, numerical acceptance criteria, change control, detector performance and yield are demonstrated locally.
+3. **Historical RP-01 reproduction** — historically critical identities being claimed are independently recovered or otherwise demonstrated, and local substitutions are not silently represented as historical.
 
-A working detector produced with a local LPE boat, modern resist, different evaporator, or local package is not automatically a literal reproduction of the 2001 fabrication traveler. Conversely, such substitutions do not prevent a scientifically rigorous and reproducible local process when they are labeled and qualified.
+A working detector fabricated with a local LPE boat, modern resist, different evaporator, or locally designed package is not automatically a literal reproduction of the 2001 fabrication traveler. Conversely, a clearly identified substitution does not prevent a rigorous local process from becoming reproducible.
 
-## 1.3 Evidence labels used in this manual
+## 1.3 Evidence labels
 
 - **[RP01]** — directly reported by Smith et al. (2001).
 - **[SAME-LINEAGE]** — directly reported by UWA/Faraone-group work closely related to the reference device/process.
 - **[PRIMARY-TRANSFER]** — primary experimental literature or patent from a different but physically relevant HgCdTe/CdZnTe process family.
-- **[DERIVED]** — arithmetic or physics calculation from stated quantities.
+- **[DERIVED]** — arithmetic or physics calculation from stated quantities and assumptions.
 - **[REF-CENTER]** — literature-grounded first qualification center; not a historical RP-01 setpoint unless separately marked [RP01].
-- **[LOCAL-CAL]** — apparatus-dependent quantity that must be measured/calibrated on the executing laboratory's hardware.
-- **[LOCAL-QUAL]** — local branch or tolerance that must be qualified empirically before routine use.
+- **[LOCAL-CAL]** — apparatus-dependent physical quantity that must be measured/calibrated on the executing hardware.
+- **[LOCAL-QUAL]** — local branch, endpoint, or tolerance that must be qualified empirically before routine use.
 - **[OPEN-HIST]** — historically unrecovered. Do not infer from generic semiconductor practice.
+
+Repetition does not promote an evidence class.
+
+## 1.4 Irreversible-step preflight rule
+
+A `[REF-CENTER]` is a development coordinate, not permission to execute an irreversible operation.
+
+Before any irreversible process step, the current traveler shall contain, where applicable:
+
+- material/sample/device identity and genealogy;
+- procedure and branch revision;
+- named reagent/material products and lots;
+- mathematically unambiguous concentration/ratio definitions;
+- actual apparatus/tool identity and configuration;
+- numerical local setpoints or operational endpoints;
+- current calibration/acceptance records for the measurements controlling that decision;
+- required P36/P36A subsystem acceptance state;
+- required upstream measurement gate;
+- applicable institutional EH&S authorization;
+- planned disposition if an endpoint or process state is missed.
+
+The following are **not executable instructions**:
+
+- `TBD`;
+- `appropriate flow`;
+- `sufficient Hg` without a defined local functional criterion;
+- `standard developer`;
+- `typical vacuum`;
+- an undefined `%` or liquid ratio;
+- a controller setpoint substituted for an uncalibrated physical process temperature;
+- a literature center copied into the traveler while a required local apparatus coordinate remains blank.
+
+If a required field remains open, the material is held. The manual may be complete as a qualification document while an unspecified future laboratory remains physically uninstantiated.
+
+## 1.5 Laboratory commissioning hierarchy
+
+The executing laboratory should use P36/P36A to separate:
+
+1. **IQ** — tool identity/configuration/installation;
+2. **OQ** — calibrated control/measurement over the required physical envelope;
+3. **surrogate PQ** — end-to-end apparatus performance on non-HgCdTe standards/dummies where scientifically meaningful;
+4. **HgCdTe residual qualification** — material-specific response that cannot be established with a surrogate.
+
+Surrogate competence does not prove HgCdTe process equivalence.
 
 ---
 
 # 2. Reference detector specification
 
-## 2.1 Starting material and final-device anchors
+## 2.1 Starting-material and detector anchors
 
 | Quantity | Reference value | Evidence / use |
 |---|---:|---|
@@ -62,8 +106,8 @@ A working detector produced with a local LPE boat, modern resist, different evap
 | Electron mobility | ≈4.0×10^4 cm²/V·s | [RP01] supplier value; measurement temperature not disclosed |
 | Substrate | electrically insulating CdZnTe | [RP01] |
 | Native anodic oxide | ≈800 Å = 80 nm | [RP01] |
-| RIE-converted electron density | ≈2.0×10^15 cm^-3 | [RP01] measured converted material |
-| RIE-converted mobility | ≈3.3×10^4 cm²/V·s | [RP01] |
+| RIE-converted electron density | ≈2.0×10^15 cm^-3 | [RP01], explicitly averaged over the converted thickness; depth-coupled quantity |
+| RIE-converted mobility | ≈3.3×10^4 cm²/V·s | [RP01] converted-state transport result |
 | Cr thickness | 300 Å = 30 nm | [RP01] |
 | Au thickness | 2700 Å = 270 nm | [RP01] |
 | Contact size | ≈300×300 µm | [RP01] |
@@ -72,21 +116,23 @@ A working detector produced with a local LPE boat, modern resist, different evap
 | Canonical detector temperature | 80 K | [RP01] characterization state |
 | Canonical electric field | 10 V/cm | [RP01] noise/spectral state |
 | Spectral modulation frequency | 1 kHz | [RP01] |
-| Nominal FOV | 60° | [RP01]; exact physical aperture geometry must still be measured locally |
+| Stated FOV | 60° | [RP01]; full-angle vs half-angle and physical aperture geometry remain open |
 | Detector-response cutoff | ≈4.4 µm | [RP01]; exact cutoff convention not recovered |
 | D* near 4 µm | ≈2×10^11 Jones | [RP01] |
 | Quantum efficiency | ≈70% | [RP01] |
 | 300-K/60° background photon flux | ≈1×10^15 cm^-2 s^-1 | [RP01] |
-| 1/f knee | ≈3 kHz | [RP01] typical device |
-| High-frequency g-r noise ASD | ≈24.5 nV/√Hz | [RP01]; do not use as the 1-kHz noise without evidence |
+| 1/f knee | ≈3 kHz | [RP01] representative device |
+| High-frequency g-r noise ASD | ≈24.5 nV/√Hz | [RP01]; not automatically the 1-kHz noise |
+
+RP-01 Figures 3, 5, 6 and 7 are tied to the **same representative device**. The exact contact pair/gap used for those performance figures remains [OPEN-HIST]. New measurements should therefore preserve same-device/contact/state identity across responsivity, noise and D* wherever physically possible.
 
 ## 2.2 Useful electrical consistency quantities
 
-Using n=9.8×10^14 cm^-3, µ=4.0×10^4 cm²/V·s, q as the elementary charge, and the one-carrier Hall-factor-one approximation:
+Using `n=9.8×10^14 cm^-3`, `mu=4.0×10^4 cm²/V·s`, elementary charge `q`, and a one-carrier Hall-factor-one screening model:
 
 `rho = 1/(q n mu) ≈ 0.15922 ohm·cm`  [DERIVED]
 
-For t=9.5 µm:
+For `t=9.5 µm`:
 
 `R_sheet = rho/t ≈ 167.60 ohm/square`  [DERIVED]
 
@@ -94,27 +140,27 @@ The one-carrier Hall coefficient magnitude is:
 
 `|R_H| = 1/(q n) ≈ 6.369×10^3 cm^3/C`  [DERIVED]
 
-For W≈300 µm and E=10 V/cm, ideal uniform bulk current is approximately:
+For `W≈300 µm` and `E=10 V/cm`, ideal uniform bulk current is approximately:
 
 `I ≈ E W t / rho ≈ 1.79 mA`  [DERIVED]
 
-This is an instrument-sizing check, not a published detector current.
+These quantities are consistency/instrument-sizing checks, not directly published detector operating currents or release tolerances.
 
 ---
 
 # 3. Safety, facility, and execution boundary
 
-Hg, Cd-containing materials, bromine, concentrated HBr, hydrogen, methane, vacuum systems, RF plasma systems, high-temperature sealed ampoules, organic solvents, cryogens, and metal-deposition systems require the executing institution's formal EH&S controls. This manual does not substitute for local chemical hygiene, hazardous-gas, pressure-vessel, pyrophoric/flammable-gas, vacuum, cryogenic, or waste-management procedures.
+Hg, Cd-containing materials, bromine, concentrated HBr, hydrogen, methane, vacuum systems, RF plasma systems, high-temperature sealed ampoules, organic solvents including chlorobenzene, cryogens, and metal-deposition systems require the executing institution's formal EH&S controls. This manual does not substitute for local chemical-hygiene, hazardous-gas, pressure-vessel, flammable-gas, vacuum, cryogenic, electrical/RF, or waste-management procedures.
 
 Before physical execution, the laboratory shall identify and approve:
 
 - Hg/Cd containment, exposure monitoring, spill response, and waste streams;
-- Br2/HBr-compatible hood, storage, secondary containment, and neutralization/waste route;
+- Br2/HBr-compatible hood, storage, secondary containment, and waste route;
 - H2/CH4 gas cabinets, leak detection, purge/interlock system, and exhaust;
 - sealed-ampoule and hot-zone handling controls;
 - RIE RF/high-voltage and vacuum safety;
 - metal-deposition source and vacuum-system safety;
-- solvent/chlorobenzene controls;
+- chlorobenzene/solvent controls;
 - LN2/cryostat oxygen-deficiency and pressure-relief controls.
 
 No process value in this manual constitutes authorization to operate hazardous equipment.
@@ -123,7 +169,7 @@ No process value in this manual constitutes authorization to operate hazardous e
 
 # 4. End-to-end process flow
 
-The recommended reference qualification route is:
+The reference qualification sequence is:
 
 `CdZnTe receipt/qualification`
 `-> final pre-LPE surface`
@@ -144,7 +190,7 @@ The recommended reference qualification route is:
 `-> cryogenic package verification`
 `-> final responsivity/noise/D*/temporal characterization`.
 
-At every irreversible step, record material genealogy, procedure revision, actual setpoints/traces, deviations, and the corresponding acceptance measurement.
+At every irreversible edge, apply Section 1.4. Record material genealogy, procedure revision, local instantiated branch, actual traces/setpoints, deviations, and the corresponding measurement gate.
 
 ---
 
@@ -152,7 +198,7 @@ At every irreversible step, record material genealogy, procedure revision, actua
 
 ## 5.1 Reference substrate family
 
-RP-01 specifies only an insulating CdZnTe substrate. The strongest current near-composition LPE transfer center is **Cd0.96Zn0.04Te, (111)B**. Use this as the first qualification substrate family unless the executing laboratory has stronger matched evidence. [PRIMARY-TRANSFER / REF-CENTER]
+RP-01 specifies only an insulating CdZnTe substrate. The strongest current near-composition LPE transfer center is **Cd0.96Zn0.04Te, (111)B**. This is the preferred first screening family when no stronger matched local evidence exists. [PRIMARY-TRANSFER / REF-CENTER]
 
 Do not label 4% Zn, (111)B polarity, any particular miscut, or any substrate dimensions as direct RP-01 facts.
 
@@ -161,10 +207,11 @@ Do not label 4% Zn, (111)B polarity, any particular miscut, or any substrate dim
 Record for each substrate:
 
 - supplier, lot/ingot, nominal Cd/Zn/Te composition;
+- composition certificate and method;
 - measured lattice parameter or independently verified Zn fraction where available;
 - surface plane and A/B polarity;
 - miscut magnitude and azimuth;
-- substrate dimensions/thickness;
+- dimensions/thickness;
 - electrical-isolation/resistivity information;
 - HRXRD rocking curve and curve shape;
 - IR inclusion/precipitate map;
@@ -172,16 +219,16 @@ Record for each substrate:
 - trace impurities where available, especially electrically active contaminants such as Cu;
 - polish history, roughness, scratches, chips, warp/flatness.
 
-Historical values near EPD~5×10^4 cm^-2 and ~25 arcsec rocking-curve width are transfer reference scales, not released limits.
+Historical scales near `EPD~5×10^4 cm^-2` and `~25 arcsec` rocking-curve width are transfer references, not released limits.
 
-## 5.3 Final surface family
+## 5.3 Final-surface family
 
 The strongest practical Te-rich LPE transfer source uses a brief **2–3% Br2 in methanol** treatment on (111)B CdZnTe followed by rapid loading into the graphite boat. [PRIMARY-TRANSFER]
 
-The source does not close:
+The recovered source does not close:
 
-- whether the bromine percentage is w/w, w/v, v/v, or another convention;
-- exact exposure time beyond “a few seconds”;
+- bromine percentage basis;
+- exact exposure time beyond `a few seconds`;
 - bath temperature/agitation;
 - rinse/dry sequence;
 - removed depth;
@@ -195,7 +242,7 @@ Define:
 
 `Delta t_clean-load = t_boat_load - t_final_etch_end`.
 
-No universal maximum is assigned. The executing laboratory must qualify the allowed delay by downstream LPE morphology, interface quality, P06 spatial uniformity, and P05 transport.
+No universal maximum is assigned. Qualify the allowed delay by downstream LPE morphology/interface quality, P06 spatial uniformity, and P05 transport.
 
 ## 5.4 Substrate acceptance before LPE
 
@@ -204,9 +251,10 @@ Proceed only when:
 - identity/orientation/polarity are unambiguous;
 - no crack or inclusion intersects the intended active region;
 - electrical isolation is adequate for the intended device geometry;
-- the selected final-surface recipe was executed exactly under its local ID;
+- the selected final-surface recipe is fully defined and executed under its local ID;
 - no visible residue/particle/surface damage remains;
-- clean-to-load history is recorded.
+- clean-to-load history is recorded;
+- the supporting wet-chemistry/dimensional metrology capability satisfies the applicable P36A gate.
 
 ---
 
@@ -221,7 +269,7 @@ Use the Honeywell x≈0.29 tie-line center:
 `T_L = 507 °C`  
 `x_S ≈ 0.29`.
 
-For `(Hg_(1-xL) Cd_xL)_(1-yL) Te_yL`, the derived elemental mass fractions are:
+For `(Hg_(1-xL) Cd_xL)_(1-yL) Te_yL`, the authoritative project mass fractions are:
 
 - `w_Hg = 0.2497382358`
 - `w_Cd = 0.01250164993`
@@ -229,7 +277,7 @@ For `(Hg_(1-xL) Cd_xL)_(1-yL) Te_yL`, the derived elemental mass fractions are:
 
 Use atomic weights Hg=200.59, Cd=112.414, Te=127.60 g/mol. [DERIVED]
 
-For any locally established total growth-charge mass `M_charge`:
+For any **locally established** total growth-charge mass `M_charge`:
 
 `m_Hg = 0.2497382358 M_charge`
 
@@ -237,7 +285,9 @@ For any locally established total growth-charge mass `M_charge`:
 
 `m_Te = 0.7377601143 M_charge`.
 
-**Do not infer `M_charge` by scaling another laboratory's substrate area or published 4.8-g charge.** Total charge is determined by the actual well volume, fill height, melt depth, overlap area, containment geometry, source depletion, and handling margin. [LOCAL-CAL]
+Recalculate realized `x_L` and `y_L` from the actual weighed masses. Preserve full balance resolution, especially for Cd.
+
+**Do not infer `M_charge` by substrate-area scaling or by copying another laboratory's ~4.8-g charge.** Total charge is an apparatus coordinate determined by measured well geometry, usable hot volume/meniscus, overlap, freeboard, containment, source depletion, and wipe/separation behavior. [LOCAL-CAL]
 
 ## 6.2 Boat/furnace architecture
 
@@ -251,19 +301,21 @@ Use a covered high-purity graphite horizontal-slider architecture derived from t
 - Hg-distribution grooves/moats around the growth region;
 - horizontal quartz furnace tube;
 - N2 purge followed by flowing H2;
-- controlled slider actuation for contact and separation;
+- controlled slider actuation for contact/separation;
 - one defined residual-melt wipe-off architecture.
 
-Two Honeywell-derived wipe-off families are acceptable development branches, but do not combine them under one recipe:
+Two Honeywell-derived wipe-off families may be qualified separately:
 
 1. CdTe pieces retained in a dedicated wipe-off well;
 2. scribed CdTe apron adjacent to the growth substrate.
 
-Record complete boat dimensions, graphite grade, clearances, recess depth, well dimensions/volume, overlap, Hg-source geometry, cover fit, actuator travel, and measured position repeatability. [LOCAL-CAL]
+Do not merge them under one recipe identity.
+
+Record complete boat dimensions, graphite grade, clearances, recess depth, well dimensions/volume, overlap, plug displacement, Hg-source geometry, cover fit, actuator travel, hot-motion behavior, and position repeatability. [LOCAL-CAL]
 
 ## 6.3 Source synthesis
 
-The exact x≈0.30 historical synthesis schedule is unrecovered. A practical Te-rich slider transfer branch demonstrates:
+The exact x≈0.30 historical source-synthesis schedule is unrecovered. A practical Te-rich slider transfer branch demonstrates:
 
 - 6N elemental starting materials;
 - sealed evacuated quartz ampoule synthesis;
@@ -295,31 +347,37 @@ The direct Honeywell sequence is:
 2. place boat in the quartz tube;
 3. thoroughly purge with N2;
 4. establish H2 flow;
-5. heat/equilibrate above or near the liquidus as defined by the selected branch;
-6. supercool or cool to the intended contact state;
-7. translate melt over substrate.
+5. heat/equilibrate above or near liquidus according to the selected local branch;
+6. cool/supercool to the intended contact state;
+7. translate melt over the substrate.
 
-N2 flow/time, H2 flow, gas purity/dew point/O2 criterion, furnace offsets, axial gradient, and actual melt temperature are [LOCAL-CAL]. Controller display temperature is not assumed equal to melt temperature.
+N2 flow/time, H2 flow, gas purity/dew point/O2 criterion, furnace offsets, axial/transverse gradients, and actual solution/substrate temperatures are [LOCAL-CAL]. Controller display temperature is not assumed equal to melt temperature.
 
-Calibrate the loaded boat temperature at the actual substrate/melt region before HgCdTe qualification. Record the complete `T(t)` trace.
+P36 AT-LPE commissioning shall establish geometry, hot motion, thermal field, gas delivery and synchronized data capture before a local branch is called executable.
 
 ## 6.5 First qualification thermal/contact center
 
-Use `T_L=507 °C` as the liquidus tie-line anchor. A **500 °C first-contact state**, corresponding nominally to about 7 K supercooling, is a reasonable [REF-CENTER], not a historical release condition.
+Use `T_L=507 °C` as the tie-line anchor. A **500 °C measured contact-region state**, corresponding nominally to about 7 K supercooling, is a useful [REF-CENTER], not a historical release condition.
 
-Published Te-rich LPE evidence brackets growth contact over roughly 0.25–10 min in one direct branch; a Honeywell example extends to about 30 min. Do not average these into one fictitious historical time.
+Published Te-rich LPE evidence brackets contact times over roughly 0.25–10 min in one experimental family; a Honeywell apparatus example extends to about 30 min. These are separate branches and shall not be averaged into a fictitious historical time.
 
-### Recommended first local development sequence
+### Mandatory local values before an LPE run
 
-1. establish a stable loaded-boat thermal map;
-2. hold above the chosen liquidus sufficiently to obtain a repeatable solution state;
-3. cool to the first contact center near 500 °C;
-4. execute a short-to-intermediate contact time chosen from the published seconds-to-minutes scale;
-5. separate with measured slider motion;
-6. execute the selected wipe-off operation;
-7. cool under the recorded H2/controlled atmosphere trajectory.
+Before first irreversible contact, the traveler shall contain at minimum:
 
-The precise contact time is set by measured thickness and morphology, not by literature resemblance.
+- boat revision and measured well/overlap geometry;
+- absolute `M_charge` and actual elemental masses;
+- auxiliary Hg-source identity/inventory;
+- actual N2/H2 flow states and gas-quality criteria;
+- corrected solution/substrate temperature measurement method;
+- above-liquidus/equilibration criterion;
+- selected contact temperature/supercooling;
+- numerical contact-time coordinate or explicit measured endpoint;
+- selected wipe-off branch;
+- separation/cooldown trajectory;
+- abort/hold criteria.
+
+`500 °C / literature seconds-to-minutes` without these fields is not an executable recipe.
 
 ## 6.6 Required LPE outputs
 
@@ -333,7 +391,7 @@ After every growth run record:
 - matched P05 transport coupon;
 - charge/source mass history and source-use number.
 
-The target is an approximately x=0.30, ~9.5-µm usable layer with sufficiently uniform morphology and transport to enter anneal/device fabrication. Do not accept a run solely because its center-point optical edge appears correct.
+The qualification objective is an approximately x=0.30, ~9.5-µm usable layer with sufficiently uniform morphology and transport to enter anneal/device fabrication. Do not accept a run solely because one optical edge point appears correct.
 
 ---
 
@@ -346,19 +404,21 @@ Use nondestructive IR transmission on the intact parent piece before subdivision
 Recommended qualification capability:
 
 - spectral range approximately 500–5000 cm^-1 or wider as needed;
-- spectral resolution ≤4 cm^-1 for qualification work;
+- spectral resolution ≤4 cm^-1 for qualification work unless sensitivity analysis justifies otherwise;
 - minimum 9-point spatial map; 5×5 preferred where sample size permits;
 - background/reference acquisition with instrument state recorded;
 - full-spectrum fitting preferred over single-edge-point interpretation;
 - independent physical thickness cross-check.
 
-The Hansen relation for x=0.30 at 80 K gives a band-gap-equivalent wavelength near 5.09 µm. This is **not** the same quantity as the reported ~4.4-µm detector response cutoff. Do not use detector cutoff and band-gap wavelength interchangeably.
+The Hansen relation for x=0.30 at 80 K gives a band-gap-equivalent wavelength near 5.09 µm. This is **not** the same quantity as the reported ~4.4-µm detector-response cutoff. Do not use detector cutoff and band-gap wavelength interchangeably.
 
-Report the spectral edge definition used. `lambda_50` may be retained as a QC descriptor but is not a universal composition identity.
+Report the spectral-edge definition used. `lambda_50` may be a QC descriptor but is not a universal composition identity.
+
+P36 AT-FTIR shall establish spectral calibration, photometric repeatability, map registration and an independent thickness reference.
 
 ## 7.2 Hall / van der Pauw
 
-Use a dedicated material-control descendant unless the laboratory has demonstrated that Hall contacts and processing are compatible with subsequent device fabrication.
+Use a dedicated material-control descendant unless Hall contacts and processing have been demonstrated compatible with subsequent device fabrication.
 
 For initial qualification:
 
@@ -369,13 +429,13 @@ For initial qualification:
 - extend toward ±2 T where available for multicarrier discrimination;
 - 80 K mandatory for the first direct comparison; 300 K recommended.
 
-Use antisymmetrized Hall voltage and van-der-Pauw reciprocity checks. A practical redundancy gate is:
+Use antisymmetrized Hall voltage and van-der-Pauw reciprocity/reversal checks. A practical project redundancy gate is:
 
 - ≤3% discrepancy: pass;
 - 3–5%: conditional/review;
 - >5%: fail/repeat or escalate.
 
-Near p/n conversion, do not force a one-carrier density through a Hall-sign cancellation region. Classify the state as `N-LIKE`, `P-LIKE`, or `TRANSITION/MULTICARRIER` and use variable-field tensor analysis where required.
+Near p/n conversion, do not force a one-carrier density through a Hall-sign cancellation region. Classify `N-LIKE`, `P-LIKE`, or `TRANSITION/MULTICARRIER` and use variable-field tensor/multicarrier analysis where required.
 
 ---
 
@@ -385,7 +445,7 @@ Near p/n conversion, do not force a one-carrier density through a Hall-sign canc
 
 Drive the as-grown layer into a stable lightly n-type state while preserving optical composition, thickness, morphology, and detector-relevant lifetime/interface behavior.
 
-The final target neighborhood is the RP-01 material state:
+The reference neighborhood is:
 
 - n-type;
 - n≈9.8×10^14 cm^-3;
@@ -393,7 +453,7 @@ The final target neighborhood is the RP-01 material state:
 - x≈0.30;
 - thickness ≈9.5 µm.
 
-The supplier measurement temperature for the historical n and µ values is unknown, so local comparison shall always state the measurement temperature.
+The supplier measurement temperature for the historical n and µ values is unknown, so every local comparison shall state measurement temperature and transport model.
 
 ## 8.2 Preferred first anneal architecture
 
@@ -421,30 +481,32 @@ Use approximately:
 
 This is [REF-CENTER] anchored by primary low-temperature Hg-rich anneal evidence, not direct RP-01 history.
 
-Near-composition LPE evidence supports 250–300 °C as a useful n-type conversion region without apparent composition change, while ~400 °C can produce interface-region composition changes. Therefore begin below 300 °C unless a separate objective justifies a higher-temperature branch.
+Near-composition LPE evidence supports 250–300 °C as a useful n-type conversion region without apparent composition change, while ~400 °C can produce interface-region composition changes. Begin below 300 °C unless a separate defect-engineering objective justifies otherwise.
 
 ## 8.4 Anneal qualification sequence
 
 1. Measure pre-anneal P05/P06 state at registered locations.
-2. Run the 250 °C/1 h Hg-rich center.
-3. Cool under a recorded boundary condition; do not simply label “furnace cool.”
+2. Execute the selected fully instantiated local branch near the 250 °C/1 h Hg-rich center.
+3. Cool under a recorded boundary condition; do not use `furnace cool` as the only description.
 4. Repeat P05 and P06.
-5. If the state is stable n-like but materially above/below the desired carrier-density region, map time at fixed `T_s`/Hg boundary before changing multiple coordinates.
-6. Useful local time-screen coordinates are 0.5, 1, 2, and 4 h; only 1 h is the cited direct reference center.
+5. If stably n-like but materially above/below the desired carrier-state region, map time at fixed `T_s`/Hg boundary before changing multiple coordinates.
+6. Useful local time-screen coordinates are 0.5, 1, 2, and 4 h; only 1 h is the direct reference center.
 7. After time sensitivity is known, map `T_s`; only then map Hg chemical potential (`T_Hg` relative to `T_s`) if required.
+
+P36 AT-ANN shall establish enclosure geometry, dual-temperature mapping, dwell stability and enclosure integrity before the branch is treated as executable.
 
 ## 8.5 Anneal acceptance
 
-A condition is retained only when:
+Retain a condition only when:
 
-- Hall state is stably n-like under an appropriate transport model;
-- density/mobility are in the selected local target region;
+- Hall state is stably n-like under a valid transport model;
+- density/mobility lie in the selected local target region;
 - P06 shows no unacceptable optical/composition shift;
 - surface morphology is preserved;
 - no Hg/Te deposit or handling damage invalidates the surface;
 - repeated matched coupons show a consistent response.
 
-“n-type” alone is insufficient.
+`n-type` alone is insufficient.
 
 ---
 
@@ -454,9 +516,9 @@ A condition is retained only when:
 
 RP-01 does not identify the Mask-1 resist. Do not copy the Mask-2 chlorobenzene process into Mask 1.
 
-The strongest product-identified Br2/HBr HgCdTe transfer candidate is **AZ4620**, demonstrated at 3 µm in another deep HgCdTe mesa process. A thick positive novolak/DNQ-family resist is therefore the recommended first screening family. [REF-CENTER]
+The strongest product-identified Br2/HBr HgCdTe transfer candidate is **AZ4620**, demonstrated at 3 µm in another deep HgCdTe mesa process. A thick positive novolak/DNQ-family resist is therefore the first screening family. [REF-CENTER]
 
-The actual spin speed, thickness, exposure dose, developer, bake, and strip are [LOCAL-QUAL] and shall be selected from measured resist performance on the actual HgCdTe topography/etch chemistry.
+The actual product, spin, thickness, exposure dose, developer, bake, strip and mask bias are [LOCAL-QUAL].
 
 Before etch record:
 
@@ -473,22 +535,29 @@ Before etch record:
 
 The strongest quantitative near-composition transfer is:
 
-`nominal 2% Br2 in 3:1 EG:HBr` at approximately 21 °C.
+`nominal 2% Br2 in 3:1 EG:HBr` near approximately 21 °C.
 
-Measured transfer behavior at/near 21 °C includes:
+Transfer behavior at/near 21 °C includes:
 
 - vertical rate ≈2.78 µm/min;
 - run/process variation of order ±26%;
 - anisotropy `A = 1 - R_L/R_V ≈ 0.63` with ~±11% variation;
 - best reported RMS roughness near 2 nm;
-- etch rate approximately doubles for each +10 °C over the studied range;
-- lower temperature improves geometric/photoresist control.
+- etch rate approximately doubling for each +10 °C over the studied regime;
+- lower-temperature etching improving geometric/photoresist control.
 
 These are [PRIMARY-TRANSFER], not x=0.30 RP-01 specifications.
 
 ## 9.3 Formulation ambiguity — mandatory local definition
 
-The primary source does **not** define the basis of “2% Br2,” the mathematical preparation basis of 3:1 EG:HBr, or the HBr stock assay. Therefore the executing laboratory shall create an explicit local recipe, for example:
+The primary source does **not** close:
+
+- the basis of `2% Br2`;
+- the mathematical preparation basis of `3:1 EG:HBr`;
+- HBr stock assay;
+- actual historical agitation.
+
+The executing laboratory shall create an explicit local recipe, such as:
 
 - `MESA-WW-*`: bromine mass fraction explicitly defined;
 - `MESA-VV-*`: bromine volume fraction explicitly defined;
@@ -496,26 +565,26 @@ The primary source does **not** define the basis of “2% Br2,” the mathematic
 
 Record Br2/EG/HBr supplier, lot, purity/assay, delivered masses/volumes, vessel, batch age, temperature, open time, agitation, sample loading, and reuse history.
 
-Do **not** write “2% Br2” on a traveler without its definition.
+Do **not** write `2% Br2` on a traveler without its definition. P36A AT-WET-01 makes this a pre-execution gate.
 
 ## 9.4 Etch-rate calibration before device etch
 
-Before etching a detector wafer/piece through the active layer:
+Before etching detector material through the active layer:
 
-1. prepare matched witness coupons with the actual Mask-1 process;
+1. prepare matched witnesses using the actual Mask-1 process;
 2. measure starting thickness/topography;
-3. execute at least three short etch times spanning the expected range;
+3. execute several short etch times spanning the expected range;
 4. measure vertical depth, lateral undercut, resist loss/retreat, roughness and profile;
-5. determine the current local `R_V`, `R_L`, and mask bias;
-6. use electrical isolation as the final through-layer criterion, not nominal time alone.
+5. determine current local `R_V`, `R_L`, and mask bias;
+6. use electrical isolation and measured geometry as the final endpoint, not nominal time alone.
 
-At a transfer rate of 2.78 µm/min, removing 9.5 µm would nominally require ~3.4 min [DERIVED], but **this value must not be used as an uncalibrated device etch time** because local formulation, agitation, temperature, resist geometry, and run-to-run variation can materially shift the rate.
+At the transfer rate of 2.78 µm/min, 9.5 µm corresponds to about 3.4 min [DERIVED], but **3.4 min is not an uncalibrated device etch recipe**.
 
 ## 9.5 Mesa endpoint and handoff
 
 Record actual bath temperature, time, agitation, depth, top/base CD, undercut, sidewall morphology, isolation resistance/leakage, rinse/quench/dry, and the clock to anodization.
 
-Proceed only when the mesa is electrically isolated, passivation-ready, and within the locally qualified geometry window.
+Proceed only when the mesa is electrically isolated, passivation-ready, and inside the locally qualified geometry/interface window.
 
 ---
 
@@ -540,25 +609,27 @@ This is [PRIMARY-TRANSFER / REF-CENTER], not the recovered UWA recipe.
 
 ## 10.2 Electrolyte definition
 
-The primary disclosure explicitly specifies 0.1 mole KOH per 1 L of the stated mixed solvent. With pure KOH molecular weight 56.1056 g/mol:
+The primary disclosure specifies 0.1 mole KOH per 1 L of the stated mixed solvent. With pure KOH molecular weight 56.1056 g/mol:
 
-`m_KOH,pure = 5.61056 g per 1.000 L nominal electrolyte`  [DERIVED]
+`m_KOH,pure = 5.61056 g per 1.000 L nominal branch`  [DERIVED]
 
-Correct for certified reagent assay `a`:
+For certified KOH assay `a`:
 
 `m_KOH,reagent = 5.61056/a`.
 
-The historical 90:10 EG/water basis is not explicitly stated as v/v or w/w. A local recipe shall define one basis mathematically and retain that identity throughout qualification.
+The recovered text does not explicitly close whether the 90:10 EG/water ratio is v/v or w/w. A local recipe shall define one basis mathematically and preserve that identity.
+
+P36A AT-ANO-01 treats an undefined solvent-ratio basis as a failed preflight state.
 
 ## 10.3 Cell/current calculation
 
-Measure the electrochemically exposed semiconductor area `A_exposed`, including the laboratory's explicit rule for exposed sidewalls/backside.
+Measure electrochemically exposed semiconductor area `A_exposed`, including the explicit rule for exposed sidewalls/backside.
 
 For selected current density `J`:
 
 `I_command = J A_exposed`.
 
-At the reference center:
+Reference center:
 
 `J ≈ 0.30 mA/cm²`.
 
@@ -571,7 +642,7 @@ Record:
 - electrolyte recipe/batch/age;
 - vessel and cell geometry;
 - anode-contact material/location;
-- carbon cathode geometry/separation for the TI-PC branch;
+- carbon cathode geometry/separation for the TI-PC transfer branch;
 - bath temperature/agitation state;
 - `A_exposed` and uncertainty;
 - commanded/measured current;
@@ -588,11 +659,12 @@ Record:
 Do not accept solely at 2 min or 15 V. Retain a local branch only when it gives:
 
 - repeatable `V(t)` fingerprint;
-- ~80-nm physical oxide target within the local metrology/acceptance window;
+- ~80-nm physical oxide target inside the local metrology/acceptance window;
 - good coverage/uniformity;
 - acceptable interface/electrical state;
 - compatible RIE oxide clearing;
-- compatible TLM/contact and detector noise.
+- compatible TLM/contact response;
+- acceptable detector electrical/noise behavior.
 
 ---
 
@@ -606,45 +678,47 @@ Keep the following fixed for first RP-01-oriented transfer:
 - prebake: **80 °C / 30 min** [RP01];
 - chlorobenzene treatment: **30 min** [RP01];
 - then pattern, develop, water rinse [RP01];
-- resist remains for RIE and subsequent Cr/Au lift-off.
+- resist remains through RIE and subsequent Cr/Au deposition/lift-off.
 
-The commercial resist, exposure dose/tool, developer, exact chlorobenzene sequence relative to exposure, and lift-off solvent are [OPEN-HIST].
+Commercial resist, exposure dose/tool, developer, exact chlorobenzene sequence relative to exposure, and lift-off solvent are [OPEN-HIST].
 
 ## 11.2 Candidate resist hierarchy
 
-The historical chlorobenzene mechanism strongly supports a positive DNQ/diazo-novolak AZ-type family.
+Historical chlorobenzene lift-off evidence strongly supports a positive DNQ/diazo-novolak AZ-type process family.
 
 Useful candidate evidence:
 
-- AZ4110: direct chlorobenzene lift-off mechanism evidence but typically thinner in the cited branch;
+- AZ4110: direct chlorobenzene mechanism evidence but thinner in the cited branch;
 - AZ4330/AZ4400/AZ4620 class: direct 4–5-µm thickness evidence in other processes.
 
-The preferred local choice is a currently available positive resist that reproducibly yields a measured 4–5 µm film and a re-entrant profile after the RP-01 bake/chlorobenzene fingerprint. Product identity is a local transfer choice, not a historical claim.
+The preferred local choice is a currently available positive resist that reproducibly gives a measured 4–5 µm film and a suitable re-entrant profile after the selected RP-01 bake/chlorobenzene branch. Product identity is a local transfer choice, not a historical claim.
 
-## 11.3 Chlorobenzene order ambiguity
+## 11.3 Chlorobenzene-order ambiguity
 
-RP-01 wording can be read literally as:
+RP-01 wording can be read as:
 
 `bake -> chlorobenzene -> pattern/expose -> develop`,
 
-but historical chlorobenzene lift-off processes also use:
+while historical chlorobenzene lift-off processes also use:
 
 `bake -> expose -> chlorobenzene -> develop`.
 
-If direct source closure is unavailable, compare both branches on witnesses while holding other variables fixed. Retain the branch giving stable 4–5 µm thickness, clean contact-window opening, sufficient RIE mask survival, measurable undercut/overhang, and clean 300-nm total-metal lift-off.
+If direct source closure remains unavailable, compare both branches on witnesses while holding other variables fixed. Retain the branch giving stable film thickness, clean contact-window opening, RIE-mask survival, sufficient undercut/overhang, and clean 300-nm-total metal lift-off.
+
+Do not label the winning local branch as the historical ordering.
 
 ## 11.4 Exposure/development
 
-Do not adopt an exposure dose from another resist. Determine clearing/exposure response on the actual 4–5 µm film after the chosen bake/chlorobenzene sequence. Use a dose/development matrix and measure:
+Determine clearing/exposure response on the actual 4–5 µm film after the chosen bake/chlorobenzene sequence. Use a dose/development matrix and measure:
 
 - resist height;
 - top/bottom opening CD;
 - undercut/overhang;
 - scum;
-- oxide damage/compatibility;
+- oxide compatibility;
 - alignment to Mask 1.
 
-Developer shall be product-matched, aqueous-alkaline where appropriate, with product/lot/concentration/time/temperature/agitation and water-rinse method recorded.
+Developer shall be product-matched, with product/lot/concentration/time/temperature/agitation and water-rinse method recorded. P36A AT-LITH establishes coating, bake, solvent-treatment, dose and development/profile acceptance before HgCdTe residual qualification.
 
 ---
 
@@ -652,7 +726,7 @@ Developer shall be product-matched, aqueous-alkaline where appropriate, with pro
 
 ## 12.1 Direct controller recipe
 
-The canonical RP-01 RIE condition is:
+Canonical RP-01 RIE condition:
 
 - parallel-plate Plasma Technology reactor;
 - gas notation `CH4/5H2`;
@@ -663,16 +737,18 @@ The canonical RP-01 RIE condition is:
 
 These are [RP01].
 
-If `CH4/5H2` is interpreted as a 1:5 flow ratio, the corresponding candidate flows are:
+If `CH4/5H2` is interpreted as a 1:5 flow ratio, candidate individual flows are:
 
 - CH4 = `64/6 = 10.6667 sccm`;
 - H2 = `5×64/6 = 53.3333 sccm`.
 
-This split is **[SAME-LINEAGE/INTERPRETIVE-CANDIDATE]**, not a directly stated RP-01 MFC setting. The local process traveler must state the actual adopted gas realization explicitly.
+This split is an interpretive/same-lineage candidate, not a directly stated RP-01 pair of MFC settings. The local traveler shall state the actual adopted gas realization explicitly.
 
 ## 12.2 Reactor-equivalence rule
 
-Matching 50 W, 100 mTorr, and 64 sccm is not sufficient to establish the same plasma. Record/calibrate:
+Matching 50 W, 100 mTorr, 64 sccm, and 60 s does not establish equivalent ion energy, flux, plasma density, wall chemistry, residence time, or sample temperature.
+
+Record/calibrate:
 
 - reactor/electrode geometry and RF frequency;
 - sample holder/loading;
@@ -680,7 +756,7 @@ Matching 50 W, 100 mTorr, and 64 sccm is not sufficient to establish the same pl
 - base pressure and pressure-gauge state;
 - chamber clean/season history;
 - forward/reflected power;
-- measured dc self-bias or a qualified ion-energy/sheath proxy;
+- measured dc self-bias or qualified sheath/ion-energy proxy;
 - chuck/sample thermal state;
 - pressure trace;
 - actual gas ratio/total flow.
@@ -691,39 +767,56 @@ Forward RF power is an actuator, not a portable ion-energy coordinate.
 
 Define experimentally:
 
-- `t_clear` = time required to clear the actual ~80-nm P25 oxide;
-- `t_sem = t_RF - t_clear` = time of direct HgCdTe plasma exposure.
+- `t_clear` = time required to clear the actual ~80-nm oxide under the local plasma;
+- `t_sem = t_RF - t_clear` = direct HgCdTe plasma-exposure time after oxide clear.
 
-Determine `t_clear` on matched anodized witnesses by short-time calibration. Do not assume the full 60 s acts directly on HgCdTe.
+Determine `t_clear` on matched anodized witnesses by a short-time calibration. Do not assume all 60 s acts directly on HgCdTe.
 
-## 12.4 Physical and electrical outputs
+## 12.4 Physical, sheet-transport and conversion-depth outputs
 
 Keep distinct:
 
-- `d_etch` = physical recession;
-- `d_conv` = vertical electrical conversion depth;
-- `L_conv` = lateral conversion extent.
+- `d_etch` — physical HgCdTe recession;
+- `N_s` — Hall sheet carrier density when a valid sheet reduction exists;
+- `mu_H` — Hall mobility under the selected transport model;
+- `d_conv` — independently measured/inferred vertical electrical conversion depth;
+- `L_conv` — lateral conversion extent;
+- `n_conv = N_s/d_conv` — derived volumetric density only after `d_conv` is justified.
 
-Same-UWA work directly demonstrates that electrical conversion can extend much deeper than the physical etch. Therefore never infer conversion depth from profilometry alone.
+RP-01 reports `n_conv≈2.0×10^15 cm^-3` **averaged over the converted thickness** and `mu≈3.3×10^4 cm²/V·s`. The volume density is therefore depth-coupled; it is not an independent reactor target.
+
+A same-lineage approximately 8-µm conversion-depth result exists under similar conditions, but the exact linkage to the RP-01 volume-density reduction remains historically open. Do not assume `d_conv=8 µm` for a new reactor without measurement.
+
+The controlled blocking-contact state vector shall include at least:
+
+`{R_s, N_s, mu_H, d_conv, L_conv, d_etch, rho_c, blocking_response}`.
+
+Do not tune the plasma solely to reproduce `2.0×10^15 cm^-3`.
+
+If the modified layer and underlying epilayer conduct in parallel, a one-layer Hall reduction may be invalid. Retain variable-field Hall/magnetoresistance and escalate to a multicarrier/multilayer treatment where required.
+
+## 12.5 Functional qualification
 
 Required qualification outputs include:
 
 - oxide clear/recession;
 - surface roughness/morphology;
 - sheet resistance/conductance;
-- Hall state on dedicated witnesses;
+- variable-field Hall state on dedicated witnesses;
 - LBIC or validated equivalent for conversion extent;
 - TLM contact response after metallization;
 - minority-carrier blocking functional response;
 - detector resistance/noise change.
 
-A direct RP-01 converted-state reference is n≈2.0×10^15 cm^-3 and µ≈3.3×10^4 cm²/V·s.
+Historical TLM reference:
 
-The historical TLM target is rho_c≈9×10^-4 Ω·cm² at 80 K.
+`rho_c≈9×10^-4 ohm·cm² at 80 K` [RP01].
 
-## 12.5 LBIC reference validation branch
+TLM is a majority-contact metric and does not prove minority-carrier blocking by itself.
 
-Same-lineage validation used a patterned ~300×300 µm RIE region, 1.047-µm Nd:YLF CW illumination around 400 mW/cm², and 80-K measurements to reveal the bipolar boundary response. These values are a validation reference branch, not mandatory production test settings.
+## 12.6 LBIC reference validation branch
+
+Same-lineage validation used a patterned ~300×300 µm RIE region, 1.047-µm Nd:YLF CW illumination around 400 mW/cm², and 80-K measurements to reveal a bipolar boundary signature. These values are a validation-reference branch, not mandatory production test settings.
 
 ---
 
@@ -731,7 +824,7 @@ Same-lineage validation used a patterned ~300×300 µm RIE region, 1.047-µm Nd:
 
 ## 13.1 Surface-transfer clock
 
-The default baseline is:
+Default baseline:
 
 `RIE -> controlled transfer -> Cr deposition`
 
@@ -750,11 +843,11 @@ Define:
 
 `Delta t_RIE-Cr = t_Cr_start - t_RF_off`.
 
-No universal maximum is assigned; qualify the interval by TLM, interface stability, and detector performance.
+No universal maximum is assigned; qualify the interval by TLM, interface stability, converted-layer preservation, and detector response.
 
 ## 13.2 Deposition method
 
-RP-01 does not state the deposition method. Thermal evaporation is the strongest same-UWA method-family transfer candidate and is the preferred first local branch. E-beam or sputtered branches are permissible but require separate qualification because bombardment, heating, stress, and directionality differ.
+RP-01 does not state the deposition method. Thermal evaporation is the strongest same-UWA method-family transfer candidate and the preferred first local branch. E-beam or sputtered branches are permissible but separate because bombardment, heating, stress, residual-gas interaction and directionality differ.
 
 ## 13.3 Film stack
 
@@ -763,7 +856,7 @@ Deposit, without intentional interlayer oxidation:
 1. **30 nm Cr** [RP01];
 2. **270 nm Au** [RP01].
 
-Remain under vacuum between layers if the tool permits.
+Remain under vacuum between layers where the chosen tool permits.
 
 Record:
 
@@ -771,21 +864,21 @@ Record:
 - base/process pressure;
 - source material/purity/boat/crucible;
 - QCM crystal/calibration/tooling factor;
-- Cr and Au rates and times;
+- separate Cr and Au rates/times;
 - indicated and independent witness thickness;
 - holder/sample temperature;
 - source-to-sample geometry/angle/rotation;
 - abnormal events.
 
-Do not invent an RP-01 base pressure or Cr deposition rate. Published HgCdTe Au rates of ~0.3–1.2 nm/s are useful screening scales only; select rates inside the stable calibrated regime of the actual tool and qualify contact response.
+Do not invent an RP-01 base pressure or Cr rate. Published HgCdTe Au rates around 0.3–1.2 nm/s are screening scales only.
 
 ## 13.4 Thermal budget
 
-Use the first transfer as **as-deposited, no intentional post-metal anneal**. Record actual holder/sample heating during deposition. Any post-metal anneal is a new process branch because Hg loss, interdiffusion, contact resistance, and resist/lift-off behavior can change.
+Use the first transfer as **as-deposited, no intentional post-metal anneal** unless a separate branch is justified. Record actual holder/sample heating. Any post-metal anneal is a new branch requiring remeasurement of contact/interface and detector outputs.
 
 ## 13.5 Lift-off
 
-The historical lift-off solvent/time/agitation are unrecovered. Choose a solvent/process compatible with the selected positive resist and Cr/Au stack. Prefer soaking and low-mechanical-force removal; ultrasonication is not a default because it can damage fragile HgCdTe/passivation/contact edges.
+Historical lift-off solvent/time/agitation are unrecovered. Choose a process compatible with the selected resist and Cr/Au stack. Prefer soaking/low mechanical force during initial qualification; ultrasonication is not a default because fragile passivation/contact edges may be damaged.
 
 Accept only when microscopy shows:
 
@@ -810,27 +903,27 @@ For each contact pair record:
 - active conducting width;
 - mesa dimensions;
 - alignment/clearance;
-- optical aperture overlap where relevant.
+- optical-aperture overlap where relevant.
 
-Use these measured values, not mask CAD, in field and D* calculations.
+Use measured values, not mask CAD, in field and D* calculations. P36A AT-DIM shall establish the lateral/vertical metrology needed at the relevant scales.
 
 ## 14.2 TLM
 
 Use the nine-contact geometry with approximately 300×300 µm contacts and gaps 50–400 µm in 50-µm steps.
 
-At the defined temperature/background and low enough excitation to remain ohmic:
+At the declared temperature/background and low enough excitation to remain ohmic:
 
-1. acquire bidirectional I–V for each adjacent/selected gap;
+1. acquire bidirectional I–V for selected gaps;
 2. extract resistance using a consistent regression interval;
-3. plot total resistance versus gap/geometry term;
-4. obtain sheet and contact terms with uncertainty/residual analysis;
-5. report specific contact resistivity with the exact TLM convention used.
+3. regress total resistance versus gap/geometry term;
+4. obtain sheet/contact terms with uncertainty and residual analysis;
+5. report specific contact resistivity with the exact TLM convention.
 
 Reference benchmark:
 
 `rho_c ≈ 9×10^-4 ohm·cm² at 80 K` [RP01].
 
-TLM is a majority-contact metric. It does **not** by itself prove the minority-carrier blocking function of the RIE region; retain LBIC or equivalent functional evidence.
+Retain separate blocking-contact functional evidence.
 
 ---
 
@@ -838,11 +931,11 @@ TLM is a majority-contact metric. It does **not** by itself prove the minority-c
 
 ## 15.1 Canonical operating field
 
-At 80 K, use the measured active-region voltage and gap:
+At 80 K, calculate electric field from measured active-region voltage and measured gap:
 
 `E = V_active/L`.
 
-For 10 V/cm, required active voltages are:
+For 10 V/cm, active-voltage targets are:
 
 - 50 µm gap: 0.050 V;
 - 100 µm: 0.100 V;
@@ -853,13 +946,13 @@ For 10 V/cm, required active voltages are:
 - 350 µm: 0.350 V;
 - 400 µm: 0.400 V.
 
-Correct source voltage for lead/contact/series drops where material.
+Correct source voltage for lead/contact/series drops when material.
 
 ## 15.2 Dark I–V and self-heating
 
 At stabilized ~80 K:
 
-1. acquire symmetric positive/negative low-field sweeps from zero through the intended operating range;
+1. acquire symmetric positive/negative low-field sweeps from zero through the intended operating region;
 2. record active voltage, current, detector/mount temperature, and power;
 3. periodically return to zero to expose drift/hysteresis;
 4. establish the approximately ohmic low-field region;
@@ -870,9 +963,9 @@ Joule power:
 
 `P_J = V_active I`.
 
-A universal allowable mW limit is not assigned because package thermal resistance is construction-specific.
+A universal allowable mW limit is not assigned because thermal resistance is construction-specific.
 
-Preferred local temperature checks include near-zero-power `R(T)` calibration and/or a sufficiently coupled temperature sensor. Use short-pulse versus DC comparison where useful.
+Preferred checks include near-zero-power `R(T)` calibration, sufficiently coupled thermometry, and pulse/DC comparison where useful.
 
 ---
 
@@ -880,17 +973,17 @@ Preferred local temperature checks include near-zero-power `R(T)` calibration an
 
 ## 16.1 Historical status
 
-RP-01 does not disclose the singulation method or die outline. The first qualification route should therefore use a low-force, CdZnTe-compatible method and treat singulation as an actual process step rather than neutral handling.
+RP-01 does not disclose singulation method or die outline. Treat singulation as a material/device process, not neutral handling.
 
 ## 16.2 Preferred first branch
 
-A low-force **wire-saw family** is the strongest directly documented CdZnTe detector transfer branch. Primary evidence includes metallized CdZnTe protected with photoresist, mounted with low-melting wax on graphite, cut extremely slowly using a stainless-steel wire and 16-µm BN abrasive slurry. These details are [PRIMARY-TRANSFER], not a ready-made RP-01 recipe.
+A low-force **wire-saw family** is the strongest directly documented CdZnTe detector transfer branch. Primary evidence includes metallized CdZnTe protected with photoresist, mounted with low-melting wax on graphite, and cut very slowly with stainless-steel wire plus 16-µm BN abrasive slurry. These are [PRIMARY-TRANSFER], not a ready-made RP-01 recipe.
 
-Do not automatically use the associated strong post-cut 5% Br/methanol/5-min damage-removal etch on a completed RP-01 device; it could destroy/alter the 9.5-µm active layer, passivation, and contacts.
+Do not automatically use the associated strong post-cut 5% Br/methanol/5-min damage-removal etch on a completed RP-01-like device; it could materially alter the 9.5-µm active layer, oxide, and contacts.
 
 ## 16.3 Qualification method
 
-Define and record:
+Define/record:
 
 - die/street geometry and crystal orientation;
 - support/protection material;
@@ -906,9 +999,9 @@ Define and record:
 
 Define separately:
 
-- `d_visible` = geometric distance to visible damage;
-- `d_functional` = minimum distance shown not to measurably degrade detector function;
-- `d_release` = locally released exclusion including uncertainty/margin.
+- `d_visible` — geometric distance to visible damage;
+- `d_functional` — minimum distance shown not to measurably degrade detector function;
+- `d_release` — locally released exclusion including uncertainty/margin.
 
 Visible edge quality alone is insufficient.
 
@@ -918,20 +1011,20 @@ Visible edge quality alone is insufficient.
 
 ## 17.1 Historical status
 
-The RP-01 paper does not disclose die attach, carrier, wire, aperture, window, vacuum, or package construction. Package hardware is therefore a local transfer architecture, not a historical process claim.
+RP-01 does not disclose die attach, carrier, wire, aperture, window, vacuum, or package construction. Package hardware is a local transfer architecture, not a historical process claim.
 
 ## 17.2 First attachment branch
 
-Use a **compliant silicone-family** attachment as the first cryogenic mechanical screen because direct Honeywell HgCdTe evidence showed brittle/glass attachment cracking on deep cooldown while silicone-rubber attachment survived. The historical Dow Corning product names are evidence of the material family, not procurement instructions for an obsolete formulation.
+Use a **compliant silicone-family** attachment as the first cryogenic mechanical screen because direct HgCdTe evidence showed brittle/glass attachment cracking on deep cooldown while silicone-rubber attachment survived. Historical product names identify the material family, not a modern procurement instruction.
 
-A low-outgassing epoxy can be screened as a second branch, but must be treated separately.
+A low-outgassing epoxy may be screened as a separate branch.
 
 ## 17.3 Required package record
 
 Record:
 
 - singulated die geometry/edge state;
-- carrier/cold-finger material, dimensions, CTE and thermal data source;
+- carrier/cold-finger material, dimensions, CTE and thermal-data source;
 - attachment product/lot/mix ratio;
 - dispense quantity;
 - bondline thickness/coverage/voiding;
@@ -941,11 +1034,11 @@ Record:
 - bonder/tool/mode/force/ultrasonic/time/stage temperature;
 - aperture, window/filter, shield and physical FOV geometry;
 - vacuum/purge/bake history;
-- temperature sensor position.
+- temperature-sensor position.
 
 ## 17.4 Package thermal response
 
-Package/bondline thermal poles can occur on millisecond to hundreds-of-milliseconds scales in HgCdTe photoconductor assemblies. Therefore characterize the package thermal response near operating temperature using short optical or electrical heating pulses.
+Package/bondline thermal poles can occur on millisecond-to-hundreds-of-milliseconds scales in HgCdTe photoconductor assemblies. Characterize package thermal response near operating temperature using a qualified short optical or electrical heating perturbation.
 
 Do not attribute a slow P13 transient to minority-carrier lifetime until package thermal response has been evaluated.
 
@@ -960,27 +1053,38 @@ After assembly and defined thermal cycles, repeat selected:
 - P13 dynamic/thermal response;
 - edge/crack and bond inspection.
 
-Reject or requalify any package that introduces unacceptable mechanical damage, excess noise, optical loss, electrical drift, or thermal pole into the detector measurement band.
+Reject/requalify a package that introduces unacceptable mechanical damage, excess noise, optical loss, electrical drift, or a thermal pole that corrupts the intended measurement band.
 
 ---
 
-# 18. Absolute spectral responsivity
+# 18. Absolute spectral responsivity and optical state
 
 ## 18.1 Canonical RP-01 comparison state
 
-Use:
+Direct historical coordinates:
 
 - T = 80 K;
 - E = 10 V/cm;
-- nominal 60° FOV, implemented by measured physical geometry;
+- stated FOV = 60°;
 - modulation/chopping frequency = 1 kHz;
-- spectral region covering the full response and cutoff (~4.4 µm historical response edge).
+- spectral region covering the full response and the ~4.4-µm reported response edge.
+
+The historical 60° label does **not** document full-angle versus half-angle or the physical aperture dimensions. A 60° full cone (30° half-angle) is consistent with the quoted 300-K photon-flux scale in the current radiometric consistency model, but that is [DERIVED / CONSISTENCY], not historical proof.
+
+For a new measurement:
+
+- preserve `stated 60° FOV` as the historical comparison label;
+- separately define the actual aperture/shield/window/source geometry;
+- calculate or measure the view factor/projected solid angle;
+- state explicitly whether any quoted angle is full cone, half-angle or another convention.
+
+Do not silently replace the historical state with `exact 30° half-angle`.
 
 ## 18.2 Measurement architecture
 
-Preferred modern method: substitution/comparison to a calibrated IR transfer detector in the same optical reference plane.
+Preferred modern method: substitution/comparison to a calibrated IR transfer detector in the same defined optical reference plane.
 
-For calibrated reference responsivity `R_ref(lambda)` and detector-terminal-equivalent reference and DUT signals:
+For calibrated reference responsivity `R_ref(lambda)` and detector-terminal-equivalent signals:
 
 `P_inc(lambda) = V_ref(lambda)/R_ref(lambda)`
 
@@ -1004,7 +1108,8 @@ Record:
 - chopper waveform/duty/frequency;
 - lock-in harmonic, phase, RMS/peak convention;
 - gain/filter transfer;
-- detector current/power/temperature.
+- detector current/power/temperature;
+- window/filter/package transmission state.
 
 Use the same modulation and signal-amplitude convention for reference and DUT whenever possible so waveform factors cancel.
 
@@ -1013,24 +1118,33 @@ Use the same modulation and signal-amplitude convention for reference and DUT wh
 - use order-sorting filters;
 - test stray light beyond cutoff;
 - purge/evacuate important H2O/CO2 path lengths;
+- characterize signal linearity at the actual irradiance/background state;
 - do not quote cutoff more precisely than wavelength calibration and edge-definition uncertainty;
-- do not equate a detector-response cutoff to the Hansen band-gap-equivalent wavelength.
+- do not equate detector-response cutoff to the Hansen band-gap-equivalent wavelength.
 
 ---
 
 # 19. Noise, NEP, and specific detectivity
 
-## 19.1 Canonical comparison state
+## 19.1 Canonical comparison state and same-device rule
 
-For RP-01 comparison:
+For direct RP-01 comparison:
 
 - T=80 K;
 - E=10 V/cm;
-- same contact pair/geometry as responsivity;
-- same FOV/background state;
-- evaluate detector noise at the signal frequency used in responsivity, especially 1 kHz for the canonical spectral measurement.
+- stated 60° FOV/background state;
+- same representative device for the performance chain;
+- evaluate detector noise at the declared D* frequency, especially 1 kHz for the canonical spectral measurement.
 
-The historical ~24.5 nV/√Hz value is the reported high-frequency/g-r noise level. Since 1 kHz lies below the ~3-kHz 1/f knee, **do not substitute 24.5 nV/√Hz as the 1-kHz noise unless the measurement actually establishes that value at 1 kHz.**
+P12C closes that RP-01 Figures 3, 5, 6 and 7 correspond to the same representative detector. Therefore a new D* closure should lock, at minimum:
+
+`{device, contact pair, measured gap, measured width, T, E, package, FOV/background, loading, frequency convention}`
+
+between responsivity and noise measurements, unless a measured correction is explicitly applied.
+
+`same wafer/process` is not a substitute for `same device/state`.
+
+The historical ~24.5 nV/√Hz value is the reported high-frequency/g-r level. Since 1 kHz is below the ~3-kHz 1/f knee, **do not substitute 24.5 nV/√Hz as the 1-kHz noise unless evidence establishes that convention/value at 1 kHz.**
 
 ## 19.2 PSD/ASD definitions
 
@@ -1042,57 +1156,81 @@ ASD:
 
 `e_n(f)=sqrt(S_v(f))` in V/√Hz.
 
-Integrated noise:
+Integrated RMS noise:
 
 `V_rms = sqrt(integral S_v(f) df)`.
 
-For locally white noise through ENBW `B`:
+For locally white noise through equivalent noise bandwidth `B`:
 
 `V_rms ≈ e_n sqrt(B)`.
 
-Record FFT/window/ENBW or analyzer normalization so displayed line amplitude is never confused with ASD.
+Record FFT/window/ENBW or analyzer normalization so a displayed line amplitude is never confused with ASD.
+
+Historical knee comparison remains the intersection of the low-frequency 1/f trend and the high-frequency g-r level; do not silently replace that with a -3-dB or Lorentzian-corner definition.
 
 ## 19.3 Electronics subtraction
 
-When independent and correctly referred to the same input node:
+When independent and referred to the same input node:
 
 `S_det = S_meas - S_elec`
 
 `e_det = sqrt(e_meas^2 - e_elec^2)`.
 
-Do not subtract ASDs linearly. If electronics noise is a large fraction of measured noise, propagate the resulting subtraction uncertainty rather than reporting an artificially precise detector floor.
+Do not subtract ASDs linearly. If electronics noise is a large fraction of measured noise, propagate the subtraction conditioning/uncertainty.
 
-Validate the chain using known resistor Johnson noise:
+Validate the electrical chain with known resistor Johnson noise where the source-impedance model is applicable:
 
 `e_J = sqrt(4 k_B T R)`.
 
-## 19.4 NEP and D*
+Do not subtract a Johnson term blindly from a biased nonequilibrium detector.
 
-At the same wavelength, frequency, field, temperature, background and active-area convention:
+## 19.4 NEP and D* — explicit area/power convention
+
+At the same wavelength, frequency, field, temperature, background, loading and package state:
 
 `NEP(lambda,f) = e_det(f)/R_v(lambda,f)`.
 
-`D*(lambda,f) = R_v(lambda,f) sqrt(A) / e_det(f)`.
+Define explicitly:
 
-Equivalently:
+- `A_Dstar` — detector normalization area used in the D* definition;
+- `P_inc` — optical power incident under the stated radiometric geometry;
+- any aperture/beam/irradiance area used to derive `P_inc`.
 
-`D* = sqrt(A)/NEP`.
+Then:
 
-If responsivity and noise share the same calibrated linear gain path, common gain uncertainty can cancel algebraically; document the correlation rather than double-counting the gain uncertainty.
+`D*(lambda,f) = R_v(lambda,f) sqrt(A_Dstar) / e_det(f)`
 
-The area `A` must be the same physical optical/detector-area convention used to define incident power. Do not mix a nominal mask area with a different illuminated/aperture area.
+and:
+
+`D* = sqrt(A_Dstar)/NEP`.
+
+`A_Dstar` and the optical beam/aperture area need **not** be literally the same physical area if the measurement equation defines them separately. What is prohibited is silently mixing conventions.
+
+If incident power is derived from irradiance using a geometry/area that is shared or correlated with `A_Dstar`, retain that covariance. Define:
+
+`gamma_A = partial ln(P_inc)/partial ln(A_Dstar)`
+
+under the stated measurement convention. The first-order D* sensitivity to that area coordinate is:
+
+`S_Dstar,A = 0.5 - gamma_A`.
+
+Thus the familiar `+0.5` area exponent applies only when `P_inc` is independent of the same area coordinate.
+
+If responsivity and noise share the same calibrated linear gain path at the same frequency/loading, common gain uncertainty may cancel; document the correlation rather than double-counting it.
 
 ## 19.5 Noise diagnostics
 
 Report separately:
 
 - fitted 1/f exponent;
-- 1/f knee by the stated intersection convention;
+- historical-comparison knee;
 - high-frequency/g-r plateau ASD;
+- detector ASD at the D* frequency;
 - narrowband interference lines;
 - bias dependence;
 - blocked versus background-loaded states;
-- stationarity/drift.
+- stationarity/drift;
+- background-temperature/aperture stability where relevant.
 
 Historical comparison targets are roughly 3 kHz knee and 24.5 nV/√Hz high-frequency g-r level.
 
@@ -1102,9 +1240,9 @@ Historical comparison targets are roughly 3 kHz knee and 24.5 nV/√Hz high-freq
 
 ## 20.1 Historical boundary
 
-RP-01 does not publish a direct detector lifetime/frequency-response curve. Do not infer lifetime from the fact that spectral measurements used 1 kHz.
+RP-01 does not publish a direct detector lifetime/frequency-response curve. Do not infer lifetime from the use of 1-kHz optical chopping.
 
-Same-UWA x≈0.30 transient-photoconductive work provides a useful historical measurement branch:
+Same-UWA x≈0.30 transient-photoconductive work provides a historical measurement branch:
 
 - 1.047 µm pulsed laser;
 - 25 ns optical pulses;
@@ -1114,25 +1252,29 @@ Same-UWA x≈0.30 transient-photoconductive work provides a useful historical me
 - HP54522A oscilloscope;
 - typically 128 waveform averages;
 - 500 samples at 20 ns spacing;
-- non-exponential diffusion/recombination model outperformed a single exponential in the analyzed data.
+- non-exponential diffusion/recombination model outperforming a single exponential for the analyzed dataset.
 
-These are measurement-history anchors, not RP-01 lifetime targets.
+These are measurement-lineage anchors, not RP-01 lifetime targets.
 
 ## 20.2 De-embedding
 
-In frequency domain:
+In a simple multiplicative frequency-domain representation:
 
-`H_meas = H_source H_optics H_detector H_bias H_preamp H_cable H_instrument H_pkg,thermal`
+`H_meas = H_source H_optics H_detector H_bias H_preamp H_cable H_instrument`
 
-where the package thermal mechanism may require a coupled/additive representation rather than a simple multiplicative factor.
+Package thermal behavior may require a separate coupled/additive model rather than being forced into a multiplicative block.
 
-Only report detector `f_3dB` after source, electronics, cabling/instrument, and package effects are shown negligible or are measured and de-embedded.
+Only report detector `f_3dB` after source, bias/readout, cabling/instrument and package effects are shown negligible or measured/de-embedded with adequate uncertainty.
 
 ## 20.3 Small-signal/injection gate
 
-At fixed T/E/geometry, acquire at least three decreasing optical modulation or pulse levels. The inferred time constant/waveform must converge as excitation is reduced before it can be interpreted as a small-signal material/device quantity.
+At fixed T/E/geometry, acquire at least three decreasing optical modulation or pulse levels. Inferred waveform/time constant should converge as excitation is reduced before interpretation as a small-signal device/material quantity.
 
-A 25-ns source pulse corresponds to a rough one-pole rise-time bandwidth scale ~0.35/25 ns ≈14 MHz [DERIVED]. This is only an apparatus-sizing check and does not establish detector bandwidth.
+A 25-ns source pulse corresponds to a rough one-pole rise-time bandwidth scale:
+
+`0.35/25 ns ≈ 14 MHz` [DERIVED].
+
+This is an apparatus-sizing check only.
 
 ## 20.4 One-pole model
 
@@ -1146,60 +1288,73 @@ For:
 
 `f_3dB=1/(2 pi tau)`.
 
-Accept a one-pole interpretation only when amplitude and phase give the same tau, residuals are structureless, fit-window dependence is small, injection level does not change tau, and package/electronics response is not limiting.
+Accept a one-pole interpretation only when:
 
-Otherwise report an effective time constant or higher-order model rather than forcing the result to “minority-carrier lifetime.”
+- amplitude and phase support the same `tau`;
+- residuals are not systematically structured;
+- fit-window/range changes do not materially shift the pole;
+- decreasing injection does not change the inferred small-signal pole;
+- external electrical/source response is not limiting;
+- package thermal response is negligible in the fitted band or separately modeled.
+
+Otherwise report `tau_eff` or a higher-order/physical model rather than forcing the result to `minority-carrier lifetime`.
 
 ---
 
-# 21. Acceptance matrix for a qualification build
+# 21. Qualification-build acceptance matrix
 
-The following are **qualification-build gates**, not production capability indices.
+These are qualification gates, not production capability indices.
 
 | Stage | Required evidence before advance |
 |---|---|
+| Preflight | all step-specific local fields instantiated; applicable P36/P36A commissioning evidence current; genealogy and EH&S authorization complete |
 | Substrate | identity/polarity/defect/surface genealogy complete; no critical crack/inclusion; local final-surface branch executed |
-| LPE | usable continuous layer; P06 x/thickness map and morphology within selected development region; genealogy complete |
+| LPE | absolute charge/thermal/gas/contact/wipe branch instantiated; usable continuous layer; P06 x/thickness map and morphology in selected development region; genealogy complete |
 | As-grown material | P05 carrier-state baseline + P06 registered map complete |
-| Anneal | stable n-like state under valid transport model; acceptable n/µ region; optical composition/thickness preserved |
-| Mask 1 | measured resist thickness/CD/profile; no pinhole/adhesion failure |
-| Wet mesa | measured through-layer isolation; acceptable depth/undercut/profile; no uncontrolled chemistry basis |
-| Oxide | repeatable V(t)/Q/A; ~80-nm target physically verified; interface/device compatibility |
-| Mask 2 | measured 4–5 µm film; clean opening; sufficient re-entrant profile; oxide compatibility |
-| RIE | actual gas/plasma/thermal state recorded; oxide clear known; electrical conversion/blocking witness accepted |
+| Anneal | actual `T_s(t)`/`T_Hg(t)` branch instantiated; stable n-like state under valid transport model; acceptable material region; optical composition/thickness preserved |
+| Mask 1 | named resist branch; measured thickness/CD/profile; no pinhole/adhesion failure |
+| Wet mesa | chemistry basis unambiguous; local rate/profile calibration; measured through-layer isolation; acceptable depth/undercut/profile |
+| Oxide | electrolyte basis/cell/area defined; repeatable V(t)/Q/A; ~80-nm target physically verified; interface/device compatibility |
+| Mask 2 | measured 4–5 µm film; direct bake/chlorobenzene fingerprint retained; clean opening; sufficient re-entrant profile; oxide compatibility |
+| RIE | gas/plasma/thermal state recorded; oxide clear known; sheet/depth conversion state and blocking witness accepted |
 | Cr/Au | 30/270 nm physically verified; clean lift-off; no uncontrolled RIE-to-metal treatment |
-| Contact | TLM/IV accepted; target neighborhood includes rho_c~9×10^-4 Ω·cm² at 80 K |
+| Contact | TLM/IV accepted; reference neighborhood includes rho_c~9×10^-4 Ω·cm² at 80 K; blocking function separately verified |
 | Bare detector | stable near-ohmic low-field operation; safe E/P_J region established |
 | Singulation | no unacceptable visible/subsurface/functional edge damage |
 | Package | cryogenic mechanical/electrical/noise/thermal acceptance passed |
-| Responsivity | traceable spectral calibration at declared T/E/f/FOV/geometry |
-| Noise/D* | detector-referred PSD/ASD normalized correctly; electronics separated; same-state R and noise |
+| Responsivity | traceable spectral calibration at declared device/contact/T/E/f/FOV/geometry |
+| Noise/D* | same-device/state identity or explicit correction; detector-referred PSD/ASD normalized correctly; electronics/background effects bounded |
 | Dynamics | external/package transfer bounded/de-embedded; injection dependence checked |
 
-No row should be converted into a numerical production tolerance until repeated local data justify one.
+No row becomes a numerical production tolerance until repeated local data and requirements justify one.
 
 ---
 
-# 22. Apparatus-dependent quantities that must be instantiated locally
+# 22. Local instantiation and commissioning coordinates
 
-These are not manuscript omissions. They are coordinates that physically depend on the executing hardware/material lot.
+These are not manuscript omissions; they physically depend on the executing hardware/material lot. They are nevertheless **mandatory traveler fields before the relevant irreversible operation**.
 
 ## 22.1 LPE
 
-- boat dimensions, well volume, fill height and total charge mass;
-- furnace-controller-to-melt temperature offsets/gradients;
+- boat dimensions, well volume, fill/meniscus state and total charge mass;
+- furnace-controller-to-solution/substrate temperature offsets/gradients;
 - N2/H2 flow and gas-quality criteria;
-- exact contact interval giving the required thickness;
+- above-liquidus/equilibration criterion;
+- exact contact interval/trajectory giving required thickness;
 - slider speed/clearance/wipe geometry;
-- Hg-source mass sufficient for the local enclosure and depletion history.
+- auxiliary Hg-source inventory and reuse/depletion rule.
+
+Use P36 AT-LPE and P30/P30A.
 
 ## 22.2 Anneal
 
 - ampoule free volume and source/sample geometry;
-- sample and reservoir thermometry offsets;
-- Hg inventory sufficient for the local boundary condition;
-- actual cooldown trajectory;
-- time/temperature needed for the starting defect state.
+- sample/reservoir thermometry offsets;
+- Hg inventory/source state sufficient for the local boundary condition;
+- actual dwell and cooldown trajectory;
+- time/temperature needed for the measured starting defect state.
+
+Use P36 AT-ANN and P31/P23.
 
 ## 22.3 Lithography/wet chemistry
 
@@ -1208,7 +1363,9 @@ These are not manuscript omissions. They are coordinates that physically depend 
 - agitation and measured etch rate;
 - Mask-1 resist/product/process;
 - Mask-2 resist product, spin, exposure, developer, chlorobenzene order, lift-off solvent;
-- oxide EG/water ratio basis and cell dimensions.
+- anodization EG/water ratio basis and cell dimensions.
+
+Use P36A AT-LITH/AT-WET/AT-ANO.
 
 ## 22.4 RIE
 
@@ -1218,35 +1375,45 @@ These are not manuscript omissions. They are coordinates that physically depend 
 - self-bias/ion-energy proxy;
 - sample temperature;
 - chamber seasoning;
-- oxide-clear time.
+- oxide-clear time;
+- conversion-depth/sheet-state measurement method.
+
+Use P36 RIE acceptance and P34/P08/P24.
 
 ## 22.5 Metallization
 
 - deposition method/tool;
-- base/process vacuum;
-- Cr/Au rate;
-- QCM tooling factor;
+- base/process vacuum state;
+- Cr/Au rates;
+- QCM tooling factor and independent witness calibration;
 - sample thermal load;
 - allowable RIE-to-Cr delay.
 
+Use P36 deposition acceptance and P26/P26A.
+
 ## 22.6 Singulation/package
 
-- exact cutting tool/abrasive/feed/support/protection;
+- cutting tool/abrasive/feed/support/protection;
 - released functional edge exclusion;
 - attachment product/bondline/cure;
 - wire-bond parameters;
 - cold-shield/window/aperture geometry;
 - package thermal transfer.
 
+Use P35/P33/P36.
+
 ## 22.7 Metrology
 
 - Hall magnet/current/voltage/temp implementation;
-- FTIR reference, footprint, spectral resolution and reduction version;
+- FTIR reference/footprint/resolution/reduction version;
 - calibrated radiometric reference detector/monochromator geometry;
 - preamplifier/analyzer transfer and ENBW convention;
-- dynamic-source/electronics/package transfer functions.
+- dynamic-source/electronics/package transfer functions;
+- dimensional/thickness metrology appropriate to the feature scale.
 
-A competent laboratory completes these fields by calibration/qualification, not by searching for a universal number that does not exist.
+Use P36/P36A.
+
+A competent laboratory closes these values through calibration/qualification rather than by searching for a universal number that does not physically exist.
 
 ---
 
@@ -1255,28 +1422,29 @@ A competent laboratory completes these fields by calibration/qualification, not 
 A complete qualification build shall preserve:
 
 1. source-material and substrate genealogy;
-2. final CdZnTe surface recipe and clean-to-load times;
-3. exact LPE charge calculation and actual masses;
-4. boat revision, source inventory, gas and full growth T(t);
-5. as-grown P05/P06 data;
-6. full anneal T_s(t), T_Hg(t), source history and post-anneal P05/P06;
-7. Mask-1 resist/exposure/develop data;
-8. wet-etch formulation mathematics, bath genealogy, depth/CD/isolation;
-9. anodization cell/electrolyte/A_exposed/I/V(t)/Q/A/thickness;
-10. Mask-2 thickness, bake, chlorobenzene branch, exposure/developer/profile;
-11. RIE MFC/plasma/pressure/self-bias/temperature/t_clear/t_sem/witness data;
-12. RIE-to-Cr timestamps;
-13. Cr/Au source/vacuum/rate/QCM/witness thickness and lift-off inspection;
-14. final geometry/contact map and TLM;
-15. P10 bare-device DC/self-heating data;
-16. pre-singulation optical/noise/dynamic baseline where feasible;
-17. singulation process/edge/subsurface/functional disposition;
-18. package construction, bondline, interconnect, optical geometry and thermal response;
-19. final P11 absolute responsivity files;
-20. final P12 raw PSD/ASD, electronics calibration, NEP and D* reduction;
-21. final P13 raw transient/frequency data and de-embedding;
-22. uncertainties, deviations, rework and nonconformances;
-23. final comparison against RP-01 anchors.
+2. P36/P36A preflight/commissioning evidence applicable to the executed steps;
+3. final CdZnTe surface recipe and clean-to-load times;
+4. exact LPE charge calculation and actual masses;
+5. boat revision, source inventory, gas and full growth T(t);
+6. as-grown P05/P06 data;
+7. full anneal `T_s(t)`, `T_Hg(t)`, source history and post-anneal P05/P06;
+8. Mask-1 resist/exposure/develop data;
+9. wet-etch formulation mathematics, bath genealogy, depth/CD/isolation;
+10. anodization cell/electrolyte/A_exposed/I/V(t)/Q/A/thickness;
+11. Mask-2 thickness, bake, chlorobenzene branch, exposure/developer/profile;
+12. RIE MFC/plasma/pressure/self-bias/temperature/t_clear/t_sem/sheet/depth/witness data;
+13. RIE-to-Cr timestamps;
+14. Cr/Au source/vacuum/rate/QCM/witness thickness and lift-off inspection;
+15. final geometry/contact map and TLM;
+16. P10 bare-device DC/self-heating data;
+17. pre-singulation optical/noise/dynamic baseline where feasible;
+18. singulation process/edge/subsurface/functional disposition;
+19. package construction, bondline, interconnect, optical geometry and thermal response;
+20. final P11 absolute responsivity files;
+21. final P12 raw PSD/ASD, electronics calibration, NEP and D* reduction including area/power convention and state identity;
+22. final P13 raw transient/frequency data and de-embedding;
+23. uncertainties, deviations, rework and nonconformances;
+24. final comparison against RP-01 anchors.
 
 A scientifically useful run with missing items may be reported, but it is not a complete reproducibility record.
 
@@ -1288,11 +1456,11 @@ A scientifically useful run with missing items may be reported, but it is not a 
 
 Check, in order:
 
-- charge mass calculation and actual Cd weighing;
-- actual melt temperature/liquidus offset;
+- actual charge masses/composition reconstruction, especially Cd;
+- measured melt/liquidus temperature and calibration;
 - contact supercooling and T(t);
 - source age/depletion/Hg loss;
-- contact time;
+- contact time/cooling trajectory;
 - spatial temperature/overlap/wipe behavior.
 
 Do not compensate a thermometry error by silently changing charge composition.
@@ -1302,11 +1470,11 @@ Do not compensate a thermometry error by silently changing charge composition.
 Check:
 
 - substrate polarity/wetting;
-- slider clearance and flatness;
-- wipe-off element geometry/contact;
+- slider clearance/flatness;
+- wipe-off geometry/contact;
 - separation speed/stick-slip;
 - thermal trajectory at separation;
-- Hg-source/solution history.
+- source/solution history.
 
 ## 24.3 Anneal reaches n-type but poor mobility
 
@@ -1328,9 +1496,9 @@ Check:
 - agitation/mass transport;
 - resist thickness/edge retreat;
 - sample loading/area;
-- temperature sensor placement.
+- temperature-sensor placement.
 
-Recalibrate etch rate after any chemistry/agitation/resist change.
+Recalibrate after chemistry/agitation/resist changes.
 
 ## 24.5 Oxide thickness or V(t) drifts
 
@@ -1344,16 +1512,18 @@ Check:
 - bath temperature;
 - film dissolution during/after formation.
 
-## 24.6 High contact resistance
+## 24.6 High contact resistance or weak blocking behavior
 
 Separate:
 
 - RIE electrical conversion failure;
+- conversion-depth/sheet-state mismatch;
 - oxide not fully cleared;
 - long/uncontrolled RIE-to-metal delay;
 - contaminated/oxidized interface;
 - wrong Cr thickness/poor film continuity;
-- TLM fitting/geometry error.
+- TLM fitting/geometry error;
+- majority contact quality from minority blocking function.
 
 Do not introduce an ion mill/wet clean without treating it as a new contact process.
 
@@ -1362,11 +1532,11 @@ Do not introduce an ion mill/wet clean without treating it as a new contact proc
 Check:
 
 - detector bias/self-heating;
-- contact/TLM state;
+- contact/TLM/blocking state;
 - passivation/interface history;
 - package/interconnect stress/microphonics;
 - readout electronics floor/loading;
-- optical background;
+- optical background and background fluctuations;
 - actual signal frequency relative to knee.
 
 ## 24.8 Apparent slow lifetime
@@ -1375,9 +1545,9 @@ Check package thermal recovery, AC-coupling/high-pass response, source pulse tai
 
 ---
 
-# 25. Historical gaps that remain deliberately open
+# 25. Historical gaps deliberately left open
 
-The following do not prevent this manual from being used as a reference/qualification process, but they prevent an unqualified claim of literal historical identity:
+The following do not prevent this document from functioning as a reference/qualification manual, but they prevent an unqualified claim of literal historical identity:
 
 - exact RP-01 CdZnTe Zn fraction, plane/polarity/miscut and final surface recipe;
 - exact Fermionics/UWA LPE boat dimensions, charge mass, source synthesis, gas flows, contact/wipe/cooldown;
@@ -1386,9 +1556,11 @@ The following do not prevent this manual from being used as a reference/qualific
 - exact UWA anodization electrolyte/cell/current program;
 - exact Mask-2 resist product/exposure/developer/chlorobenzene ordering/lift-off solvent;
 - exact Plasma Technology reactor model, RF frequency, electrode geometry, self-bias, sample temperature and individual MFC settings;
+- exact converted-depth value used in the RP-01 volumetric Hall reduction;
 - exact RP-01 deposition method, base pressure, rates, QCM factors and RIE-to-metal air break;
-- exact historical contact pair/gap used for each performance curve;
+- exact historical contact pair/gap used for Figures 3/5/6/7;
 - exact 4.4-µm cutoff convention;
+- exact 60° FOV angular convention and physical geometry;
 - exact Optronics spectral-system configuration and reference chain;
 - exact low-noise preamplifier and HP35665A settings;
 - exact 1-kHz noise convention used in the published D* curve;
@@ -1396,7 +1568,7 @@ The following do not prevent this manual from being used as a reference/qualific
 - exact package/interconnect/optical construction;
 - direct RP-01 lifetime/frequency-response result.
 
-“Not recovered” is not equivalent to “did not exist.”
+`Not recovered` is not equivalent to `did not exist`.
 
 ---
 
@@ -1408,22 +1580,22 @@ The integrated procedure is based principally on the following controlled source
 2. Hansen, Schmit, Casselman 1982 — HgCdTe band gap versus composition/temperature.
 3. Harman 1980 — Te-rich LPE growth/liquidus/process behavior.
 4. Schmit, Hager, Wood 1982 — Te-rich LPE including x≈0.30.
-5. Radhakrishnan, Sitharaman, Gupta 2003 — executable horizontal-slider/source-preparation details.
+5. Radhakrishnan, Sitharaman, Gupta 2003 — horizontal-slider/source-preparation details.
 6. Bowers & Schmit / Honeywell — xL=.082, yL=.810, TL=507 °C tie line and Hg-containment architecture.
 7. Hager & Wood / Honeywell — residual-melt wipe-off architectures.
-8. Tranchart et al. — CdZnTe near 4% Zn for x≈0.30 LPE.
-9. Nagahama et al., Harman, Jones et al., Chandra/Schaake/Kinch — Hg-rich anneal process/defect control.
+8. Tranchart et al. and related primary substrate work — CdZnTe near 4% Zn for x≈0.30 LPE.
+9. Nagahama et al., Harman, Jones et al., Chandra/Schaake/Kinch — Hg-rich anneal/defect control.
 10. Smith et al. 2000 — same-UWA wet-mesa detector evidence.
-11. Srivastav et al. 2005 — quantitative Br2/EG/HBr mesa process behavior.
-12. Texas Instruments US3977018 — HgCdTe photoconductor anodic-oxide branch.
+11. Srivastav et al. 2005 — quantitative Br2/EG/HBr mesa behavior.
+12. Texas Instruments US3977018 and related anodization disclosures — HgCdTe photoconductor native-oxide branch.
 13. Musca/Siliquini/Smith/Faraone UWA RIE studies — electrical conversion/LBIC/process physics.
 14. Semu et al.; Elkind & Orloff — CH4/H2 RIE self-bias, chemistry, morphology/orientation effects.
-15. same-UWA HgCdTe metallization work plus primary HgCdTe contact studies — deposition-method/interface transfer.
+15. same-UWA HgCdTe metallization work plus primary HgCdTe contact studies — deposition/interface transfer.
 16. van der Pauw/NIST Hall guidance and Tsen et al. — transport metrology/multicarrier control.
 17. Hougen 1989 — HgCdTe transmission/composition/thickness modeling.
-18. NIST-style spectral comparator principles — absolute responsivity traceability.
+18. NIST-style spectral comparator and low-background radiometry principles — absolute responsivity/view-factor traceability.
 19. Bartoli et al. and related HgCdTe PC package thermal work — package thermal de-embedding.
-20. UWA transient-photoconductive-decay work — historical same-lineage dynamic measurement branch.
+20. UWA transient-photoconductive-decay work — same-lineage dynamic measurement branch.
 
 The controlled repository source ledger remains authoritative for complete bibliographic metadata, evidence class, and transfer restrictions.
 
@@ -1434,7 +1606,7 @@ The controlled repository source ledger remains authoritative for complete bibli
 For detailed travelers, derivations, uncertainty budgets, and qualification experiments use:
 
 - P29 / P07 family — CdZnTe substrate/final surface;
-- P30 / P03 family — LPE growth;
+- P30/P30A / P03 family — LPE apparatus, absolute charge, thermal/contact/wipe-off;
 - P05 — Hall/VdP;
 - P06/P06A — FTIR composition/thickness;
 - P31 / P04/P23 — Hg anneal;
@@ -1442,30 +1614,55 @@ For detailed travelers, derivations, uncertainty budgets, and qualification expe
 - P28/P28A / P01 — wet mesa;
 - P25/P25A / P02 — anodic oxide;
 - P27 / P14A — Mask 2/lift-off resist;
-- P34 / P08/P24 — RIE blocking contact;
+- P34 / P08/P08B/P24 — RIE reactor equivalence, depth/sheet state and blocking contact;
 - P26/P26A / P09 — Cr/Au and TLM;
 - P10/P10A — DC field/self-heating;
 - P35 — singulation;
 - P33/P15 — package/interconnect;
-- P11/P11A — absolute responsivity;
-- P12/P12B/P12C — noise/NEP/D*;
+- P11/P11A — absolute responsivity/FOV/radiometry;
+- P12/P12B/P12C — noise/NEP/D*, same-device/state identity;
 - P13/P13A — dynamics/lifetime;
-- P16 — master traveler;
+- P16/P16A — master traveler and first-build readiness architecture;
+- P17 — reproducible-release/statistical capability layer;
 - P18 — deviations/failure analysis;
-- P20/P20A — uncertainty propagation.
+- P20/P20A — uncertainty propagation/requirements allocation;
+- **P36 — laboratory subsystem IQ/OQ/surrogate-PQ/HgCdTe residual acceptance**;
+- **P36A — mass, dimensional, lithography, wet-chemistry and anodization commissioning/acceptance**.
+
+P36/P36A do not make an unspecified laboratory ready. They define what evidence a real laboratory must produce before a local branch is trusted.
 
 ---
 
-# 28. Current manuscript status
+# 28. Round-52 technical-review disposition
 
-This Draft 0.1 establishes one coherent reference/qualification route from substrate through final detector characterization. The principal remaining work before issuing a polished final booklet is editorial and integration work rather than another open-ended search for universal apparatus setpoints:
+Draft 0.2 incorporates the adversarial-review corrections recorded in `docs/RP01_MANUSCRIPT_TECHNICAL_REVIEW_ROUND52.md`.
 
-1. add figures/schematics and compact process-flow diagrams;
-2. convert the internal procedure crosswalk into appendices/checklists;
-3. normalize symbols, units and evidence labels across chapters;
-4. integrate full uncertainty tables and example calculations;
-5. compile the complete reference list from the controlled source ledger;
-6. perform an adversarial technical review for contradictions, unsafe ambiguities, and unsupported claims;
-7. typeset the final document as a professional PDF/booklet.
+Key corrected points are:
 
-The absence of a specific laboratory's furnace offsets, MFC calibration, QCM tooling factor, resist dose, bondline thickness, or optical view factor is **not** treated as a manuscript-content failure. Those are explicitly defined local instantiation fields whose acceptance methods are now part of the procedure.
+- the title no longer claims reproducibility before P17 evidence exists;
+- an irreversible-step preflight rule now separates a literature center from an executable local branch;
+- P36/P36A are integrated into the main manual;
+- RIE volumetric carrier density is explicitly coupled to conversion depth and sheet transport;
+- RP-01 Figures 3/5/6/7 same-device identity is incorporated into D* closure;
+- 60° FOV full-angle/half-angle ambiguity is preserved rather than hidden;
+- D* detector normalization area is separated from optical beam/aperture geometry and covariance is retained where shared;
+- the 24.5-nV/√Hz high-frequency g-r level remains prohibited as an automatic 1-kHz substitution;
+- authoritative LPE mass fractions remain those in `calculations/LPE_CHARGE_COMPOSITION_SENSITIVITY.md`.
+
+Document state:
+
+`RP01-MANUSCRIPT-ADVERSARIAL-REVIEW-PASSED = YES`.
+
+This is a manuscript-quality state only.
+
+## Remaining work before a finished booklet
+
+1. compile the complete bibliography from the controlled source ledger;
+2. add a compact uncertainty/example-calculation appendix;
+3. create process-flow, LPE, anneal, RIE/contact and radiometry figures/schematics;
+4. extract operator checklists/travelers into appendices;
+5. normalize the final symbol/unit/index system;
+6. typeset the professional PDF/booklet;
+7. perform a final editorial/visual adversarial review.
+
+The absence of a specific future laboratory's furnace offsets, MFC calibration, QCM tooling factor, resist exposure dose, package bondline dimensions, or optical view factor is **not** a manuscript-content failure. Those values are explicitly identified local-instantiation coordinates whose acceptance methods are controlled by the detailed procedures.
