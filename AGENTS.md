@@ -1,18 +1,18 @@
 # AGENTS.md — MCT-Device continuity record
 
-**Current continuity round:** 61  
+**Current continuity round:** 62  
 **Date:** 2026-08-17 America/New_York  
 **Repository:** `Kajin-0/MCT-Device`
 
 ## Mission
 
-Produce an **Exhaustive Empirical Fabrication Protocol (EEFP)** for HgCdTe photoconductor fabrication and characterization: a hybrid of a scientific methods monograph, an SOP-level executable protocol, and an internal R&D process-development reference.
+Produce an **Exhaustive Empirical Fabrication Protocol (EEFP)** for HgCdTe photoconductor fabrication and characterization: a literature-derived scientific methods monograph with SOP-level experimental specificity, explicit metrology, failure response and evidence provenance.
 
 The governing question is:
 
 > What exactly does the researcher do, with what material, apparatus geometry, quantity, timing, physical state, measurement, calculation, endpoint, failure response, and retained raw data?
 
-The document is not a manufacturing-control package. Do not add operator signoff forms, lot-release fields, capability-index requirements, or production-control charts merely to make the document look industrial.
+The project is not a claim that a composite process has already been reproduced in one laboratory. Do not make undocumented historical assignments merely to remove blanks.
 
 Canonical downstream anchor:
 
@@ -20,227 +20,173 @@ E. P. G. Smith, K. J. Winchester, C. A. Musca, J. M. Dell, L. Faraone, “A simp
 
 ## READ FIRST
 
-1. `docs/RP01_CONSEQUENTIAL_COORDINATE_CLOSURE_ROUND61.md`
-2. `research/2026-08-17_checkpoint_after_consequential_coordinate_round61.md`
-3. `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND61.md`
-4. `docs/SOURCE_LEDGER_ADDENDUM_ROUND61.md`
-5. Round-57 metrology closure remains controlling where Round 61 did not intentionally revise it:
+1. `docs/RP01_FULLTEXT_SOURCE_ACQUISITION_ROUND62.md`
+2. `research/2026-08-17_checkpoint_after_fulltext_source_acquisition_round62.md`
+3. `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND62.md`
+4. `docs/SOURCE_LEDGER_ADDENDUM_ROUND62.md`
+5. Round-61 consequential-coordinate closure remains controlling where Round 62 did not revise it:
+   - `docs/RP01_CONSEQUENTIAL_COORDINATE_CLOSURE_ROUND61.md`
+   - `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND61.md`
+   - `docs/SOURCE_LEDGER_ADDENDUM_ROUND61.md`
+6. Round-57 metrology definitions remain controlling unless a later document intentionally supersedes them:
    - `docs/RP01_EMPIRICAL_PROTOCOL_METROLOGY_CLOSURE_ROUND57.md`
    - `procedures/P37_LBIC_BLOCKING_CONTACT_FUNCTIONAL_QUALIFICATION.md`
    - `analysis/ftir/ROUND57_FTIR_MODEL_SPECIFICATION.md`
-6. Detailed P01–P37 procedures/calculations remain the technical evidence corpus.
+7. Detailed P01–P37 procedures, travelers and calculations remain the technical execution corpus.
 
-## Current publication state
+## Current publication / maturity state
 
+- **Current typeset artifact:** Round 61, 74 pages.
 - `RP01-EEFP-ROUND61-CONSEQUENTIAL-COORDINATE-CANDIDATE = YES`.
-- Round 61 integrates a second independent deep-research audit into the Round-60 LaTeX document.
+- `ROUND62-FULLTEXT-EVIDENCE-INTEGRATION = COMPLETE`.
+- Round 62 is a controlled documentary layer, **not yet a new typeset EEFP PDF**.
 - `TRACEABLE-FIRST-BUILD-READY = NO` for an unspecified/uninstantiated laboratory.
 - `HISTORICAL-RP01-REPRODUCED = NO`.
 - `END-TO-END-EMPIRICALLY-VALIDATED = NO`.
 
-## Evidence state
+Do not call Round 62 a fabrication validation. No new physical HgCdTe experiment was performed.
 
-Round 61 formally uses six states:
+## Evidence vocabulary
+
+Use exactly:
 
 - `RP` — direct Smith/RP-01 evidence.
-- `SL` — same-laboratory/process-lineage primary evidence.
-- `PT` — primary transfer evidence from an analogous process or official technical source.
-- `DER` — transparent derivation from better-established quantities.
-- `SYN` — explicit locally executable empirical implementation synthesized from evidence/physics.
-- `OPEN` — experimentally consequential coordinate for which no defensible numerical value is presently supported.
+- `SL` — same UWA/Faraone/Dell/Smith process-lineage primary evidence.
+- `PT` — primary transfer evidence from an analogous process/apparatus or official technical source.
+- `DER` — transparent derivation.
+- `SYN` — explicit locally executable implementation synthesized from evidence/physics.
+- `OPEN` — consequential coordinate for which no defensible numerical value is presently supported.
 
-`OPEN` is a valid, successful documentation state. The failure state is an important coordinate that is left unnamed or implicitly assumed.
+`OPEN` is a valid scientific state. A similar apparatus from another laboratory does not convert an RP-01 historical unknown to `RP`.
 
-Optional `SYN-H/M/L` confidence modifiers may still be used, but Round 61 intentionally demotes several Round-60 `SYN-L` apparatus dimensions back to `OPEN` because the second deep-research audit showed that assigning a prototype dimension there created more false certainty than scientific value.
+## Round-62 source-acquisition result
 
-Modern experiments can establish a local `SYN` implementation. They cannot retroactively establish what UWA, Fermionics, Honeywell, or another historical laboratory actually used; only documentary evidence can promote an historical unknown to `RP` or `SL`.
+Nineteen primary papers were recovered in full text after Round 61. They materially strengthen six areas without closing the major historical apparatus unknowns.
 
-## Round-61 governing model: state transitions
+### 1. LPE graphite, Hg compensation and slide-out
 
-Each operation is treated as a transition between experimentally observable state vectors rather than as a scalar setpoint list:
+**Astles et al. 1992** provides a concrete HgCdTe-LPE transfer branch:
 
-`state_(j-1) -> operation_j -> measured outputs -> state_j`.
+- POCO DFP-2 graphite;
+- acid etched;
+- boiling deionized-water cleaning for one week;
+- 500 °C bake;
+- scratch-free hand-polished slider/base/lid mating surfaces;
+- shimmed slider-retaining rails;
+- two distinct HgTe source paths;
+- dummy-cycle gravimetric Hg-loss measurement, ~0.3 mg/min in that apparatus;
+- ~460 °C / ~0.1 °C min^-1 growth branch;
+- 250 °C / 48 h Hg-rich anneal example.
 
-The state may include:
+Important correction to Round 61: an acid graphite-cleaning method is no longer *unsupported*. It is now a valid `PT` qualification branch. It remains neither mandatory nor historical RP-01 identity.
 
-- material/composition/carrier/contamination state;
-- geometry and surface state;
-- thermal field and time derivative;
-- age/queue/dwell history;
-- pressure, chemistry and flow;
-- electrical/plasma state;
-- measurement-system/calibration state.
+**Chiang 1988 / Chen 1991** demonstrate independently heated Hg reservoirs connected through quartz two-arm covers. Consequence: `T_Hg(t)` and vapor-path topology are first-class thermochemical coordinates whenever that architecture is used. Source mass alone is insufficient.
 
-This is particularly important for LPE, wet etching, anodization, RIE, metallization and cryogenic detector characterization.
+**Radhakrishnan 2003** directly ties wipe clearance/non-smooth slide-out to slider scratches, transient meltback/re-growth texture and residual Te-rich melt. In that apparatus/composition branch, exposed layers held above ~350 °C after slide-out developed Hg-evaporation points, while excessively cool placement could yield HgTe soot. Preserve this as `PT`, not a universal temperature limit.
 
-## Major Round-61 corrections and additions
+**Parker 1988** reinforces that holder/flow geometry, meltback, thermal gradients and growth rate affect terracing through hydrodynamic/supersaturation fields. Do not transfer its non-slider crucible dimensions.
 
-### 1. Source-synthesis ampoule: weak prototype geometry retracted
+### 2. CdZnTe substrate qualification
 
-Round 60 proposed a `25 mm OD / 22 mm ID / ~150 mm` ampoule with `50±5 mL` loaded free volume as a development coordinate. Round 61 removes those values from the canonical recipe.
+**Everson 1995** provides an executable `(111)B/(211)B` defect-screening branch:
 
-Direct/transfer evidence closes only:
+`6 cm³ 48% HF + 24 cm³ HNO3 + 150 cm³ lactic acid`
 
-- `10 g` source synthesis;
-- 6N Hg/Cd/Te source materials;
-- evacuated quartz ampoule;
-- `700 °C / 8 h` source synthesis.
+for 2.5 min at room temperature with moderate agitation. Pits are approximately 10:1 width:depth and were validated against dislocations. Their `EPD <1×10^5 cm^-2` example is a transfer screening threshold, not an RP-01 purchase specification.
 
-The following remain `OPEN` pending vessel engineering or archival recovery:
+**Tobin 1995** requires separate treatment of room-temperature lattice mismatch and growth-temperature lattice mismatch. Crosshatch/EPD minima track matching, but the optimum room-temperature offset can shift because growth occurs hot.
 
-- tube ID/OD/wall;
-- loaded free volume and charge/free-volume ratio;
-- seal/neck geometry;
-- support/orientation;
-- maximum internal pressure at synthesis temperature.
+**Tranchart 1985** directly supports `Cd0.96Zn0.04Te`-class material for `x≈0.30` HgCdTe LPE. Its `(111)A` face and 3-mm liquid depth are apparatus-specific PT data and must not be silently merged into the Round-61 `(111)B` branch.
 
-Do not estimate the 700 °C vessel pressure by extrapolating a pure-Hg vapor-pressure formula. The ternary charge chemical potential is not pure mercury.
+**Bruder 1990** strengthens `(111)` orientation, XRD, EPD/topography and polishing metrology transfer.
 
-Closure order: engineering pressure/thermal-stress assessment -> dimensioned professionally fabricated quartz revision -> blank thermal qualification -> source-containing qualification.
+### 3. Hg-rich low-temperature anneal
 
-### 2. LPE geometry: topology preserved, unsupported dimensions demoted
+**Chandra, Schaake and Kinch 2003** materially strengthens the anneal model:
 
-Recovered primary apparatus evidence remains strong:
+- annealed/converted skin depth approximately `∝ sqrt(t)`;
+- `x_B²/t` is a useful diffusion-like response coordinate;
+- rate depends strongly on starting metal-vacancy/excess-Te state, composition and temperature;
+- x≈0.28 temperature-series activation energy ~1.1 eV.
 
-- high-purity/high-density graphite horizontal-slider architecture;
-- base, movable slider, cover, through-wells/solution bin, substrate recess, Hg-source cavity, Hg-retaining moats/grooves and plugs;
-- 15 × 15 × 1 mm CdZnTe substrate in the Radhakrishnan transfer source;
-- horizontal quartz reactor with gas, actuator and thermocouple access;
-- ~4.8 g growth charge and 3 g HgTe compensation in that same transfer geometry;
-- Honeywell CdTe wipe pieces approximately 1 mm apart, sliding-fit, contacting the base surface.
+Do not convert this into a universal 250 °C dwell. P31/P23 remain state-map problems.
 
-Round 61 retracts the Round-60 numerical prototype recess/well/slider/Hg-cavity/moat dimensions. Exact dimension stack remains `OPEN`.
+### 4. Native anodic oxide
 
-The ~4.8 g and 3 g quantities are now explicitly treated as **geometry-coupled PT values, not universal recipe constants**. The relevant melt-depth relation is
+**Stahle/Helms 1989** supports `0.1 M KOH / 90% EG / 10% water / 0.3 mA cm^-2` and provides a two-region interface model, including a ~30–50-Å CdTeO3-rich inner region for an approximately 700-Å oxide.
 
-`h_melt(T) = m_melt / [rho_melt(T) A_well]`.
+**Nemirovsky/Kidron 1979** adds a consequential electrical detail: constant-current formation followed by constant-voltage completion. This strengthens Round-61's requirement to record `J(t), V(t), Q/A, d_ox` and makes termination mode a controlled coordinate.
 
-Until `A_well` and a defensible melt-density model/measurement are known, `h_melt` remains OPEN.
+**Ngoc/Nha 1998** provides a 0.2–0.5 mA/cm² branch, Pt counter-electrode alternative and 77-K C-V/interface metrics. Counter-electrode material is therefore not assumed from chemistry alone.
 
-First local closure should use CAD/CMM/profilometry and dummy mechanics before detector-grade growth. For recess flushness define `Delta z = d_recess - t_substrate` and screen `-50, 0, +50 µm` on dummy coupons as SYN experiment levels, measuring slider force, snagging, scratches and wipe behavior.
+Historical anodization cell geometry remains `OPEN`.
 
-### 3. Present-day graphite procurement
+### 5. Same-lineage RIE/LBIC
 
-A defensible PT/SYN procurement family is now explicit:
+**Siliquini et al. 1997** is `SL` and now anchors a complete UWA physical state:
 
-- purified isotropic semiconductor-grade graphite;
-- characteristic particle size approximately 1–5 µm;
-- no metallic impregnation;
-- lot-specific ash/GDMS or equivalent CoA retained.
+`H2 27 sccm / CH4 5 sccm / 410 mTorr / 0.4 W cm^-2 / cathode 18 °C / printed dc bias 180 V / 60 s`.
 
-Exact historical grade, final surface roughness, machining method and post-machining clean remain OPEN. Do not insert an acid cleaning method without HgCdTe-LPE evidence or supplier compatibility because porous graphite can retain residues.
+The branch produced only ~0.2 µm physical recession but ~1.5 µm electrical conversion depth.
 
-### 4. LPE thermal map and Hg-source geometry
+LBIC implementation:
 
-Before interpreting controller temperature as the growth-interface temperature, instrument a dummy boat with at least 3 and preferably 5 calibrated sensors at the well wall, substrate recess, Hg-source recess, adjacent furnace gas and normal control-TC location. Run the actual thermal program three times.
+- 1.047-µm CW excitation;
+- ~3-µm spot;
+- 2.5-µm scan step;
+- ~5-mm remote-contact spacing;
+- sequential 0.1% Br2/methanol depth stripping;
+- best-fit converted-region net doping near 1×10^15 cm^-3.
 
-Provisional SYN mapping target: local growth-region deviation within about ±1 °C with run-to-run mapping uncertainty comfortably below the ±3 °C temperature perturbation already used in the LPE screen.
+This strengthens P34's reactor-equivalence philosophy. It does **not** establish the self-bias of the RP-01 `100 mTorr / 50 W / 64 sccm / 60 s` condition.
 
-For the Hg source, record mass, shape, exposed/projected area, location, enclosed vapor geometry and post-run mass loss. A useful geometry coordinate is `Psi_Hg = A_Hg-source / V_enclosed`.
+Preserve P37's separate Musca-1998 80-K functional LBIC branch; do not merge the two experiments.
 
-### 5. Wet mesa: mass-transfer state added
+### 6. Package thermal response and contact noise
 
-The remaining major uncertainty is hydrodynamics rather than the nominal chemistry. Preserve per run:
+**Bartoli et al. 1976** directly fits bond-layer thermal conductance in HgCdTe photoconductor arrays. Example values:
 
-`{C_Br2, T, t_age, V_bath, A_exposed, D_vessel, H_liquid, agitation mode, U_agitation, t_quench}`
+- short-time epoxy path `k/d≈3.2 W cm^-2 K^-1`;
+- long-time varnish path `k/d≈0.9 W cm^-2 K^-1`.
 
-and report
+Use as a quantitative `PT` prior/extraction method for P33/P13. These are not Dow Corning 3110 or RP-01 constants.
 
-`Gamma_bath = V_etchant / A_exposed,HgCdTe`.
+**Beck et al. 1990** shows contact 1/f noise can remain a separate problem even when DC contact resistance is acceptable. P09/P12 should not infer low contact noise from low `rho_c` alone.
 
-No historical vessel diameter, universal bath-volume/area ratio, or agitation velocity is promoted. Suggested witness qualification factors include bath age, static/reproducible agitation, bath inventory and quench latency.
+### 7. FTIR
 
-### 6. Anodization: electrical trajectory becomes part of the recipe
+**Gopal 1992** explicitly shows the 50%-transmission point depends on layer thickness for HgCdTe epilayers. This directly supports the Round-57 rule that scalar edge descriptors are not thickness-independent composition truth.
 
-Direct TI center remains `0.1 M KOH`, `90% EG / 10% water`, `0.3 mA/cm²`, about `15 V`, `120 s`, about `80 nm`.
+**Chang 2005** provides a full automatic spatial infrared-mapping implementation with self-consistent x/thickness fitting. Use as PT mapping/model evidence; do not replace the controlled LPE/Hougen forward model with its MBE-specific assumptions.
 
-Derived charge coordinate:
+## Major historical OPEN coordinates after Round 62
 
-`Q/A = J t = 0.036 C/cm²`.
+Still `OPEN`:
 
-Record `J(t)`, `V(t)`, `Q/A` and measured oxide thickness. Do not use `80 nm / 15 V` as a universal formation factor because terminal voltage contains electrolyte/cell ohmic drop. Electrode spacing, cathode/anode area ratio, bath conductivity/temperature and bath age remain explicit coordinates.
+- exact RP-01 LPE base/slider/cover/well/recess numerical dimension stack;
+- x≈0.30 melt density/well area/melt depth relation;
+- historical Hg-source exposed area/location/vapor volume;
+- historical graphite grade/roughness/exact cleaning;
+- x≈0.30 source-synthesis ampoule dimensions/free volume/hot pressure;
+- historical wet-etch vessel/agitation/hydrodynamic state;
+- historical anodization electrode spacing/area ratio/solution drop;
+- RP-01 RIE model, RF frequency, powered/grounded areas, spacing, self-bias, sample temperature and chamber seasoning;
+- historical Cr/Au evaporator source/QCM/sample geometry;
+- original RP-01 package/readout/cryostat thermal implementation.
 
-An initial local cell-geometry closure may use three electrode separations × two cathode/anode area ratios × two repetitions, logging V/I at >=1 Hz and independently measuring oxide thickness.
+The correct response remains documentary recovery or local qualification, not invented historical values.
 
-### 7. RIE: physical reactor state is mandatory
+## Next documentary targets
 
-Every transfer run records the dynamic vector:
+Do **not** restart a broad literature sweep. Highest-value remaining targets are:
 
-`[F_CH4(t), F_H2(t), p(t), P_fwd(t), P_refl(t), V_dc(t), T_platen(t), T_sample(t)]`
+1. Suh et al. full slider-LPE precise-composition-control paper.
+2. Shinohara et al. full Hg-loss compensation/wipe-off paper.
+3. Honeywell/Fermionics/UWA machine drawings and notebooks.
+4. TI anodization-cell drawings/lab records.
+5. Historical UWA Plasma Technology run sheets/manuals.
+6. Original RP-01 evaporator/QCM and cryostat/package records.
 
-and static reactor geometry:
+## Next publication step
 
-`[D_powered, A_powered, d_electrode, chamber volume/geometry, carrier geometry, sample position]`.
-
-Before a larger DOE on a new reactor, perform three nominal instrumented witness runs. Prefer a fiber-optic specimen-temperature method on a mechanically representative dummy for initial thermal qualification where RF pickup compromises conventional thermocouples.
-
-Initial SYN equipment-state screens:
-
-- `P_refl/P_fwd < 0.05`;
-- `CV(V_dc) < 5%`;
-- `T_sample,max < 40 °C`;
-- mean pressure within about ±2% of calibrated target.
-
-These are apparatus-state screens, not historical specifications. Ultimate acceptance remains the electrical/conversion/LBIC/TLM result.
-
-Record base pressure, pumpdown, preceding chamber chemistry, clean/seasoning procedure and elapsed time since clean.
-
-### 8. Cr/Au: official evaporation/QCM details promoted
-
-Direct stack remains 30/270 nm Cr/Au.
-
-Official PT starting guidance now includes:
-
-- Cr and Au thermal-evaporation rates in the ~1–5 Å/s range;
-- W-based Cr source hardware and alumina-compatible Au source hardware as appropriate to the actual evaporator;
-- Au base pressure around `<=1e-6 Torr` as PT equipment guidance;
-- QCM Z-ratio starting values `Z_Cr = 0.305`, `Z_Au = 0.381`;
-- independent witness profilometry/interferometry to calibrate QCM/tooling response.
-
-Round 61 removes a universal source-to-sample distance/rotation as a canonical value. Actual source, QCM, shutter, substrate position/orientation and rotation are apparatus coordinates to measure and retain.
-
-Open the substrate shutter only after deposition rate is within ±5% of target for at least 30 s and chamber pressure is stable (SYN endpoint). Preserve no vacuum break between Cr and Au in the reference implementation.
-
-### 9. Cryogenic measurement state: equilibrium replaces elapsed time
-
-The fixed cooldown-rate value is retained only as a candidate branch, not a universal physics rule. A local package study should compare deliberately slow ~1–2 K/min, <=5 K/min, and the natural cryostat cooldown profile when package-safe.
-
-If enough devices are available, use ~6 packaged devices and >=3 300↔80 K cycles/device to separate permanent package effects from time-to-equilibrium.
-
-Before low-noise measurements, a provisional SYN stationarity gate is:
-
-- detector/stage temperature SD `<=0.05 K` over 10 min;
-- `|Delta R|/R < 0.2%` over the same interval.
-
-Record controller, stage and detector/proxy temperature, cooldown history, soak duration, bias dwell, resistance/current and illumination/dark history.
-
-## Round-61 artifact state
-
-Review artifacts:
-
-- `RP01_HgCdTe_Exhaustive_Empirical_Fabrication_Protocol_Round61.pdf`
-- `RP01_HgCdTe_Exhaustive_Empirical_Fabrication_Protocol_Round61.tex`
-
-Final state:
-
-- 74 physical PDF pages;
-- letter size;
-- text-native, openable and unencrypted;
-- no PDF forms/XFA;
-- all fonts embedded;
-- all pages rendered at 200 dpi and visually inspected through contact sheets and key-page review;
-- no overfull LaTeX boxes or undefined-control errors in the release compile; one visually benign underfull paragraph warning remains in the LPE thermal-map prose.
-
-SHA-256:
-
-- PDF `a1dd7888a92c2b129dae453f3e0684e6aab289b4c6bd9338b92660868bfb455f`;
-- TeX `8103673ccc8952a8868974f12fb0c1c506e3de71c6bde6fd8f763322b79d9ec1`.
-
-## Immediate next work
-
-Round 61 is the preferred review candidate. Future work should pursue two parallel closure tracks:
-
-1. **Documentary:** Honeywell machine drawings; Radhakrishnan original boat/Fig. 1 records; Fermionics/UWA starting-wafer/fabrication/RIE records; SSPL wet-etch notes; TI anodization cell drawings; original evaporator and cryostat/readout records.
-2. **Empirical/local:** CAD/CMM LPE closure; dummy thermal maps; Hg-source/melt geometry; wet-etch mass-transfer witnesses; anodization V(Q/A) cell study; instrumented RIE state; Cr/Au QCM/source closure; cryogenic equilibrium qualification.
-
-Do not respond to remaining uncertainty by inventing historical dimensions. Keep every consequential coordinate `RP`, `SL`, `PT`, `DER`, `SYN`, or `OPEN`.
+Round 61 remains the current typeset review artifact. If a new PDF/TeX revision is generated, integrate only the deltas frozen in Round 62 and preserve the Round-57/61 metrology definitions unless new primary evidence directly requires a correction.
