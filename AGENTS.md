@@ -1,343 +1,134 @@
-# AGENTS.md — MCT-Device front-door continuity record
+# AGENTS.md — MCT-Device continuity record
 
-**Current continuity round:** 50  
+**Current continuity round:** 51  
 **Date:** 2026-08-16 America/New_York  
 **Repository:** `Kajin-0/MCT-Device`
 
-## Mission
+## User-facing mission
 
-Build a source-traceable, end-to-end HgCdTe photodetector fabrication and characterization manual/booklet executable by a competent researcher without undocumented tribal knowledge.
+Produce the final source-traceable HgCdTe photodetector fabrication and characterization procedure paper/booklet. The user wants to review the finished technical manual, not repository/software infrastructure work.
 
-Canonical first process:
+Canonical historical anchor:
 
 E. P. G. Smith, K. J. Winchester, C. A. Musca, J. M. Dell, L. Faraone, “A simplified fabrication process for HgCdTe photoconductive detectors using CH4/H2 reactive-ion-etching-induced blocking contacts,” *Semiconductor Science and Technology* 16, 455–462 (2001), DOI `10.1088/0268-1242/16/6/306`.
 
-There is no end-to-end reproducible physical release yet.
+## READ FIRST
 
----
+Primary current manuscript:
 
-# READ FIRST
+`manuscript/RP01_HGCDTE_PHOTOCONDUCTOR_PROCESS_MANUAL_DRAFT.md`
 
 Latest checkpoint:
 
-`research/2026-08-16_checkpoint_after_deployment_security_round50.md`
-
-Then:
-
-- `research/2026-08-16_checkpoint_after_operational_provenance_round49.md`
-- `research/2026-08-16_checkpoint_after_digital_provenance_round48.md`
-- `research/2026-08-16_checkpoint_after_control_system_dry_run_round47.md`
-- `research/2026-08-16_checkpoint_after_sequential_material_release_round46.md`
-- `research/2026-08-16_checkpoint_after_sample_genealogy_round45.md`
-- `research/2026-08-16_checkpoint_after_information_optimal_jacobian_round44.md`
-- `research/2026-08-16_checkpoint_after_uncertainty_allocation_round43.md`
-- earlier checkpoints as needed.
+`research/2026-08-16_checkpoint_after_manuscript_integration_round51.md`
 
-Latest machine/control artifacts:
+Then, for detailed history:
 
-- `tools/mct_deployment_control.py`
-- `tools/mct_protected_vault.py`
-- `tools/round50_fixture.py`
-- `tools/run_round50_security.py`
-- `provenance/deployment/README.md`
-- `docs/DIGITAL_PROVENANCE_DEPLOYMENT_SECURITY_ROUND50.md`
-- `travelers/P16L_DEPLOYMENT_SECURITY_DRY_RUN_REGISTER.md`
-- `tools/mct_provenance_store.py`
-- `tools/run_round49_reference.py`
-- `schemas/mct_provenance_bundle.schema.json`
-- `tools/validate_mct_provenance.py`
-- `travelers/P16K_PROVENANCE_REFERENCE_IMPLEMENTATION_REGISTER.md`
-- `travelers/P16J_DIGITAL_PROVENANCE_VALIDATION_REGISTER.md`
-- `travelers/P16I_CONTROL_SYSTEM_DRY_RUN_REGISTER.md`
-- `travelers/P16H_SEQUENTIAL_MATERIAL_RELEASE_CONTROL_REGISTER.md`
+- `research/2026-08-16_checkpoint_after_deployment_security_round50.md` — ancillary infrastructure history only;
+- `research/2026-08-16_checkpoint_after_operational_provenance_round49.md`;
+- `research/2026-08-16_checkpoint_after_digital_provenance_round48.md`;
+- `research/2026-08-16_checkpoint_after_control_system_dry_run_round47.md`;
+- `research/2026-08-16_checkpoint_after_sequential_material_release_round46.md`;
+- `research/2026-08-16_checkpoint_after_sample_genealogy_round45.md`;
+- `research/2026-08-16_checkpoint_after_information_optimal_jacobian_round44.md`;
+- `research/2026-08-16_checkpoint_after_uncertainty_allocation_round43.md`.
 
-Latest source/gap:
+Latest manuscript gap distinction:
 
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND50.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND50.md`
+`docs/RP01_GAP_MATRIX_ADDENDUM_ROUND51.md`.
 
----
+## Critical Round-51 direction change
 
-# Maturity / implementation states — never conflate
+Do not resume open-ended security/provenance/software work unless it directly blocks the final fabrication manual.
 
-1. `TRACEABLE-FIRST-BUILD-READY` — complete first build can execute without undocumented irreversible choices.
-2. `HISTORICAL-RP01-REPRODUCED` — evidence supports a historical reproduction claim.
-3. `REPRODUCIBLE-RELEASE` — repeated frozen-route stability/MSA/capability/yield/change-control evidence exists.
-4. `P16C-INFRASTRUCTURE-READY` — actual lab infrastructure physically selected/calibrated/implemented.
-5. `P16D-SURROGATE-COMMISSIONING-COMPLETE` — relevant IQ/OQ/surrogate acceptance complete.
-6. `P16E-REQUIREMENTS-ALLOCATION-COMPLETE` — uncertainty/requirements allocation complete.
-7. `P16F-EMPIRICAL-JACOBIAN-CAMPAIGN-READY` — empirical campaign physically feasible and identifiable.
-8. `P16G-MATERIAL-GENEALOGY-PLAN-READY` — required physical material genealogy/allocation feasible.
-9. `P16H-SEQUENTIAL-MATERIAL-RELEASE-CONTROL-READY` — real lab has instantiated GO/HOLD/REWORK/STOP control.
-10. `P16I-LOGIC-DRY-RUN-PASSED` — repository control logic passed declared synthetic fault tests.
-11. `P16I-LAB-DRY-RUN-PASSED` — actual laboratory traveler/LIMS/control system passed a no-HgCdTe/surrogate dry run.
-12. `P16J-REPOSITORY-PROVENANCE-VALIDATOR-PASSED` — schema + semantic validator pass controlled repository tests.
-13. `P16J-LAB-PROVENANCE-SYSTEM-READY` — real laboratory provenance system implemented.
-14. `P16K-REFERENCE-PROVENANCE-APPLICATION-PASSED` — local transactional reference application passes synthetic operational tests and Round-48 validation.
-15. `P16K-LAB-DEPLOYMENT-QUALIFIED` — deployed laboratory instance is operationally integrated/qualified.
-16. `P16L-REFERENCE-DEPLOYMENT-SECURITY-DRY-RUN-PASSED` — Round-50 reference deployment/security simulation passes declared identity, protected-data, key, clock, backup and adapter tests.
-17. `P16L-LAB-SECURITY-DEPLOYMENT-READY` — real laboratory host/security deployment is instantiated and qualified.
+Permanent distinction:
 
-Current after final Round-50 main CI:
+`LOCAL-EXECUTION-INSTANTIATION-REQUIRED != MANUSCRIPT-CONTENT-OPEN`.
 
-- `TRACEABLE-FIRST-BUILD-READY = NO`
-- `HISTORICAL-RP01-REPRODUCED = NO`
-- `REPRODUCIBLE-RELEASE = NO`
-- `P16C-INFRASTRUCTURE-READY = NO / NOT PHYSICALLY INSTANTIATED`
-- `P16D-SURROGATE-COMMISSIONING-COMPLETE = NO / NOT PHYSICALLY INSTANTIATED`
-- `P16E-REQUIREMENTS-ALLOCATION-COMPLETE = NO`
-- `P16F-EMPIRICAL-JACOBIAN-CAMPAIGN-READY = NO / NOT PHYSICALLY INSTANTIATED`
-- `P16G-MATERIAL-GENEALOGY-PLAN-READY = NO / NOT PHYSICALLY INSTANTIATED`
-- `P16H-SEQUENTIAL-MATERIAL-RELEASE-CONTROL-READY = NO / NOT PHYSICALLY INSTANTIATED`
-- `P16I-LOGIC-DRY-RUN-PASSED = YES`
-- `P16I-LAB-DRY-RUN-PASSED = NO / NOT PHYSICALLY INSTANTIATED`
-- `P16J-REPOSITORY-PROVENANCE-VALIDATOR-PASSED = YES`
-- `P16J-LAB-PROVENANCE-SYSTEM-READY = NO / NOT PHYSICALLY INSTANTIATED`
-- `P16K-REFERENCE-PROVENANCE-APPLICATION-PASSED = YES`
-- `P16K-LAB-DEPLOYMENT-QUALIFIED = NO / NOT PHYSICALLY INSTANTIATED`
-- `P16L-REFERENCE-DEPLOYMENT-SECURITY-DRY-RUN-PASSED = YES` after final main CI PASS
-- `P16L-LAB-SECURITY-DEPLOYMENT-READY = NO / NOT PHYSICALLY INSTANTIATED`
+An unspecified future lab will necessarily have local values for furnace offsets, MFC calibration, QCM tooling factor, resist exposure dose, bondline geometry, optical view factor, etc. The manual must identify those variables and define how to qualify them; it must not postpone manuscript completion until a real lab exists and must never invent universal numbers.
 
-Permanent relation:
+New document state:
 
-`candidate branch != infrastructure ready != surrogate commissioned != uncertainty allocated != campaign ready != genealogy ready != release control ready != logic dry run != provenance validator != reference application != reference deployment/security dry run != lab deployment != first-build ready != historical reproduction != reproducible release`.
+`RP01-INTEGRATED-MANUSCRIPT-DRAFT-READY = YES`.
 
----
+This is not a physical process maturity label.
 
-# Round-50 deployment/security controls — permanent
+## Physical maturity remains separate
 
-## 1. Protected raw data is part of holdout secrecy
+- `TRACEABLE-FIRST-BUILD-READY = NO` for an unspecified/uninstantiated lab.
+- `HISTORICAL-RP01-REPRODUCED = NO`.
+- `REPRODUCIBLE-RELEASE = NO`.
+- repository logic/provenance/security states from Rounds 47–50 may remain recorded but are ancillary to the manual.
 
-Do not seal only a parsed holdout value while copying the protected raw instrument file into the ordinary CAS.
+## Evidence discipline
 
-Round-50 reference architecture requires:
+Never invent a missing value.
 
-`ordinary provenance/CAS != protected holdout vault/CAS`.
+Use these conceptual classes consistently:
 
-Ordinary measurement may retain the protected field name, `vault://sha256/...` URI and digest while protected bytes/value remain in the restricted vault.
+- direct RP-01;
+- same-UWA/same-lineage;
+- primary transfer;
+- derived;
+- reference qualification center;
+- local calibration/qualification;
+- historical identity open.
 
-## 2. No homebrew encryption
+Repetition does not promote evidence class. “Not recovered” does not mean absent.
 
-Round 50 deliberately uses split-store isolation rather than inventing encryption with unsuitable primitives.
+## Integrated Draft 0.1 reference route
 
-Future production protected storage must use vetted authenticated encryption/key management or a formally approved equivalent isolation control.
+1. **Substrate:** insulating CdZnTe; first transfer center Cd0.96Zn0.04Te (111)B; exact RP-01 Zn fraction/polarity/miscut open.
+2. **Final substrate surface:** strongest Te-rich LPE transfer family uses brief 2–3% Br2/methanol; concentration basis/time/rinse/clean-to-load must be locally explicit.
+3. **LPE topology:** covered Honeywell-derived graphite horizontal slider with Hg source/containment and defined wipe-off architecture.
+4. **LPE composition center:** xL=.082, yL=.810, TL=507 °C, xS≈.29.
+5. **Authoritative mass fractions:** Hg=.2497382358, Cd=.01250164993, Te=.7377601143 using Hg=200.59, Cd=112.414, Te=127.60 g/mol.
+6. **Atmosphere:** N2 purge -> H2; actual flows/gas quality local.
+7. **First LPE contact screen:** near 500 °C (~7 K nominal supercooling) as a reference center; actual contact time selected from measured thickness/morphology, not imported blindly.
+8. **As-grown material:** P06 FTIR spatial map + P05 Hall/VdP.
+9. **Hg anneal:** first center ~250 °C / 1 h / Hg-saturated isothermal-like; release by post-anneal P05/P06, not “n-type” alone.
+10. **Mask 1:** thick positive novolak/DNQ family; AZ4620 strongest product-identified Br2/HBr screening candidate, not historical identity.
+11. **Wet mesa:** reference center nominal 2% Br2 in 3:1 EG:HBr near 21 °C; Rv~2.78 µm/min transfer datum, anisotropy~.63, best roughness~2 nm; formulation basis/HBr assay unresolved and must be locally defined/calibrated.
+12. **Anodic oxide:** RP-01 ~80 nm; reference TI-PC center 0.1 M KOH in stated 90% EG/10% DI, HgCdTe anode/carbon cathode, J~0.30 mA/cm², ~15 V, ~2 min, deep-blue auxiliary indicator; solvent-ratio basis local; accept using V(t), Q/A, physical thickness/interface/downstream data.
+13. **Mask 2 direct:** 4–5 µm resist, 80 °C/30 min prebake, chlorobenzene 30 min, then pattern/develop/water rinse. Resist product/exposure/developer/chlorobenzene order/lift-off local.
+14. **RIE direct:** Plasma Technology parallel plate, CH4/5H2, total 64 sccm, 100 mTorr, 50 W, 60 s. Candidate 1:5 interpretation -> 10.6667 CH4 / 53.3333 H2 sccm, explicitly not direct MFC history.
+15. **RIE equivalence:** self-bias/ion-energy proxy, sample T, chamber state, oxide-clear time t_clear, semiconductor exposure t_sem, physical recession, electrical conversion/LBIC/TLM/blocking response. `50 W != reactor equivalence`.
+16. **RIE converted reference:** n~2.0e15 cm^-3, mu~3.3e4 cm²/Vs.
+17. **Metal:** Cr/Au 30/270 nm direct; thermal evaporation first same-UWA method-family transfer. Vacuum/rates/QCM/sample heating are local.
+18. **TLM:** nine ~300×300 µm contacts, gaps 50–400 µm in 50-µm increments; rho_c~9e-4 ohm cm² at 80 K.
+19. **P10 electrical:** canonical 80 K, E=10 V/cm; nominal ideal current ~1.79 mA; active V 0.05–0.40 V across 50–400 µm gaps. Measured active voltage/gap control E.
+20. **Singulation:** low-force CdZnTe-compatible wire-saw family first screen; exact historical RP-01 method open; qualify functional edge exclusion.
+21. **Package:** compliant silicone-family first screen from direct HgCdTe cryogenic evidence; package thermal response must be measured because ms-to-hundreds-ms poles can masquerade as detector dynamics.
+22. **Responsivity:** canonical T=80 K, E=10 V/cm, 1-kHz modulation, nominal 60° FOV; calibrated comparator/reference detector preferred.
+23. **Noise/D*:** historical 1/f knee ~3 kHz and high-f g-r ASD ~24.5 nV/sqrtHz. 24.5 nV/sqrtHz is not automatically the 1-kHz noise. `D*=R_v sqrt(A)/e_n` at the same state.
+24. **Dynamics:** no direct RP-01 lifetime curve. De-embed source/optics/bias/preamp/cable/instrument/package; one-pole only if amplitude+phase+injection/fit checks support it.
 
-`split-store reference isolation != encryption`.
+## Key permanent cautions
 
-## 3. Application identities are not trusted identities
+- detector response cutoff ~4.4 µm != Hansen band-gap-equivalent wavelength (~5.09 µm for x=.30 at 80 K);
+- physical RIE etch depth != electrical conversion depth;
+- TLM rho_c does not prove minority-carrier blocking;
+- apparent one-carrier Hall density near p/n transition can be meaningless;
+- wet-etch timing cannot replace measured depth/isolation;
+- anodization elapsed time cannot replace V(t)/Q/A/thickness/interface state;
+- forward RIE watts cannot replace measured plasma/sheath/thermal state;
+- package thermal poles cannot be called minority-carrier lifetime without discrimination;
+- active-area convention and optical-power convention must match in D*.
 
-Reference identities/sessions demonstrate authorization mechanics only.
+## Immediate next work — Round 52
 
-`bearer session != authenticated human != OS service account != regulatory signer identity`.
+Perform an adversarial technical review of the **integrated manuscript**, not another infrastructure round.
 
-## 4. Clock guard is not trusted time
+Tasks:
 
-Round 50 rejects obvious backward wall-clock movement.
-
-`clock-regression guard != authoritative UTC != authenticated NTP/PTP != trusted timestamp`.
-
-## 5. Key lifecycle
-
-Reference key lifecycle:
-
-`ACTIVE -> VERIFY_ONLY -> REVOKED`.
-
-- VERIFY_ONLY may validate historical content but may not create new signatures.
-- Revocation changes trust interpretation, not historical MAC equality.
-- Verification events are retained.
-
-No HSM/KMS/TPM, custody, escrow or nonrepudiation claim.
-
-## 6. Backup integrity is separate from confidentiality
-
-Round-50 backup uses SQLite backup, complete object trees, SHA-256 manifest and backup-HMAC authentication.
-
-It deliberately excludes key files.
-
-`integrity-authenticated backup != encrypted backup != disaster recovery qualification`.
-
-## 7. Instrument preflight before byte copy
-
-Configuration/calibration validity must be checked before instrument raw bytes are admitted to controlled storage.
-
-A superseded configuration must block stale adapter use and dependent future gate reuse while preserving historical records.
-
-## 8. Reference permissions
-
-Repository simulation checks `0700` directories and `0600` key files/control files where applicable.
-
-This does not prove actual uid/gid ownership, ACL/MAC confinement or root resistance.
-
----
-
-# Round-50 controlled test result
-
-Temporary validation branch:
-
-`agent/round50-security-dryrun`
-
-Candidate commit:
-
-`1639fee3f75d9ba11df066ed7d194c946953ac3d`
-
-Candidate Actions run:
-
-`31980899498`
-
-Candidate result:
-
-- Round-48 regression PASS;
-- Round-49 operational controls `19/19` PASS;
-- Round-50 deployment/security controls `33/33` PASS;
-- generated provenance records `50`;
-- Round-48 semantic errors `0`;
-- protected vault `1` protected raw + `1` sealed value;
-- 3 key objects;
-- 3 signature-verification events;
-- 2 total configuration supersessions in combined traversal;
-- 10 total gate invalidations.
-
-Final repository P16L YES requires reproduction on the final controlled `main` commit.
-
----
-
-# Round-49/48/47 controls retained
-
-## Transaction/provenance
-
-- controlled SQLite records are append-only at application/database-trigger layer;
-- irreversible multi-record state transitions use one transaction;
-- IDs use `MCT-<CLASS>-YYYYMMDDTHHMMSSZ-<12-hex>`;
-- raw data are SHA-256 content addressed;
-- configuration supersession preserves historical gate records but blocks reuse;
-- reference HMAC signature is content authentication only.
-
-## P16F phase repair
-
-Permanent chain:
-
-`P16F skeleton -> Stage-0 -> P16F design definition -> P16G -> final P16F readiness`.
-
-Do not reintroduce the old `P16F <-> P16G` prerequisite cycle.
-
-## Stage-0 scoped G0
-
-Stage-0 G0 requires only what is needed for Stage-0 execution/interpretation, not unrelated package/P17 capability.
-
-## Sequential release
-
-Every irreversible GO requires:
-
-`T=PASS AND M=PASS AND all declared prerequisite assertions=PASS`.
-
-## Holdouts
-
-- prediction failure != execution invalidity;
-- holdout outcome cannot tune the tested model;
-- holdouts are not spare inventory;
-- QC and scientific-outcome access are distinct;
-- model freeze precedes protected outcome access.
-
-## Rework
-
-State-changing rework creates a new scientific state. Protected fit/holdout/bridge identity is not retained automatically.
-
-## Evidence progression
-
-`EMPIRICAL-REQUIRED -> DESIGN-IDENTIFIED -> DESIGN-RESOLUTION-VERIFIED -> EMPIRICAL-PRELIMINARY -> EMPIRICAL-VERIFIED -> DETECTOR-BRIDGED -> ALLOCATION-ELIGIBLE`.
-
-No stage skipping.
-
----
-
-# Permanent evidence discipline
-
-- Never invent a missing number.
-- Never promote transfer-family evidence into direct historical RP-01 evidence.
-- Repetition does not promote evidence class.
-- Structural DOE count is not power-based sample size.
-- Physical descendant count is not independent experimental-unit count.
-- Measurement uncertainty, operating-state uncertainty, process variation and tolerance remain distinct.
-- Controlled method != physical implementation.
-- Logic dry run != lab dry run.
-- Repository validator != deployed lab system.
-- Reference application != reference deployment/security simulation != hardened laboratory platform.
-- Surrogate/software result != HgCdTe empirical evidence.
-- Preserve negative searches, failed runs, failed predictions and rejected hypotheses.
-
----
-
-# Canonical RP-01 / candidate anchors — do not drift
-
-## RP-01 detector/process
-
-- n-HgCdTe on insulating CdZnTe;
-- nominal `x≈0.30`;
-- active thickness ~9.5 µm;
-- reported n ~`9.8e14 cm^-3`;
-- reported electron mobility ~`4.0e4 cm^2/Vs`;
-- anodic oxide ~80 nm;
-- Mask-2 4–5 µm;
-- 80 °C / 30 min prebake;
-- chlorobenzene 30 min;
-- RIE printed as `CH4/5H2`, total 64 sccm, 100 mTorr, 50 W, 60 s;
-- same-lineage candidate interpretation 1:5 gives 10.6667/53.3333 sccm;
-- Cr/Au 30/270 nm;
-- contacts ~300×300 µm;
-- gaps 50–400 µm in 50-µm steps;
-- key data ~80 K, 10 V/cm, 1 kHz;
-- detector cutoff ~4.4 µm, convention open;
-- D* ~`2e11 Jones` near 4 µm;
-- historical high-frequency g-r ~24.5 nV/sqrtHz;
-- 24.5 nV/sqrtHz is not historical 1-kHz noise;
-- RP-01 lifetime/f3dB remains open.
-
-## LPE candidate branch
-
-- Cd0.96Zn0.04Te (111)B family;
-- Honeywell covered graphite horizontal-slider topology;
-- candidate center `xL=.082`, `yL=.810`, `TL=507 °C`, `xS≈.29`;
-- N2 purge -> H2;
-- actual liquidus/thermal offset must be locally measured;
-- absolute charge is apparatus-specific, never substrate-area scaled from another lab.
-
-Authoritative mass convention:
-
-`calculations/LPE_CHARGE_COMPOSITION_SENSITIVITY.md`
-
-- Hg 200.59 g/mol;
-- Cd 112.414;
-- Te 127.60;
-- xL=.082, yL=.810 -> wHg=0.2497382358, wCd=0.01250164993, wTe=0.7377601143.
-
----
-
-# EH&S
-
-Repository procedures/software do not authorize Hg/Cd/Br2/HBr/H2/CH4 handling, sealed high-temperature processing, RF/vacuum/high voltage, solvents, cryogens or other hazardous laboratory work.
-
-Physical execution requires real facility/institution controls.
-
----
-
-# Next logical work — Round 51
-
-Build a **reproducible real-host surrogate deployment harness** rather than adding another in-process security abstraction.
-
-Priority:
-
-1. declarative host bootstrap;
-2. genuinely separate OS users/service accounts;
-3. filesystem ownership/group/ACL tests;
-4. service confinement;
-5. select vetted encryption/KMS technology for protected storage;
-6. signing/backup key custody and recovery;
-7. external time synchronization/failure policy;
-8. synthetic serial/network instrument endpoint;
-9. concurrent writers;
-10. crash/restart/power-loss simulation;
-11. disk-full/read-only-filesystem cases;
-12. backup loss/key loss/partial restore cases;
-13. full no-HgCdTe P16I-style traversal on that deployed host.
-
-Do not use HgCdTe merely to commission software/security controls.
+1. compare Draft 0.1 line-by-line against P01–P35 and calculations;
+2. flag any unsupported, contradictory, or overly prescriptive statement;
+3. verify every important number/equation/evidence label;
+4. normalize units/symbols/terminology;
+5. identify any true remaining operator ambiguity that the manuscript itself can close;
+6. create uncertainty/example-calculation appendix;
+7. compile complete bibliography from the controlled source ledger;
+8. revise manuscript to Draft 0.2;
+9. only after technical closure, create final figures/layout and professional PDF/booklet.
+
+The user ultimately wants the finished procedure paper/booklet to review as a whole.
