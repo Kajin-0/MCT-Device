@@ -4,41 +4,43 @@ Canonical technical source:
 
 `RP01_HGCDTE_PHOTOCONDUCTOR_PROCESS_MANUAL_DRAFT.md`
 
-Current controlled states:
+## Current publication direction
 
-- technical Draft `0.2`, Round `52`;
-- `RP01-INTEGRATED-MANUSCRIPT-DRAFT-READY = YES`;
-- `RP01-MANUSCRIPT-ADVERSARIAL-REVIEW-PASSED = YES`;
-- Round-53 22-page publication presentation: **REJECTED / SUPERSEDED FOR PRESENTATION**;
-- `RP01-PROCEDURAL-MANUAL-CORRECTIVE-CANDIDATE-READY = YES`.
+- technical Draft `0.2`, Round `52`: source/evidence integration;
+- Round `53` condensed booklet presentation: **REJECTED / SUPERSEDED**;
+- Round `54` traveler/SOP-with-fill-fields presentation: **REJECTED / SUPERSEDED**;
+- Round `55` empirical protocol / hard-number recipe model: **ACTIVE REVIEW CANDIDATE**;
+- `RP01-EMPIRICAL-PROTOCOL-CANDIDATE-READY = YES`.
 
-## Active publication candidate
+Round 55 uses a publication grammar modeled on experimental-protocol papers rather than manufacturing travelers:
 
-Round 54 rebuilds the manual as an operator-facing SOP rather than a condensed booklet. It uses 17 sequential process modules with a common grammar:
+`equipment/materials -> hard-number reference recipe -> numbered procedure -> timing -> expected result -> analysis -> troubleshooting -> evidence note`.
 
-`purpose -> prerequisites/incoming state -> equipment/materials -> reference values -> mandatory local fields -> numbered operations -> in-process measurements -> GO/HOLD/REWORK/STOP -> retained records`.
+The main body contains no fill-in-the-blank fields. Missing historical values are handled by explicit evidence-coded reference choices rather than blank forms:
 
-The review artifact is 47 pages with 9 engineering schematics and explicit local-instantiation fields. See:
+- `RP` direct RP-01;
+- `SL` same lineage;
+- `PT` primary transfer;
+- `DER` derived;
+- `SYN` explicit synthesized empirical starting value.
 
-- `../docs/RP01_PROCEDURAL_REBUILD_REVIEW_ROUND54.md`;
-- `../docs/RP01_GAP_MATRIX_ADDENDUM_ROUND54.md`;
-- `../docs/SOURCE_LEDGER_ADDENDUM_ROUND54.md`;
-- `../research/2026-08-16_checkpoint_after_procedural_rebuild_round54.md`.
+`SYN` values are deliberately concrete and falsifiable but do not become historical facts through publication.
 
-Round-53 publication records remain in the repository as audit history only. They are not the preferred presentation model.
+Round-55 continuity records:
 
-## Governing distinction
+- `../docs/RP01_EMPIRICAL_PROTOCOL_REBUILD_ROUND55.md`;
+- `../docs/RP01_GAP_MATRIX_ADDENDUM_ROUND55.md`;
+- `../docs/SOURCE_LEDGER_ADDENDUM_ROUND55.md`;
+- `../research/2026-08-16_checkpoint_after_empirical_protocol_round55.md`.
 
-`REFERENCE QUALIFICATION CENTER != EXECUTABLE LOCAL SETPOINT`.
-
-A future laboratory must instantiate its hardware/material-dependent values and pass applicable P36/P36A acceptance before irreversible execution. Publication completeness does not imply laboratory readiness.
+The detailed `procedures/` and `calculations/` corpus remains the technical source of truth beneath the publication artifact.
 
 Physical maturity remains separate:
 
-- `TRACEABLE-FIRST-BUILD-READY = NO` for an unspecified/uninstantiated lab;
+- `TRACEABLE-FIRST-BUILD-READY = NO` for an unspecified/uninstantiated laboratory;
 - `HISTORICAL-RP01-REPRODUCED = NO`;
 - `REPRODUCIBLE-RELEASE = NO`.
 
 ## Next publication gate
 
-Perform a line-by-line operator/scientific audit of the Round-54 procedural candidate against Draft 0.2 and P01–P36A. Expand rather than compress whenever omission can change an operation, measurement, endpoint, evidence classification, or disposition. Only after that review should a final issued booklet state be considered.
+Adversarially audit the specific `SYN` values and lineage combinations in the 20 Round-55 recipes. The goal is not to reintroduce blanks; it is to replace any weak synthesized number with the strongest concrete value that can be defended from primary evidence and physics.
