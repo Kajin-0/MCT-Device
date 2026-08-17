@@ -1,6 +1,6 @@
 # Integrated manual manuscript
 
-Canonical integrated technical source:
+Canonical technical evidence remains the detailed procedure/calculation corpus rooted in:
 
 `RP01_HGCDTE_PHOTOCONDUCTOR_PROCESS_MANUAL_DRAFT.md`
 
@@ -8,123 +8,103 @@ Canonical integrated technical source:
 
 - Round 52: integrated technical/source draft.
 - Round 53: condensed booklet — rejected.
-- Round 54: traveler/SOP-with-fill-fields — rejected.
-- Round 55: first hard-number empirical-protocol model; major defects found.
+- Round 54: manufacturing-style form/SOP direction — rejected.
+- Round 55: first hard-number empirical-protocol model.
 - Round 56: adversarial scientific repair.
-- Round 57: targeted metrology closure; controlling scientific/metrology baseline.
+- Round 57: targeted metrology closure.
 - Round 58: native-LaTeX presentation rebuild.
 - Round 59: operator-completeness and mathematical cleanup.
-- Round 60: **ACTIVE DEEP-RESEARCH APPARATUS / EMPIRICAL-COMPLETENESS CANDIDATE**.
+- Round 60: first deep-research apparatus integration.
+- Round 61: **ACTIVE CONSEQUENTIAL-COORDINATE / EVIDENCE-DISCIPLINE CANDIDATE**.
 
-`RP01-EXHAUSTIVE-EMPIRICAL-PROTOCOL-ROUND60-DEEP-RESEARCH-CANDIDATE = YES`.
+`RP01-EEFP-ROUND61-CONSEQUENTIAL-COORDINATE-CANDIDATE = YES`.
 
-## Document class
+## Round-61 document class
 
-Round 60 remains an **exhaustive research-fabrication protocol**, not a journal paper and not a manufacturing traveler.
+The preferred document class is an **Exhaustive Empirical Fabrication Protocol (EEFP)**. It combines publication-level analytical clarity, direct step-by-step execution and internal laboratory-reference completeness without adding production-administration mechanics.
 
-Its goal is to combine:
+Protocol grammar remains:
 
-- publication-level analytical clarity;
-- SOP-level executable sequencing;
-- process-development-notebook completeness;
-- dimensioned/apparatus-aware experimental definition;
-- explicit provenance and transfer classification;
-- professional native-LaTeX mathematics.
+`objective -> starting state -> apparatus/materials -> hard-number reference recipe -> numbered procedure -> timing -> expected result -> analysis -> troubleshooting -> evidence/transfer limits`.
 
-No blank traveler fields, operator signoff pages, Cp/Cpk requirements, lot-release forms or production-control charts are part of the publication goal.
+Round 61 adds an explicit second layer: every consequential physical coordinate is classified as `RP`, `SL`, `PT`, `DER`, `SYN`, or `OPEN`.
 
-The protocol grammar remains approximately:
+`OPEN` is not a defect when the missing value is honestly named and its closure route is explicit. The defect is a consequential coordinate that remains implicit.
 
-`objective -> starting state -> equipment/materials -> apparatus definition -> hard-number reference recipe -> numbered procedure -> timing -> expected result -> analysis -> troubleshooting -> evidence/transfer limits`.
+## Principal Round-61 correction
 
-## Round-60 deep-research integration
+The second independent deep-research audit showed that Round 60 over-specified several low-confidence apparatus dimensions.
 
-The deep-research pass materially improves the remaining apparatus/operator gaps rather than merely adding literature citations.
+Round 61 therefore **removes the canonical numerical prototype geometry** for:
 
-Major recovered primary details now promoted into the publication include:
+- source-synthesis ampoule ID/OD/wall/free volume/seal;
+- LPE substrate recess dimensions/depth;
+- LPE slider thickness;
+- growth-well numerical envelope/volume;
+- Hg-source cavity numerical dimensions;
+- Hg-vapor-moat numerical cross section.
 
-- Radhakrishnan et al. horizontal-slider system: high-purity/high-density graphite, `15 × 15 × 1 mm` CdZnTe, horizontal quartz tube, stainless end flanges, gas ports, push-pull rod and thermocouple access;
-- 6N source elements, evacuated-quartz-ampoule synthesis at `700 °C / 8 h`, `10 g` synthesized source, `~4.8 g` run charge and `3 g` HgTe reservoir;
-- Honeywell covered-slider substrate recess, capped/tapered growth wells, HgTe source recess and Hg-vapor moats;
-- Honeywell CdTe wipe-off architecture with approximately `1 mm` guide spacing.
+The primary literature closes the apparatus topology but not that dimensional stack. Those numerical coordinates return to `OPEN` until documentary recovery or a dimensioned local CAD/metrology/qualification program establishes a specific local `SYN` implementation.
 
-The exact historical boat machining dimensions were still not recovered. Round 60 therefore introduces explicitly labeled `SYN-H`, `SYN-M` and `SYN-L` confidence modifiers for synthesized implementation coordinates without changing their provenance.
+This is a scientific-strengthening revision, not a loss of detail.
 
-Important development coordinates include a pressure-qualified `25/22 mm OD/ID` source-ampoule geometry, a first dimensioned LPE prototype around the directly reported 15-mm substrate and 4.8-g charge, explicit furnace/thermocouple mapping, normalized tube-volume gas-flow definition, detailed RIE electrode/MFC/self-bias/thermal state, QCM physical geometry and tooling-factor closure, package construction coordinates, and NIST-style absolute-response uncertainty definition.
+## New physical-state treatment
 
-## New Appendix D
+Round 61 makes several previously implicit state coordinates explicit:
 
-Round 60 adds **Apparatus-definition coordinates for a portable empirical implementation**.
+- LPE melt depth depends on `m_melt/[rho_melt(T) A_well]` and cannot be inferred from charge mass alone.
+- LPE thermometry uses an instrumented dummy-boat controller-to-growth-region map.
+- Hg compensation records source exposed area and enclosed vapor geometry, not mass alone.
+- Wet etching records bath age, volume/exposed area, vessel geometry, hydrodynamics and quench latency.
+- Anodization records `J(t)`, `V(t)`, `Q/A` and measured oxide thickness; `Q/A=0.036 C/cm²` for the direct 0.3-mA/cm², 120-s center.
+- RIE records a dynamic plasma-state vector plus static electrode/chamber/carrier geometry before recipe DOE.
+- Cr/Au uses official QCM Z-ratio starting values and rate/pressure-conditioned shutter opening; universal source distance/rotation are removed.
+- Cryogenic characterization begins from detector thermal/electrical stationarity rather than elapsed soak time alone.
 
-This appendix specifies what physical quantities must define an implementation across:
+## Stable scientific closures retained
 
-- source ampoule and synthesis furnace;
-- LPE tube/furnace/boat/slider/atmosphere;
-- wet chemistry and anodization;
-- spinner and mask aligner;
-- RIE electrode/carrier/gas/RF/thermal state;
-- evaporator/source/QCM/holder geometry;
-- package and wire bonding;
-- cryostat and optical bench;
-- monochromator/lock-in/noise/transient electronics;
-- analysis code and calibration-file identity.
+Round 61 does not reopen the established downstream scientific/metrology corrections unless stronger evidence appears:
 
-It is not a traveler. Its function is to preserve the physical meaning of the experiment across laboratories and time.
+- D1/T1 geometry separation;
+- explicit anodization current/contact geometry;
+- witness-calibrated mesa etch;
+- explicit FTIR inverse model;
+- Hall weak-field-first reduction;
+- Smith terminal field plus separately labeled contact-corrected bulk-field estimate;
+- underfilled spectral radiant-power comparator geometry;
+- P37/W1 LBIC functional blocking witness;
+- finite-width TLM;
+- inter-contact D* area convention;
+- stationarity-tested noise methodology;
+- 500-MS/s transient acquisition with adaptive record/repetition timing.
 
-## Scientific controls preserved
+## Round-61 review artifacts
 
-Round 60 does not erase prior scientific closures:
-
-- upstream Protocols 1–7 remain a **composite literature-derived upstream material hypothesis** rather than a recovered Fermionics/RP-01 material recipe;
-- D1 and T1 geometry are separate;
-- anodization current is geometry-specific;
-- mesa timing is witness calibrated;
-- RIE `50 W` is not treated as reactor equivalence;
-- `d_etch`, `d_conv` and lateral conversion remain distinct;
-- FTIR uses the explicit inverse model;
-- Hall uses weak-field-first analysis and preserves mixed-carrier caution;
-- historical Smith terminal field and contact-corrected bulk-field estimate are reported separately;
-- TLM alone does not establish blocking; W1 LBIC is retained;
-- `A_Dstar` remains the inter-contact optical area for direct comparison;
-- the historical 1-kHz spectral / ~3-kHz noise-knee ambiguity remains explicit;
-- transient timing remains adaptive to the slowest pole and package thermal response.
-
-Evidence codes remain `RP`, `SL`, `PT`, `DER`, `SYN`; SYN confidence modifiers do not promote evidence class.
-
-## Round-60 artifact
-
-- `RP01_HgCdTe_Exhaustive_Empirical_Fabrication_Protocol_Round60.pdf`
-- `RP01_HgCdTe_Exhaustive_Empirical_Fabrication_Protocol_Round60.tex`
+- `RP01_HgCdTe_Exhaustive_Empirical_Fabrication_Protocol_Round61.pdf`
+- `RP01_HgCdTe_Exhaustive_Empirical_Fabrication_Protocol_Round61.tex`
 
 QA:
 
-- 69 physical PDF pages;
+- 74 physical pages;
 - letter size;
-- text-native, openable and unencrypted;
-- no form/XFA fields;
+- text-native, openable, unencrypted;
+- zero PDF form/XFA fields;
 - all fonts embedded;
-- all 69 pages rendered and visually inspected after deep-research integration;
-- no remaining reported overfull/underfull LaTeX box or undefined-control errors in the release compile;
-- static protocol index with stable printed page numbers.
+- full 200-dpi render reviewed page-by-page via contact sheets and key pages;
+- no overfull LaTeX boxes or undefined-control errors; one benign underfull LPE prose warning remains.
 
 SHA-256:
 
-- PDF `a42e5c14ddfff5c4ae598184617958c3fa2416ace2fdb1112bfafb63cabba7cd`;
-- TeX `8f2665a1df60970b9faccccc56c6762d83bee2cca1dafe2df5516db28aa775ca`.
+- PDF `a1dd7888a92c2b129dae453f3e0684e6aab289b4c6bd9338b92660868bfb455f`;
+- TeX `8103673ccc8952a8868974f12fb0c1c506e3de71c6bde6fd8f763322b79d9ec1`.
 
 See:
 
-- `../docs/RP01_DEEP_RESEARCH_APPARATUS_INTEGRATION_ROUND60.md`;
-- `../docs/SOURCE_LEDGER_ADDENDUM_ROUND60.md`;
-- `../research/2026-08-17_checkpoint_after_deep_research_round60.md`;
-- Round-57 scientific/metrology closure records for controlling background.
-
-## Physical maturity remains separate
-
-- `TRACEABLE-FIRST-BUILD-READY = NO` for an unspecified/uninstantiated laboratory;
-- `HISTORICAL-RP01-REPRODUCED = NO`;
-- `REPRODUCIBLE-RELEASE = NO`.
+- `../docs/RP01_CONSEQUENTIAL_COORDINATE_CLOSURE_ROUND61.md`
+- `../docs/RP01_GAP_MATRIX_ADDENDUM_ROUND61.md`
+- `../docs/SOURCE_LEDGER_ADDENDUM_ROUND61.md`
+- `../research/2026-08-17_checkpoint_after_consequential_coordinate_round61.md`
 
 ## Next gate
 
-Adversarially audit the Round-60 synthesized apparatus dimensions and hard-number implementation choices. Search further primary theses/patents/archived tool documentation for OPEN coordinates. Improve a SYN value only with stronger evidence or physics. Do not regress to vague prose, blank traveler fields, or manufacturing-process paperwork.
+Continue closing consequential coordinates through primary-document recovery and deliberately instrumented local witness experiments. Do not create apparent completeness by assigning unsupported historical apparatus dimensions.
