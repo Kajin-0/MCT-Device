@@ -1,12 +1,12 @@
 # AGENTS.md — MCT-Device continuity record
 
-**Current continuity round:** 52  
+**Current continuity round:** 53  
 **Date:** 2026-08-16 America/New_York  
 **Repository:** `Kajin-0/MCT-Device`
 
 ## User-facing mission
 
-Produce the final source-traceable HgCdTe photodetector fabrication and characterization procedure paper/booklet. The user wants the finished technical manual, not open-ended repository/software infrastructure work.
+Produce the final source-traceable HgCdTe photodetector fabrication and characterization procedure paper/booklet. Prioritize the finished manual over new infrastructure work.
 
 Canonical historical anchor:
 
@@ -14,177 +14,127 @@ E. P. G. Smith, K. J. Winchester, C. A. Musca, J. M. Dell, L. Faraone, “A simp
 
 ## READ FIRST
 
-Primary manuscript:
+1. `manuscript/RP01_HGCDTE_PHOTOCONDUCTOR_PROCESS_MANUAL_DRAFT.md` — technical Draft 0.2 / Round 52.
+2. `docs/RP01_MANUSCRIPT_TECHNICAL_REVIEW_ROUND52.md` — adversarial technical corrections.
+3. `docs/RP01_PUBLICATION_ASSEMBLY_REVIEW_ROUND53.md` — publication/render disposition.
+4. `research/2026-08-16_checkpoint_after_publication_assembly_round53.md` — latest checkpoint.
+5. `docs/SOURCE_LEDGER_ADDENDUM_ROUND53.md` — publication bibliography policy.
 
-`manuscript/RP01_HGCDTE_PHOTOCONDUCTOR_PROCESS_MANUAL_DRAFT.md`
-
-Current manuscript version: Draft 0.2 / Round 52.
-
-Latest technical review:
-
-`docs/RP01_MANUSCRIPT_TECHNICAL_REVIEW_ROUND52.md`
-
-Latest checkpoint:
-
-`research/2026-08-16_checkpoint_after_manuscript_adversarial_review_round52.md`
-
-Latest gap/source addenda:
-
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND52.md`
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND52.md`
-
-For older continuity, then read Round51 and earlier checkpoints only as needed.
-
-## Current document maturity
+## Current manuscript/document maturity
 
 - `RP01-INTEGRATED-MANUSCRIPT-DRAFT-READY = YES`.
 - `RP01-MANUSCRIPT-ADVERSARIAL-REVIEW-PASSED = YES`.
+- `RP01-PUBLICATION-ASSEMBLY-CANDIDATE-READY = YES`.
 
-These are manuscript states only.
+These are document states only.
 
-Physical maturity remains separate:
+Physical maturity remains:
 
 - `TRACEABLE-FIRST-BUILD-READY = NO` for an unspecified/uninstantiated laboratory.
 - `HISTORICAL-RP01-REPRODUCED = NO`.
 - `REPRODUCIBLE-RELEASE = NO`.
 
-Do not resume open-ended security/provenance/software work unless it directly blocks the final fabrication manual.
+## Round-53 publication candidate
 
-## Round-52 permanent corrections
+A 22-page professional DOCX/PDF candidate was produced and visually QA'd. It contains:
 
-### 1. Title/claim
+- claim/execution hierarchy;
+- reference detector table;
+- process flow from CdZnTe receipt through final characterization;
+- five deterministic engineering schematics;
+- qualification/local-instantiation matrices;
+- ten worked calculations/uncertainty examples;
+- six operator release checklists;
+- symbol/unit/reporting conventions;
+- controlled numbered bibliography;
+- deliberately open historical identities.
 
-Do not call the current process `reproducible fabrication` as a demonstrated state. The manuscript title is now source-traceable **qualification** fabrication/characterization. Reproducible release requires P17 evidence.
+Artifact hashes at render gate:
 
-### 2. Reference center versus executable branch
+- PDF SHA-256 `63b03f0d6303071eeda52bfdd673d8f840a1ab7eff50453d02cf2e7e60ddadb3`.
+- DOCX SHA-256 `5f9441141badbcb78714bf8eb2766640cdee47aa07612e450456476dea2b188c`.
 
-Permanent relation:
+The conversation artifacts are review copies; repository Markdown/procedures/calculations remain technical source of truth until final issue.
+
+## Permanent control rules
+
+### Reference center versus execution
 
 `REF-CENTER != EXECUTABLE-LOCAL-SETPOINT`.
 
-Before any irreversible physical operation, all required local material/reagent/tool/geometry/setpoint/endpoint fields must be instantiated in the current traveler and the relevant P36/P36A acceptance evidence must exist. Blank/TBD/`appropriate`/undefined-% instructions fail preflight.
+Before irreversible execution, all required local material/reagent/tool/geometry/setpoint/endpoint fields must be instantiated and relevant P36/P36A acceptance + genealogy + EH&S authorization must exist.
 
-The manuscript may be complete as a qualification document while an unspecified future laboratory remains uninstantiated.
+### Evidence discipline
 
-### 3. P36/P36A are part of the manual architecture
+Never invent missing values. Keep direct RP-01, same-lineage, primary transfer, derived, reference center, local calibration/qualification and historical-open evidence distinct. Repetition does not promote evidence class. `Not recovered` does not mean absent.
 
-Use:
+### LPE authority
 
-- P36 for tool/subsystem IQ, OQ, surrogate PQ and HgCdTe-residual qualification;
-- P36A for mass, dimensional, lithography, wet-chemistry and anodization acceptance.
+Tie-line center:
 
-Surrogate competence does not prove HgCdTe equivalence.
+`xL=.082, yL=.810, TL=507 °C, xS≈.29`.
 
-### 4. RIE converted density is depth-coupled
+Authoritative mass convention:
 
-RP-01 direct:
+- Hg 200.59 g/mol;
+- Cd 112.414 g/mol;
+- Te 127.60 g/mol;
+- `w_Hg=0.2497382358`;
+- `w_Cd=0.01250164993`;
+- `w_Te=0.7377601143`.
 
-- `n_conv≈2.0e15 cm^-3`, averaged over converted thickness;
-- `mu≈3.3e4 cm²/Vs`.
+`M_charge` is apparatus dependent. Do not area-scale another laboratory's charge.
 
-Do not treat the volumetric density as independent of `d_conv`.
+### RIE authority
 
-Report at least:
+Direct controller state:
 
-`{R_s,N_s,mu_H,d_conv,L_conv,d_etch,rho_c,blocking_response}`
+`CH4/5H2, 64 sccm total, 100 mTorr, 50 W, 60 s`, parallel-plate Plasma Technology reactor.
 
-and derive:
+Candidate 1:5 split -> `10.6667/53.3333 sccm` is interpretive transfer only.
 
-`n_conv=N_s/d_conv`
+Permanent:
 
-only after `d_conv` is independently justified.
+- `50 W != reactor equivalence`;
+- physical recession `d_etch != d_conv`;
+- report sheet state and independently justified conversion depth;
+- `n_conv=N_s/d_conv` only after `d_conv` closure;
+- TLM does not by itself prove minority-carrier blocking.
 
-The same-lineage ~8-µm conversion-depth scale is conditional context, not a proven RP-01 reduction thickness.
+### Detector comparison authority
 
-### 5. RP-01 performance figures are one representative device
+RP-01 Figures 3/5/6/7 are the same representative detector; exact contact pair remains open.
 
-P12C closes Figures 3/5/6/7 as the same representative device. Exact contact pair remains open.
+New D* closure locks:
 
-New D* closure should lock:
+`{device, contact pair, gap, width, T, E, package, FOV/background, loading, frequency convention}`
 
-`{device,contact pair,gap,width,T,E,package,FOV/background,loading,frequency convention}`
+unless a measured correction is explicitly applied.
 
-unless an explicit measured correction is applied.
+60° FOV remains historically ambiguous as full versus half angle; physical geometry must be recorded.
 
-### 6. 60° FOV remains angularly ambiguous
+Define `A_Dstar` separately from optical power geometry; retain covariance when shared.
 
-RP-01 says 60° FOV but does not document full cone vs half-angle or physical aperture geometry.
+`24.5 nV/sqrt(Hz)` is the high-frequency g-r level and is not automatically the 1-kHz detector noise because the reported knee is ~3 kHz.
 
-A 60° full cone / 30° half-angle is a derived photon-flux consistency interpretation only. New work must record physical geometry and state the angle convention explicitly.
+### Dynamics/package authority
 
-### 7. D* area convention
+No direct RP-01 lifetime curve exists. De-embed source/readout/cable/instrument and evaluate package thermal transfer before calling a slow pole minority-carrier lifetime.
 
-Define:
+## Known housekeeping item
 
-- `A_Dstar` = detector normalization area;
-- optical beam/aperture/irradiance geometry separately.
+One section of P30A still carries an older ppm-scale rounded mass-fraction triplet. `calculations/LPE_CHARGE_COMPOSITION_SENSITIVITY.md` and Draft 0.2 are authoritative. Repair P30A in a later text-cleanup commit; do not let it override the calculation module.
 
-They need not be the same physical area. If a common area coordinate enters incident-power derivation and D* normalization, retain covariance.
+## Immediate next work — Round 54
 
-`gamma_A = partial ln(P_inc)/partial ln(A_Dstar)`
+Do a **content-density/final editorial adversarial audit**, not a broad new research loop:
 
-`S_Dstar,A = 0.5 - gamma_A`.
+1. compare the 22-page publication candidate against Draft 0.2 and P01–P36A;
+2. identify any operator-critical information lost by condensation;
+3. expand only where omission changes a decision, endpoint, evidence class, calculation convention or acceptance gate;
+4. optionally repair P30A's known rounded-value wording;
+5. freeze bibliography/captions/symbol usage;
+6. render and preflight the final-layout candidate again;
+7. only then consider a final issued booklet state.
 
-### 8. Noise warning remains permanent
-
-`24.5 nV/sqrt(Hz)` is the high-frequency g-r level. It is not automatically the 1-kHz detector noise because the reported knee is ~3 kHz.
-
-## Evidence discipline
-
-Never invent a missing value.
-
-Use these classes consistently:
-
-- direct RP-01;
-- same-UWA/same-lineage;
-- primary transfer;
-- derived;
-- reference qualification center;
-- local calibration/qualification;
-- historical identity open.
-
-Repetition does not promote evidence class. `Not recovered` does not mean absent.
-
-## Current reference route
-
-1. Substrate: insulating CdZnTe; first transfer center Cd0.96Zn0.04Te (111)B; exact RP-01 Zn/polarity/miscut open.
-2. Final substrate surface: brief 2–3% Br2/methanol transfer family; concentration basis/time/rinse/clean-to-load locally explicit.
-3. LPE topology: covered Honeywell-derived graphite horizontal slider with auxiliary Hg source and one defined wipe-off architecture.
-4. LPE center: xL=.082, yL=.810, TL=507 °C, xS≈.29.
-5. Authoritative mass fractions: Hg=.2497382358, Cd=.01250164993, Te=.7377601143 using Hg=200.59, Cd=112.414, Te=127.60 g/mol.
-6. Atmosphere: N2 purge -> H2; actual flows/gas quality local.
-7. LPE first screen: measured contact state near 500 °C (~7 K nominal supercooling) as REF-CENTER; absolute charge, gas, thermometry, contact time, wipe and cooldown must be locally instantiated first.
-8. As-grown: P06 FTIR spatial map + P05 Hall/VdP.
-9. Hg anneal: first center ~250 °C / 1 h / Hg-saturated isothermal-like; release by post-anneal P05/P06.
-10. Mask 1: thick positive novolak/DNQ family; AZ4620 strongest product-identified Br2/HBr screening candidate, not historical identity.
-11. Wet mesa: nominal 2% Br2 in 3:1 EG:HBr near 21 °C; ~2.78 µm/min, anisotropy~.63, best roughness~2 nm transfer data; exact formulation basis/HBr assay local.
-12. Anodic oxide: RP-01 ~80 nm; TI-PC center 0.1 M KOH in stated 90% EG/10% DI, HgCdTe anode/carbon cathode, J~0.30 mA/cm², ~15 V, ~2 min; accept from V(t), Q/A, thickness/interface/device response.
-13. Mask 2 direct: 4–5 µm, 80 °C/30 min prebake, chlorobenzene 30 min, then pattern/develop/water rinse. Product/exposure/developer/order/lift-off local.
-14. RIE direct: Plasma Technology parallel plate, CH4/5H2, 64 sccm total, 100 mTorr, 50 W, 60 s. Candidate 1:5 -> 10.6667/53.3333 sccm only as interpretive transfer.
-15. RIE equivalence: self-bias/sheath proxy, sample T, chamber state, t_clear/t_sem, physical recession, sheet transport, d_conv/L_conv, LBIC/TLM/blocking response. `50 W != reactor equivalence`.
-16. Metal: Cr/Au 30/270 nm direct; thermal evaporation first same-UWA method-family transfer; vacuum/rates/QCM/sample heating local.
-17. TLM: nine ~300×300-µm contacts, gaps 50–400 µm in 50-µm increments; rho_c~9e-4 ohm cm² at 80 K.
-18. P10: canonical 80 K, 10 V/cm; nominal ideal current ~1.79 mA; active V 0.05–0.40 V across 50–400-µm gaps.
-19. Singulation: low-force CdZnTe-compatible wire-saw family first screen; qualify functional edge exclusion.
-20. Package: compliant silicone-family first screen; package thermal response mandatory because ms-to-hundreds-ms poles can masquerade as detector dynamics.
-21. Responsivity: 80 K, 10 V/cm, 1 kHz, stated 60° FOV; calibrated comparator/reference detector preferred; physical view geometry required.
-22. Noise/D*: 1/f knee ~3 kHz; high-f g-r ASD ~24.5 nV/sqrtHz; use same-device/state noise at the declared D* frequency.
-23. Dynamics: no direct RP-01 lifetime curve; de-embed source/optics/bias/preamp/cable/instrument/package and validate any one-pole interpretation.
-
-## Known housekeeping discrepancy
-
-`calculations/LPE_CHARGE_COMPOSITION_SENSITIVITY.md` is numerically authoritative. One P30A section still shows older ppm-scale rounded mass fractions. Never let P30A's old rounded triplet override the calculation module or Draft 0.2. Fix in a later housekeeping pass if convenient.
-
-## Immediate next work — Round 53
-
-Continue toward the finished booklet, not another broad research loop:
-
-1. compile the complete bibliography from the controlled source ledger;
-2. create compact uncertainty/example-calculation appendix;
-3. create publication-quality process-flow/LPE/anneal/RIE/radiometry figures;
-4. extract operator checklists/travelers into appendices;
-5. normalize symbols, units and index;
-6. typeset the final professional PDF/booklet;
-7. perform final editorial/visual adversarial review.
-
-Targeted source recovery is allowed only where it materially improves a specific final-manuscript claim.
+Targeted source recovery is allowed only when a specific final-booklet claim materially requires it.

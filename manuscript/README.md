@@ -1,33 +1,37 @@
 # Integrated manual manuscript
 
-The canonical integrated draft is:
+Canonical technical draft:
 
 `RP01_HGCDTE_PHOTOCONDUCTOR_PROCESS_MANUAL_DRAFT.md`
 
-Current manuscript state:
+Current controlled states:
 
-- Draft `0.2`;
-- continuity Round `52`;
+- technical draft `0.2`, Round `52`;
 - `RP01-INTEGRATED-MANUSCRIPT-DRAFT-READY = YES`;
-- `RP01-MANUSCRIPT-ADVERSARIAL-REVIEW-PASSED = YES`.
+- `RP01-MANUSCRIPT-ADVERSARIAL-REVIEW-PASSED = YES`;
+- Round-53 publication assembly candidate rendered and visually QA'd;
+- `RP01-PUBLICATION-ASSEMBLY-CANDIDATE-READY = YES`.
 
-These are document states only. They do not imply laboratory execution readiness, historical reproduction, or reproducible process release.
+Round-53 publication records:
 
-Detailed `procedures/`, `calculations/`, `travelers/`, source ledgers, and review records are supporting controlled records.
+- `../docs/RP01_PUBLICATION_ASSEMBLY_REVIEW_ROUND53.md`;
+- `../docs/SOURCE_LEDGER_ADDENDUM_ROUND53.md`;
+- `../research/2026-08-16_checkpoint_after_publication_assembly_round53.md`.
+
+The Round-53 DOCX/PDF are conversation review artifacts. The repository Markdown/procedure/calculation set remains the controlled technical source of truth until a final issued booklet is frozen.
 
 ## Governing distinction
 
-The manuscript must not be blocked merely because an unspecified future laboratory has not instantiated apparatus-specific calibration values. It also must not describe a literature center as executable when a required local field is still blank.
+`REFERENCE QUALIFICATION CENTER != EXECUTABLE LOCAL SETPOINT`.
 
-Classify remaining quantities as:
+A future laboratory must instantiate its own hardware/material-dependent values and pass applicable P36/P36A acceptance before irreversible execution. Publication completeness does not imply laboratory readiness.
 
-- `HISTORICAL/REFERENCE FIXED` — directly sourced or explicitly derived;
-- `REFERENCE QUALIFICATION CENTER` — literature-grounded first transfer/development condition;
-- `LOCAL EXECUTION INSTANTIATION REQUIRED` — actual hardware/material dependent and mandatory before the relevant irreversible operation;
-- `HISTORICAL IDENTITY OPEN` — unrecovered detail that matters to literal historical reconstruction unless it also prevents defining a local branch.
+Physical maturity remains separate:
 
-A reference center never substitutes for a required local setpoint, calibration, geometry, material identity, or endpoint.
+- `TRACEABLE-FIRST-BUILD-READY = NO` for an unspecified/uninstantiated lab;
+- `HISTORICAL-RP01-REPRODUCED = NO`;
+- `REPRODUCIBLE-RELEASE = NO`.
 
-Use P36/P36A for the future laboratory's IQ/OQ/surrogate-PQ/HgCdTe-residual acceptance architecture.
+## Next publication gate
 
-The final booklet should present one coherent process first; internal repository history and software/provenance infrastructure belong in appendices/supporting records, not the main narrative.
+Before calling the booklet final, perform a content-density audit against Draft 0.2 and P01–P36A to ensure publication condensation did not remove an operator-critical decision, endpoint, evidence restriction, calculation convention, or acceptance gate.
