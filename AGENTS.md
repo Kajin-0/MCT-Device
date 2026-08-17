@@ -1,6 +1,6 @@
 # AGENTS.md — MCT-Device front-door continuity record
 
-**Current continuity round:** 49  
+**Current continuity round:** 50  
 **Date:** 2026-08-16 America/New_York  
 **Repository:** `Kajin-0/MCT-Device`
 
@@ -20,10 +20,11 @@ There is no end-to-end reproducible physical release yet.
 
 Latest checkpoint:
 
-`research/2026-08-16_checkpoint_after_operational_provenance_round49.md`
+`research/2026-08-16_checkpoint_after_deployment_security_round50.md`
 
 Then:
 
+- `research/2026-08-16_checkpoint_after_operational_provenance_round49.md`
 - `research/2026-08-16_checkpoint_after_digital_provenance_round48.md`
 - `research/2026-08-16_checkpoint_after_control_system_dry_run_round47.md`
 - `research/2026-08-16_checkpoint_after_sequential_material_release_round46.md`
@@ -34,21 +35,26 @@ Then:
 
 Latest machine/control artifacts:
 
+- `tools/mct_deployment_control.py`
+- `tools/mct_protected_vault.py`
+- `tools/round50_fixture.py`
+- `tools/run_round50_security.py`
+- `provenance/deployment/README.md`
+- `docs/DIGITAL_PROVENANCE_DEPLOYMENT_SECURITY_ROUND50.md`
+- `travelers/P16L_DEPLOYMENT_SECURITY_DRY_RUN_REGISTER.md`
 - `tools/mct_provenance_store.py`
 - `tools/run_round49_reference.py`
-- `provenance/reference/README.md`
-- `docs/DIGITAL_PROVENANCE_OPERATIONAL_REFERENCE_ROUND49.md`
-- `travelers/P16K_PROVENANCE_REFERENCE_IMPLEMENTATION_REGISTER.md`
 - `schemas/mct_provenance_bundle.schema.json`
 - `tools/validate_mct_provenance.py`
+- `travelers/P16K_PROVENANCE_REFERENCE_IMPLEMENTATION_REGISTER.md`
 - `travelers/P16J_DIGITAL_PROVENANCE_VALIDATION_REGISTER.md`
 - `travelers/P16I_CONTROL_SYSTEM_DRY_RUN_REGISTER.md`
 - `travelers/P16H_SEQUENTIAL_MATERIAL_RELEASE_CONTROL_REGISTER.md`
 
 Latest source/gap:
 
-- `docs/SOURCE_LEDGER_ADDENDUM_ROUND49.md`
-- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND49.md`
+- `docs/SOURCE_LEDGER_ADDENDUM_ROUND50.md`
+- `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND50.md`
 
 ---
 
@@ -65,12 +71,14 @@ Latest source/gap:
 9. `P16H-SEQUENTIAL-MATERIAL-RELEASE-CONTROL-READY` — real lab has instantiated GO/HOLD/REWORK/STOP control.
 10. `P16I-LOGIC-DRY-RUN-PASSED` — repository control logic passed declared synthetic fault tests.
 11. `P16I-LAB-DRY-RUN-PASSED` — actual laboratory traveler/LIMS/control system passed a no-HgCdTe/surrogate dry run.
-12. `P16J-REPOSITORY-PROVENANCE-VALIDATOR-PASSED` — Round-48 schema + semantic validator pass repository tests.
+12. `P16J-REPOSITORY-PROVENANCE-VALIDATOR-PASSED` — schema + semantic validator pass controlled repository tests.
 13. `P16J-LAB-PROVENANCE-SYSTEM-READY` — real laboratory provenance system implemented.
-14. `P16K-REFERENCE-PROVENANCE-APPLICATION-PASSED` — Round-49 local transactional reference application passes its synthetic operational tests and Round-48 validation.
-15. `P16K-LAB-DEPLOYMENT-QUALIFIED` — deployed lab instance of the operational provenance application is security/backup/instrument/configuration integrated and qualified.
+14. `P16K-REFERENCE-PROVENANCE-APPLICATION-PASSED` — local transactional reference application passes synthetic operational tests and Round-48 validation.
+15. `P16K-LAB-DEPLOYMENT-QUALIFIED` — deployed laboratory instance is operationally integrated/qualified.
+16. `P16L-REFERENCE-DEPLOYMENT-SECURITY-DRY-RUN-PASSED` — Round-50 reference deployment/security simulation passes declared identity, protected-data, key, clock, backup and adapter tests.
+17. `P16L-LAB-SECURITY-DEPLOYMENT-READY` — real laboratory host/security deployment is instantiated and qualified.
 
-Current repository state after Round 49, contingent only on final committed CI for P16K:
+Current after final Round-50 main CI:
 
 - `TRACEABLE-FIRST-BUILD-READY = NO`
 - `HISTORICAL-RP01-REPRODUCED = NO`
@@ -85,174 +93,124 @@ Current repository state after Round 49, contingent only on final committed CI f
 - `P16I-LAB-DRY-RUN-PASSED = NO / NOT PHYSICALLY INSTANTIATED`
 - `P16J-REPOSITORY-PROVENANCE-VALIDATOR-PASSED = YES`
 - `P16J-LAB-PROVENANCE-SYSTEM-READY = NO / NOT PHYSICALLY INSTANTIATED`
-- `P16K-REFERENCE-PROVENANCE-APPLICATION-PASSED = YES` after final CI PASS
+- `P16K-REFERENCE-PROVENANCE-APPLICATION-PASSED = YES`
 - `P16K-LAB-DEPLOYMENT-QUALIFIED = NO / NOT PHYSICALLY INSTANTIATED`
+- `P16L-REFERENCE-DEPLOYMENT-SECURITY-DRY-RUN-PASSED = YES` after final main CI PASS
+- `P16L-LAB-SECURITY-DEPLOYMENT-READY = NO / NOT PHYSICALLY INSTANTIATED`
 
 Permanent relation:
 
-`candidate branch != infrastructure ready != surrogate commissioned != uncertainty allocated != campaign ready != genealogy ready != release control ready != logic dry run != provenance validator != reference application != lab deployment != first-build ready != historical reproduction != reproducible release`.
+`candidate branch != infrastructure ready != surrogate commissioned != uncertainty allocated != campaign ready != genealogy ready != release control ready != logic dry run != provenance validator != reference application != reference deployment/security dry run != lab deployment != first-build ready != historical reproduction != reproducible release`.
 
 ---
 
-# Round-49 operational provenance results — permanent if CI passes
+# Round-50 deployment/security controls — permanent
 
-## 1. Event-sourced SQLite reference application
+## 1. Protected raw data is part of holdout secrecy
 
-`tools/mct_provenance_store.py` is stdlib-only.
+Do not seal only a parsed holdout value while copying the protected raw instrument file into the ordinary CAS.
 
-Controlled SQLite tables use append-only UPDATE/DELETE triggers.
+Round-50 reference architecture requires:
 
-Do not interpret this as tamper-proof storage: an OS/database administrator can replace the database file.
+`ordinary provenance/CAS != protected holdout vault/CAS`.
 
-## 2. Transaction semantics
+Ordinary measurement may retain the protected field name, `vault://sha256/...` URI and digest while protected bytes/value remain in the restricted vault.
 
-Use `append_batch()` for irreversible multi-record transitions.
+## 2. No homebrew encryption
 
-A material-state node and corresponding process event commit in one transaction or roll back together.
+Round 50 deliberately uses split-store isolation rather than inventing encryption with unsuitable primitives.
 
-Round-49 self-test injects a duplicate-record failure and confirms the first record does not survive.
+Future production protected storage must use vetted authenticated encryption/key management or a formally approved equivalent isolation control.
 
-## 3. Canonical IDs
+`split-store reference isolation != encryption`.
 
-Generated form:
+## 3. Application identities are not trusted identities
 
-`MCT-<CLASS>-YYYYMMDDTHHMMSSZ-<12-hex>`.
+Reference identities/sessions demonstrate authorization mechanics only.
 
-`physical_object_id` persists across ordinary state transitions.
+`bearer session != authenticated human != OS service account != regulatory signer identity`.
 
-A physical split gets new physical-object IDs for descendants while retaining genealogy.
+## 4. Clock guard is not trusted time
 
-## 4. Application roles
+Round 50 rejects obvious backward wall-clock movement.
 
-Reference roles:
+`clock-regression guard != authoritative UTC != authenticated NTP/PTP != trusted timestamp`.
 
-- `SYSTEM_ADMIN`
-- `PROCESS_OWNER`
-- `METROLOGY_OWNER`
-- `DOE_OWNER`
-- `MATERIAL_CONTROL`
-- `RELEASE_AUTHORITY`
-- `INDEPENDENT_REVIEWER`
+## 5. Key lifecycle
 
-These are software reference roles, not final staffing requirements.
+Reference key lifecycle:
 
-## 5. Holdout logical sealing
+`ACTIVE -> VERIFY_ONLY -> REVOKED`.
 
-Protected values live in a separate append-only `sealed_outcomes` table.
+- VERIFY_ONLY may validate historical content but may not create new signatures.
+- Revocation changes trust interpretation, not historical MAC equality.
+- Verification events are retained.
 
-Normal measurement records carry field identity/raw references, not the protected value.
+No HSM/KMS/TPM, custody, escrow or nonrepudiation claim.
 
-Protected outcome opening requires model freeze + independent-reviewer/admin role and emits a Round-48 `access_event`.
+## 6. Backup integrity is separate from confidentiality
 
-Security boundary:
+Round-50 backup uses SQLite backup, complete object trees, SHA-256 manifest and backup-HMAC authentication.
 
-`application logical seal != cryptographic encryption != DB-admin isolation`.
+It deliberately excludes key files.
 
-## 6. Raw data
+`integrity-authenticated backup != encrypted backup != disaster recovery qualification`.
 
-Raw ingest is SHA-256 content addressed.
+## 7. Instrument preflight before byte copy
 
-Path:
+Configuration/calibration validity must be checked before instrument raw bytes are admitted to controlled storage.
 
-`objects/sha256/<first2>/<digest>`.
+A superseded configuration must block stale adapter use and dependent future gate reuse while preserving historical records.
 
-Copy is rehashed before atomic rename.
+## 8. Reference permissions
 
-Bundle export rechecks stored raw bytes.
+Repository simulation checks `0700` directories and `0600` key files/control files where applicable.
 
-Synthetic byte tampering must be detected.
-
-## 7. Reserve control
-
-GO on a reserve-locked node is denied until an append-only `reserve_release` exists with:
-
-- matching lock ID;
-- exact frozen trigger key;
-- basis record;
-- release after lock.
-
-## 8. Configuration supersession
-
-Operational supersession does not rewrite the old configuration or historical gate.
-
-It creates:
-
-- append-only configuration-supersession relation;
-- dependent gate invalidation rows.
-
-Interpretation:
-
-`historically valid gate != reusable gate after configuration change`.
-
-New records cannot use the superseded configuration after supersession time.
-
-## 9. Prototype signature semantics
-
-Reference HMAC-SHA256 binds:
-
-- target record ID;
-- immutable payload SHA-256;
-- actor label;
-- key ID;
-- signing time.
-
-This is content authentication only.
-
-Do not claim trusted signer identity, nonrepudiation, trusted time, protected key custody or regulatory compliance.
-
-No secrets belong in repository files.
-
-## 10. Synthetic traversal
-
-`tools/run_round49_reference.py` performs synthetic:
-
-`G0 -> G1 -> G2 -> G3 -> G4 -> G5 -> G6 -> G7 -> G8`.
-
-The traversal includes:
-
-- LPE-like state;
-- anneal-like state;
-- RIE-like state;
-- detector state;
-- raw measurement;
-- singulation split;
-- reserve sibling;
-- package state;
-- holdout lock;
-- model freeze;
-- outcome opening;
-- evidence progression to `ALLOCATION-ELIGIBLE`.
-
-No real HgCdTe ID may be introduced into this reference self-test.
-
-## 11. Round-49 operational self-test set
-
-Local standalone controls: 18.
-
-They include:
-
-- transaction rollback;
-- gate-role denial;
-- raw ingest;
-- reserve GO denial;
-- pre-freeze holdout denial;
-- holdout actor denial;
-- post-freeze opening;
-- 9/9 nominal GO gates;
-- signature good-key/wrong-key behavior;
-- record UPDATE denial;
-- record DELETE denial;
-- raw tamper detection/recovery;
-- configuration invalidation propagation;
-- invalidated-gate reuse denial;
-- superseded-configuration future-use denial;
-- canonical ID generation.
-
-Repository CI adds the required Round-48 generated-bundle semantic check.
+This does not prove actual uid/gid ownership, ACL/MAC confinement or root resistance.
 
 ---
 
-# Round-48/47 controls retained
+# Round-50 controlled test result
+
+Temporary validation branch:
+
+`agent/round50-security-dryrun`
+
+Candidate commit:
+
+`1639fee3f75d9ba11df066ed7d194c946953ac3d`
+
+Candidate Actions run:
+
+`31980899498`
+
+Candidate result:
+
+- Round-48 regression PASS;
+- Round-49 operational controls `19/19` PASS;
+- Round-50 deployment/security controls `33/33` PASS;
+- generated provenance records `50`;
+- Round-48 semantic errors `0`;
+- protected vault `1` protected raw + `1` sealed value;
+- 3 key objects;
+- 3 signature-verification events;
+- 2 total configuration supersessions in combined traversal;
+- 10 total gate invalidations.
+
+Final repository P16L YES requires reproduction on the final controlled `main` commit.
+
+---
+
+# Round-49/48/47 controls retained
+
+## Transaction/provenance
+
+- controlled SQLite records are append-only at application/database-trigger layer;
+- irreversible multi-record state transitions use one transaction;
+- IDs use `MCT-<CLASS>-YYYYMMDDTHHMMSSZ-<12-hex>`;
+- raw data are SHA-256 content addressed;
+- configuration supersession preserves historical gate records but blocks reuse;
+- reference HMAC signature is content authentication only.
 
 ## P16F phase repair
 
@@ -260,41 +218,29 @@ Permanent chain:
 
 `P16F skeleton -> Stage-0 -> P16F design definition -> P16G -> final P16F readiness`.
 
-Do not reintroduce the old `P16F <-> P16G` cycle.
+Do not reintroduce the old `P16F <-> P16G` prerequisite cycle.
 
 ## Stage-0 scoped G0
 
-Stage-0 G0 requires only what is needed to execute/interpret Stage-0:
+Stage-0 G0 requires only what is needed for Stage-0 execution/interpretation, not unrelated package/P17 capability.
 
-- relevant P16C;
-- relevant P16D;
-- scope-adequate P16E discrimination;
-- P16F skeleton;
-- protected Stage-0 material;
-- data/genealogy control;
-- EH&S.
-
-Do not require unrelated package/P17 state before upstream learning.
-
-## Sequential gate equation
+## Sequential release
 
 Every irreversible GO requires:
 
 `T=PASS AND M=PASS AND all declared prerequisite assertions=PASS`.
 
-## Holdout invariants
+## Holdouts
 
 - prediction failure != execution invalidity;
-- holdout outcome cannot tune the model it tests;
+- holdout outcome cannot tune the tested model;
 - holdouts are not spare inventory;
-- QC access and protected outcome access are distinct;
+- QC and scientific-outcome access are distinct;
 - model freeze precedes protected outcome access.
 
 ## Rework
 
-State-changing rework creates a new scientific state.
-
-Protected fit/holdout/bridge role is not retained automatically.
+State-changing rework creates a new scientific state. Protected fit/holdout/bridge identity is not retained automatically.
 
 ## Evidence progression
 
@@ -315,8 +261,8 @@ No stage skipping.
 - Controlled method != physical implementation.
 - Logic dry run != lab dry run.
 - Repository validator != deployed lab system.
-- Reference application != hardened laboratory provenance platform.
-- Surrogate result != HgCdTe empirical evidence.
+- Reference application != reference deployment/security simulation != hardened laboratory platform.
+- Surrogate/software result != HgCdTe empirical evidence.
 - Preserve negative searches, failed runs, failed predictions and rejected hypotheses.
 
 ---
@@ -368,27 +314,30 @@ Authoritative mass convention:
 
 # EH&S
 
-Repository procedures/software do not authorize Hg/Cd/Br2/HBr/H2/CH4 handling, sealed high-temperature processing, RF/vacuum/high voltage, solvents, cryogens, or other hazardous laboratory work.
+Repository procedures/software do not authorize Hg/Cd/Br2/HBr/H2/CH4 handling, sealed high-temperature processing, RF/vacuum/high voltage, solvents, cryogens or other hazardous laboratory work.
 
 Physical execution requires real facility/institution controls.
 
 ---
 
-# Next logical work — Round 50
+# Next logical work — Round 51
 
-If Round-49 final CI passes, build a **deployment/security simulation** around the reference application without HgCdTe.
+Build a **reproducible real-host surrogate deployment harness** rather than adding another in-process security abstraction.
 
 Priority:
 
-1. concrete single-host deployment profile;
-2. service/operator identity separation;
-3. protected-field encryption or explicit alternative isolation design;
-4. signing-key lifecycle/rotation/revocation;
-5. trusted-time policy;
-6. backup/restore integrity qualification;
-7. dummy instrument-ingest adapter;
-8. configuration/calibration import adapter;
-9. P16I laboratory-style dry run against the deployed surrogate system;
-10. explicit threat/failure model for direct database/file access.
+1. declarative host bootstrap;
+2. genuinely separate OS users/service accounts;
+3. filesystem ownership/group/ACL tests;
+4. service confinement;
+5. select vetted encryption/KMS technology for protected storage;
+6. signing/backup key custody and recovery;
+7. external time synchronization/failure policy;
+8. synthetic serial/network instrument endpoint;
+9. concurrent writers;
+10. crash/restart/power-loss simulation;
+11. disk-full/read-only-filesystem cases;
+12. backup loss/key loss/partial restore cases;
+13. full no-HgCdTe P16I-style traversal on that deployed host.
 
 Do not use HgCdTe merely to commission software/security controls.
