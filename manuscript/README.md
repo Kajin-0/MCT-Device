@@ -7,48 +7,65 @@ Canonical integrated technical source:
 ## Current publication direction
 
 - Round 52: integrated technical/source draft.
-- Round 53: condensed publication presentation — **REJECTED / SUPERSEDED**.
-- Round 54: traveler/SOP-with-fill-fields presentation — **REJECTED / SUPERSEDED**.
-- Round 55: first hard-number empirical-protocol model; critical defects found.
-- Round 56: adversarial repair of geometry, anodization and transient design.
-- Round 57: **ACTIVE TARGETED METROLOGY-CLOSURE REVIEW CANDIDATE**.
+- Round 53: condensed booklet — rejected.
+- Round 54: traveler/SOP-with-fill-fields — rejected.
+- Round 55: first hard-number empirical-protocol model; major defects found.
+- Round 56: adversarial scientific repair.
+- Round 57: targeted metrology closure; current scientific baseline.
+- Round 58: **ACTIVE LATEX PRESENTATION / MATHEMATICAL-TYPESETTING CANDIDATE**.
 
-`RP01-EMPIRICAL-PROTOCOL-ROUND57-REVIEW-CANDIDATE = YES`.
+`RP01-EXHAUSTIVE-EMPIRICAL-PROTOCOL-ROUND58-LATEX-CANDIDATE = YES`.
 
-The active publication grammar remains:
+## What Round 58 is
 
-`equipment/materials -> hard-number reference recipe -> numbered procedure -> timing -> expected result -> analysis -> troubleshooting -> evidence note`.
+Round 58 does not force the project into a conventional journal-paper or factory-SOP category. The preferred document class is an **exhaustive research-fabrication protocol**: publication-level analytical clarity, SOP-level execution, and internal-process-notebook completeness.
 
-No blank traveler fields in the main document.
+The protocol grammar remains:
 
-## Round-57 closure
+`objective -> starting state -> equipment/materials -> hard-number reference recipe -> numbered procedure -> timing -> expected result -> analysis -> troubleshooting -> evidence/transfer limits`.
 
-Round 57 repairs the remaining major characterization/release-gate findings from the Round-56 adversarial re-review:
+The main body contains no blank traveler fields.
 
-1. **electric field** — report both Smith-style terminal applied field `E_Smith=V_terminal/L_gap` and a separately labeled TLM-derived contact-corrected `E_bulk,est`;
-2. **absolute optical power** — canonical Protocol 18 is an underfilled spectral radiant-power comparator measurement with measured beam profile, <=60-µm 1/e²-equivalent diameter at specified wavelengths, ±10-µm centering and >=99% power overlap inside the 100×300-µm D1 active gap;
-3. **functional blocking** — new Protocol 14A / repository P37 supplies an executable LBIC witness test at 80 K, 1.047 µm, ~400 mW/cm² with quantitative bipolar-map criteria.
+## Presentation system
 
-Secondary repairs include a blocked 2² LPE validation screen across independent source syntheses, geometry-matched wet-etch witness, mathematically defined FTIR depth/gradient coordinates and archived model hashes, finite-width 2-D TLM reduction, explicit wire-saw mechanics, stationarity-tested noise statistics and adaptive transient repetition period.
+Round 58 is native LaTeX and uses a restrained monochrome technical-reference style:
+
+- real mathematical typography rather than code-like equation strings;
+- proper displayed/aligned equations and derivations;
+- TeX Gyre Pagella body text with restrained sans-serif headings;
+- `newtxmath` mathematics;
+- `siunitx` unit formatting and `mhchem` chemical notation;
+- booktabs-style tables with minimal rules;
+- protocol-first page hierarchy with each major protocol starting fresh;
+- running headers, footer maturity statement and concise contents hierarchy;
+- no dashboard styling, decorative figures, colored cards or fillable forms.
+
+Round-57 scientific meaning is preserved. Protocols 1–7 remain the composite upstream-material hypothesis; the dual field convention, underfilled absolute-radiometry geometry, P37 LBIC witness gate, finite-width TLM, FTIR model specification, D* area convention and transient/noise closure remain controlling.
+
+## Round-58 review artifact
+
+- `RP01_HgCdTe_Exhaustive_Empirical_Fabrication_Protocol_Round58.pdf`
+- `RP01_HgCdTe_Exhaustive_Empirical_Fabrication_Protocol_Round58.tex`
+
+QA:
+
+- 59 physical PDF pages;
+- letter size;
+- text-native, openable and unencrypted;
+- no form/XFA fields;
+- all 59 release pages visually inspected after final page-rhythm repairs;
+- release LaTeX compile has no remaining overfull/underfull box warnings.
+
+SHA-256:
+
+- PDF `07a367efa3dbd378733d40170a98fe37591560e2cd0241995b946be4cfabfb18`;
+- TeX `1aecca413df24ddb545b9e5c8bc1e14afc8d26e80fe14ca5eeea59c530e3889f`.
 
 See:
 
-- `../docs/RP01_EMPIRICAL_PROTOCOL_METROLOGY_CLOSURE_ROUND57.md`;
-- `../docs/RP01_GAP_MATRIX_ADDENDUM_ROUND57.md`;
-- `../docs/SOURCE_LEDGER_ADDENDUM_ROUND57.md`;
-- `../procedures/P37_LBIC_BLOCKING_CONTACT_FUNCTIONAL_QUALIFICATION.md`;
-- `../analysis/ftir/ROUND57_FTIR_MODEL_SPECIFICATION.md`;
-- `../research/2026-08-16_checkpoint_after_empirical_protocol_round57.md`.
-
-## Evidence rule
-
-- `RP` direct RP-01;
-- `SL` same lineage;
-- `PT` primary transfer;
-- `DER` derived;
-- `SYN` explicit synthesized empirical starting implementation.
-
-A hard number remains a hypothesis until the combined process state is experimentally demonstrated. Cross-lineage ancestry is not process validation.
+- `../docs/RP01_LATEX_TYPESETTING_ROUND58.md`;
+- `../research/2026-08-16_checkpoint_after_latex_protocol_round58.md`;
+- Round-57 scientific records for the controlling scientific closure.
 
 ## Physical maturity remains separate
 
@@ -56,22 +73,6 @@ A hard number remains a hypothesis until the combined process state is experimen
 - `HISTORICAL-RP01-REPRODUCED = NO`;
 - `REPRODUCIBLE-RELEASE = NO`.
 
-## Round-57 artifact state
-
-Review artifact: 41-page monochrome empirical protocol manual.
-
-QA:
-
-- DOCX accessibility `0 high / 0 medium / 0 low`;
-- all 41 DOCX-render pages visually inspected;
-- final PDF 41 letter-size pages, text-native, openable, unencrypted, zero form fields;
-- final PDF render pixel-identical to the inspected LibreOffice PDF at comparison DPI and independently rendered at 200 dpi.
-
-SHA-256:
-
-- DOCX `162f51b424acc2a5754bf11fb615f5077091a03f57b5b468e93be5c0181f3d1e`;
-- PDF `92f5ec2a6a05af22f77add2ed10c5dded36162c79b27b7d1dc51392dce1aaca8`.
-
 ## Next gate
 
-Continue adversarial review of remaining `SYN` process settings and cross-lineage interactions. Do not undo the dual-field convention, underfilled absolute-power geometry, or LBIC witness gate without stronger contrary primary evidence.
+Use the Round-58 LaTeX design as the preferred presentation layer. Future revisions should strengthen remaining `SYN` process settings and cross-lineage assumptions while retaining the exhaustive protocol structure and mathematical typography.
