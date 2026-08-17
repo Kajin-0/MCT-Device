@@ -1,12 +1,12 @@
 # AGENTS.md — MCT-Device continuity record
 
-**Current continuity round:** 56  
+**Current continuity round:** 57  
 **Date:** 2026-08-16 America/New_York  
 **Repository:** `Kajin-0/MCT-Device`
 
 ## User-facing mission
 
-Produce a source-traceable **empirical protocol manual** for HgCdTe photoconductor fabrication and characterization. The publication should read as a hard-number experimental methods paper rather than a condensed review, manufacturing traveler, or blank-field SOP.
+Produce a source-traceable **empirical protocol manual** for HgCdTe photoconductor fabrication and characterization. The publication should read as a hard-number experimental methods monograph: materials/equipment, concrete reference recipe, numbered procedure, timing, expected result, analysis, troubleshooting, and value-level evidence. Do not revert to blank-field traveler formatting.
 
 Canonical downstream historical anchor:
 
@@ -14,162 +14,136 @@ E. P. G. Smith, K. J. Winchester, C. A. Musca, J. M. Dell, L. Faraone, “A simp
 
 ## READ FIRST
 
-1. `docs/RP01_EMPIRICAL_PROTOCOL_REPAIR_ROUND56.md` — active scientific disposition after adversarial review.
-2. `research/2026-08-16_checkpoint_after_empirical_protocol_round56.md` — latest continuity checkpoint.
-3. `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND56.md` and `docs/SOURCE_LEDGER_ADDENDUM_ROUND56.md`.
-4. `manuscript/RP01_HGCDTE_PHOTOCONDUCTOR_PROCESS_MANUAL_DRAFT.md` — integrated technical source draft.
-5. Detailed `procedures/P01...P36A`, calculations, and prior source-ledger material remain the technical evidence corpus.
-6. Round 55 is retained as superseded review history; do not restore its known blocker defects.
+1. `docs/RP01_EMPIRICAL_PROTOCOL_METROLOGY_CLOSURE_ROUND57.md`.
+2. `research/2026-08-16_checkpoint_after_empirical_protocol_round57.md`.
+3. `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND57.md` and `docs/SOURCE_LEDGER_ADDENDUM_ROUND57.md`.
+4. `procedures/P37_LBIC_BLOCKING_CONTACT_FUNCTIONAL_QUALIFICATION.md`.
+5. `analysis/ftir/ROUND57_FTIR_MODEL_SPECIFICATION.md`.
+6. The detailed P01–P36A procedures/calculations and Round-56 records remain underlying evidence history.
 
 ## Current publication state
 
-- `RP01-EMPIRICAL-PROTOCOL-ROUND56-REVIEW-CANDIDATE = YES`.
-- `ROUND55-RELEASE-BLOCKERS-REPAIRED-IN-PUBLICATION = YES`.
+- `RP01-EMPIRICAL-PROTOCOL-ROUND57-REVIEW-CANDIDATE = YES`.
+- `ROUND56-REVIEW-METROLOGY-BLOCKERS-CLOSED-IN-PUBLICATION = YES`.
 - `TRACEABLE-FIRST-BUILD-READY = NO` for an unspecified/uninstantiated laboratory.
 - `HISTORICAL-RP01-REPRODUCED = NO`.
 - `REPRODUCIBLE-RELEASE = NO`.
 
-Round 56 is an **adversarially repaired literature-derived experimental protocol candidate**. It is not an end-to-end validated fabrication process.
+Round 57 is a targeted metrology-closure revision of the hard-number protocol candidate. It is not a claim of end-to-end empirical validation.
 
-## Round-56 architecture
+## Evidence codes
 
-The document retains 20 self-contained protocols using:
-
-`objective -> starting state -> equipment/materials -> hard-number reference recipe -> numbered procedure -> timing -> expected result -> analysis -> troubleshooting -> evidence note`.
-
-The main text contains no fill-in-the-blank fields.
-
-Evidence codes remain:
-
-- `RP` — direct Smith/RP-01 value;
-- `SL` — same-lineage method/value;
+- `RP` — direct Smith/RP-01 evidence;
+- `SL` — same-lineage evidence;
 - `PT` — primary transfer evidence;
 - `DER` — derived quantity;
 - `SYN` — explicit synthesized empirical starting choice.
 
-`SYN` never means historical identity or empirical validation.
+`SYN` is concrete and falsifiable, but never historical identity or demonstrated process capability.
 
-## Critical Round-56 repairs
+## Round-57 major closures
 
-### 1. Detector and TLM geometry separated
+### Electric field: historical comparison and physics correction are separate
 
-Round 55 incorrectly placed the published nine-contact TLM string on a 500 × 500 µm mesa even though the contacts plus 50–400 µm gaps require a 4500 µm minimum longitudinal envelope.
+D1 has only two detector contacts, so a contact-free active-region voltage is not directly sensed.
 
-Round 56 defines separate structures:
+Report both:
 
-- `D1` detector mesa: `900 × 500 µm`; two `300 × 300 µm` contacts; `100 µm` reference gap; nominal `100 µm` longitudinal margins.
-- `T1` TLM mesa: `5000 × 500 µm`; nine `300 × 300 µm` contacts with successive `50,100,...,400 µm` gaps; minimum published contact-string envelope `4500 µm`; `250 µm` nominal end margins.
+`E_Smith = V_terminal / L_gap`
 
-Never use T1 geometry as the detector optical active area and never put the nine-contact string on D1.
+for direct comparison to Smith’s applied-field convention, and
 
-### 2. Anodization fixture instantiated
+`E_bulk,est = [V_terminal - I(Rc1,est+Rc2,est)] / L_gap`
 
-The TI anodization chemistry remains a strong transfer anchor, but Round 56 adds the missing electrical geometry for isolated mesas.
+as a contact-corrected internal-field estimate.
 
-Reference implementation:
+Estimate each contact with the finite-contact TLM relation
 
-- `0.100 M KOH` in `900 mL EG + 100 mL DI water`;
-- HgCdTe is the anode; carbon rod cathode;
-- `0.300 mA/cm²` for `120 s`, expected ~`15 V`, ~`80 nm` deep-blue oxide;
-- PTFE fixture and PTFE-coated spring microprobe;
-- dry temporary-contact patch `100 × 100 µm`, wholly inside a future metal-contact window;
-- wetted area includes mesa top outside the dry patch plus sidewalls;
-- D1 nominal wetted area ~`0.00467 cm²` -> current ~`1.40 µA`;
-- T1 nominal wetted area ~`0.02595 cm²` -> current ~`7.78 µA`;
-- current-source target accuracy `<=1% of setpoint or +/-20 nA, whichever is larger`.
+`L_T = sqrt(rho_c/R_s)`
 
-Isolated mesas are anodized sequentially unless independently controlled contacts exist.
+`R_c,est = sqrt(rho_c R_s)/W * coth(L_c/L_T)`.
 
-### 3. Transient acquisition repaired
+For the nominal 100-µm gap, the canonical historical point remains `E_Smith=10 V/cm -> V_terminal=0.100 V`. With the RP-like screening values, this corresponds to `E_bulk,est≈6.83 V/cm`; a true bulk 10 V/cm estimate would require about `0.146 V` terminal. These are consistency calculations, not measured D1 Kelvin voltages.
 
-Round 55 used a 20-ns interval for a 25-ns pulse, only 1.25 sample intervals.
+### Absolute responsivity: one canonical underfilled radiant-power mode
 
-Round 56 uses:
+Protocol 18 now freezes a spectral radiant-power substitution-comparator mode:
 
-- `500 MS/s`;
-- `2.0 ns` interval;
-- ~`12.5` intervals across a 25-ns source pulse;
-- initial record `100 µs`, `50,000` samples, `10 µs` pretrigger;
-- `128` averages;
-- final record length `>=10 × tau_slowest`;
-- separate slower package-thermal acquisition where necessary.
+- D1 active gap: `100 × 300 µm`;
+- target probe-beam diameter: `50 µm` 1/e²-equivalent near 4 µm;
+- measured diameter must be `<=60 µm` at 3.0, 4.0, 4.4 and 5.0 µm;
+- beam center within `±10 µm` of active-gap center;
+- integrated measured beam power inside the active gap `>=99.0%`;
+- reference/DUT image-plane mismatch `<=0.10 mm`;
+- reference detector must have applicable spectral radiant-power responsivity calibration and fully capture the underfilled beam.
 
-Do not infer `f_3dB=1/(2*pi*tau)` unless a one-pole transfer function is empirically justified.
+If the overlap/underfill condition is not met, the result may not be labeled the canonical absolute power responsivity; use a separately defined irradiance-mode method.
 
-## Upstream material branch is not RP-01 reconstruction
+### Functional blocking: executable LBIC witness protocol
 
-Smith et al. purchased the starting LPE HgCdTe/CdZnTe material from Fermionics. Therefore Protocols 1–7 are now explicitly labeled:
+A new `W1` process-control witness is introduced. It shares parent material, anodic oxide and the same RIE chamber run with D1/T1, but is sacrificial/diagnostic so D1 passivation is not stripped.
 
-**COMPOSITE LITERATURE-DERIVED UPSTREAM MATERIAL HYPOTHESIS**.
+Reference LBIC state:
 
-The LPE center retains the composition-matched Honeywell tie line `xL=.082, yL=.810, TL=507 °C -> xS≈.29`, but absolute charge, synthesis, boat execution and growth schedule combine separate primary lineages.
+- `80.0 K`;
+- `1.047 µm` CW excitation;
+- `400 mW/cm²`;
+- nominal `10 µm` 1/e² spot;
+- `700 × 700 µm` scan;
+- `5 µm` pitch;
+- zero external bias with virtual-ground current readout;
+- five line scans at y=`−100, −50, 0, +50, +100 µm`.
 
-Round-56 validation matrix for the explicit 500 °C / 5 min center:
+A line passes only when both positive and negative lobes exceed `5 sigma_0` and their centers lie within `50 µm` of the nominal ±150-µm RIE boundaries. W1 passes at `>=4/5` lines plus a consistent 2-D bipolar map. TLM alone remains insufficient evidence of minority-carrier blocking.
 
-- 497 °C / 3 min;
-- 497 °C / 7 min;
-- 503 °C / 3 min;
-- 503 °C / 7 min;
-- three independent center runs at 500 °C / 5 min.
+## Secondary Round-57 repairs
 
-Do not call 500 °C / 5 min an established optimum until this or stronger empirical validation exists.
+- LPE matrix is named a **blocked 2² factorial validation screen**, not a response surface. Four corners + center in source batch A; independent 500 °C/5-min centers from source batches B and C. Optional axial points are a separate second stage if quadratic curvature is needed.
+- Wet-mesa witness is co-patterned/geometrically representative, uses the same AZ4620 stack and orientation, and is co-immersed near D1 in the same bath.
+- FTIR coordinates are defined: z=0 at HgCdTe/CdZnTe interface, z=d at free surface; `x(z)=x0+g(z/d−0.5)`, so `g=x_surface−x_interface`. Optional `s_x` is explicitly a manual Gaussian unresolved-composition parameter, not claimed as Hougen notation. Exact implementation/coefficient files and hashes must be archived with real data.
+- T1 precision rho_c extraction uses a finite-width 2-D sheet/contact model rather than assuming conductor width equals 300-µm contact width. The long-contact expression is retained only as a consistency check.
+- Singulation now distinguishes the source’s ambiguous `125-mm` saw wording from the actual cutting-wire diameter. Round-57 starting implementation: 100-µm stainless wire, 5.0-N tension, 20 m/min wire speed, 0.020 mm/min feed, 16-µm BN, 10-wt% BN/DI slurry, cuts parallel to mask axes.
+- Packaging names Dow Corning 3110 RTV as the historical reference silicone family. A modern substitute is a separate recipe/equivalence problem.
+- Noise uses 64 non-overlapping records only after stationarity/serial-correlation screening; fixed 995–1005-Hz ASD band; final band-estimator CI from a 10,000-resample record-level bootstrap rather than pretending adjacent Hann bins add independent chi-square DOF.
+- Transient repetition now adapts with record length: `T_record>=10 tau_slowest`, `T_rep>=T_record+5 tau_slowest`, with explicit baseline-recovery verification.
 
-## Other Round-56 scientific repairs
+## Stable geometry and direct downstream anchors
 
-- Wet mesa is now same-bath witness-calibrated, not fixed at 4.00 min: `t_etch=(t_epi+d_overetch)/r_witness`, `d_overetch=max(1.0 µm,0.10*t_epi)`.
-- Round-56 reference HBr implementation is explicitly `48 wt% aqueous HBr`; this is a SYN reagent definition, not Srivastav historical identity.
-- FTIR now freezes an explicit coherent-film/incoherent-substrate full-spectrum inverse model, fit bounds, residual weighting, beam-footprint rule, covariance reporting and physical-thickness cross-check.
-- Hall output is `n_H`/`mu_H`, not unqualified true carrier density; fit weak-field data first (`|B|<=0.10 T`) and use higher fields diagnostically.
-- Anneal Hg inventory is treated only as a non-starvation check; carrier-state outcome still requires paired Hall/FTIR validation.
-- RIE individual nominal flows are rounded to realizable setpoints (`10.7 sccm CH4`, `53.3 sccm H2`) with actual MFC uncertainty recorded; direct historical authority remains total 64 sccm, 100 mTorr, 50 W, 60 s.
-- Cr/Au rates and vacuum remain SYN transfer settings with QCM witness closure and sample-temperature ceiling.
-- Packaging text no longer implies 5 g is a Honeywell optimum; both silicone/40-g and silicone/5-g historical branches survived, so compliance is the causal evidence.
-- DC self-heating uses pulse-width/duty sweeps and zero-deposited-energy extrapolation rather than one 10-ms pulse test.
-- RP-comparison D* area is frozen as `A_Dstar=L_gap*W_active`; nominal D1 `100 µm × 300 µm = 3.00e-4 cm²`; do not substitute mesa area.
-- Noise metrology includes explicit analog anti-alias filtering, independent-record PSD averaging, approximate DOF/confidence interval and preservation of the historical 1-kHz/~3-kHz source ambiguity.
-- False numerical precision is reduced: process records distinguish nominal setpoint, instrument resolution/calibration uncertainty and allowed research-screening criterion.
-- Critical transferred numbers now have source-location / transfer-delta entries in the publication.
+- `D1`: `900 × 500 µm`; two `300 × 300 µm` contacts; `100 µm` reference gap.
+- `T1`: `5000 × 500 µm`; nine `300 × 300 µm` contacts; gaps `50,100,...,400 µm`.
+- RP-comparison `A_Dstar = L_gap W_active = 100 µm × 300 µm = 3.00e-4 cm²` nominal.
+- RIE direct controller state remains printed `CH4/5H2`, total `64 sccm`, `100 mTorr`, `50 W`, `60 s`; individual 10.7/53.3-sccm values are interpretive DER/SYN nominal setpoints.
+- Cr/Au direct stack remains `30/270 nm`.
+- Detector comparison state retains `80 K`, Smith terminal-field coordinate, stated `60° FOV`, and 1-kHz spectral modulation.
+- `24.5 nV/sqrt(Hz)` is the high-frequency g-r level, not an automatic 1-kHz noise value.
 
-## Round-56 research continuation gates
+## Upstream-material status
 
-The manual now inserts explicit research gates between process families so a failed state is not carried downstream simply because the next tool is available. These are research-screening criteria, not historical production tolerances.
+Protocols 1–7 remain explicitly a **COMPOSITE LITERATURE-DERIVED UPSTREAM MATERIAL HYPOTHESIS**. Smith purchased the starting Fermionics LPE material; the repository’s LPE/anneal route is a testable synthesis of separate primary lineages, not an RP-01 historical growth reconstruction.
 
-Examples:
-
-- LPE -> anneal: FTIR/morphology plus completion of the seven-run validation matrix.
-- anneal -> lithography: N-like state; `n_H 4.9e14–2.0e15 cm^-3`; `mu_H>=3e4 cm²/Vs`; no paired optical-edge shift beyond `3 sigma_pair`.
-- mesa -> anodize: measured depth >= `t_epi+d_overetch` and verified electrical isolation.
-- anodize -> Mask 2: oxide metrology/V(t) closure.
-- RIE -> metal: oxide-clear and converted-state evidence plus reactor thermal/self-bias state.
-- TLM -> detector: majority-contact metric plus independent functional blocking evidence.
-- package -> optical/noise: cryogenic cycles plus measured package thermal pole.
-- responsivity/noise -> D*: same detector/contact/geometry/T/E/FOV/loading/frequency state.
-- transient claim: source/readout/package de-embedding and adequate record length.
-
-## Round-56 artifact QA
+## Round-57 artifact QA
 
 Review artifacts:
 
-- `RP01_HgCdTe_Empirical_Protocol_Manual_Round56.docx`
-- `RP01_HgCdTe_Empirical_Protocol_Manual_Round56.pdf`
+- `RP01_HgCdTe_Empirical_Protocol_Manual_Round57.docx`
+- `RP01_HgCdTe_Empirical_Protocol_Manual_Round57.pdf`
 
-Final render:
+Final state:
 
-- `37 pages`;
-- monochrome and text-native;
-- zero PDF form fields;
+- 41 pages;
+- monochrome, text-native;
+- no fillable PDF form fields;
 - DOCX accessibility audit `0 high / 0 medium / 0 low`;
-- all DOCX-render pages visually reviewed after pagination repairs;
-- PDF inspector/preflight: letter size, openable, unencrypted, not scanned;
-- all 37 PDF pages independently rendered at 200 dpi and visually reviewed.
+- all 41 DOCX-render pages visually inspected;
+- final PDF: 41 letter-size pages, openable, unencrypted, not scanned, zero form fields;
+- final PDF render is pixel-identical to the inspected LibreOffice render at the comparison DPI;
+- final PDF independently rendered at 200 dpi.
 
 SHA-256:
 
-- DOCX `9b9388aa3963489787c72e5899140202eae74ed0f5549e1eacd33b95b946ab21`.
-- PDF `697212dca8b4808b9d2cba1a16437f08b569bbf1be9e06c1b2a588379c4cf71c`.
-
-The binary files remain conversation review artifacts. Repository Markdown/procedure/calculation files remain the controlled evidence corpus until a final validated issue exists.
+- DOCX `162f51b424acc2a5754bf11fb615f5077091a03f57b5b468e93be5c0181f3d1e`.
+- PDF `92f5ec2a6a05af22f77add2ed10c5dded36162c79b27b7d1dc51392dce1aaca8`.
 
 ## Immediate next work
 
-Do not reopen the three repaired blocker defects. The next scientific pass should adversarially audit the remaining SYN values, especially cross-lineage LPE and anneal assumptions, lithography implementation, reactor equivalence, metallization transfer, and package construction. Replace weak SYN choices with stronger hard-number evidence or physics; do not revert to blank fields and do not promote them to validated process windows without experiments.
+Do not reopen the Round-57 field, absolute-power, or LBIC definitions unless new primary evidence invalidates them. The next adversarial pass should focus on the remaining `SYN` process values and on whether any reference implementation combines incompatible process lineages. Preserve the recipe format and hard numbers; strengthen weak choices rather than reverting to blanks.
