@@ -1,12 +1,12 @@
 # AGENTS.md — MCT-Device continuity record
 
-**Current continuity round:** 53  
+**Current continuity round:** 54  
 **Date:** 2026-08-16 America/New_York  
 **Repository:** `Kajin-0/MCT-Device`
 
 ## User-facing mission
 
-Produce the final source-traceable HgCdTe photodetector fabrication and characterization procedure paper/booklet. Prioritize the finished manual over new infrastructure work.
+Produce a source-traceable HgCdTe photodetector fabrication and characterization **bench procedure**, not a condensed review article. The deliverable must expose the detailed P01–P36 procedure corpus as operator-facing SOP modules with equipment/materials, local fill-in fields, numbered actions, in-process measurements, acceptance gates, and retained records.
 
 Canonical historical anchor:
 
@@ -15,70 +15,80 @@ E. P. G. Smith, K. J. Winchester, C. A. Musca, J. M. Dell, L. Faraone, “A simp
 ## READ FIRST
 
 1. `manuscript/RP01_HGCDTE_PHOTOCONDUCTOR_PROCESS_MANUAL_DRAFT.md` — technical Draft 0.2 / Round 52.
-2. `docs/RP01_MANUSCRIPT_TECHNICAL_REVIEW_ROUND52.md` — adversarial technical corrections.
-3. `docs/RP01_PUBLICATION_ASSEMBLY_REVIEW_ROUND53.md` — publication/render disposition.
-4. `research/2026-08-16_checkpoint_after_publication_assembly_round53.md` — latest checkpoint.
-5. `docs/SOURCE_LEDGER_ADDENDUM_ROUND53.md` — publication bibliography policy.
+2. `docs/RP01_MANUSCRIPT_TECHNICAL_REVIEW_ROUND52.md` — scientific/claim corrections.
+3. `docs/RP01_PROCEDURAL_REBUILD_REVIEW_ROUND54.md` — active publication-format disposition.
+4. `research/2026-08-16_checkpoint_after_procedural_rebuild_round54.md` — latest checkpoint.
+5. `docs/RP01_GAP_MATRIX_ADDENDUM_ROUND54.md` and `docs/SOURCE_LEDGER_ADDENDUM_ROUND54.md`.
+6. Round-53 publication records only as **rejected presentation history**.
 
-## Current manuscript/document maturity
+## Current document maturity
 
 - `RP01-INTEGRATED-MANUSCRIPT-DRAFT-READY = YES`.
 - `RP01-MANUSCRIPT-ADVERSARIAL-REVIEW-PASSED = YES`.
-- `RP01-PUBLICATION-ASSEMBLY-CANDIDATE-READY = YES`.
+- `ROUND53-PUBLICATION-PRESENTATION-ACCEPTED = NO`.
+- `RP01-PROCEDURAL-MANUAL-CORRECTIVE-CANDIDATE-READY = YES`.
 
-These are document states only.
+The Round-54 state means a substantially rebuilt operator-facing review candidate exists. It is not yet the final issued manual.
 
-Physical maturity remains:
+Physical maturity remains unchanged:
 
 - `TRACEABLE-FIRST-BUILD-READY = NO` for an unspecified/uninstantiated laboratory.
 - `HISTORICAL-RP01-REPRODUCED = NO`.
 - `REPRODUCIBLE-RELEASE = NO`.
 
-## Round-53 publication candidate
+## Round-54 corrective artifact
 
-A 22-page professional DOCX/PDF candidate was produced and visually QA'd. It contains:
+The Round-53 22-page booklet was rejected by the user because it was over-condensed, visually weak, insufficiently procedural, and omitted too much operator detail from the controlled source corpus.
 
-- claim/execution hierarchy;
-- reference detector table;
-- process flow from CdZnTe receipt through final characterization;
-- five deterministic engineering schematics;
-- qualification/local-instantiation matrices;
-- ten worked calculations/uncertainty examples;
-- six operator release checklists;
-- symbol/unit/reporting conventions;
-- controlled numbered bibliography;
-- deliberately open historical identities.
+Round 54 rebuilt the publication candidate from P01–P36/P36A rather than merely restyling Round 53.
 
-Artifact hashes at render gate:
+Current review artifact:
 
-- PDF SHA-256 `63b03f0d6303071eeda52bfdd673d8f840a1ab7eff50453d02cf2e7e60ddadb3`.
-- DOCX SHA-256 `5f9441141badbcb78714bf8eb2766640cdee47aa07612e450456476dea2b188c`.
+- 47 pages;
+- 17 sequential SOP modules;
+- 9 engineering schematics tied to apparatus/geometry/measurement logic;
+- explicit equipment/materials and incoming-state blocks;
+- yellow `MUST FILL BEFORE EXECUTION` local-coordinate fields;
+- numbered operator actions;
+- in-process measurement requirements;
+- `GO / HOLD / REWORK / STOP` gates;
+- failure-isolation logic;
+- worked calculations/uncertainty template;
+- operator release checklists;
+- symbols/units and controlled bibliography.
 
-The conversation artifacts are review copies; repository Markdown/procedures/calculations remain technical source of truth until final issue.
+Artifact hashes:
+
+- DOCX SHA-256 `399e51aa26046acfde1de283ce690e23f4dbdef9f293ea534e5478f65ce823e2`.
+- PDF SHA-256 `a4d27a11471dfad35a79d60727d0d71c847e26d2b6268209501f30b39ecdeaac`.
+
+QA:
+
+- DOCX rendered and visually inspected through all 47 pages after final edits;
+- DOCX accessibility audit: `0 high / 0 medium / 0 low` findings after safe fixes;
+- PDF inspector/preflight: 47 pages, letter size, openable, unencrypted, text-native;
+- PDF independently rendered at 200 dpi through all 47 pages.
+
+The binary files remain conversation review artifacts; Markdown/procedure/calculation files remain controlled technical source of truth until final issue.
 
 ## Permanent control rules
 
-### Reference center versus execution
+### Execution semantics
 
 `REF-CENTER != EXECUTABLE-LOCAL-SETPOINT`.
 
-Before irreversible execution, all required local material/reagent/tool/geometry/setpoint/endpoint fields must be instantiated and relevant P36/P36A acceptance + genealogy + EH&S authorization must exist.
+Before irreversible execution, all required local material/reagent/tool/geometry/setpoint/endpoint fields must be instantiated and relevant P36/P36A acceptance, genealogy, and EH&S authorization must exist. `TBD`, undefined `%`, `appropriate`, and uncalibrated controller values fail preflight.
 
 ### Evidence discipline
 
-Never invent missing values. Keep direct RP-01, same-lineage, primary transfer, derived, reference center, local calibration/qualification and historical-open evidence distinct. Repetition does not promote evidence class. `Not recovered` does not mean absent.
+Never invent missing values. Keep direct RP-01, same-lineage, primary transfer, derived, reference center, local calibration/qualification, and historical-open evidence distinct. Repetition does not promote evidence class. `Not recovered` does not mean absent.
 
-### LPE authority
-
-Tie-line center:
+### LPE numerical authority
 
 `xL=.082, yL=.810, TL=507 °C, xS≈.29`.
 
-Authoritative mass convention:
+Using Hg=200.59, Cd=112.414, Te=127.60 g/mol:
 
-- Hg 200.59 g/mol;
-- Cd 112.414 g/mol;
-- Te 127.60 g/mol;
 - `w_Hg=0.2497382358`;
 - `w_Cd=0.01250164993`;
 - `w_Te=0.7377601143`.
@@ -87,54 +97,32 @@ Authoritative mass convention:
 
 ### RIE authority
 
-Direct controller state:
+Direct controller state: parallel-plate Plasma Technology reactor, `CH4/5H2`, total `64 sccm`, `100 mTorr`, `50 W`, `60 s`.
 
-`CH4/5H2, 64 sccm total, 100 mTorr, 50 W, 60 s`, parallel-plate Plasma Technology reactor.
-
-Candidate 1:5 split -> `10.6667/53.3333 sccm` is interpretive transfer only.
+Candidate 1:5 split `10.6667/53.3333 sccm` is interpretive transfer only.
 
 Permanent:
 
 - `50 W != reactor equivalence`;
-- physical recession `d_etch != d_conv`;
+- `d_etch != d_conv` and lateral `L_conv` is separate;
 - report sheet state and independently justified conversion depth;
 - `n_conv=N_s/d_conv` only after `d_conv` closure;
 - TLM does not by itself prove minority-carrier blocking.
 
-### Detector comparison authority
+### Detector-performance authority
 
 RP-01 Figures 3/5/6/7 are the same representative detector; exact contact pair remains open.
 
-New D* closure locks:
+New D* closure locks `{device, contact pair, gap, width, T, E, package, FOV/background, loading, frequency convention}` unless an explicit measured correction is applied.
 
-`{device, contact pair, gap, width, T, E, package, FOV/background, loading, frequency convention}`
-
-unless a measured correction is explicitly applied.
-
-60° FOV remains historically ambiguous as full versus half angle; physical geometry must be recorded.
-
-Define `A_Dstar` separately from optical power geometry; retain covariance when shared.
+The stated `60° FOV` remains historically ambiguous as full versus half angle. `A_Dstar` is defined separately from optical power geometry; preserve covariance when a coordinate is shared.
 
 `24.5 nV/sqrt(Hz)` is the high-frequency g-r level and is not automatically the 1-kHz detector noise because the reported knee is ~3 kHz.
 
 ### Dynamics/package authority
 
-No direct RP-01 lifetime curve exists. De-embed source/readout/cable/instrument and evaluate package thermal transfer before calling a slow pole minority-carrier lifetime.
+No direct RP-01 lifetime curve exists. De-embed source/readout/cable/instrument and evaluate package thermal transfer before assigning a slow pole to minority-carrier lifetime.
 
-## Known housekeeping item
+## Immediate next work
 
-One section of P30A still carries an older ppm-scale rounded mass-fraction triplet. `calculations/LPE_CHARGE_COMPOSITION_SENSITIVITY.md` and Draft 0.2 are authoritative. Repair P30A in a later text-cleanup commit; do not let it override the calculation module.
-
-## Immediate next work — Round 54
-
-Do a **content-density/final editorial adversarial audit**, not a broad new research loop:
-
-1. compare the 22-page publication candidate against Draft 0.2 and P01–P36A;
-2. identify any operator-critical information lost by condensation;
-3. expand only where omission changes a decision, endpoint, evidence class, calculation convention or acceptance gate;
-4. optionally repair P30A's known rounded-value wording;
-5. freeze bibliography/captions/symbol usage;
-6. render and preflight the final-layout candidate again;
-7. only then consider a final issued booklet state.
-
-Targeted source recovery is allowed only when a specific final-booklet claim materially requires it.
+Use the Round-54 artifact as the active review candidate. Next work should be a **line-by-line scientific/operator audit of this procedural version**, repairing any stage that still omits an operator-critical control or misrepresents evidence. Do not force brevity. Do not return to the Round-53 overview layout. Final issue should occur only after that audit and user acceptance.

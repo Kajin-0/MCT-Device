@@ -1,30 +1,37 @@
 # Integrated manual manuscript
 
-Canonical technical draft:
+Canonical technical source:
 
 `RP01_HGCDTE_PHOTOCONDUCTOR_PROCESS_MANUAL_DRAFT.md`
 
 Current controlled states:
 
-- technical draft `0.2`, Round `52`;
+- technical Draft `0.2`, Round `52`;
 - `RP01-INTEGRATED-MANUSCRIPT-DRAFT-READY = YES`;
 - `RP01-MANUSCRIPT-ADVERSARIAL-REVIEW-PASSED = YES`;
-- Round-53 publication assembly candidate rendered and visually QA'd;
-- `RP01-PUBLICATION-ASSEMBLY-CANDIDATE-READY = YES`.
+- Round-53 22-page publication presentation: **REJECTED / SUPERSEDED FOR PRESENTATION**;
+- `RP01-PROCEDURAL-MANUAL-CORRECTIVE-CANDIDATE-READY = YES`.
 
-Round-53 publication records:
+## Active publication candidate
 
-- `../docs/RP01_PUBLICATION_ASSEMBLY_REVIEW_ROUND53.md`;
-- `../docs/SOURCE_LEDGER_ADDENDUM_ROUND53.md`;
-- `../research/2026-08-16_checkpoint_after_publication_assembly_round53.md`.
+Round 54 rebuilds the manual as an operator-facing SOP rather than a condensed booklet. It uses 17 sequential process modules with a common grammar:
 
-The Round-53 DOCX/PDF are conversation review artifacts. The repository Markdown/procedure/calculation set remains the controlled technical source of truth until a final issued booklet is frozen.
+`purpose -> prerequisites/incoming state -> equipment/materials -> reference values -> mandatory local fields -> numbered operations -> in-process measurements -> GO/HOLD/REWORK/STOP -> retained records`.
+
+The review artifact is 47 pages with 9 engineering schematics and explicit local-instantiation fields. See:
+
+- `../docs/RP01_PROCEDURAL_REBUILD_REVIEW_ROUND54.md`;
+- `../docs/RP01_GAP_MATRIX_ADDENDUM_ROUND54.md`;
+- `../docs/SOURCE_LEDGER_ADDENDUM_ROUND54.md`;
+- `../research/2026-08-16_checkpoint_after_procedural_rebuild_round54.md`.
+
+Round-53 publication records remain in the repository as audit history only. They are not the preferred presentation model.
 
 ## Governing distinction
 
 `REFERENCE QUALIFICATION CENTER != EXECUTABLE LOCAL SETPOINT`.
 
-A future laboratory must instantiate its own hardware/material-dependent values and pass applicable P36/P36A acceptance before irreversible execution. Publication completeness does not imply laboratory readiness.
+A future laboratory must instantiate its hardware/material-dependent values and pass applicable P36/P36A acceptance before irreversible execution. Publication completeness does not imply laboratory readiness.
 
 Physical maturity remains separate:
 
@@ -34,4 +41,4 @@ Physical maturity remains separate:
 
 ## Next publication gate
 
-Before calling the booklet final, perform a content-density audit against Draft 0.2 and P01–P36A to ensure publication condensation did not remove an operator-critical decision, endpoint, evidence restriction, calculation convention, or acceptance gate.
+Perform a line-by-line operator/scientific audit of the Round-54 procedural candidate against Draft 0.2 and P01–P36A. Expand rather than compress whenever omission can change an operation, measurement, endpoint, evidence classification, or disposition. Only after that review should a final issued booklet state be considered.
